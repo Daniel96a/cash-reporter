@@ -1,0 +1,26 @@
+.profile-div {
+  margin: auto;
+  margin-bottom: 10px;
+  padding: 20px 10px 10px 10px;
+  border: 0.5px solid hsla(214, 100%, 11%, 0.13);
+  background-color: #3a3d572a;
+  text-align: left;
+  border-radius: 10px;
+  max-width: 100px;
+}
+
+
+.settings button{
+  background-color: rgb(0, 89, 255);
+  color: #fff;
+  font-size: small;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 0;
+  width: fit-content;
+  height: fit-content;
+  border-collapse: separate;
+  border-radius: 5px;
+}
