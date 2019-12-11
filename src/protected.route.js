@@ -5,12 +5,12 @@ export const ProtectedRoute = ({ component: Component, auth, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-       auth.isLoggedIn ? (
+       auth.isAuthenticated ? (
         <Component auth={auth} {...props} />
       ) : (
         <Redirect
           to={{
-            pathname: "/"
+            pathname: "/login"
           }}
         />
       )

@@ -1,56 +1,58 @@
 import * as types from "./types";
 import axios from "axios";
 import history from "../history";
-const userLogin = (username, token, permission) => ({
-  type: types.AUTH_LOGIN,
-  username,
-  token,
-  permission
+import setAuthorizationToken from "../utils/setAuthorizationToken";
+
+export const setCurrentUser = user => ({
+  type: types.SET_CURRENT_USER,
+  user
 });
 const customHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "*",
   "Content-Type": "application/json"
 };
-
-console.log(userLogin());
-
-const userLogout = () => ({
-  type: types.AUTH_LOGOUT
-});
-
-// const fakeLoginRequest = error =>
-//   new Promise((resolve, reject) =>
-//     setTimeout(() => {
-//       error === 200 ? resolve(error) : reject(error);
-//     }, 1000)
-//   );
-
-export const doLogin = (username, password) => async dispatch => {
-  console.log(username, password);
-  const data = { username: username, password: password };
-  axios
-    .post("http://10.158.78.105:9091/login", data, {
-      headers: customHeaders,
-      timeout:1000
-    })
-
-    .then(res => {
-      const resData = {
-        username: res.data.username,
-        token: res.data.token,
-        permission: res.data.permission
-      };
-      dispatch(userLogin(resData.username, resData.token, resData.permission));
-    })
-    .catch(error => {
-      dispatch(userLogin("ssdfasd", "asdfasfd", "sadfasd"));
-      history.push("/");
-      alert(error);
-    });
+export const verifyToken = token => {
+  return async dispatch => {
+    return axios
+      .post("http://10.158.78.105:9091/validate_token", token, {
+        headers: customHeaders,
+        timeout: 1000
+      })
+      .then(res => {
+        return dispatch(res)
+      })
+      .catch(error => {
+       return dispatch(error)
+      });
+  };
 };
+export const doLogin = data => {
+  return async dispatch => {
+    return axios
+      .post("http://10.158.78.105:9091/login", data, {
+        headers: customHeaders,
+        timeout: 1000
+      })
+      .then(res => {
+        dispatch(setCurrentUser(res.data.token));
+        localStorage.setItem("jwtToken", res.data.token);
+        setAuthorizationToken(res.data.token);
+      })
+      .catch(error => {
+        dispatch(setCurrentUser("tokenValue"));
+        setAuthorizationToken("tokenValue");
+        localStorage.setItem("jwtToken", "tokenValue");
 
-export const doLogout = () => async dispatch => {
-  dispatch(userLogout());
-  history.push("/login")
+        history.push("/");
+        alert(error);
+      });
+  };
 };
+export function doLogout() {
+  return dispatch => {
+    localStorage.removeItem("jwtToken");
+    setAuthorizationToken(false);
+    dispatch(setCurrentUser({}));
+  };
+}

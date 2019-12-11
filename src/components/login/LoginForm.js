@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { withRouter } from "react-router-dom";
 import "./LoginForm.css";
 const LoginForm = props => {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
- 
+
   const data = {
     username: username.toLocaleLowerCase(),
     password: password
   };
 
   const login = e => {
-    props.doLogin(data.username, data.password)
+    const data = { username: username, password: password };
+    props.doLogin(data);
     document.getElementsByName("username")[0].value = "";
     document.getElementsByName("password")[0].value = "";
     setusername("");
@@ -50,5 +50,13 @@ const LoginForm = props => {
     </div>
   );
 };
+LoginForm.propTypes = {
+  // login: React.PropTypes.func.isRequired,
+  // data: React.PropTypes.object.isRequired
+};
 
-export default withRouter(LoginForm);
+LoginForm.contextTypes = {
+  // router: React.PropTypes.object.isRequired
+};
+
+export default LoginForm

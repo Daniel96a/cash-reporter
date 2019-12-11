@@ -1,9 +1,6 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
-import Cookies from "universal-cookie";
 import "./Header.css";
 const Header = props => {
-  const cookie = new Cookies();
   const logout = e => {
     props.doLogout();
     e.preventDefault();
@@ -24,4 +21,4 @@ const Header = props => {
   );
 };
 
-export default withRouter(Header);
+export default Header;
