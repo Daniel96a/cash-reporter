@@ -1,57 +1,58 @@
 import * as types from "./types";
 import axios from "axios";
 import history from "../history";
+import { customHeaders } from "./customHeaders";
 import setAuthorizationToken from "../utils/setAuthorizationToken";
+import {URL} from "./URLs";
 
 export const setCurrentUser = user => ({
   type: types.SET_CURRENT_USER,
   user
 });
-const customHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "*",
-  "Content-Type": "application/json"
-};
+
 export const verifyToken = token => {
   return async dispatch => {
-    return axios
-      .post("http://10.158.78.105:9091/validate_token", token, {
+    token = {
+      token: token
+    };
+    axios
+      .post(URL.localhost9091 + "validate_token", token, {
         headers: customHeaders,
         timeout: 1000
       })
       .then(res => {
-        return dispatch(res)
+        setAuthorizationToken(res.data.token);
+        dispatch(setCurrentUser(res.data));
+        console.log(res.data);
       })
       .catch(error => {
-       return dispatch(error)
+        console.log(error);
+        dispatch(doLogout());
       });
   };
 };
 export const doLogin = data => {
   return async dispatch => {
-    return axios
-      .post("http://10.158.78.105:9091/login", data, {
+    axios
+      .post(URL.localhost9091 + "login", data, {
         headers: customHeaders,
         timeout: 1000
       })
       .then(res => {
-        dispatch(setCurrentUser(res.data.token));
-        localStorage.setItem("jwtToken", res.data.token);
+        localStorage.setItem("token", res.data.token);
         setAuthorizationToken(res.data.token);
+        dispatch(setCurrentUser(res.data));
+        console.log(res.data);
+        history.push("/");
       })
       .catch(error => {
-        dispatch(setCurrentUser("tokenValue"));
-        setAuthorizationToken("tokenValue");
-        localStorage.setItem("jwtToken", "tokenValue");
-
-        history.push("/");
         alert(error);
       });
   };
 };
 export function doLogout() {
-  return dispatch => {
-    localStorage.removeItem("jwtToken");
+  return async dispatch => {
+    localStorage.removeItem("token");
     setAuthorizationToken(false);
     dispatch(setCurrentUser({}));
   };

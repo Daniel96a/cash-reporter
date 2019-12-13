@@ -4,11 +4,11 @@ import App from "./App";
 import { Provider } from "react-redux";
 import store from "./store";
 import { setCurrentUser, verifyToken } from './actions/auth';
-import setAuthorizationToken from "./utils/setAuthorizationToken";
 
-if(verifyToken(localStorage.jwtToken).status === 200){
-  setAuthorizationToken(localStorage.jwtToken);
-  store.dispatch(setCurrentUser(localStorage.jwtToken));
+
+if(localStorage.getItem("token")){
+  store.dispatch(setCurrentUser(localStorage.token));
+  store.dispatch(verifyToken(localStorage.getItem("token")))
 }
 
 render(
