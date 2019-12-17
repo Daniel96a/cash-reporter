@@ -11,7 +11,6 @@ const LoginForm = props => {
   };
 
   const login = e => {
-    console.log(data);
     props.doLogin(data);
 
     setusername("");
@@ -22,7 +21,7 @@ const LoginForm = props => {
     <MuiThemeProvider>
       <div>
         <TextField
-          hintText="Enter password here"
+          hintText="Enter username here"
           floatingLabelText="Enter username"
           onChange={e => (data.username = e.target.value)}
           defaultValue={data.username}

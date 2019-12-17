@@ -3,7 +3,7 @@ import axios from "axios";
 import history from "../history";
 import { customHeaders } from "./customHeaders";
 import setAuthorizationToken from "../utils/setAuthorizationToken";
-import {URL} from "./URLs";
+import { URL } from "./URLs";
 
 export const setCurrentUser = user => ({
   type: types.SET_CURRENT_USER,
@@ -23,14 +23,14 @@ export const verifyToken = token => {
       .then(res => {
         setAuthorizationToken(res.data.token);
         dispatch(setCurrentUser(res.data));
-        console.log(res.data);
       })
       .catch(error => {
-        console.log(error);
+        alert(error);
         dispatch(doLogout());
       });
   };
 };
+
 export const doLogin = data => {
   return async dispatch => {
     axios
@@ -42,7 +42,6 @@ export const doLogin = data => {
         localStorage.setItem("token", res.data.token);
         setAuthorizationToken(res.data.token);
         dispatch(setCurrentUser(res.data));
-        console.log(res.data);
         history.push("/");
       })
       .catch(error => {
@@ -50,10 +49,23 @@ export const doLogin = data => {
       });
   };
 };
-export function doLogout() {
+export const doLogout = () => {
   return async dispatch => {
-    localStorage.removeItem("token");
-    setAuthorizationToken(false);
-    dispatch(setCurrentUser({}));
+    const token = {
+      token: localStorage.getItem("token")
+    };
+    axios
+      .post(URL.localhost9091 + "logout", token, {
+        headers: customHeaders,
+        timeout: 1000
+      })
+      .catch(error => {
+        alert(error);
+      })
+      .finally(() => {
+        localStorage.removeItem("token");
+        setAuthorizationToken(false);
+        dispatch(setCurrentUser({}));
+      });
   };
-}
+};

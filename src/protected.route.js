@@ -11,7 +11,7 @@ export const ProtectedRoute = ({
     {...rest}
     render={props =>
       auth.isAuthenticated ? (
-        <Component auth={auth} doLogout={doLogout} {...props} />
+        <Component auth={auth} doLogout={doLogout}{...props} />
       ) : (
         <Redirect
           to={{

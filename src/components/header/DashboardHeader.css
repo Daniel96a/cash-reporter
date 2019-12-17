@@ -1,0 +1,28 @@
+.MuiToolbar-root {
+    display: flex;
+    position: absolute;
+    align-items: center;
+  }
+  .MuiToolbar-regular {
+    min-height: 56px;
+  }
+  .MuiToolbar-root {
+    display: flex;
+    position: absolute;
+    align-items: center;
+  }
+  .MuiToolbar-gutters {
+    padding-left: 16px;
+    padding-right: 16px;
+    position: absolute;
+  }
+  .toolbar{
+      float: right;
+  }
+  .app-bar{
+      margin: auto;
+  }
+  div.app-bar{
+    background-color: rgba(255, 255, 255, 0);
+  }
+ 

@@ -8,7 +8,7 @@ import { setCurrentUser, verifyToken } from './actions/auth';
 
 if(localStorage.getItem("token")){
   store.dispatch(setCurrentUser(localStorage.token));
-  store.dispatch(verifyToken(localStorage.getItem("token")))
+  store.dispatch(verifyToken(localStorage.token))
 }
 
 render(
