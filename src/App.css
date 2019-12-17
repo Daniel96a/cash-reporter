@@ -1,11 +1,17 @@
 .App {
   margin: auto;
 }
+
 .align-text-center{
   text-align: center;
+  margin: auto;
 }
+
 .logout-button{
   margin: auto;
+}
+.position-absolute{
+  position: absolute;
 }
 
 
