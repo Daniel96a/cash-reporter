@@ -1,9 +1,19 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 
-export const LoginRoute = ({ component: Component, doLogin, ...rest }) => (
+export const LoginRoute = ({ component: Component, doLogin,auth, ...rest }) => (
   <Route
     {...rest}
-    render={props => <Component doLogin={doLogin} {...props} />}
+    render={props =>
+      auth.isAuthenticated === false ? (
+        <Component auth={auth} doLogin={doLogin}{...props} />
+      ) : (
+        <Redirect
+          to={{
+            pathname: "/"
+          }}
+        />
+      )
+    }
   />
 );

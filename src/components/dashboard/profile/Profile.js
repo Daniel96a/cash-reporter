@@ -9,15 +9,13 @@ export const Profile = props => {
     <MuiThemeProvider>
       <div className="profile-div">
         <Card>
-          <a className="settings" href="/">
+          <a className="settings" href="#settings">
             <SettingsIcon href="/edit_profile" type="link" />
           </a>
           <div className="card-div">
             <b>Name: {props.name}</b>
             <hr />
             <b>Status: {props.status}</b>
-            <br />
-            <br />
           </div>
         </Card>
       </div>

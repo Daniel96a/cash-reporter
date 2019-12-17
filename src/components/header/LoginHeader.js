@@ -2,7 +2,7 @@ import React from "react";
 import { MuiThemeProvider } from "material-ui/styles";
 import { AppBar } from "material-ui";
 
-import "./DashboardHeader.css";
+import "./Headers.css";
 
 const LoginHeader = props => {
   return (
@@ -12,7 +12,6 @@ const LoginHeader = props => {
           showMenuIconButton={false}
           className="app-bar"
           title="Cash Reporter"
-
         >
         </AppBar>
       </React.Fragment>

@@ -8,8 +8,9 @@ import { doLogin, doLogout } from "./actions/auth";
 import "./App.css";
 import { LoginRoute } from "./login.route";
 import LoginPage from "./components/loginPage/LoginPage";
+import {addCustomer} from './actions/customers'
 
-const App = ({ doLogin, doLogout, auth }) => {
+const App = ({ doLogin, doLogout, auth, addCustomer }) => {
   return (
     <div className="App">
       <Router history={history}>
@@ -18,6 +19,7 @@ const App = ({ doLogin, doLogout, auth }) => {
             exact
             path="/login"
             component={LoginPage}
+            auth={auth}
             doLogin={doLogin}
           />
           <ProtectedRoute
@@ -25,6 +27,7 @@ const App = ({ doLogin, doLogout, auth }) => {
             path="/"
             component={Dashboard}
             doLogout={doLogout}
+            addCustomer={addCustomer}
             auth={auth}
           />
           <Route exact path="*" component={() => "404 NOT FOUND"} />
@@ -39,4 +42,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { doLogin, doLogout })(App);
+export default connect(mapStateToProps, { doLogin, doLogout, addCustomer })(App);

@@ -4,10 +4,13 @@ import App from "./App";
 import { Provider } from "react-redux";
 import store from "./store";
 import { setCurrentUser, verifyToken } from './actions/auth';
+import { getCustomerList } from './actions/customers';
+
 
 
 if(localStorage.getItem("token")){
   store.dispatch(setCurrentUser(localStorage.token));
+  store.dispatch(getCustomerList(localStorage.token));
   store.dispatch(verifyToken(localStorage.token))
 }
 

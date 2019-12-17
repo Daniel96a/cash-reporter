@@ -19,15 +19,17 @@ const LoginForm = props => {
   };
   return (
     <MuiThemeProvider>
-      <div className="align-text-center">
+      <div className="align-text-center loginform">
         <TextField
           hintText="Enter username here"
+          fullWidth
           floatingLabelText="Enter username"
           onChange={e => (data.username = e.target.value)}
           defaultValue={data.username}
         />
         <br />
         <TextField
+          fullWidth
           hintText="Enter password here"
           floatingLabelText="Enter password"
           type="Password"

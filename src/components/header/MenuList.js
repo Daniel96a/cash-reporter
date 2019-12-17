@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -10,8 +10,13 @@ const StyledMenu = withStyles({
   paper: {
     margin: "auto",
     border: "1px solid #d3d4d5",
-    width: "100%",
-    marginTop: "12px"
+    marginTop: "12px",
+    marginLeft: "10px",
+    maxWidth: "490px",
+    borderRadius: "10px",
+    "& .MuiList-padding": {
+      padding: "0"
+    }
   }
 })(props => (
   <Menu
@@ -31,10 +36,12 @@ const StyledMenu = withStyles({
 
 const StyledMenuItem = withStyles(theme => ({
   root: {
+    float: "right",
+    minWidth: "500px",
     "&:hover": {
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: "rgb(0, 188, 212)",
       "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.primary.white,
         color: theme.palette.common.white
       }
     }
@@ -42,7 +49,7 @@ const StyledMenuItem = withStyles(theme => ({
 }))(MenuItem);
 
 export const MenuList = props => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -55,13 +62,17 @@ export const MenuList = props => {
     props.doLogout();
     e.preventDefault();
   };
+  const setMenuCase = e => {
+    setAnchorEl(null);
+
+    props.setshowCase(e);
+  };
 
   return (
-    <div className="align-text-center">
+    <div className="menuList">
       <IconButton
         aria-controls="customized-menu"
         aria-haspopup="true"
-      
         color="primary"
         onClick={handleClick}
       >
@@ -70,14 +81,23 @@ export const MenuList = props => {
       <StyledMenu
         id="customized-menu"
         anchorEl={anchorEl}
-        keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <StyledMenuItem>Employee
+        <StyledMenuItem onClick={setMenuCase.bind(this, "dashboard")}>
+          <div className="align-text-center">Dashboard</div>
         </StyledMenuItem>
-        <StyledMenuItem>Customers</StyledMenuItem>
-        <StyledMenuItem onClick={logout.bind(this)}>Logout</StyledMenuItem>
+        <StyledMenuItem onClick={setMenuCase.bind(this, "employees")}>
+          <div className="align-text-center">Employees</div>
+        </StyledMenuItem>
+        <StyledMenuItem onClick={setMenuCase.bind(this, "customers")}>
+          {" "}
+          <div className="align-text-center">Customers</div>
+        </StyledMenuItem>
+        <StyledMenuItem onClick={logout.bind(this)}>
+          {" "}
+          <div className="align-text-center">Logout</div>
+        </StyledMenuItem>
       </StyledMenu>
     </div>
   );

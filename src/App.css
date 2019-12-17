@@ -10,8 +10,10 @@
 .logout-button{
   margin: auto;
 }
-.position-absolute{
-  position: absolute;
+
+
+.loginform{
+  width: 460px;
 }
 
 

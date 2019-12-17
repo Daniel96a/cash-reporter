@@ -1,13 +1,14 @@
 .profile-div {
   margin: auto;
   position: relative;
-  text-align: left;
+  text-align: center;
   border-radius: 10px;
   min-width: 200px;
   max-width: 500px;
 }
 .card-div {
-  padding: 10px;
+  margin-top: 10px;
+  padding: 20px;
   padding-top: 20px;
 }
 hr {
@@ -16,8 +17,9 @@ hr {
   margin-bottom: 20px;
 }
 .settings{
-  float: right;
-  margin: 10px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
   width: fit-content;
   height: fit-content;
 }

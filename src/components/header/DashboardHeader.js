@@ -2,7 +2,7 @@ import React from "react";
 import { MuiThemeProvider } from "material-ui/styles";
 import { AppBar } from "material-ui";
 
-import "./DashboardHeader.css";
+import "./Headers.css";
 import { MenuList } from "./MenuList";
 
 const DashboardHeader = props => {
@@ -14,7 +14,7 @@ const DashboardHeader = props => {
           className="app-bar"
           title="Cash Reporter"
         >
-          <MenuList doLogout={props.doLogout} />
+          <MenuList doLogout={props.doLogout} showCase={props.showCase} setshowCase={props.setshowCase} />
         </AppBar>
       </React.Fragment>
     </MuiThemeProvider>
