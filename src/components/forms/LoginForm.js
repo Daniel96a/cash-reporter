@@ -19,7 +19,7 @@ const LoginForm = props => {
   };
   return (
     <MuiThemeProvider>
-      <div>
+      <div className="align-text-center">
         <TextField
           hintText="Enter username here"
           floatingLabelText="Enter username"

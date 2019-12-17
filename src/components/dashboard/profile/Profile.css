@@ -1,7 +1,6 @@
 .profile-div {
   margin: auto;
-  margin-top: 20px;
-  padding: 20px;
+  position: relative;
   text-align: left;
   border-radius: 10px;
   min-width: 200px;

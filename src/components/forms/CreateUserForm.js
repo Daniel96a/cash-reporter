@@ -38,7 +38,7 @@ const CreateUserForm = props => {
 
   return (
     <MuiThemeProvider>
-      <div>
+      <div className="align-text-center">
         <TextField
           hintText="Enter password here"
           floatingLabelText="Enter username"

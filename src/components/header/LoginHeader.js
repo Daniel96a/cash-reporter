@@ -9,7 +9,7 @@ import "./DashboardHeader.css";
 const LoginHeader = props => {
   return (
     <MuiThemeProvider>
-      <React.Fragment>
+      <React.Fragment> 
         <AppBar
           showMenuIconButton={false}
           className="app-bar"

@@ -1,6 +1,9 @@
 .App {
   margin: auto;
 }
+.align-text-center{
+  text-align: center;
+}
 .logout-button{
   margin: auto;
 }
