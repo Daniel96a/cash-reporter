@@ -1,20 +1,15 @@
-import { SET_CUSTOMER_LIST, ADD_CUSTOMER_TO_LIST } from "../actions/types";
+import { FETCH_CUSTOMERS } from "../actions/types";
 
 const initialState = {
-  customers: null
+  customers: []
 };
 
-export default (state = initialState, action = null) => {
+export default (state = initialState, action) => {
   switch (action.type) {
-    case SET_CUSTOMER_LIST:
+    case FETCH_CUSTOMERS:
       return {
-        customers: action.customers
+        ...state, customers: action.customers
       };
-      case ADD_CUSTOMER_TO_LIST:
-        return {
-          ...state,
-          customers: [...state.customers, action.addCustomer]
-        }
     default:
       return state;
   }

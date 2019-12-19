@@ -4,7 +4,7 @@ import { customHeaders } from "./customHeaders";
 import { URL } from "./URLs";
 
 export const setCustomers = customers => ({
-  type: types.SET_CUSTOMER_LIST,
+  type: types.FETCH_CUSTOMERS,
   customers
 });
   
