@@ -12,8 +12,10 @@
 }
 
 
-.loginform{
-  width: 460px;
+.form-width{
+  margin: auto;
+  max-width: 490px;
+  padding: 10px;
 }
 
 

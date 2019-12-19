@@ -19,7 +19,7 @@ const LoginForm = props => {
   };
   return (
     <MuiThemeProvider>
-      <div className="align-text-center loginform">
+      <div className="align-text-center form-width">
         <TextField
           hintText="Enter username here"
           fullWidth

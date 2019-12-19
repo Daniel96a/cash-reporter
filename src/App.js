@@ -8,9 +8,10 @@ import { doLogin, doLogout } from "./actions/auth";
 import "./App.css";
 import { LoginRoute } from "./login.route";
 import LoginPage from "./components/loginPage/LoginPage";
-import {addCustomer} from './actions/customers'
+import {addCustomer, fetchCustomerList} from './actions/customers'
 
-const App = ({ doLogin, doLogout, auth, addCustomer }) => {
+const App = ({ doLogin, doLogout, auth, customers, addCustomer, fetchCustomerList }) => {
+
   return (
     <div className="App">
       <Router history={history}>
@@ -28,6 +29,8 @@ const App = ({ doLogin, doLogout, auth, addCustomer }) => {
             component={Dashboard}
             doLogout={doLogout}
             addCustomer={addCustomer}
+            fetchCustomerList={fetchCustomerList}
+            customers={customers}
             auth={auth}
           />
           <Route exact path="*" component={() => "404 NOT FOUND"} />
@@ -39,7 +42,8 @@ const App = ({ doLogin, doLogout, auth, addCustomer }) => {
 console.log();
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  customers: state.customers
 });
 
-export default connect(mapStateToProps, { doLogin, doLogout, addCustomer })(App);
+export default connect(mapStateToProps, { doLogin, doLogout, addCustomer, fetchCustomerList })(App);

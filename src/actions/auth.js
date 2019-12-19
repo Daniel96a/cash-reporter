@@ -4,11 +4,13 @@ import history from "../history";
 import { customHeaders } from "./customHeaders";
 import setAuthorizationToken from "../utils/setAuthorizationToken";
 import { URL } from "./URLs";
+import {fetchCustomerList} from './customers'
 
 export const setCurrentUser = user => ({
   type: types.SET_CURRENT_USER,
   user
 });
+
 
 export const verifyToken = token => {
   return async dispatch => {
@@ -23,9 +25,11 @@ export const verifyToken = token => {
       .then(res => {
         setAuthorizationToken(res.data.token);
         dispatch(setCurrentUser(res.data));
+        dispatch(fetchCustomerList())
+
       })
       .catch(error => {
-        alert(error);
+        alert(error)
         dispatch(doLogout());
       });
   };
@@ -58,9 +62,6 @@ export const doLogout = () => {
       .post(URL.localhost9091 + "logout", token, {
         headers: customHeaders,
         timeout: 1000
-      })
-      .catch(error => {
-        alert(error);
       })
       .finally(() => {
         localStorage.removeItem("token");

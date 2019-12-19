@@ -20,11 +20,12 @@ const CreateUserForm = props => {
 
   return (
     <MuiThemeProvider>
-      <div className="align-text-center">
+      <div className="align-text-center form-width">
         <TextField
           hintText="Enter password here"
           floatingLabelText="Enter username"
           name="username"
+          fullWidth
           onChange={e => (data.username = e.target.value)}
           defaultValue={data.username}
         />
@@ -34,6 +35,7 @@ const CreateUserForm = props => {
           floatingLabelText="Enter password"
           name="password"
           type="Password"
+          fullWidth
           onChange={e => (data.password = e.target.value)}
           defaultValue={username.value}
         />

@@ -5,7 +5,7 @@ export const LoginRoute = ({ component: Component, doLogin,auth, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      auth.isAuthenticated === false ? (
+      !auth.isAuthenticated ? (
         <Component auth={auth} doLogin={doLogin}{...props} />
       ) : (
         <Redirect

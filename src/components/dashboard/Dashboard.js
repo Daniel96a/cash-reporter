@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import CustomerList from './customerList/CustomerList'
 import { Profile } from "./profile/Profile";
 import DashboardHeader from "../header/DashboardHeader";
 import CreateUserForm from "../forms/CreateUserForm";
@@ -6,10 +7,8 @@ import { MuiThemeProvider } from "material-ui/styles";
 
 const Dashboard = props => {
   const [showCase, setshowCase] = useState("dashboard");
-  useEffect(() => {
-    console.log(showCase);
-    return () => {};
-  }, [showCase, props.addCustomer]);
+
+
 
   const content = (
     <MuiThemeProvider>
@@ -20,17 +19,22 @@ const Dashboard = props => {
           showCase={showCase}
           setshowCase={setshowCase}
         />
-        {showCase === "dashboard" && <Profile
-          name={props.auth.user.username}
-          status={props.auth.user.permission}
-        />}
+        {showCase === "dashboard" && (
+          <Profile
+            name={props.auth.user.username}
+            status={props.auth.user.permission}
+          />
+        )}
 
-        {showCase === "customers" && <CreateUserForm addCustomer={props.addCustomer} />}
-
+        {showCase === "customers" && (
+          <CreateUserForm addCustomer={props.addCustomer} />
+        )}
+        {showCase === "customers" && <CustomerList fetchCustomerList={props.fetchCustomerList} customers={props.customers}/>}
       </React.Fragment>
     </MuiThemeProvider>
   );
 
   return content;
 };
-export default React.memo(Dashboard);
+
+export default Dashboard;

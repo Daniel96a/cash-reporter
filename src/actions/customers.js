@@ -1,18 +1,18 @@
 import * as types from "./types";
 import axios from "axios";
 import { customHeaders } from "./customHeaders";
-import setAuthorizationToken from "../utils/setAuthorizationToken";
 import { URL } from "./URLs";
 
-export const setCustomerList = customers => ({
+export const setCustomers = customers => ({
   type: types.SET_CUSTOMER_LIST,
   customers
 });
-
-export const getCustomerList = token => {
+  
+export const fetchCustomerList = () => {
   return async dispatch => {
-    token = {
-      token: token
+  
+    const token = {
+      token: localStorage.token
     };
     axios
       .post(URL.localhost9091 + "customer/customerlist", token, {
@@ -20,9 +20,7 @@ export const getCustomerList = token => {
         timeout: 1000
       })
       .then(res => {
-        console.log(res.data);
-        setAuthorizationToken(res.data.token);
-        dispatch(setCustomerList(res.data));
+        dispatch(setCustomers( res.data.customerlist));
       })
       .catch(error => {
         alert(error);
@@ -33,7 +31,7 @@ export const getCustomerList = token => {
 export const addCustomer = customer => {
   return async dispatch => {
     const data = {
-      token: localStorage.getItem("token"),
+      token: localStorage.token,
       customer: {
         firstName: customer.username
       }
@@ -45,9 +43,8 @@ export const addCustomer = customer => {
         timeout: 1000
       })
       .then(res => {
-        console.log(res.data);
-        setAuthorizationToken(res.data.token);
-        dispatch(setCustomerList(res.data));
+        dispatch(fetchCustomerList());
+        console.log("Added customer with response: "+ JSON.stringify(res.data));
       })
       .catch(error => {
         alert(error);
@@ -67,8 +64,7 @@ export const removeCustomer = token => {
       })
       .then(res => {
         console.log(res.data);
-        setAuthorizationToken(res.data.token);
-        dispatch(setCustomerList(res.data));
+        dispatch(setCustomers(res.data));
       })
       .catch(error => {
         alert(error);
@@ -88,8 +84,7 @@ export const updateCustomer = token => {
       })
       .then(res => {
         console.log(res.data);
-        setAuthorizationToken(res.data.token);
-        dispatch(setCustomerList(res.data));
+        dispatch(setCustomers(res.data));
       })
       .catch(error => {
         alert(error);
