@@ -7,10 +7,9 @@ export const setCustomers = customers => ({
   type: types.FETCH_CUSTOMERS,
   customers
 });
-  
+
 export const fetchCustomerList = () => {
   return async dispatch => {
-  
     const token = {
       token: localStorage.token
     };
@@ -20,7 +19,8 @@ export const fetchCustomerList = () => {
         timeout: 1000
       })
       .then(res => {
-        dispatch(setCustomers( res.data.customerlist));
+        console.log(res.data.customerlist);
+        dispatch(setCustomers(res.data.customerlist));
       })
       .catch(error => {
         alert(error);
@@ -32,11 +32,9 @@ export const addCustomer = customer => {
   return async dispatch => {
     const data = {
       token: localStorage.token,
-      customer: {
-        firstName: customer.username
-      }
+      customer: customer
     };
-    console.log(customer);
+    console.log(data);
     axios
       .post(URL.localhost9091 + "customer/customer_add", data, {
         headers: customHeaders,
@@ -44,7 +42,9 @@ export const addCustomer = customer => {
       })
       .then(res => {
         dispatch(fetchCustomerList());
-        console.log("Added customer with response: "+ JSON.stringify(res.data));
+        console.log(
+          "Added customer with response: " + JSON.stringify(res.data)
+        );
       })
       .catch(error => {
         alert(error);

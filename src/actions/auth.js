@@ -46,6 +46,7 @@ export const doLogin = data => {
         localStorage.setItem("token", res.data.token);
         setAuthorizationToken(res.data.token);
         dispatch(setCurrentUser(res.data));
+        dispatch(fetchCustomerList());
         history.push("/");
       })
       .catch(error => {

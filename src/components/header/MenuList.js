@@ -5,6 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 
 import { IconButton } from "material-ui";
 import MenuIcon from "@material-ui/icons/Menu";
+import { WHITE } from "../../colorTheme/colors";
 
 const StyledMenu = withStyles({
   paper: {
@@ -76,7 +77,7 @@ export const MenuList = props => {
         color="primary"
         onClick={handleClick}
       >
-        <MenuIcon />
+        <MenuIcon style={menuIconColor}/>
       </IconButton>
       <StyledMenu
         id="customized-menu"
@@ -102,3 +103,9 @@ export const MenuList = props => {
     </div>
   );
 };
+const menuIconColor = withStyles({
+    " & .MuiSvgIcon-root": {
+      fill: WHITE
+    }
+  
+});

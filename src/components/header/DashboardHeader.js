@@ -4,21 +4,38 @@ import { AppBar } from "material-ui";
 
 import "./Headers.css";
 import { MenuList } from "./MenuList";
-
+import { BLUE } from "../../colorTheme/colors";
+import { makeStyles } from "@material-ui/core";
+const useStyles = makeStyles(theme => ({
+  root: {
+    "& .MuiSvgIcon-root": {
+      fill: "white"
+    }
+  }
+}));
 const DashboardHeader = props => {
+  const classes = useStyles();
+
   return (
     <MuiThemeProvider>
       <React.Fragment>
         <AppBar
           showMenuIconButton={false}
-          className="app-bar"
+          className={classes.root}
           title="Cash Reporter"
+          style={headerColor}
         >
-          <MenuList doLogout={props.doLogout} showCase={props.showCase} setshowCase={props.setshowCase} />
+          <MenuList
+            doLogout={props.doLogout}
+            showCase={props.showCase}
+            setshowCase={props.setshowCase}
+          />
         </AppBar>
       </React.Fragment>
     </MuiThemeProvider>
   );
 };
-
+const headerColor = {
+  backgroundColor: BLUE
+};
 export default DashboardHeader;
