@@ -8,10 +8,20 @@ import { doLogin, doLogout } from "./actions/auth";
 import "./App.css";
 import { LoginRoute } from "./login.route";
 import LoginPage from "./components/loginPage/LoginPage";
-import {addCustomer, fetchCustomerList} from './actions/customers'
+import { addCustomer, fetchCustomerList } from "./actions/customers";
+import { addEmployee, fetchEmployeeList } from "./actions/employees";
 
-const App = ({ doLogin, doLogout, auth, customers, addCustomer, fetchCustomerList }) => {
-
+const App = ({
+  doLogin,
+  doLogout,
+  auth,
+  customers,
+  addCustomer,
+  fetchCustomerList,
+  employees,
+  addEmployee,
+  fetchEmployeeList
+}) => {
   return (
     <div className="App">
       <Router history={history}>
@@ -32,6 +42,9 @@ const App = ({ doLogin, doLogout, auth, customers, addCustomer, fetchCustomerLis
             fetchCustomerList={fetchCustomerList}
             customers={customers}
             auth={auth}
+            employees={employees}
+            addEmployee={addEmployee}
+            fetchEmployeeList={fetchEmployeeList}
           />
           <Route exact path="*" component={() => "404 NOT FOUND"} />
         </Switch>
@@ -43,7 +56,15 @@ console.log();
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  customers: state.customers
+  customers: state.customers,
+  employees: state.employees
 });
 
-export default connect(mapStateToProps, { doLogin, doLogout, addCustomer, fetchCustomerList })(App);
+export default connect(mapStateToProps, {
+  doLogin,
+  doLogout,
+  addCustomer,
+  fetchCustomerList,
+  addEmployee,
+  fetchEmployeeList
+})(App);

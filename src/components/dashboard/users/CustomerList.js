@@ -5,13 +5,13 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
-
 import { CustomerDetails } from "./CustomerDetails";
+
 
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
-    maxWidth: "490px",
+    maxWidth: 490,
     margin: "auto",
     backgroundColor: theme.palette.background.paper
   }
@@ -36,28 +36,30 @@ const CustomerList = props => {
           setShowCustomerDetails={setShowCustomerDetails}
         />
       )}
-      <List dense className={classes.root}>
-        {props.customers.customers.map((customer, index) => (
-          <ListItem
-            id={index}
-            key={index}
-            button
-            onClick={openDetails.bind(this)}
-          >
-            <ListItemAvatar>
-              <Avatar
-                alt={`Avatar n°${customer}`}
-                src={`/static/images/avatar/${customer.id}.jpg`}
-              />
-            </ListItemAvatar>
-            <ListItemText
-              primary={`Customer ID = ${customer.id}
+      {props.customers !== undefined && (
+        <List dense className={classes.root}>
+          {props.customers.customers.map((customer, index) => (
+            <ListItem
+              id={index}
+              key={index}
+              button
+              onClick={openDetails.bind(this)}
+            >
+              <ListItemAvatar>
+                <Avatar
+                  alt={`Avatar n°${customer}`}
+                  src={`/static/images/avatar/${customer.id}.jpg`}
+                />
+              </ListItemAvatar>
+              <ListItemText
+                primary={`Customer ID = ${customer.id}
             ${customer.firstname}`}
-              secondary={`Phone number: ${customer.phonenr}`}
-            />
-          </ListItem>
-        ))}
-      </List>
+                secondary={`Phone number: ${customer.phonenr}`}
+              />
+            </ListItem>
+          ))}
+        </List>
+      )}
     </React.Fragment>
   );
 };

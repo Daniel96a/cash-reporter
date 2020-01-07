@@ -12,11 +12,9 @@ const StyledMenu = withStyles({
     margin: "auto",
     border: "1px solid #d3d4d5",
     marginTop: "12px",
-    marginLeft: "10px",
-    maxWidth: "490px",
     borderRadius: "10px",
     "& .MuiList-padding": {
-      padding: "0"
+      padding: 0,
     }
   }
 })(props => (
@@ -38,7 +36,7 @@ const StyledMenu = withStyles({
 const StyledMenuItem = withStyles(theme => ({
   root: {
     float: "right",
-    minWidth: "500px",
+    width: "100%",
     "&:hover": {
       backgroundColor: "rgb(0, 188, 212)",
       "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
@@ -49,7 +47,7 @@ const StyledMenuItem = withStyles(theme => ({
   }
 }))(MenuItem);
 
-export const MenuList = props => {
+export const MainMenu = props => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = event => {
@@ -85,15 +83,12 @@ export const MenuList = props => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <StyledMenuItem onClick={setMenuCase.bind(this, "dashboard")}>
+        <StyledMenuItem onClick={setMenuCase.bind(this, "Dashboard")}>
           <div className="align-text-center">Dashboard</div>
         </StyledMenuItem>
-        <StyledMenuItem onClick={setMenuCase.bind(this, "employees")}>
-          <div className="align-text-center">Employees</div>
-        </StyledMenuItem>
-        <StyledMenuItem onClick={setMenuCase.bind(this, "customers")}>
+        <StyledMenuItem onClick={setMenuCase.bind(this, "Users")}>
           {" "}
-          <div className="align-text-center">Customers</div>
+          <div className="align-text-center">Users</div>
         </StyledMenuItem>
         <StyledMenuItem onClick={logout.bind(this)}>
           {" "}

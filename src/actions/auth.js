@@ -5,6 +5,8 @@ import { customHeaders } from "./customHeaders";
 import setAuthorizationToken from "../utils/setAuthorizationToken";
 import { URL } from "./URLs";
 import {fetchCustomerList} from './customers'
+import {fetchEmployeeList} from './employees'
+
 
 export const setCurrentUser = user => ({
   type: types.SET_CURRENT_USER,
@@ -26,6 +28,7 @@ export const verifyToken = token => {
         setAuthorizationToken(res.data.token);
         dispatch(setCurrentUser(res.data));
         dispatch(fetchCustomerList())
+        dispatch(fetchEmployeeList())
 
       })
       .catch(error => {
@@ -47,6 +50,7 @@ export const doLogin = data => {
         setAuthorizationToken(res.data.token);
         dispatch(setCurrentUser(res.data));
         dispatch(fetchCustomerList());
+        dispatch(fetchEmployeeList());
         history.push("/");
       })
       .catch(error => {

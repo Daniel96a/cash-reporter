@@ -40,14 +40,12 @@ const CreateUserForm = props => {
           defaultValue={username.value}
         />
         <br />
-        <RaisedButton label="Create user" style={buttonStyle} onClick={createCustomer.bind(this)} />
+        <RaisedButton label="Create user" onClick={createCustomer.bind(this)} />
       </div>
     </MuiThemeProvider>
   );
 };
 
-const buttonStyle={
-  margin: 20
-}
+
 
 export default CreateUserForm;

@@ -3,7 +3,7 @@ import { MuiThemeProvider } from "material-ui/styles";
 import { AppBar } from "material-ui";
 
 import "./Headers.css";
-import { MenuList } from "./MenuList";
+import { MainMenu } from "./MainMenu";
 import { BLUE } from "../../colorTheme/colors";
 import { makeStyles } from "@material-ui/core";
 const useStyles = makeStyles(theme => ({
@@ -25,7 +25,7 @@ const DashboardHeader = props => {
           title="Cash Reporter"
           style={headerColor}
         >
-          <MenuList
+          <MainMenu
             doLogout={props.doLogout}
             showCase={props.showCase}
             setshowCase={props.setshowCase}
@@ -38,4 +38,5 @@ const DashboardHeader = props => {
 const headerColor = {
   backgroundColor: BLUE
 };
+
 export default DashboardHeader;

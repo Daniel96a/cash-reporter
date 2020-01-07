@@ -4,7 +4,6 @@ import Dialog from "@material-ui/core/Dialog";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "material-ui";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
 export const CustomerDetails = props => {
@@ -13,6 +12,7 @@ export const CustomerDetails = props => {
   const handleClose = () => {
     props.setShowCustomerDetails(false);
   };
+
   return (
     <Dialog
       open={props.showCustomerDetails}
@@ -24,53 +24,51 @@ export const CustomerDetails = props => {
         Customer details
       </DialogTitle>
       <DialogContent>
-        <DialogContentText>
-          <TextField
-            style={halfWidth}
-            floatingLabelText="First name"
-            name="firstname"
-            variant="filled"
-            defaultValue={props.customerSelected.firstname}
-            readOnly
-          />
-          <TextField
-            style={halfWidth}
-            floatingLabelText="Last name"
-            name="lastname"
-            defaultValue={props.customerSelected.lastname}
-            variant="filled"
-            readOnly
-          />
-          <TextField
-            floatingLabelText="Customer ID"
-            name="customerid"
-            fullWidth
-            defaultValue={props.customerSelected.id}
-            variant="filled"
-            readOnly
-          />
-          <TextField
-            floatingLabelText="Phone"
-            name="phonenr"
-            fullWidth
-            defaultValue={props.customerSelected.phonenr}
-            readOnly
-          />
-          <TextField
-            floatingLabelText="Email"
-            name="email"
-            fullWidth
-            defaultValue={props.customerSelected.email}
-            readOnly
-          />
-          <TextField
-            floatingLabelText="Address"
-            name="address"
-            fullWidth
-            defaultValue={props.customerSelected.address}
-            readOnly
-          />
-        </DialogContentText>
+        <TextField
+          style={halfWidth}
+          floatingLabelText="First name"
+          name="firstname"
+          variant="filled"
+          defaultValue={props.customerSelected.firstname}
+          readOnly
+        />
+        <TextField
+          style={halfWidth}
+          floatingLabelText="Last name"
+          name="lastname"
+          defaultValue={props.customerSelected.lastname}
+          variant="filled"
+          readOnly
+        />
+        <TextField
+          floatingLabelText="Customer ID"
+          name="customerid"
+          fullWidth
+          defaultValue={props.customerSelected.id}
+          variant="filled"
+          readOnly
+        />
+        <TextField
+          floatingLabelText="Phone"
+          name="phonenr"
+          fullWidth
+          defaultValue={props.customerSelected.phonenr}
+          readOnly
+        />
+        <TextField
+          floatingLabelText="Email"
+          name="email"
+          fullWidth
+          defaultValue={props.customerSelected.email}
+          readOnly
+        />
+        <TextField
+          floatingLabelText="Address"
+          name="address"
+          fullWidth
+          defaultValue={props.customerSelected.address}
+          readOnly
+        />
       </DialogContent>
       <Button onClick={handleClose} color="primary">
         Close
@@ -86,7 +84,6 @@ const halfWidth = {
 const useStyles = makeStyles(theme => ({
   root: {
     "& .MuiDialog-paperWidthSm": {
-      minWidth: 490,
       overflowY: "visible"
     },
     "& .MuiTextField-root": {
