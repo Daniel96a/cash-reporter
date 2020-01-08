@@ -1,12 +1,12 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
-import {EditEmployeeButton} from './EditEmployeeButton'
+import { EditEmployeeButton } from "./edit/EditEmployeeButton";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "material-ui";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { BLUE, WHITE } from "../../../colorTheme/colors";
+import { BLUE, WHITE } from "../../../../colorTheme/colors";
 
 export const EmployeeDetails = props => {
   const classes = useStyles();
@@ -22,7 +22,13 @@ export const EmployeeDetails = props => {
       aria-labelledby="max-width-dialog-title"
       className={classes.root}
     >
-      <EditEmployeeButton />
+      <EditEmployeeButton
+        updateEmployee={props.updateEmployee}
+        employeeSelected={props.employeeSelected}
+        setEmployeeSelected={props.setEmployeeSelected}
+        deleteEmployee={props.deleteEmployee}
+        setShowEmployeeDetails={props.setShowEmployeeDetails}
+      />
       <DialogTitle id="max-width-dialog-title" className="align-text-center">
         Employee details
       </DialogTitle>
@@ -70,13 +76,6 @@ export const EmployeeDetails = props => {
           name="email"
           fullWidth
           defaultValue={props.employeeSelected.email}
-          readOnly
-        />
-        <TextField
-          floatingLabelText="Address"
-          name="address"
-          fullWidth
-          defaultValue={props.employeeSelected.address}
           readOnly
         />
       </DialogContent>

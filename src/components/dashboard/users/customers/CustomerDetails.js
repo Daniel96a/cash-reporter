@@ -5,8 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "material-ui";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { BLUE, WHITE } from "../../../colorTheme/colors";
-import { EditCustomerButton } from "./EditCustomerButton";
+import { BLUE, WHITE } from "../../../../colorTheme/colors";
+import { EditCustomerButton } from "./edit/EditCustomerButton";
 
 export const CustomerDetails = props => {
   const classes = useStyles();
@@ -23,8 +23,9 @@ export const CustomerDetails = props => {
     >
       <EditCustomerButton
         customerSelected={props.customerSelected}
+        setCustomerSelected={props.setCustomerSelected}
         updateCustomer={props.updateCustomer}
-        deleteEmployee={props.deleteEmployee}
+        deleteCustomer={props.deleteCustomer}
         setShowCustomerDetails={props.setShowCustomerDetails}
       />
       <DialogTitle id="max-width-dialog-title" className="align-text-center">

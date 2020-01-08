@@ -28,9 +28,12 @@ const Dashboard = props => {
             customers={props.customers}
             addCustomer={props.addCustomer}
             updateCustomer={props.updateCustomer}
+            deleteCustomer={props.deleteCustomer}
             fetchCustomerList={props.fetchCustomerList}
             employees={props.employees}
             addEmployee={props.addEmployee}
+            updateEmployee={props.updateEmployee}
+            deleteEmployee={props.deleteEmployee}
             fetchEmployeeList={props.fetchEmployeeList}
           />
         )}

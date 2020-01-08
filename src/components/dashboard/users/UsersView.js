@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 
-import { AddCustomer } from "./AddCustomer";
-import { AddEmployee } from "./AddEmployee";
+import { AddCustomer } from "./customers/add/AddCustomer";
+import { AddEmployee } from "./employees/add/AddEmployee";
 
-import { AddCustomerButton } from "./AddCustomerButton";
-import { AddEmployeeButton } from "./AddEmployeeButton";
-
+import { AddCustomerButton } from "./customers/add/AddCustomerButton";
+import { AddEmployeeButton } from "./employees/add/AddEmployeeButton";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { SwitchLists } from "./SwitchLists";
 
-const CustomersView = props => {
+const UsersView = props => {
   const [showAddCustomerForm, setShowAddCustomerForm] = useState(false);
   const [showAddEmployeeForm, setShowAddEmployeeForm] = useState(false);
 
@@ -27,7 +26,7 @@ const CustomersView = props => {
         )}
         {showAddEmployeeForm && showAddEmployeeForm !== undefined && (
           <AddEmployee
-          showAddEmployeeForm={showAddEmployeeForm}
+            showAddEmployeeForm={showAddEmployeeForm}
             addEmployee={props.addEmployee}
             setShowAddEmployeeForm={setShowAddEmployeeForm}
           />
@@ -39,10 +38,15 @@ const CustomersView = props => {
           customers={props.customers}
           addCustomer={props.addCustomer}
           updateCustomer={props.updateCustomer}
+          deleteCustomer={props.deleteCustomer}
           fetchCustomerList={props.fetchCustomerList}
+          showAddEmployeeForm={showAddEmployeeForm}
+          setShowAddEmployeeForm={setShowAddEmployeeForm}
           employees={props.employees}
           addEmployee={props.addEmployee}
           fetchEmployeeList={props.fetchEmployeeList}
+          updateEmployee={props.updateEmployee}
+          deleteEmployee={props.deleteEmployee}
         />
         {selectUserList === "Customers" && (
           <AddCustomerButton setShowAddCustomerForm={setShowAddCustomerForm} />
@@ -54,4 +58,4 @@ const CustomersView = props => {
     </MuiThemeProvider>
   );
 };
-export default CustomersView;
+export default UsersView;

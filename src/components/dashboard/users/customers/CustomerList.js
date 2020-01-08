@@ -22,22 +22,24 @@ const useStyles = makeStyles(theme => ({
 const CustomerList = props => {
   const classes = useStyles();
   const [showCustomerDetails, setShowCustomerDetails] = useState(false);
-  const [customerSelected, setcustomerSelected] = useState(null);
+  const [customerSelected, setCustomerSelected] = useState(null);
 
   const openDetails = e => {
-    setcustomerSelected(props.customers.customers[e.currentTarget.id]);
+    setCustomerSelected(props.customers.customers[e.currentTarget.id]);
     setShowCustomerDetails(true);
   };
   return (
     <React.Fragment>
-      {customerSelected !== null && (
+      {customerSelected !== null && showCustomerDetails && (
         <CustomerDetails
           customers={props.customers.customers}
           customerSelected={customerSelected}
+          setCustomerSelected={setCustomerSelected}
+
           showCustomerDetails={showCustomerDetails}
           setShowCustomerDetails={setShowCustomerDetails}
           updateCustomer={props.updateCustomer}
-          deleteEmployee={props.deleteEmployee}
+          deleteCustomer={props.deleteCustomer}
         />
       )}
       {props.customers !== undefined && (
@@ -45,6 +47,7 @@ const CustomerList = props => {
           {props.customers.customers.map((customer, index) => (
             <ListItem
               id={index}
+              className={`customerid-${customer.id}`}
               key={index}
               button
               onClick={openDetails.bind(this)}

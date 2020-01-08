@@ -5,8 +5,6 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import { MuiThemeProvider } from "material-ui/styles";
 import { Button } from "@material-ui/core";
 
-import { BLUE } from "../../../colorTheme/colors";
-
 export const Profile = props => {
   return (
     <MuiThemeProvider>

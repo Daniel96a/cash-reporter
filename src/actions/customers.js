@@ -52,19 +52,20 @@ export const addCustomer = customer => {
   };
 };
 
-export const removeCustomer = token => {
+export const deleteCustomer = customer => {
   return async dispatch => {
-    token = {
-      token: token
+    const data = {
+      token: localStorage.token,
+      id: customer.id
     };
     axios
-      .post(URL.localhost9091 + "customer/customerlist", token, {
+      .post(URL.localhost9091 + "customer/customer_remove", data, {
         headers: customHeaders,
         timeout: 1000
       })
       .then(res => {
         console.log(res.data);
-        dispatch(setCustomers(res.data));
+        dispatch(fetchCustomerList(res.data));
       })
       .catch(error => {
         alert(error);

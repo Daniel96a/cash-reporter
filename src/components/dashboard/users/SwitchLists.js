@@ -8,8 +8,8 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import { green } from "@material-ui/core/colors";
 import Box from "@material-ui/core/Box";
-import CustomerList from "./CustomerList";
-import EmployeeList from "./EmployeeList";
+import CustomerList from "./customers/CustomerList";
+import EmployeeList from "./employees/EmployeeList";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -105,6 +105,7 @@ export const SwitchLists = props => {
           <CustomerList
             fetchCustomerList={props.fetchCustomerList}
             updateCustomer={props.updateCustomer}
+            deleteCustomer={props.deleteCustomer}
             customers={props.customers}
           />
         </TabPanel>
@@ -112,6 +113,8 @@ export const SwitchLists = props => {
           <EmployeeList
             fetchEmployeeList={props.fetchEmployeeList}
             employees={props.employees}
+            updateEmployee={props.updateEmployee}
+            deleteEmployee={props.deleteEmployee}
           />
         </TabPanel>
       </SwipeableViews>

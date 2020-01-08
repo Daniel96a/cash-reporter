@@ -52,39 +52,41 @@ export const addEmployee = employee => {
   };
 };
 
-export const removeEmployee = token => {
+export const deleteEmployee = employee => {
   return async dispatch => {
-    token = {
-      token: token
+    const data = {
+      token: localStorage.token,
+      employeeid: employee.id
     };
     axios
-      .post(URL.localhost9091 + "employee/employeelist", token, {
+      .post(URL.localhost9091 + "employee/employee_remove", data, {
         headers: customHeaders,
         timeout: 1000
       })
       .then(res => {
         console.log(res.data);
-        dispatch(setEmployees(res.data));
+        dispatch(fetchEmployeeList(res.data));
       })
       .catch(error => {
         alert(error);
       });
   };
-};
+}
 
-export const updateEmployee = token => {
+export const updateEmployee = employee => {
   return async dispatch => {
-    token = {
-      token: token
+    const data = {
+      token: localStorage.token,
+      employee: employee
     };
     axios
-      .post(URL.localhost9091 + "employee/employeelist", token, {
+      .post(URL.localhost9091 + "employee/employee_update", data, {
         headers: customHeaders,
         timeout: 1000
       })
       .then(res => {
         console.log(res.data);
-        dispatch(setEmployees(res.data));
+        dispatch(fetchEmployeeList(res.data));
       })
       .catch(error => {
         alert(error);

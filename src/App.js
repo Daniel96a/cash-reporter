@@ -8,8 +8,13 @@ import { doLogin, doLogout } from "./actions/auth";
 import "./App.css";
 import { LoginRoute } from "./login.route";
 import LoginPage from "./components/loginPage/LoginPage";
-import { addCustomer, updateCustomer, fetchCustomerList } from "./actions/customers";
-import { addEmployee, fetchEmployeeList } from "./actions/employees";
+import {
+  addCustomer,
+  updateCustomer,
+  deleteCustomer,
+  fetchCustomerList
+} from "./actions/customers";
+import { addEmployee, updateEmployee, deleteEmployee, fetchEmployeeList } from "./actions/employees";
 
 const App = ({
   doLogin,
@@ -18,9 +23,12 @@ const App = ({
   customers,
   addCustomer,
   updateCustomer,
+  deleteCustomer,
   fetchCustomerList,
   employees,
   addEmployee,
+  updateEmployee,
+  deleteEmployee,
   fetchEmployeeList
 }) => {
   return (
@@ -41,11 +49,14 @@ const App = ({
             doLogout={doLogout}
             addCustomer={addCustomer}
             updateCustomer={updateCustomer}
+            deleteCustomer={deleteCustomer}
             fetchCustomerList={fetchCustomerList}
             customers={customers}
             auth={auth}
             employees={employees}
             addEmployee={addEmployee}
+            updateEmployee={updateEmployee}
+            deleteEmployee={deleteEmployee}
             fetchEmployeeList={fetchEmployeeList}
           />
           <Route exact path="*" component={() => "404 NOT FOUND"} />
@@ -59,7 +70,7 @@ console.log();
 const mapStateToProps = state => ({
   auth: state.auth,
   customers: state.customers,
-  employees: state.employees,
+  employees: state.employees
 });
 
 export default connect(mapStateToProps, {
@@ -67,7 +78,10 @@ export default connect(mapStateToProps, {
   doLogout,
   addCustomer,
   updateCustomer,
+  deleteCustomer,
   fetchCustomerList,
   addEmployee,
+  updateEmployee,
+  deleteEmployee,
   fetchEmployeeList
 })(App);

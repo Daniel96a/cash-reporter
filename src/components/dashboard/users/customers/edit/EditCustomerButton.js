@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import Fab from "@material-ui/core/Fab";
 import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete";
 import SettingsIcon from "@material-ui/icons/Settings";
-import { BLUE } from "../../../colorTheme/colors";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { withStyles } from "@material-ui/core/styles";
 import { makeStyles, Button } from "@material-ui/core";
 import { EditCustomer } from "./EditCustomer.js";
+import { DeleteCustomer } from "../delete/DeleteCustomer";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 export const EditCustomerButton = props => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [showEditCustomer, setShowEditCustomer] = useState(false);
+  const [showDeleteCustomer, setShowDeleteCustomer] = useState(false);
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -25,7 +25,10 @@ export const EditCustomerButton = props => {
     setShowEditCustomer(true);
     // props.setShowCustomerDetails(false)
   };
-
+  const openDeleteCustomer = e => {
+    setShowDeleteCustomer(true);
+    // props.setShowCustomerDetails(false)
+  };
   return (
     <div className={useStyles.root}>
       {showEditCustomer && (
@@ -35,8 +38,18 @@ export const EditCustomerButton = props => {
           updateCustomer={props.updateCustomer}
         />
       )}
+      {showDeleteCustomer && (
+        <DeleteCustomer
+          setShowDeleteCustomer={setShowDeleteCustomer}
+          showDeleteCustomer={showDeleteCustomer}
+          setShowCustomerDetails={props.setShowCustomerDetails}
+          customerSelected={props.customerSelected}
+          setCustomerSelected={props.setCustomerSelected}
+          deleteCustomer={props.deleteCustomer}
+        />
+      )}
       <Button
-        aria-label="Edit and Delete"
+        aria-label="Settings"
         onClick={handleClick}
         color="primary"
         style={{
@@ -61,11 +74,10 @@ export const EditCustomerButton = props => {
         onClick={handleClose}
       >
         <StyledMenuItem>
-          <DeleteIcon color={"secondary"} />
+          <DeleteIcon color={"secondary"}onClick={openDeleteCustomer.bind(this)}/>
         </StyledMenuItem>
-        <StyledMenuItem >
-          <EditIcon color={"primary"}
-          onClick={openEditCustomer.bind(this)} />
+        <StyledMenuItem>
+          <EditIcon color={"primary"} onClick={openEditCustomer.bind(this)} />
         </StyledMenuItem>
       </StyledMenu>
     </div>
