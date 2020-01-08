@@ -35,7 +35,6 @@ const CustomerList = props => {
           customers={props.customers.customers}
           customerSelected={customerSelected}
           setCustomerSelected={setCustomerSelected}
-
           showCustomerDetails={showCustomerDetails}
           setShowCustomerDetails={setShowCustomerDetails}
           updateCustomer={props.updateCustomer}
@@ -64,6 +63,7 @@ const CustomerList = props => {
           ))}
         </List>
       )}
+      {props.customers.customers.length === 0 && <p>No customers found</p>}
     </React.Fragment>
   );
 };

@@ -6,6 +6,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import { EmployeeDetails } from "./EmployeeDetails";
+import { Card } from "material-ui";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,6 +21,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const EmployeeList = props => {
+  console.log(props.employees.length);
+
   const classes = useStyles();
   const [showEmployeeDetails, setShowEmployeeDetails] = useState(false);
   const [employeeSelected, setEmployeeSelected] = useState(null);
@@ -66,6 +69,7 @@ const EmployeeList = props => {
           ))}
         </List>
       )}
+      {props.employees.employees.length === 0 && <p>No employees found</p>}
     </React.Fragment>
   );
 };
