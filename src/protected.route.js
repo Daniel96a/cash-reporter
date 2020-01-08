@@ -7,6 +7,7 @@ export const ProtectedRoute = ({
   doLogout,
   customers,
   addCustomer,
+  updateCustomer,
   fetchCustomerList,
   employees,
   addEmployee,
@@ -22,6 +23,7 @@ export const ProtectedRoute = ({
           doLogout={doLogout}
           customers={customers}
           addCustomer={addCustomer}
+          updateCustomer={updateCustomer}
           fetchCustomerList={fetchCustomerList}
           employees={employees}
           addEmployee={addEmployee}

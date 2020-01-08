@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import { makeStyles } from "@material-ui/core/styles";
@@ -6,29 +6,48 @@ import { TextField } from "material-ui";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { BLUE, WHITE } from "../../../colorTheme/colors";
-import { EditCustomerButton } from "./EditCustomerButton";
 
-export const CustomerDetails = props => {
+export const EditCustomer = props => {
   const classes = useStyles();
+  const [address, setaddress] = useState(props.customerSelected.address);
+
+  const [phonenr, setphonenr] = useState(props.customerSelected.phonenr);
+  const [email, setemail] = useState(props.customerSelected.email);
+
+  const customer = {
+    firstname: props.customerSelected.firstname,
+    lastname: props.customerSelected.lastname,
+    id: props.customerSelected.id,
+    orgnr: props.customerSelected.orgnr,
+    address: address,
+    phonenr: phonenr,
+    email: email.toLowerCase()
+  };
+  const updateCustomer = e => {
+    props.updateCustomer(customer);
+    setaddress("");
+    setphonenr("");
+    setemail("");
+    document.getElementsByName("address")[0].value = customer.address;
+    document.getElementsByName("phonenr")[0].value = customer.phonenr;
+    document.getElementsByName("email")[0].value = customer.email;
+    props.setShowEditCustomer(false);
+    e.preventDefault();
+  };
+
   const handleClose = () => {
-    props.setShowCustomerDetails(false);
+    props.setShowEditCustomer(false);
   };
 
   return (
     <Dialog
-      open={props.showCustomerDetails}
+      open={true}
       onClose={handleClose}
       aria-labelledby="max-width-dialog-title"
       className={classes.root}
     >
-      <EditCustomerButton
-        customerSelected={props.customerSelected}
-        updateCustomer={props.updateCustomer}
-        deleteEmployee={props.deleteEmployee}
-        setShowCustomerDetails={props.setShowCustomerDetails}
-      />
       <DialogTitle id="max-width-dialog-title" className="align-text-center">
-        Customer details
+        Edit Customer
       </DialogTitle>
       <DialogContent>
         <TextField
@@ -37,7 +56,7 @@ export const CustomerDetails = props => {
           name="firstname"
           variant="filled"
           defaultValue={props.customerSelected.firstname}
-          readOnly
+          disabled
         />
         <TextField
           style={halfWidth}
@@ -45,7 +64,7 @@ export const CustomerDetails = props => {
           name="lastname"
           defaultValue={props.customerSelected.lastname}
           variant="filled"
-          readOnly
+          disabled
         />
         <TextField
           floatingLabelText="Customer ID"
@@ -53,32 +72,37 @@ export const CustomerDetails = props => {
           fullWidth
           defaultValue={props.customerSelected.id}
           variant="filled"
-          readOnly
+          disabled
         />
         <TextField
           floatingLabelText="Phone"
           name="phonenr"
           fullWidth
           defaultValue={props.customerSelected.phonenr}
-          readOnly
+          onChange={e => setphonenr(e.target.value)}
+
         />
         <TextField
           floatingLabelText="Email"
           name="email"
           fullWidth
           defaultValue={props.customerSelected.email}
-          readOnly
+          onChange={e => setemail(e.target.value)}
         />
         <TextField
           floatingLabelText="Address"
           name="address"
           fullWidth
           defaultValue={props.customerSelected.address}
-          readOnly
+          onChange={e => setaddress(e.target.value)}
+
         />
       </DialogContent>
-      <Button onClick={handleClose} color="primary">
-        Close
+      <Button onClick={updateCustomer.bind(this)} color="primary">
+        Update
+      </Button>
+      <Button onClick={handleClose} color="secondary">
+        Abort
       </Button>
     </Dialog>
   );
@@ -90,7 +114,6 @@ const halfWidth = {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    marginTop: 40,
     "& .MuiDialog-paperWidthSm": {
       overflowY: "visible"
     },

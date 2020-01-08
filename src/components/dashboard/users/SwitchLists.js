@@ -3,9 +3,6 @@ import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
-// import Zoom from "@material-ui/core/Zoom";
-// import Fab from "@material-ui/core/Fab";
-// import AddIcon from "@material-ui/icons/Add";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
@@ -76,27 +73,6 @@ export const SwitchLists = props => {
   const handleChangeIndex = index => {
     setValue(index);
   };
-
-  // const transitionDuration = {
-  //   enter: theme.transitions.duration.enteringScreen,
-  //   exit: theme.transitions.duration.leavingScreen
-  // };
-
-  // const fabs = [
-  //   {
-  //     color: "primary",
-  //     className: classes.fab,
-  //     icon: <AddIcon />,
-  //     label: "Add customer"
-  //   },
-  //   {
-  //     color: "primary",
-  //     className: classes.fab,
-  //     icon: <AddIcon />,
-  //     label: "Add employee"
-  //   }
-  // ];
-
   return (
     <div className={classes.root}>
       <AppBar position="static" color="default">
@@ -108,8 +84,16 @@ export const SwitchLists = props => {
           variant="fullWidth"
           aria-label="action tabs example"
         >
-          <Tab onClick={e => props.setSelectUserList("Customers")} label="Customers" {...a11yProps(0)} />
-          <Tab onClick={e => props.setSelectUserList("Employees")} label="Employees" {...a11yProps(1)} />
+          <Tab
+            onClick={e => props.setSelectUserList("Customers")}
+            label="Customers"
+            {...a11yProps(0)}
+          />
+          <Tab
+            onClick={e => props.setSelectUserList("Employees")}
+            label="Employees"
+            {...a11yProps(1)}
+          />
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -120,6 +104,7 @@ export const SwitchLists = props => {
         <TabPanel value={value} index={0} dir={theme.direction}>
           <CustomerList
             fetchCustomerList={props.fetchCustomerList}
+            updateCustomer={props.updateCustomer}
             customers={props.customers}
           />
         </TabPanel>
@@ -130,27 +115,6 @@ export const SwitchLists = props => {
           />
         </TabPanel>
       </SwipeableViews>
-      {/* {fabs.map((fab, index) => (
-        <Zoom
-          key={fab.color}
-          in={value === index}
-          timeout={transitionDuration}
-          style={{
-            transitionDelay: `${
-              value === index ? transitionDuration.exit : 0
-            }ms`
-          }}
-          unmountOnExit
-        >
-          <Fab
-            aria-label={fab.label}
-            className={fab.className}
-            color={fab.color}
-          >
-            {fab.icon}
-          </Fab>
-        </Zoom>
-      ))} */}
     </div>
   );
 };

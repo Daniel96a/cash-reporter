@@ -10,9 +10,12 @@ import { EmployeeDetails } from "./EmployeeDetails";
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
-    maxWidth: 490,
+    maxWidth: 600,
     margin: "auto",
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: theme.palette.background.paper,
+    "& .MuiTouchRipple-root":{
+      borderBottom: "1px solid lightgrey"
+    }
   }
 }));
 
@@ -20,7 +23,6 @@ const EmployeeList = props => {
   const classes = useStyles();
   const [showEmployeeDetails, setShowEmployeeDetails] = useState(false);
   const [employeeSelected, setEmployeeSelected] = useState(null);
-  console.log(props.employees)
 
   const openDetails = e => {
     setEmployeeSelected(props.employees.employees[e.currentTarget.id]);
@@ -34,28 +36,30 @@ const EmployeeList = props => {
           employeeSelected={employeeSelected}
           showEmployeeDetails={showEmployeeDetails}
           setShowEmployeeDetails={setShowEmployeeDetails}
-        />
-      )}
+          updateEmployee={props.updateEmployee}
+          
+          />
+          )}
       {props.employees !== undefined && (
         <List dense className={classes.root}>
           {props.employees.employees.map((employees, index) => (
             <ListItem
-              id={index}
-              key={index}
-              button
-              onClick={openDetails.bind(this)}
+            id={index}
+            key={index}
+            button
+            onClick={openDetails.bind(this)}
             >
               <ListItemAvatar>
                 <Avatar
                   alt={`Avatar n°${employees}`}
                   src={`/static/images/avatar/${employees.id}.jpg`}
-                />
+                  />
               </ListItemAvatar>
               <ListItemText
                 primary={`employees ID = ${employees.id}
-            ${employees.firstname}`}
+                ${employees.firstname}`}
                 secondary={`Phone number: ${employees.phonenr}`}
-              />
+                />
             </ListItem>
           ))}
         </List>

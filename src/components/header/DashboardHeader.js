@@ -1,8 +1,6 @@
 import React from "react";
 import { MuiThemeProvider } from "material-ui/styles";
 import { AppBar } from "material-ui";
-
-import "./Headers.css";
 import { MainMenu } from "./MainMenu";
 import { BLUE } from "../../colorTheme/colors";
 import { makeStyles } from "@material-ui/core";

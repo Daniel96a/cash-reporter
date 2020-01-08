@@ -8,7 +8,7 @@ import { doLogin, doLogout } from "./actions/auth";
 import "./App.css";
 import { LoginRoute } from "./login.route";
 import LoginPage from "./components/loginPage/LoginPage";
-import { addCustomer, fetchCustomerList } from "./actions/customers";
+import { addCustomer, updateCustomer, fetchCustomerList } from "./actions/customers";
 import { addEmployee, fetchEmployeeList } from "./actions/employees";
 
 const App = ({
@@ -17,6 +17,7 @@ const App = ({
   auth,
   customers,
   addCustomer,
+  updateCustomer,
   fetchCustomerList,
   employees,
   addEmployee,
@@ -39,6 +40,7 @@ const App = ({
             component={Dashboard}
             doLogout={doLogout}
             addCustomer={addCustomer}
+            updateCustomer={updateCustomer}
             fetchCustomerList={fetchCustomerList}
             customers={customers}
             auth={auth}
@@ -57,13 +59,14 @@ console.log();
 const mapStateToProps = state => ({
   auth: state.auth,
   customers: state.customers,
-  employees: state.employees
+  employees: state.employees,
 });
 
 export default connect(mapStateToProps, {
   doLogin,
   doLogout,
   addCustomer,
+  updateCustomer,
   fetchCustomerList,
   addEmployee,
   fetchEmployeeList

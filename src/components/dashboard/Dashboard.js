@@ -6,7 +6,7 @@ import UsersView from "./users/UsersView";
 
 const Dashboard = props => {
   const [showCase, setshowCase] = useState("Dashboard");
-  console.log(props.employees)
+  console.log(props.employees);
   const content = (
     <MuiThemeProvider>
       <React.Fragment>
@@ -27,6 +27,7 @@ const Dashboard = props => {
           <UsersView
             customers={props.customers}
             addCustomer={props.addCustomer}
+            updateCustomer={props.updateCustomer}
             fetchCustomerList={props.fetchCustomerList}
             employees={props.employees}
             addEmployee={props.addEmployee}

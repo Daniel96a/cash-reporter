@@ -7,13 +7,15 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import { CustomerDetails } from "./CustomerDetails";
 
-
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
-    maxWidth: 490,
+    maxWidth: 600,
     margin: "auto",
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: theme.palette.background.paper,
+    "& .MuiTouchRipple-root": {
+      borderBottom: "1px solid lightgrey"
+    }
   }
 }));
 
@@ -34,6 +36,8 @@ const CustomerList = props => {
           customerSelected={customerSelected}
           showCustomerDetails={showCustomerDetails}
           setShowCustomerDetails={setShowCustomerDetails}
+          updateCustomer={props.updateCustomer}
+          deleteEmployee={props.deleteEmployee}
         />
       )}
       {props.customers !== undefined && (
@@ -46,10 +50,7 @@ const CustomerList = props => {
               onClick={openDetails.bind(this)}
             >
               <ListItemAvatar>
-                <Avatar
-                  alt={`Avatar n°${customer}`}
-                  src={`/static/images/avatar/${customer.id}.jpg`}
-                />
+                <Avatar alt={`Avatar n°${customer}`} />
               </ListItemAvatar>
               <ListItemText
                 primary={`Customer ID = ${customer.id}

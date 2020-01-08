@@ -38,6 +38,7 @@ const CustomersView = props => {
           setShowAddCustomerForm={setShowAddCustomerForm}
           customers={props.customers}
           addCustomer={props.addCustomer}
+          updateCustomer={props.updateCustomer}
           fetchCustomerList={props.fetchCustomerList}
           employees={props.employees}
           addEmployee={props.addEmployee}

@@ -1,10 +1,12 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
+import {EditEmployeeButton} from './EditEmployeeButton'
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "material-ui";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import { BLUE, WHITE } from "../../../colorTheme/colors";
 
 export const EmployeeDetails = props => {
   const classes = useStyles();
@@ -20,8 +22,9 @@ export const EmployeeDetails = props => {
       aria-labelledby="max-width-dialog-title"
       className={classes.root}
     >
+      <EditEmployeeButton />
       <DialogTitle id="max-width-dialog-title" className="align-text-center">
-      Employee details
+        Employee details
       </DialogTitle>
       <DialogContent>
         <TextField
@@ -48,7 +51,7 @@ export const EmployeeDetails = props => {
           variant="filled"
           readOnly
         />
-         <TextField
+        <TextField
           floatingLabelText="Role"
           name="role"
           fullWidth
@@ -108,6 +111,10 @@ const useStyles = makeStyles(theme => ({
       border: "solid #80808085",
       borderWidth: "0.5px",
       margin: "0 20px 20px 20px"
+    },
+    "& .MuiDialogTitle-root": {
+      backgroundColor: BLUE,
+      color: WHITE
     }
   }
 }));

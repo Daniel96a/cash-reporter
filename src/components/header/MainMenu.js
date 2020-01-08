@@ -11,6 +11,7 @@ const StyledMenu = withStyles({
   paper: {
     margin: "auto",
     border: "1px solid #d3d4d5",
+    width: "100%",
     marginTop: "12px",
     borderRadius: "10px",
     "& .MuiList-padding": {
@@ -68,7 +69,7 @@ export const MainMenu = props => {
   };
 
   return (
-    <div className="menuList">
+    <div style={menuPosition}>
       <IconButton
         aria-controls="customized-menu"
         aria-haspopup="true"
@@ -100,7 +101,11 @@ export const MainMenu = props => {
 };
 const menuIconColor = withStyles({
     " & .MuiSvgIcon-root": {
-      fill: WHITE
+      fill: WHITE,
     }
-  
 });
+const menuPosition = {
+  margin: "auto",
+  position: "relative",
+  right: "-20px"
+}
