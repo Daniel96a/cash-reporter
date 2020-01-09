@@ -5,31 +5,42 @@ import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "material-ui";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { BLUE, WHITE } from "../../../../colorTheme/colors";
-import { EditCustomerButton } from "./edit/EditCustomerButton";
+import { BLUE, WHITE } from "../../../../../colorTheme/colors";
 
-export const CustomerDetails = props => {
+export const EditEmployee = props => {
   const classes = useStyles();
+  const employee = props.employees[props.employeeSelected];
+
+  const employeeData = {
+    firstname: employee.firstname,
+    lastname: employee.lastname,
+    id: employee.id,
+    orgnr: employee.orgnr,
+    role: employee.role,
+    phonenr: employee.phonenr,
+    email: employee.email.toLowerCase()
+  };
+  const updateEmployee = e => {
+    document.getElementsByName("role")[0].value = employeeData.role;
+    document.getElementsByName("phonenr")[0].value = employeeData.phonenr;
+    document.getElementsByName("email")[0].value = employeeData.email;
+    props.setShowEditEmployee(false);
+    props.updateEmployee(employeeData);
+  };
+
   const handleClose = () => {
-    props.setShowCustomerDetails(false);
+    props.setShowEditEmployee(false);
   };
 
   return (
     <Dialog
-      open={props.showCustomerDetails}
+      open={true}
       onClose={handleClose}
       aria-labelledby="max-width-dialog-title"
       className={classes.root}
     >
-      <EditCustomerButton
-        customerSelected={props.customerSelected}
-        setCustomerSelected={props.setCustomerSelected}
-        updateCustomer={props.updateCustomer}
-        deleteCustomer={props.deleteCustomer}
-        setShowCustomerDetails={props.setShowCustomerDetails}
-      />
       <DialogTitle id="max-width-dialog-title" className="align-text-center">
-        Customer details
+        Edit Employee
       </DialogTitle>
       <DialogContent>
         <TextField
@@ -37,49 +48,52 @@ export const CustomerDetails = props => {
           floatingLabelText="First name"
           name="firstname"
           variant="filled"
-          defaultValue={props.customerSelected.firstname}
-          readOnly
+          defaultValue={employee.firstname}
+          disabled
         />
         <TextField
           style={halfWidth}
           floatingLabelText="Last name"
           name="lastname"
-          defaultValue={props.customerSelected.lastname}
+          defaultValue={employee.lastname}
           variant="filled"
-          readOnly
+          disabled
         />
         <TextField
-          floatingLabelText="Customer ID"
-          name="customerid"
+          floatingLabelText="Employee ID"
+          name="employeeid"
           fullWidth
-          defaultValue={props.customerSelected.id}
+          defaultValue={employee.id}
           variant="filled"
-          readOnly
+          disabled
+        />
+        <TextField
+          floatingLabelText="Role"
+          name="role"
+          fullWidth
+          defaultValue={employee.role}
+          onChange={e => (employeeData.role = e.target.value)}
         />
         <TextField
           floatingLabelText="Phone"
           name="phonenr"
           fullWidth
-          defaultValue={props.customerSelected.phonenr}
-          readOnly
+          defaultValue={employee.phonenr}
+          onChange={e => (employeeData.phonenr = e.target.value)}
         />
         <TextField
           floatingLabelText="Email"
           name="email"
           fullWidth
-          defaultValue={props.customerSelected.email}
-          readOnly
-        />
-        <TextField
-          floatingLabelText="Address"
-          name="address"
-          fullWidth
-          defaultValue={props.customerSelected.address}
-          readOnly
+          defaultValue={employee.email}
+          onChange={e => (employeeData.email = e.target.value)}
         />
       </DialogContent>
-      <Button onClick={handleClose} color="primary">
-        Close
+      <Button onClick={updateEmployee.bind(this)} color="primary">
+        Update
+      </Button>
+      <Button onClick={handleClose} color="secondary">
+        Abort
       </Button>
     </Dialog>
   );
@@ -91,7 +105,6 @@ const halfWidth = {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    marginTop: 40,
     "& .MuiDialog-paperWidthSm": {
       overflowY: "visible"
     },

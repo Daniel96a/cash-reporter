@@ -1,53 +1,38 @@
-import React,{useEffect} from "react";
+import React from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
+import { EditEmployeeButton } from "./edit/EditEmployeeButton";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "material-ui";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { BLUE, WHITE } from "../../../../../colorTheme/colors";
+import { BLUE, WHITE } from "../../../../colorTheme/colors";
 
-export const EditCustomer = props => {
+export const EmployeeDetails = props => {
   const classes = useStyles();
-
-  const customer = {
-    firstname: props.customerSelected.firstname,
-    lastname: props.customerSelected.lastname,
-    id: props.customerSelected.id,
-    orgnr: props.customerSelected.orgnr,
-    address: props.customerSelected.address,
-    phonenr: props.customerSelected.phonenr,
-    email: props.customerSelected.email.toLowerCase()
-  };
-  useEffect(() => {
-    console.log(props.customerSelected)
-    return () => {
-      console.log(props.customerSelected)
-
-    };
-  }, [props])
-
-  const updateCustomer = e => {
-    document.getElementsByName("address")[0].value = customer.address;
-    document.getElementsByName("phonenr")[0].value = customer.phonenr;
-    document.getElementsByName("email")[0].value = customer.email;
-    props.setShowEditCustomer(false);
-    props.updateCustomer(customer);
-  };
+  const employee = props.employees[props.employeeSelected];
 
   const handleClose = () => {
-    props.setShowEditCustomer(false);
+    props.setShowEmployeeDetails(false);
   };
 
   return (
     <Dialog
-      open={true}
+      open={props.showEmployeeDetails}
       onClose={handleClose}
       aria-labelledby="max-width-dialog-title"
       className={classes.root}
     >
+      <EditEmployeeButton
+        employees={props.employees}
+        employeeSelected={props.employeeSelected}
+        updateEmployee={props.updateEmployee}
+        setEmployeeSelected={props.setEmployeeSelected}
+        deleteEmployee={props.deleteEmployee}
+        setShowEmployeeDetails={props.setShowEmployeeDetails}
+      />
       <DialogTitle id="max-width-dialog-title" className="align-text-center">
-        Edit Customer
+        Employee details
       </DialogTitle>
       <DialogContent>
         <TextField
@@ -55,52 +40,49 @@ export const EditCustomer = props => {
           floatingLabelText="First name"
           name="firstname"
           variant="filled"
-          defaultValue={props.customerSelected.firstname}
-          disabled
+          defaultValue={employee.firstname}
+          readOnly
         />
         <TextField
           style={halfWidth}
           floatingLabelText="Last name"
           name="lastname"
-          defaultValue={props.customerSelected.lastname}
+          defaultValue={employee.lastname}
           variant="filled"
-          disabled
+          readOnly
         />
         <TextField
-          floatingLabelText="Customer ID"
-          name="customerid"
+          floatingLabelText="Employee ID"
+          name="employeeid"
           fullWidth
-          defaultValue={props.customerSelected.id}
+          defaultValue={employee.id}
           variant="filled"
-          disabled
+          readOnly
+        />
+        <TextField
+          floatingLabelText="Role"
+          name="role"
+          fullWidth
+          defaultValue={employee.role}
+          readOnly
         />
         <TextField
           floatingLabelText="Phone"
           name="phonenr"
           fullWidth
-          defaultValue={props.customerSelected.phonenr}
-          onChange={e => (customer.phonenr = e.target.value)}
+          defaultValue={employee.phonenr}
+          readOnly
         />
         <TextField
           floatingLabelText="Email"
           name="email"
           fullWidth
-          defaultValue={props.customerSelected.email}
-          onChange={e => (customer.email = e.target.value)}
-        />
-        <TextField
-          floatingLabelText="Address"
-          name="address"
-          fullWidth
-          defaultValue={props.customerSelected.address}
-          onChange={e => (customer.address = e.target.value)}
+          defaultValue={employee.email}
+          readOnly
         />
       </DialogContent>
-      <Button onClick={updateCustomer.bind(this)} color="primary">
-        Update
-      </Button>
-      <Button onClick={handleClose} color="secondary">
-        Abort
+      <Button onClick={handleClose} color="primary">
+        Close
       </Button>
     </Dialog>
   );

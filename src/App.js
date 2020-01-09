@@ -1,13 +1,9 @@
 import React from "react";
-import { Router, Route, Switch } from "react-router-dom";
-import history from "./history";
 import { connect } from "react-redux";
-import Dashboard from "./components/dashboard/Dashboard";
-import { ProtectedRoute } from "./protected.route";
+import Main from "./components/main/MainView";
 import { doLogin, doLogout } from "./actions/auth";
 import "./App.css";
-import { LoginRoute } from "./login.route";
-import LoginPage from "./components/loginPage/LoginPage";
+import LoginPage from "./components/login/LoginPage";
 import {
   addCustomer,
   updateCustomer,
@@ -26,6 +22,7 @@ import {
   deleteReport,
   fetchReportList
 } from "./actions/reports";
+
 const App = ({
   doLogin,
   doLogout,
@@ -48,40 +45,28 @@ const App = ({
 }) => {
   return (
     <div className="App">
-      <Router history={history}>
-        <Switch>
-          <LoginRoute
-            exact
-            path="/login"
-            component={LoginPage}
-            auth={auth}
-            doLogin={doLogin}
-          />
-          <ProtectedRoute
-            exact
-            path="/"
-            component={Dashboard}
-            doLogout={doLogout}
-            addCustomer={addCustomer}
-            updateCustomer={updateCustomer}
-            deleteCustomer={deleteCustomer}
-            fetchCustomerList={fetchCustomerList}
-            customers={customers}
-            auth={auth}
-            employees={employees}
-            addEmployee={addEmployee}
-            updateEmployee={updateEmployee}
-            deleteEmployee={deleteEmployee}
-            fetchEmployeeList={fetchEmployeeList}
-            reports={reports}
-            addReport={addReport}
-            updateReport={updateReport}
-            deleteReport={deleteReport}
-            fetchReportList={fetchReportList}
-          />
-          <Route exact path="*" component={() => "404 NOT FOUND"} />
-        </Switch>
-      </Router>
+      {!auth.isAuthenticated && <LoginPage doLogin={doLogin} />}
+      {auth.isAuthenticated && (
+        <Main
+          doLogout={doLogout}
+          addCustomer={addCustomer}
+          updateCustomer={updateCustomer}
+          deleteCustomer={deleteCustomer}
+          fetchCustomerList={fetchCustomerList}
+          customers={customers}
+          auth={auth}
+          employees={employees}
+          addEmployee={addEmployee}
+          updateEmployee={updateEmployee}
+          deleteEmployee={deleteEmployee}
+          fetchEmployeeList={fetchEmployeeList}
+          reports={reports}
+          addReport={addReport}
+          updateReport={updateReport}
+          deleteReport={deleteReport}
+          fetchReportList={fetchReportList}
+        />
+      )}
     </div>
   );
 };

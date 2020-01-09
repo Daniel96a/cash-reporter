@@ -12,7 +12,6 @@ const LoginForm = props => {
 
   const login = e => {
     props.doLogin(data);
-
     setusername("");
     setpassword("");
     e.preventDefault();

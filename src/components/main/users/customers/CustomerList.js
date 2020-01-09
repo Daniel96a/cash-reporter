@@ -25,7 +25,7 @@ const CustomerList = props => {
   const [customerSelected, setCustomerSelected] = useState(null);
 
   const openDetails = e => {
-    setCustomerSelected(props.customers.customers[e.currentTarget.id]);
+    setCustomerSelected(e.currentTarget.id);
     setShowCustomerDetails(true);
   };
   return (

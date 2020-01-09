@@ -1,6 +1,5 @@
 import * as types from "./types";
 import axios from "axios";
-import history from "../history";
 import { customHeaders } from "./customHeaders";
 import setAuthorizationToken from "../utils/setAuthorizationToken";
 import { URL } from "./URLs";
@@ -50,7 +49,7 @@ export const doLogin = data => {
         dispatch(setCurrentUser(res.data));
         dispatch(fetchCustomerList());
         dispatch(fetchEmployeeList());
-        history.push("/");
+        dispatch(fetchReportList());
       })
       .catch(error => {
         alert(error);

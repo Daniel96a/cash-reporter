@@ -5,14 +5,14 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { withStyles } from "@material-ui/core/styles";
 import { makeStyles, Button } from "@material-ui/core";
-import { EditCustomer } from "./EditCustomer.js";
-import { DeleteCustomer } from "../delete/DeleteCustomer";
+import { EditReport } from "./EditReport";
+import { DeleteReport } from "../delete/DeleteReport";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-export const EditCustomerButton = props => {
+export const EditReportButton = props => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [showEditCustomer, setShowEditCustomer] = useState(false);
-  const [showDeleteCustomer, setShowDeleteCustomer] = useState(false);
+  const [showEditReport, setShowEditReport] = useState(false);
+  const [showDeleteReport, setShowDeleteReport] = useState(false);
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -21,31 +21,29 @@ export const EditCustomerButton = props => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const openEditCustomer = e => {
-    setShowEditCustomer(true);
-    // props.setShowCustomerDetails(false)
+  const openEditReport = e => {
+    setShowEditReport(true);
   };
-  const openDeleteCustomer = e => {
-    setShowDeleteCustomer(true);
-    // props.setShowCustomerDetails(false)
+  const openDeleteReport = e => {
+    setShowDeleteReport(true);
   };
   return (
     <div className={useStyles.root}>
-      {showEditCustomer && (
-        <EditCustomer
-          customerSelected={props.customerSelected}
-          setShowEditCustomer={setShowEditCustomer}
-          updateCustomer={props.updateCustomer}
+      {showEditReport && (
+        <EditReport
+          reportSelected={props.reportSelected}
+          setShowEditReport={setShowEditReport}
+          updateReport={props.updateReport}
         />
       )}
-      {showDeleteCustomer && (
-        <DeleteCustomer
-          setShowDeleteCustomer={setShowDeleteCustomer}
-          showDeleteCustomer={showDeleteCustomer}
-          setShowCustomerDetails={props.setShowCustomerDetails}
-          customerSelected={props.customerSelected}
-          setCustomerSelected={props.setCustomerSelected}
-          deleteCustomer={props.deleteCustomer}
+      {showDeleteReport && (
+        <DeleteReport
+          setShowDeleteReport={setShowDeleteReport}
+          showDeleteReport={showDeleteReport}
+          setShowReportDetails={props.setShowReportDetails}
+          reportSelected={props.reportSelected}
+          setReportSelected={props.setReportSelected}
+          DeleteReport={props.DeleteReport}
         />
       )}
       <Button
@@ -74,10 +72,13 @@ export const EditCustomerButton = props => {
         onClick={handleClose}
       >
         <StyledMenuItem>
-          <DeleteIcon color={"secondary"}onClick={openDeleteCustomer.bind(this)}/>
+          <DeleteIcon
+            color={"secondary"}
+            onClick={openDeleteReport.bind(this)}
+          />
         </StyledMenuItem>
         <StyledMenuItem>
-          <EditIcon color={"primary"} onClick={openEditCustomer.bind(this)} />
+          <EditIcon color={"primary"} onClick={openEditReport.bind(this)} />
         </StyledMenuItem>
       </StyledMenu>
     </div>

@@ -33,6 +33,7 @@ export const EditEmployeeButton = props => {
     <div className={useStyles.root}>
       {showEditEmployee && (
         <EditEmployee
+          employees={props.employees}
           employeeSelected={props.employeeSelected}
           setShowEditEmployee={setShowEditEmployee}
           updateEmployee={props.updateEmployee}
@@ -40,7 +41,7 @@ export const EditEmployeeButton = props => {
       )}
       {showDeleteEmployee && (
         <DeleteEmployee
-        setShowDeleteEmployee={setShowDeleteEmployee}
+          setShowDeleteEmployee={setShowDeleteEmployee}
           showDeleteEmployee={showDeleteEmployee}
           setShowEmployeeDetails={props.setShowEmployeeDetails}
           employeeSelected={props.employeeSelected}
@@ -74,7 +75,10 @@ export const EditEmployeeButton = props => {
         onClick={handleClose}
       >
         <StyledMenuItem>
-          <DeleteIcon onClick={openDeleteEmployee.bind(this)}color={"secondary"} />
+          <DeleteIcon
+            onClick={openDeleteEmployee.bind(this)}
+            color={"secondary"}
+          />
         </StyledMenuItem>
         <StyledMenuItem>
           <EditIcon color={"primary"} onClick={openEditEmployee.bind(this)} />

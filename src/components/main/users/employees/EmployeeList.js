@@ -20,14 +20,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const EmployeeList = props => {
-  console.log(props.employees.length);
-
   const classes = useStyles();
   const [showEmployeeDetails, setShowEmployeeDetails] = useState(false);
   const [employeeSelected, setEmployeeSelected] = useState(null);
+
   const openDetails = e => {
-    console.log(props.employees.employees[e.currentTarget.id]);
-    setEmployeeSelected(props.employees.employees[e.currentTarget.id]);
+    setEmployeeSelected(e.currentTarget.id);
     setShowEmployeeDetails(true);
   };
   return (

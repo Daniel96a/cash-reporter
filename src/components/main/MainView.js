@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import { Profile } from "./profile/Profile";
-import DashboardHeader from "../header/DashboardHeader";
+import { Profile } from "./dashboard/Profile";
+import MainHeader from "./MainHeader";
 import { MuiThemeProvider } from "material-ui/styles";
 import UsersView from "./users/UsersView";
+import ReportList from "./reports/ReportList";
 
-const Dashboard = props => {
+const Main = props => {
   const [showCase, setshowCase] = useState("Dashboard");
   console.log(props.employees);
   const content = (
     <MuiThemeProvider>
       <React.Fragment>
-        <DashboardHeader
+        <MainHeader
           doLogout={props.doLogout}
           auth={props.auth}
           showCase={showCase}
@@ -22,7 +23,6 @@ const Dashboard = props => {
             status={props.auth.user.permission}
           />
         )}
-
         {showCase === "Users" && (
           <UsersView
             customers={props.customers}
@@ -37,10 +37,19 @@ const Dashboard = props => {
             fetchEmployeeList={props.fetchEmployeeList}
           />
         )}
+        {showCase === "Reports" && (
+          <ReportList
+            reports={props.reports}
+            addReport={props.addReport}
+            updateReport={props.updateReport}
+            deleteReport={props.deleteReport}
+            fetchReportList={props.fetchReportList}
+          />
+        )}
       </React.Fragment>
     </MuiThemeProvider>
   );
   return content;
 };
 
-export default React.memo(Dashboard);
+export default React.memo(Main);

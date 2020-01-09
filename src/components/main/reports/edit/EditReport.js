@@ -1,40 +1,42 @@
-import React, { useState } from "react";
+import React,{useEffect} from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "material-ui";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { BLUE, WHITE } from "../../../../../colorTheme/colors";
+import { BLUE, WHITE } from "../../../../colorTheme/colors";
 
-export const EditEmployee = props => {
+export const EditReport = props => {
   const classes = useStyles();
-  const [role, setRole] = useState(props.employeeSelected.role);
-  const [phonenr, setphonenr] = useState(props.employeeSelected.phonenr);
-  const [email, setemail] = useState(props.employeeSelected.email);
 
-  const employee = {
-    firstname: props.employeeSelected.firstname,
-    lastname: props.employeeSelected.lastname,
-    id: props.employeeSelected.id,
-    orgnr: props.employeeSelected.orgnr,
-    role: role,
-    phonenr: phonenr,
-    email: email.toLowerCase()
+  const report = {
+    firstname: props.reportSelected.firstname,
+    lastname: props.reportSelected.lastname,
+    id: props.reportSelected.id,
+    orgnr: props.reportSelected.orgnr,
+    address: props.reportSelected.address,
+    phonenr: props.reportSelected.phonenr,
+    email: props.reportSelected.email.toLowerCase()
   };
-  const updateEmployee = e => {
-    props.updateEmployee(employee);
-    setRole("");
-    setphonenr("");
-    setemail("");
-    document.getElementsByName("phonenr")[0].value = employee.phonenr;
-    document.getElementsByName("email")[0].value = employee.email;
-    props.setShowEditEmployee(false);
-    e.preventDefault();
+  useEffect(() => {
+    console.log(props.reportSelected)
+    return () => {
+      console.log(props.reportSelected)
+
+    };
+  }, [props])
+
+  const updateReport = e => {
+    document.getElementsByName("address")[0].value = report.address;
+    document.getElementsByName("phonenr")[0].value = report.phonenr;
+    document.getElementsByName("email")[0].value = report.email;
+    props.setShowEditReport(false);
+    props.updateReport(report);
   };
 
   const handleClose = () => {
-    props.setShowEditEmployee(false);
+    props.setShowEditReport(false);
   };
 
   return (
@@ -45,7 +47,7 @@ export const EditEmployee = props => {
       className={classes.root}
     >
       <DialogTitle id="max-width-dialog-title" className="align-text-center">
-        Edit Employee
+        Edit Report
       </DialogTitle>
       <DialogContent>
         <TextField
@@ -53,48 +55,48 @@ export const EditEmployee = props => {
           floatingLabelText="First name"
           name="firstname"
           variant="filled"
-          defaultValue={props.employeeSelected.firstname}
+          defaultValue={props.reportSelected.firstname}
           disabled
         />
         <TextField
           style={halfWidth}
           floatingLabelText="Last name"
           name="lastname"
-          defaultValue={props.employeeSelected.lastname}
+          defaultValue={props.reportSelected.lastname}
           variant="filled"
           disabled
         />
         <TextField
-          floatingLabelText="Employee ID"
-          name="employeeid"
+          floatingLabelText="Report ID"
+          name="reportid"
           fullWidth
-          defaultValue={props.employeeSelected.id}
+          defaultValue={props.reportSelected.id}
           variant="filled"
           disabled
-        />
-        <TextField
-          floatingLabelText="Role"
-          name="role"
-          fullWidth
-          defaultValue={props.employeeSelected.role}
-          onChange={e => setRole(e.target.value)}
         />
         <TextField
           floatingLabelText="Phone"
           name="phonenr"
           fullWidth
-          defaultValue={props.employeeSelected.phonenr}
-          onChange={e => setphonenr(e.target.value)}
+          defaultValue={props.reportSelected.phonenr}
+          onChange={e => (report.phonenr = e.target.value)}
         />
         <TextField
           floatingLabelText="Email"
           name="email"
           fullWidth
-          defaultValue={props.employeeSelected.email}
-          onChange={e => setemail(e.target.value)}
+          defaultValue={props.reportSelected.email}
+          onChange={e => (report.email = e.target.value)}
+        />
+        <TextField
+          floatingLabelText="Address"
+          name="address"
+          fullWidth
+          defaultValue={props.reportSelected.address}
+          onChange={e => (report.address = e.target.value)}
         />
       </DialogContent>
-      <Button onClick={updateEmployee.bind(this)} color="primary">
+      <Button onClick={updateReport.bind(this)} color="primary">
         Update
       </Button>
       <Button onClick={handleClose} color="secondary">
