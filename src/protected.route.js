@@ -15,6 +15,11 @@ export const ProtectedRoute = ({
   updateEmployee,
   deleteEmployee,
   fetchEmployeeList,
+  reports,
+  addReport,
+  updateReport,
+  deleteReport,
+  fetchReportList,
   ...rest
 }) => (
   <Route
@@ -34,6 +39,11 @@ export const ProtectedRoute = ({
           updateEmployee={updateEmployee}
           deleteEmployee={deleteEmployee}
           fetchEmployeeList={fetchEmployeeList}
+          reports={reports}
+          addReport={addReport}
+          updateReport={updateReport}
+          deleteReport={deleteReport}
+          fetchReportList={fetchReportList}
           {...props}
         />
       ) : (

@@ -14,8 +14,18 @@ import {
   deleteCustomer,
   fetchCustomerList
 } from "./actions/customers";
-import { addEmployee, updateEmployee, deleteEmployee, fetchEmployeeList } from "./actions/employees";
-
+import {
+  addEmployee,
+  updateEmployee,
+  deleteEmployee,
+  fetchEmployeeList
+} from "./actions/employees";
+import {
+  addReport,
+  updateReport,
+  deleteReport,
+  fetchReportList
+} from "./actions/reports";
 const App = ({
   doLogin,
   doLogout,
@@ -29,7 +39,12 @@ const App = ({
   addEmployee,
   updateEmployee,
   deleteEmployee,
-  fetchEmployeeList
+  fetchEmployeeList,
+  reports,
+  addReport,
+  updateReport,
+  deleteReport,
+  fetchReportList
 }) => {
   return (
     <div className="App">
@@ -58,6 +73,11 @@ const App = ({
             updateEmployee={updateEmployee}
             deleteEmployee={deleteEmployee}
             fetchEmployeeList={fetchEmployeeList}
+            reports={reports}
+            addReport={addReport}
+            updateReport={updateReport}
+            deleteReport={deleteReport}
+            fetchReportList={fetchReportList}
           />
           <Route exact path="*" component={() => "404 NOT FOUND"} />
         </Switch>
@@ -70,7 +90,8 @@ console.log();
 const mapStateToProps = state => ({
   auth: state.auth,
   customers: state.customers,
-  employees: state.employees
+  employees: state.employees,
+  reports: state.reports
 });
 
 export default connect(mapStateToProps, {
@@ -83,5 +104,9 @@ export default connect(mapStateToProps, {
   addEmployee,
   updateEmployee,
   deleteEmployee,
-  fetchEmployeeList
+  fetchEmployeeList,
+  addReport,
+  updateReport,
+  deleteReport,
+  fetchReportList
 })(App);

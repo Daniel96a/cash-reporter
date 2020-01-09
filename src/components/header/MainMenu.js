@@ -7,6 +7,59 @@ import { IconButton } from "material-ui";
 import MenuIcon from "@material-ui/icons/Menu";
 import { WHITE } from "../../colorTheme/colors";
 
+export const MainMenu = props => {
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const logout = e => {
+    props.doLogout();
+    e.preventDefault();
+  };
+  const setMenuCase = e => {
+    setAnchorEl(null);
+
+    props.setshowCase(e);
+  };
+
+  return (
+    <div style={menuPosition}>
+      <IconButton
+        aria-controls="customized-menu"
+        aria-haspopup="true"
+        color="primary"
+        onClick={handleClick}
+      >
+        <MenuIcon style={menuIconColor} />
+      </IconButton>
+      <StyledMenu
+        id="customized-menu"
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <StyledMenuItem onClick={setMenuCase.bind(this, "Dashboard")}>
+          <div className="align-text-center">Dashboard</div>
+        </StyledMenuItem>
+        <StyledMenuItem onClick={setMenuCase.bind(this, "Users")}>
+          <div className="align-text-center">Users</div>
+        </StyledMenuItem>
+        <StyledMenuItem onClick={setMenuCase.bind(this, "Reports")}>
+          <div className="align-text-center">Reports</div>
+        </StyledMenuItem>
+        <StyledMenuItem onClick={logout.bind(this)}>
+          <div className="align-text-center">Logout</div>
+        </StyledMenuItem>
+      </StyledMenu>
+    </div>
+  );
+};
+
 const StyledMenu = withStyles({
   paper: {
     margin: "auto",
@@ -15,7 +68,7 @@ const StyledMenu = withStyles({
     marginTop: "12px",
     borderRadius: "10px",
     "& .MuiList-padding": {
-      padding: 0,
+      padding: 0
     }
   }
 })(props => (
@@ -48,64 +101,13 @@ const StyledMenuItem = withStyles(theme => ({
   }
 }))(MenuItem);
 
-export const MainMenu = props => {
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  const handleClick = event => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  const logout = e => {
-    props.doLogout();
-    e.preventDefault();
-  };
-  const setMenuCase = e => {
-    setAnchorEl(null);
-
-    props.setshowCase(e);
-  };
-
-  return (
-    <div style={menuPosition}>
-      <IconButton
-        aria-controls="customized-menu"
-        aria-haspopup="true"
-        color="primary"
-        onClick={handleClick}
-      >
-        <MenuIcon style={menuIconColor}/>
-      </IconButton>
-      <StyledMenu
-        id="customized-menu"
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <StyledMenuItem onClick={setMenuCase.bind(this, "Dashboard")}>
-          <div className="align-text-center">Dashboard</div>
-        </StyledMenuItem>
-        <StyledMenuItem onClick={setMenuCase.bind(this, "Users")}>
-          {" "}
-          <div className="align-text-center">Users</div>
-        </StyledMenuItem>
-        <StyledMenuItem onClick={logout.bind(this)}>
-          {" "}
-          <div className="align-text-center">Logout</div>
-        </StyledMenuItem>
-      </StyledMenu>
-    </div>
-  );
-};
 const menuIconColor = withStyles({
-    " & .MuiSvgIcon-root": {
-      fill: WHITE,
-    }
+  " & .MuiSvgIcon-root": {
+    fill: WHITE
+  }
 });
 const menuPosition = {
   margin: "auto",
   position: "relative",
   right: "-20px"
-}
+};
