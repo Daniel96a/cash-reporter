@@ -14,7 +14,7 @@ export const fetchEmployeeList = () => {
       token: localStorage.token
     };
     axios
-      .post(URL.localhost9091 + "employee/employeelist", token, {
+    .post(URL.localhost + "/employee/employeelist", token, {
         headers: customHeaders,
         timeout: 1000
       })
@@ -36,7 +36,7 @@ export const addEmployee = employee => {
     };
     console.log(data);
     axios
-      .post(URL.localhost9091 + "employee/employee_add", data, {
+    .post(URL.localhost + "/employee/employee_add", data, {
         headers: customHeaders,
         timeout: 1000
       })
@@ -59,7 +59,7 @@ export const deleteEmployee = employee => {
       employeeid: employee.id
     };
     axios
-      .post(URL.localhost9091 + "employee/employee_remove", data, {
+    .post(URL.localhost + "/employee/employee_remove", data, {
         headers: customHeaders,
         timeout: 1000
       })
@@ -80,7 +80,7 @@ export const updateEmployee = employee => {
       employee: employee
     };
     axios
-      .post(URL.localhost9091 + "employee/employee_update", data, {
+    .post(URL.localhost + "/employee/employee_update", data, {
         headers: customHeaders,
         timeout: 1000
       })

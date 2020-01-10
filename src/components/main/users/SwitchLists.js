@@ -16,6 +16,7 @@ function TabPanel(props) {
 
   return (
     <Typography
+      component={"div"}
       role="tabpanel"
       hidden={value !== index}
       id={`action-tabpanel-${index}`}
@@ -45,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.paper,
     position: "relative",
     maxWidth: 600,
-    margin: "auto",
+    margin: "auto"
   },
   fab: {
     position: "absolute",
@@ -74,29 +75,28 @@ export const SwitchLists = props => {
     setValue(index);
   };
   return (
-    <div className={classes.root}>
-      <AppBar position="static" color="default">
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="fullWidth"
-          aria-label="action tabs example"
-        >
-          <Tab
-            onClick={e => props.setSelectUserList("Customers")}
-            label="Customers"
-            {...a11yProps(0)}
-          />
-          <Tab
-            onClick={e => props.setSelectUserList("Employees")}
-            label="Employees"
-            {...a11yProps(1)}
-          />
-        </Tabs>
-      </AppBar>
+    <AppBar position="static" color="default" className={classes.root}>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        indicatorColor="primary"
+        textColor="primary"
+        variant="fullWidth"
+        aria-label="action tabs example"
+      >
+        <Tab
+          onClick={e => props.setSelectUserList("Customers")}
+          label="Customers"
+          {...a11yProps(0)}
+        />
+        <Tab
+          onClick={e => props.setSelectUserList("Employees")}
+          label="Employees"
+          {...a11yProps(1)}
+        />
+      </Tabs>
       <SwipeableViews
+      style={{height: "calc(100vh - 112px)"}}
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={value}
         onChangeIndex={handleChangeIndex}
@@ -118,6 +118,6 @@ export const SwitchLists = props => {
           />
         </TabPanel>
       </SwipeableViews>
-    </div>
+    </AppBar>
   );
 };

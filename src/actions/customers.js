@@ -14,7 +14,7 @@ export const fetchCustomerList = () => {
       token: localStorage.token
     };
     axios
-      .post(URL.localhost9091 + "customer/customerlist", token, {
+    .post(URL.localhost + "/customer/customerlist", token, {
         headers: customHeaders,
         timeout: 1000
       })
@@ -36,7 +36,7 @@ export const addCustomer = customer => {
     };
     console.log(data);
     axios
-      .post(URL.localhost9091 + "customer/customer_add", data, {
+    .post(URL.localhost + "/customer/customer_add", data, {
         headers: customHeaders,
         timeout: 1000
       })
@@ -59,7 +59,7 @@ export const deleteCustomer = customer => {
       id: customer.id
     };
     axios
-      .post(URL.localhost9091 + "customer/customer_remove", data, {
+    .post(URL.localhost + "/customer/customer_remove", data, {
         headers: customHeaders,
         timeout: 1000
       })
@@ -80,7 +80,7 @@ export const updateCustomer = customer => {
       customer: customer
     };
     axios
-      .post(URL.localhost9091 + "customer/customer_update", data, {
+    .post(URL.localhost + "/customer/customer_update", data, {
         headers: customHeaders,
         timeout: 1000
       })

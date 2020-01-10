@@ -1,17 +1,11 @@
-.App {
-  margin: auto;
-}
-div.MuiBox-root{
+div.MuiBox-root {
   background-color: transparent;
   padding: 0;
 }
-div.makeStyles-root-173{
+div.makeStyles-root-173 {
   background-color: transparent;
+}
 
-}
-html {
-  background-color: rgb(201, 201, 201);
-}
 
 .align-text-center {
   text-align: center;

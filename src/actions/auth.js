@@ -6,7 +6,6 @@ import { URL } from "./URLs";
 import { fetchCustomerList } from "./customers";
 import { fetchEmployeeList } from "./employees";
 import { fetchReportList } from "./reports";
-
 export const setCurrentUser = user => ({
   type: types.SET_CURRENT_USER,
   user
@@ -18,7 +17,7 @@ export const verifyToken = token => {
       token: token
     };
     axios
-      .post(URL.localhost9091 + "validate_token", token, {
+      .post(URL.localhost + "/validate_token", token, {
         headers: customHeaders,
         timeout: 1000
       })
@@ -39,7 +38,7 @@ export const verifyToken = token => {
 export const doLogin = data => {
   return async dispatch => {
     axios
-      .post(URL.localhost9091 + "login", data, {
+      .post(URL.localhost + "/login", data, {
         headers: customHeaders,
         timeout: 1000
       })
@@ -62,7 +61,7 @@ export const doLogout = () => {
       token: localStorage.getItem("token")
     };
     axios
-      .post(URL.localhost9091 + "logout", token, {
+      .post(URL.localhost + "/logout", token, {
         headers: customHeaders,
         timeout: 1000
       })

@@ -64,7 +64,7 @@ export const AddCustomer = props => {
             name="firstname"
             onChange={e => setfirstname(e.target.value)}
             defaultValue={firstname}
-          />
+            />
           <TextField
             style={halfWidth}
             hintText="Enter last name here"
@@ -73,7 +73,7 @@ export const AddCustomer = props => {
             required={true}
             onChange={e => setlastname(e.target.value)}
             defaultValue={lastname}
-          />
+            />
           <TextField
             hintText="Enter organisation number here"
             floatingLabelText="Enter organisation number"
@@ -81,7 +81,7 @@ export const AddCustomer = props => {
             fullWidth
             onChange={e => setorgnr(e.target.value)}
             defaultValue={orgnr}
-          />
+            />
           <TextField
             hintText="Enter address here"
             floatingLabelText="Enter address"
@@ -89,7 +89,7 @@ export const AddCustomer = props => {
             fullWidth
             onChange={e => setaddress(e.target.value)}
             defaultValue={address}
-          />
+            />
           <TextField
             hintText="Enter phone number here"
             floatingLabelText="Enter phone number"
@@ -97,7 +97,7 @@ export const AddCustomer = props => {
             fullWidth
             onChange={e => setphonenr(e.target.value)}
             defaultValue={phonenr}
-          />
+            />
           <br />
           <TextField
             hintText="Enter email here"

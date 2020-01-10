@@ -58,11 +58,11 @@ export const MainMenu = props => {
 
 const StyledMenu = withStyles({
   paper: {
-    margin: "auto",
     border: "1px solid #d3d4d5",
+    position: "absolute",
     width: "100%",
-    marginTop: "12px",
-    borderRadius: "10px",
+    marginTop: 8,
+    borderRadius: "0",
     "& .MuiList-padding": {
       padding: 0
     }
@@ -72,10 +72,12 @@ const StyledMenu = withStyles({
     elevation={0}
     getContentAnchorEl={null}
     anchorOrigin={{
+      marginLeft: 0,
       vertical: "bottom",
       horizontal: "center"
     }}
     transformOrigin={{
+      marginLeft: 0,
       vertical: "top",
       horizontal: "center"
     }}
@@ -105,5 +107,5 @@ const menuIconColor = withStyles({
 const menuPosition = {
   margin: "auto",
   position: "relative",
-  right: "-20px"
+  right: "-15px"
 };

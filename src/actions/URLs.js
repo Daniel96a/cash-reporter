@@ -1,4 +1,4 @@
 export const URL = {
-    localhost9091:'http://localhost:9091/',
-    localhost9090:'http://localhost:9090/'
+    localhost:'http://192.168.1.131:9091',
+    // localhost9090:'http://localhost:9090/'
 };

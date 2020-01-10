@@ -14,7 +14,7 @@ export const fetchReportList = () => {
       token: localStorage.token
     };
     axios
-      .post(URL.localhost9091 + "report/reportlist", token, {
+      .post(URL.localhost + "/report/reportlist", token, {
         headers: customHeaders,
         timeout: 1000
       })
@@ -36,15 +36,13 @@ export const addReport = report => {
     };
     console.log(data);
     axios
-      .post(URL.localhost9091 + "report/report_add", data, {
+      .post(URL.localhost + "/report/report_add", data, {
         headers: customHeaders,
         timeout: 1000
       })
       .then(res => {
         dispatch(fetchReportList());
-        console.log(
-          "Added report with response: " + JSON.stringify(res.data)
-        );
+        console.log("Added report with response: " + JSON.stringify(res.data));
       })
       .catch(error => {
         alert(error);
@@ -59,7 +57,7 @@ export const deleteReport = report => {
       id: report.id
     };
     axios
-      .post(URL.localhost9091 + "report/report_remove", data, {
+      .post(URL.localhost + "/report/report_remove", data, {
         headers: customHeaders,
         timeout: 1000
       })
@@ -80,7 +78,7 @@ export const updateReport = report => {
       report: report
     };
     axios
-      .post(URL.localhost9091 + "report/report_update", data, {
+      .post(URL.localhost + "/report/report_update", data, {
         headers: customHeaders,
         timeout: 1000
       })

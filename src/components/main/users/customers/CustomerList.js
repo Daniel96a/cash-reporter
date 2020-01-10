@@ -6,6 +6,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import { CustomerDetails } from "./CustomerDetails";
+import { Pressable } from "../../../../pressable/Pressable";
+import { EditCustomer } from "./edit/EditCustomer";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,14 +24,21 @@ const useStyles = makeStyles(theme => ({
 const CustomerList = props => {
   const classes = useStyles();
   const [showCustomerDetails, setShowCustomerDetails] = useState(false);
+
   const [customerSelected, setCustomerSelected] = useState(null);
 
+  const [showEditCustomer, setShowEditCustomer] = useState(false);
+  const openEdit = e => {
+    setCustomerSelected(e.currentTarget.id);
+    setShowEditCustomer(true);
+  };
   const openDetails = e => {
     setCustomerSelected(e.currentTarget.id);
     setShowCustomerDetails(true);
   };
+
   return (
-    <React.Fragment>
+    <div>
       {customerSelected !== null && showCustomerDetails && (
         <CustomerDetails
           customers={props.customers.customers}
@@ -41,30 +50,47 @@ const CustomerList = props => {
           deleteCustomer={props.deleteCustomer}
         />
       )}
-      {props.customers !== undefined && (
+      {showEditCustomer && (
+        <EditCustomer
+          customers={props.customers.customers}
+          customerSelected={customerSelected}
+          setCustomerSelected={setCustomerSelected}
+          updateCustomer={props.updateCustomer}
+          deleteCustomer={props.deleteCustomer}
+          ƒ
+          setShowEditCustomer={setShowEditCustomer}
+        />
+      )}
+      {props.customers.customers.length > 0 && (
         <List dense className={classes.root} disablePadding>
           {props.customers.customers.map((customer, index) => (
-            <ListItem
+            <Pressable
               id={index}
-              className={`customerid-${customer.id}`}
               key={index}
-              button
               onClick={openDetails.bind(this)}
+              onPress={openEdit.bind(this)}
             >
-              <ListItemAvatar>
-                <Avatar alt={`Avatar n°${customer}`} />
-              </ListItemAvatar>
-              <ListItemText
-                primary={`Customer ID = ${customer.id}
-            ${customer.firstname}`}
-                secondary={`Phone number: ${customer.phonenr}`}
-              />
-            </ListItem>
+              <ListItem
+                id={index}
+                className={`customerid-${customer.id}`}
+                key={index}
+                button
+              >
+                <ListItemAvatar>
+                  <Avatar alt={`Avatar n°${customer}`} />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={`Customer ID = ${customer.id}
+                ${customer.firstname}`}
+                  secondary={`Phone number: ${customer.phonenr}`}
+                />
+              </ListItem>
+            </Pressable>
           ))}
         </List>
       )}
       {props.customers.customers.length === 0 && <p>No customers found</p>}
-    </React.Fragment>
+    </div>
   );
 };
 export default CustomerList;
