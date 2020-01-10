@@ -40,7 +40,7 @@ const ReportList = props => {
         />
       )}
       {props.reports !== undefined && (
-        <List dense className={classes.root}>
+        <List dense className={classes.root} disablePadding>
           {props.reports.reports.map((report, index) => (
             <ListItem
               id={index}

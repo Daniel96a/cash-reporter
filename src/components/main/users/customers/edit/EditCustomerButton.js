@@ -33,7 +33,7 @@ export const EditCustomerButton = props => {
     <div className={useStyles.root}>
       {showEditCustomer && (
         <EditCustomer
-        customers={props.customers}
+          customers={props.customers}
           customerSelected={props.customerSelected}
           setShowEditCustomer={setShowEditCustomer}
           updateCustomer={props.updateCustomer}
@@ -41,6 +41,7 @@ export const EditCustomerButton = props => {
       )}
       {showDeleteCustomer && (
         <DeleteCustomer
+          customers={props.customers}
           setShowDeleteCustomer={setShowDeleteCustomer}
           showDeleteCustomer={showDeleteCustomer}
           setShowCustomerDetails={props.setShowCustomerDetails}
@@ -75,7 +76,10 @@ export const EditCustomerButton = props => {
         onClick={handleClose}
       >
         <StyledMenuItem>
-          <DeleteIcon color={"secondary"}onClick={openDeleteCustomer.bind(this)}/>
+          <DeleteIcon
+            color={"secondary"}
+            onClick={openDeleteCustomer.bind(this)}
+          />
         </StyledMenuItem>
         <StyledMenuItem>
           <EditIcon color={"primary"} onClick={openEditCustomer.bind(this)} />

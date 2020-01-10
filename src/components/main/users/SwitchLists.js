@@ -16,14 +16,13 @@ function TabPanel(props) {
 
   return (
     <Typography
-      component="div"
       role="tabpanel"
       hidden={value !== index}
       id={`action-tabpanel-${index}`}
       aria-labelledby={`action-tab-${index}`}
       {...other}
     >
-      {value === index && <Box p={2}>{children}</Box>}
+      {value === index && <Box p={1}>{children}</Box>}
     </Typography>
   );
 }
@@ -45,7 +44,8 @@ const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     position: "relative",
-    minHeight: 200
+    maxWidth: 600,
+    margin: "auto",
   },
   fab: {
     position: "absolute",

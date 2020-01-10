@@ -12,6 +12,9 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     maxWidth: 600,
     margin: "auto",
+    "& .MuiList-padding":{
+      padding: 0
+    },
     backgroundColor: theme.palette.background.paper,
     "& .MuiTouchRipple-root": {
       borderBottom: "1px solid lightgrey"
@@ -29,7 +32,7 @@ const EmployeeList = props => {
     setShowEmployeeDetails(true);
   };
   return (
-    <React.Fragment>
+    <React.Fragment style={{padding: 0}}>
       {employeeSelected !== null && (
         <EmployeeDetails
           employees={props.employees.employees}
@@ -42,7 +45,7 @@ const EmployeeList = props => {
         />
       )}
       {props.employees !== undefined && (
-        <List dense className={classes.root}>
+        <List dense className={classes.root} disablePadding>
           {props.employees.employees.map((employee, index) => (
             <ListItem
               id={index}

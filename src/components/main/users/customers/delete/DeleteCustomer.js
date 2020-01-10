@@ -19,7 +19,7 @@ export const DeleteCustomer = props => {
   };
   console.log(props.customerSelected.id)
   const handleDelete = () => {
-    props.deleteCustomer(props.customerSelected);
+    props.deleteCustomer(props.customers[props.customerSelected]);
     setOpen(false);
     props.setShowDeleteCustomer(false);
     props.setCustomerSelected(null)

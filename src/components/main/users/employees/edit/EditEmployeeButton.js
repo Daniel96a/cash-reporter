@@ -41,6 +41,7 @@ export const EditEmployeeButton = props => {
       )}
       {showDeleteEmployee && (
         <DeleteEmployee
+          employees={props.employees}
           setShowDeleteEmployee={setShowDeleteEmployee}
           showDeleteEmployee={showDeleteEmployee}
           setShowEmployeeDetails={props.setShowEmployeeDetails}

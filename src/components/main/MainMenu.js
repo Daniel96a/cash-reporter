@@ -17,10 +17,6 @@ export const MainMenu = props => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const logout = e => {
-    props.doLogout();
-    e.preventDefault();
-  };
   const setMenuCase = e => {
     setAnchorEl(null);
 
@@ -52,7 +48,7 @@ export const MainMenu = props => {
         <StyledMenuItem onClick={setMenuCase.bind(this, "Reports")}>
           <div className="align-text-center">Reports</div>
         </StyledMenuItem>
-        <StyledMenuItem onClick={logout.bind(this)}>
+        <StyledMenuItem onClick={props.doLogout.bind(this)}>
           <div className="align-text-center">Logout</div>
         </StyledMenuItem>
       </StyledMenu>

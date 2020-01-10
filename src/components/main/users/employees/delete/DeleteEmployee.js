@@ -17,9 +17,9 @@ export const DeleteEmployee = props => {
     setOpen(false);
     props.setShowDeleteEmployee(false);
   };
-  console.log(props.employeeSelected.id)
+
   const handleDelete = () => {
-    props.deleteEmployee(props.employeeSelected);
+    props.deleteEmployee(props.employees[props.employeeSelected]);
     setOpen(false);
     props.setShowDeleteEmployee(false);
     props.setEmployeeSelected(null)

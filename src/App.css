@@ -1,18 +1,28 @@
 .App {
   margin: auto;
 }
+div.MuiBox-root{
+  background-color: transparent;
+  padding: 0;
+}
+div.makeStyles-root-173{
+  background-color: transparent;
 
-.align-text-center{
+}
+html {
+  background-color: rgb(201, 201, 201);
+}
+
+.align-text-center {
   text-align: center;
   margin: auto;
 }
 
-.logout-button{
+.logout-button {
   margin: auto;
 }
 
-
-.form-width{
+.form-width {
   margin: auto;
   max-width: 490px;
   padding: 10px;

@@ -24,7 +24,7 @@ const DashboardHeader = props => {
           style={headerColor}
         >
           <MainMenu
-            auth={props.auth}
+            doLogout={props.doLogout}
             showCase={props.showCase}
             setshowCase={props.setshowCase}
           />

@@ -42,7 +42,7 @@ const CustomerList = props => {
         />
       )}
       {props.customers !== undefined && (
-        <List dense className={classes.root}>
+        <List dense className={classes.root} disablePadding>
           {props.customers.customers.map((customer, index) => (
             <ListItem
               id={index}
