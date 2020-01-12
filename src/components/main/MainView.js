@@ -4,7 +4,7 @@ import MainHeader from "./MainHeader";
 import { MuiThemeProvider } from "material-ui/styles";
 import UsersView from "./users/UsersView";
 import ReportList from "./reports/ReportList";
-
+import "../../App.css";
 const Main = props => {
   const [showCase, setshowCase] = useState("Dashboard");
   console.log(props.employees);
@@ -17,26 +17,28 @@ const Main = props => {
           showCase={showCase}
           setshowCase={setshowCase}
         />
-        {showCase === "Dashboard" && (
-          <Profile
-            name={props.auth.user.username}
-            status={props.auth.user.permission}
-          />
-        )}
-        {showCase === "Users" && (
-          <UsersView
-            customers={props.customers}
-            addCustomer={props.addCustomer}
-            updateCustomer={props.updateCustomer}
-            deleteCustomer={props.deleteCustomer}
-            fetchCustomerList={props.fetchCustomerList}
-            employees={props.employees}
-            addEmployee={props.addEmployee}
-            updateEmployee={props.updateEmployee}
-            deleteEmployee={props.deleteEmployee}
-            fetchEmployeeList={props.fetchEmployeeList}
-          />
-        )}
+        <div style={{ paddingTop: 60}}>
+          {showCase === "Dashboard" && (
+            <Profile
+              name={props.auth.user.username}
+              status={props.auth.user.permission}
+            />
+          )}
+          {showCase === "Users" && (
+            <UsersView
+              customers={props.customers}
+              addCustomer={props.addCustomer}
+              updateCustomer={props.updateCustomer}
+              deleteCustomer={props.deleteCustomer}
+              fetchCustomerList={props.fetchCustomerList}
+              employees={props.employees}
+              addEmployee={props.addEmployee}
+              updateEmployee={props.updateEmployee}
+              deleteEmployee={props.deleteEmployee}
+              fetchEmployeeList={props.fetchEmployeeList}
+            />
+          )}
+        </div>
         {showCase === "Reports" && (
           <ReportList
             reports={props.reports}

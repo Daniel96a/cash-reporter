@@ -5,9 +5,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "material-ui";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import {detailsDialog } from "../../../../styles/Styles";
 
 export const AddReport = props => {
-  const classes = useStyles();
+  const styles = detailsDialog();
 
   const report = {
     employeesign: "123",
@@ -50,7 +51,7 @@ export const AddReport = props => {
       open={props.showAddReportForm}
       onClose={handleClose}
       aria-labelledby="max-width-dialog-title"
-      className={classes.root}
+      className={styles.root}
     >
       <DialogTitle id="max-width-dialog-title" className="align-text-center">
         Add Report
@@ -158,27 +159,3 @@ const halfWidth = {
   width: "49.5%",
   marginLeft: "0.5%"
 };
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    "& .MuiDialog-paperWidthSm": {
-      overflowY: "visible"
-    },
-    "& .MuiTextField-root": {
-      margin: theme.spacing(1),
-      width: 200,
-      overflowY: "visible"
-    },
-    "& .MuiDialog-paperScrollPaper": {
-      maxHeight: "100%"
-    },
-    "& .MuiDialogContent-root": {
-      overflowY: "visible"
-    },
-    "& .MuiButtonBase-root": {
-      border: "solid #80808085",
-      borderWidth: "0.5px",
-      margin: "0 20px 20px 20px"
-    }
-  }
-}));

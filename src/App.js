@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import Main from "./components/main/MainView";
+import MainView from "./components/main/MainView";
 import { doLogin, doLogout } from "./actions/auth";
 import "./App.css";
 import LoginPage from "./components/login/LoginPage";
@@ -44,10 +44,10 @@ const App = ({
   fetchReportList
 }) => {
   return (
-    <div className="App">
+    <div>
       {!auth.isAuthenticated && <LoginPage doLogin={doLogin} />}
       {auth.isAuthenticated && (
-        <Main
+        <MainView
           doLogout={doLogout}
           addCustomer={addCustomer}
           updateCustomer={updateCustomer}

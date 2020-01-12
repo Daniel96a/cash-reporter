@@ -1,24 +1,15 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { ReportDetails } from "./ReportDetails";
+import { listStyle } from "../../../styles/Styles";
+import { AddCustomerButton } from "../users/customers/add/AddCustomerButton";
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: "100%",
-    maxWidth: 600,
-    margin: "auto",
-    backgroundColor: theme.palette.background.paper,
-    "& .MuiTouchRipple-root": {
-      borderBottom: "1px solid lightgrey"
-    }
-  }
-}));
+
 
 const ReportList = props => {
-  const classes = useStyles();
+  const styles = listStyle()
   const [showReportDetails, setShowReportDetails] = useState(false);
   const [reportSelected, setReportSelected] = useState(null);
 
@@ -40,7 +31,7 @@ const ReportList = props => {
         />
       )}
       {props.reports !== undefined && (
-        <List dense className={classes.root} disablePadding>
+        <List dense className={styles.root} disablePadding>
           {props.reports.reports.map((report, index) => (
             <ListItem
               id={index}
@@ -59,7 +50,10 @@ const ReportList = props => {
           ))}
         </List>
       )}
+      
       {props.reports.reports.length === 0 && <p>No reports found</p>}
+      <AddCustomerButton />
+
     </React.Fragment>
   );
 };

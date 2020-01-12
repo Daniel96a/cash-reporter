@@ -4,19 +4,19 @@ import { Card } from "material-ui/Card";
 import SettingsIcon from "@material-ui/icons/Settings";
 import { MuiThemeProvider } from "material-ui/styles";
 import { Button } from "@material-ui/core";
+import { GREY, DARK } from "../../../colorTheme/colors";
 
 export const Profile = props => {
   return (
     <MuiThemeProvider>
       <div className="profile-div">
-        <Card>
+        <Card style={{backgroundColor: GREY, color: "white"}}>
           <Button
             aria-label="Edit and Delete"
             color="primary"
             style={{
               border: 0,
               borderRadius: 50,
-              
               height: 50,
               width: 50,
               position: "absolute",
@@ -24,16 +24,12 @@ export const Profile = props => {
               right: 0
             }}
           >
-            <SettingsIcon
-              style={{
-
-              }}
-            />
+            <SettingsIcon style={{}} />
           </Button>
 
           <div className="card-div">
             <b>Name: {props.name}</b>
-            <hr />
+            <hr color={DARK}/>
             <b>Status: {props.status}</b>
           </div>
         </Card>

@@ -15,6 +15,7 @@ export const AddEmployeeButton = props => {
         style={{
           float: "right",
           position: "fixed",
+          zIndex: 1201,
           top: "auto",
           bottom: 10,
           right: 10

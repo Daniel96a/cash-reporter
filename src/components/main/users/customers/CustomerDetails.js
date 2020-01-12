@@ -1,15 +1,13 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
-import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "material-ui";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { BLUE, WHITE } from "../../../../colorTheme/colors";
 import { EditCustomerButton } from "./edit/EditCustomerButton";
-
+import { detailsDialog } from "../../../../styles/Styles";
 export const CustomerDetails = props => {
-  const classes = useStyles();
+  const styles = detailsDialog();
   const handleClose = () => {
     props.setShowCustomerDetails(false);
   };
@@ -20,7 +18,7 @@ export const CustomerDetails = props => {
       open={props.showCustomerDetails}
       onClose={handleClose}
       aria-labelledby="max-width-dialog-title"
-      className={classes.root}
+      className={styles.root}
     >
       <EditCustomerButton
         customers={props.customers}
@@ -39,6 +37,8 @@ export const CustomerDetails = props => {
           floatingLabelText="First name"
           name="firstname"
           variant="filled"
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
           defaultValue={customer.firstname}
           readOnly
         />
@@ -46,6 +46,8 @@ export const CustomerDetails = props => {
           style={halfWidth}
           floatingLabelText="Last name"
           name="lastname"
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
           defaultValue={customer.lastname}
           variant="filled"
           readOnly
@@ -54,6 +56,8 @@ export const CustomerDetails = props => {
           floatingLabelText="Customer ID"
           name="customerid"
           fullWidth
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
           defaultValue={customer.id}
           variant="filled"
           readOnly
@@ -62,6 +66,8 @@ export const CustomerDetails = props => {
           floatingLabelText="Phone"
           name="phonenr"
           fullWidth
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
           defaultValue={customer.phonenr}
           readOnly
         />
@@ -69,6 +75,8 @@ export const CustomerDetails = props => {
           floatingLabelText="Email"
           name="email"
           fullWidth
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
           defaultValue={customer.email}
           readOnly
         />
@@ -76,6 +84,8 @@ export const CustomerDetails = props => {
           floatingLabelText="Address"
           name="address"
           fullWidth
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
           defaultValue={customer.address}
           readOnly
         />
@@ -90,32 +100,3 @@ const halfWidth = {
   width: "49.5%",
   marginLeft: "0.5%"
 };
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    marginTop: 40,
-    "& .MuiDialog-paperWidthSm": {
-      overflowY: "visible"
-    },
-    "& .MuiTextField-root": {
-      margin: theme.spacing(1),
-      width: 200,
-      overflowY: "visible"
-    },
-    "& .MuiDialog-paperScrollPaper": {
-      maxHeight: "100%"
-    },
-    "& .MuiDialogContent-root": {
-      overflowY: "visible"
-    },
-    "& .MuiButtonBase-root": {
-      border: "solid #80808085",
-      borderWidth: "0.5px",
-      margin: "0 20px 20px 20px"
-    },
-    "& .MuiDialogTitle-root": {
-      backgroundColor: BLUE,
-      color: WHITE
-    }
-  }
-}));

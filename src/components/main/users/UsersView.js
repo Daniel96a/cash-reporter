@@ -11,7 +11,6 @@ import { SwitchLists } from "./SwitchLists";
 const UsersView = props => {
   const [showAddCustomerForm, setShowAddCustomerForm] = useState(false);
   const [showAddEmployeeForm, setShowAddEmployeeForm] = useState(false);
-
   const [selectUserList, setSelectUserList] = useState("Customers");
   return (
     <React.Fragment>

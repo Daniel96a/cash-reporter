@@ -2,22 +2,29 @@ div.MuiBox-root {
   background-color: transparent;
   padding: 0;
 }
-div.makeStyles-root-173 {
-  background-color: transparent;
-}
+/* div.makeStyles-root-173 {
+  background-color: rgba(22, 31, 41);
+} */
 
 
-.align-text-center {
+.formStyle {
   text-align: center;
   margin: auto;
+  max-width: 600px;
+  padding: 10px;
 }
 
 .logout-button {
   margin: auto;
 }
 
-.form-width {
-  margin: auto;
-  max-width: 490px;
-  padding: 10px;
+
+
+label{
+  color: white;
+  COLOR:#202a35
+}
+
+.MuiTab-textColorPrimary{
+  color: white;
 }

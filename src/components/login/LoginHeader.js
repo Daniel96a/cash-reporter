@@ -11,15 +11,17 @@ const LoginHeader = props => {
           showMenuIconButton={false}
           className="app-bar"
           title="Cash Reporter"
-        >
+          titleStyle={{lineHeight: "48px"}}
+>
         </AppBar>
       </React.Fragment>
     </MuiThemeProvider>
   );
 };
 const headerStyle = {
-  backgroundColor: BLUE,
-  textAlign: "center"
+  textAlign: "center",
+  height: 48,
+  backgroundColor:  BLUE,
 };
 
 export default LoginHeader;

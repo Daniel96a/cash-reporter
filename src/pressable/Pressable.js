@@ -7,7 +7,7 @@ export const Pressable = ({ id, onClick, onPress, children }) => {
 
   function onPointerDown(evt) {
     const event = { ...evt }; // convert synthetic event to real object
-    const timeoutId = window.setTimeout(timesup.bind(null, event), 500);
+    const timeoutId = window.setTimeout(timesup.bind(null, event), 700);
     setTimer(timeoutId);
   }
 

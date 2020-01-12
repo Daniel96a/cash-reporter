@@ -2,8 +2,8 @@ import React from "react";
 import { MuiThemeProvider } from "material-ui/styles";
 import { AppBar } from "material-ui";
 import { MainMenu } from "./MainMenu";
-import { BLUE } from "../../colorTheme/colors";
 import { makeStyles } from "@material-ui/core";
+import { BLUE } from "../../colorTheme/colors";
 const useStyles = makeStyles(theme => ({
   root: {
     "& .MuiSvgIcon-root": {
@@ -21,6 +21,7 @@ const DashboardHeader = props => {
           showMenuIconButton={false}
           className={classes.root}
           title="Cash Reporter"
+          titleStyle={{ lineHeight: "48px" }}
           style={headerColor}
         >
           <MainMenu
@@ -34,7 +35,10 @@ const DashboardHeader = props => {
   );
 };
 const headerColor = {
-  backgroundColor: BLUE
+  height: 48,
+  backgroundColor: BLUE,
+  zIndex: 100000,
+  position: "fixed",
 };
 
 export default DashboardHeader;

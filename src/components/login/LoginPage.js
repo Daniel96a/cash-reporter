@@ -7,13 +7,11 @@ import '../../App.css'
 const LoginPage = props => {
   return (
     <MuiThemeProvider>
-      <React.Fragment>
+        <div className="loginView">
         <LoginHeader />
-        <div className="App">
 
           <LoginForm doLogin={props.doLogin} />
         </div>
-      </React.Fragment>
     </MuiThemeProvider>
   );
 };

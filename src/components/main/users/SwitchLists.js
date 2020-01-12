@@ -2,14 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
-import { green } from "@material-ui/core/colors";
+import Paper from '@material-ui/core/Paper';
 import Box from "@material-ui/core/Box";
 import CustomerList from "./customers/CustomerList";
 import EmployeeList from "./employees/EmployeeList";
+import { GREY } from "../../../colorTheme/colors";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -43,22 +43,10 @@ function a11yProps(index) {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: GREY,
     position: "relative",
     maxWidth: 600,
     margin: "auto"
-  },
-  fab: {
-    position: "absolute",
-    bottom: theme.spacing(2),
-    right: theme.spacing(2)
-  },
-  fabGreen: {
-    color: theme.palette.common.white,
-    backgroundColor: green[500],
-    "&:hover": {
-      backgroundColor: green[600]
-    }
   }
 }));
 
@@ -75,7 +63,7 @@ export const SwitchLists = props => {
     setValue(index);
   };
   return (
-    <AppBar position="static" color="default" className={classes.root}>
+    <Paper className={classes.root}>
       <Tabs
         value={value}
         onChange={handleChange}
@@ -96,7 +84,7 @@ export const SwitchLists = props => {
         />
       </Tabs>
       <SwipeableViews
-      style={{height: "calc(100vh - 112px)"}}
+        style={{ minHeight: "calc(100vh - 112px)" }}
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={value}
         onChangeIndex={handleChangeIndex}
@@ -118,6 +106,6 @@ export const SwitchLists = props => {
           />
         </TabPanel>
       </SwipeableViews>
-    </AppBar>
+    </Paper>
   );
 };

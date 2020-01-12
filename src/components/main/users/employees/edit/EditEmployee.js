@@ -1,14 +1,13 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
-import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "material-ui";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { BLUE, WHITE } from "../../../../../colorTheme/colors";
+import { detailsDialog } from "../../../../../styles/Styles";
 
 export const EditEmployee = props => {
-  const classes = useStyles();
+  const styles = detailsDialog();
   const employee = props.employees[props.employeeSelected];
 
   const employeeData = {
@@ -37,7 +36,7 @@ export const EditEmployee = props => {
       open={true}
       onClose={handleClose}
       aria-labelledby="max-width-dialog-title"
-      className={classes.root}
+      className={styles.root}
     >
       <DialogTitle id="max-width-dialog-title" className="align-text-center">
         Edit Employee
@@ -48,6 +47,8 @@ export const EditEmployee = props => {
           floatingLabelText="First name"
           name="firstname"
           variant="filled"
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
           defaultValue={employee.firstname}
           disabled
         />
@@ -55,6 +56,8 @@ export const EditEmployee = props => {
           style={halfWidth}
           floatingLabelText="Last name"
           name="lastname"
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
           defaultValue={employee.lastname}
           variant="filled"
           disabled
@@ -63,6 +66,8 @@ export const EditEmployee = props => {
           floatingLabelText="Employee ID"
           name="employeeid"
           fullWidth
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
           defaultValue={employee.id}
           variant="filled"
           disabled
@@ -71,6 +76,8 @@ export const EditEmployee = props => {
           floatingLabelText="Role"
           name="role"
           fullWidth
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
           defaultValue={employee.role}
           onChange={e => (employeeData.role = e.target.value)}
         />
@@ -78,6 +85,8 @@ export const EditEmployee = props => {
           floatingLabelText="Phone"
           name="phonenr"
           fullWidth
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
           defaultValue={employee.phonenr}
           onChange={e => (employeeData.phonenr = e.target.value)}
         />
@@ -85,6 +94,8 @@ export const EditEmployee = props => {
           floatingLabelText="Email"
           name="email"
           fullWidth
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
           defaultValue={employee.email}
           onChange={e => (employeeData.email = e.target.value)}
         />
@@ -102,31 +113,3 @@ const halfWidth = {
   width: "49.5%",
   marginLeft: "0.5%"
 };
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    "& .MuiDialog-paperWidthSm": {
-      overflowY: "visible"
-    },
-    "& .MuiTextField-root": {
-      margin: theme.spacing(1),
-      width: 200,
-      overflowY: "visible"
-    },
-    "& .MuiDialog-paperScrollPaper": {
-      maxHeight: "100%"
-    },
-    "& .MuiDialogContent-root": {
-      overflowY: "visible"
-    },
-    "& .MuiButtonBase-root": {
-      border: "solid #80808085",
-      borderWidth: "0.5px",
-      margin: "0 20px 20px 20px"
-    },
-    "& .MuiDialogTitle-root": {
-      backgroundColor: BLUE,
-      color: WHITE
-    }
-  }
-}));

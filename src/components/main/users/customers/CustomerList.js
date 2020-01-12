@@ -1,44 +1,29 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import { CustomerDetails } from "./CustomerDetails";
-import { Pressable } from "../../../../pressable/Pressable";
 import { EditCustomer } from "./edit/EditCustomer";
+import { listStyle } from "../../../../styles/Styles";
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: "100%",
-    maxWidth: 600,
-    margin: "auto",
-    backgroundColor: theme.palette.background.paper,
-    "& .MuiTouchRipple-root": {
-      borderBottom: "1px solid lightgrey"
-    }
-  }
-}));
 
 const CustomerList = props => {
-  const classes = useStyles();
+  const styles = listStyle()
   const [showCustomerDetails, setShowCustomerDetails] = useState(false);
 
   const [customerSelected, setCustomerSelected] = useState(null);
 
   const [showEditCustomer, setShowEditCustomer] = useState(false);
-  const openEdit = e => {
-    setCustomerSelected(e.currentTarget.id);
-    setShowEditCustomer(true);
-  };
+
   const openDetails = e => {
     setCustomerSelected(e.currentTarget.id);
     setShowCustomerDetails(true);
   };
 
   return (
-    <div>
+    <React.Fragment>
       {customerSelected !== null && showCustomerDetails && (
         <CustomerDetails
           customers={props.customers.customers}
@@ -57,40 +42,33 @@ const CustomerList = props => {
           setCustomerSelected={setCustomerSelected}
           updateCustomer={props.updateCustomer}
           deleteCustomer={props.deleteCustomer}
-          ƒ
           setShowEditCustomer={setShowEditCustomer}
         />
       )}
       {props.customers.customers.length > 0 && (
-        <List dense className={classes.root} disablePadding>
+        <List dense className={styles.root} disablePadding>
           {props.customers.customers.map((customer, index) => (
-            <Pressable
+            <ListItem
               id={index}
+              className={`customerid-${customer.id} employeeListItem`}
               key={index}
+              button
               onClick={openDetails.bind(this)}
-              onPress={openEdit.bind(this)}
             >
-              <ListItem
-                id={index}
-                className={`customerid-${customer.id}`}
-                key={index}
-                button
-              >
-                <ListItemAvatar>
-                  <Avatar alt={`Avatar n°${customer}`} />
-                </ListItemAvatar>
-                <ListItemText
-                  primary={`Customer ID = ${customer.id}
+              <ListItemAvatar>
+                <Avatar alt={`Avatar n°${customer}`} />
+              </ListItemAvatar>
+              <ListItemText
+                primary={`Customer ID = ${customer.id}
                 ${customer.firstname}`}
-                  secondary={`Phone number: ${customer.phonenr}`}
-                />
-              </ListItem>
-            </Pressable>
+                secondary={`Phone number: ${customer.phonenr}`}
+              />
+            </ListItem>
           ))}
         </List>
       )}
       {props.customers.customers.length === 0 && <p>No customers found</p>}
-    </div>
+    </React.Fragment>
   );
 };
 export default CustomerList;
