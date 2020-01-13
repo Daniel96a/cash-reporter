@@ -59,18 +59,25 @@ export const AddCustomer = props => {
         <DialogContent>
           <TextField
             style={halfWidth}
-            hintText="Enter first name here"
+            hintText="Enter first name"
             floatingLabelText="Enter first name"
             name="firstname"
+            inputStyle={{ color: "white" }}
+            floatingLabelStyle={{ color: "lightgrey" }}
+            hintStyle={{ color: "grey" }}
             onChange={e => setfirstname(e.target.value)}
+            required
             defaultValue={firstname}
             />
           <TextField
             style={halfWidth}
-            hintText="Enter last name here"
+            hintText="Enter last name"
             floatingLabelText="Enter last name"
             name="lastname"
             required={true}
+            inputStyle={{ color: "white" }}
+            floatingLabelStyle={{ color: "lightgrey" }}
+            hintStyle={{ color: "grey" }}
             onChange={e => setlastname(e.target.value)}
             defaultValue={lastname}
             />
@@ -79,6 +86,9 @@ export const AddCustomer = props => {
             floatingLabelText="Enter organisation number"
             name="orgnr"
             fullWidth
+            inputStyle={{ color: "white" }}
+            floatingLabelStyle={{ color: "lightgrey" }}
+            hintStyle={{ color: "grey" }}
             onChange={e => setorgnr(e.target.value)}
             defaultValue={orgnr}
             />
@@ -87,6 +97,9 @@ export const AddCustomer = props => {
             floatingLabelText="Enter address"
             name="address"
             fullWidth
+            inputStyle={{ color: "white" }}
+            floatingLabelStyle={{ color: "lightgrey" }}
+            hintStyle={{ color: "grey" }}
             onChange={e => setaddress(e.target.value)}
             defaultValue={address}
             />
@@ -95,6 +108,9 @@ export const AddCustomer = props => {
             floatingLabelText="Enter phone number"
             name="phonenr"
             fullWidth
+            inputStyle={{ color: "white" }}
+            floatingLabelStyle={{ color: "lightgrey" }}
+            hintStyle={{ color: "grey" }}
             onChange={e => setphonenr(e.target.value)}
             defaultValue={phonenr}
             />
@@ -104,6 +120,9 @@ export const AddCustomer = props => {
             floatingLabelText="Enter email"
             name="email"
             fullWidth
+            inputStyle={{ color: "white" }}
+            floatingLabelStyle={{ color: "lightgrey" }}
+            hintStyle={{ color: "grey" }}
             onChange={e => setemail(e.target.value)}
             defaultValue={email}
           />

@@ -17,7 +17,15 @@ const Main = props => {
           showCase={showCase}
           setshowCase={setshowCase}
         />
-        <div style={{ paddingTop: 60}}>
+        <div
+          style={{
+            position: "fixed",
+            top: "60px",
+            left: "10px",
+            right: "10px",
+            margin: "auto",
+          }}
+        >
           {showCase === "Dashboard" && (
             <Profile
               name={props.auth.user.username}
@@ -38,16 +46,16 @@ const Main = props => {
               fetchEmployeeList={props.fetchEmployeeList}
             />
           )}
-        </div>
         {showCase === "Reports" && (
           <ReportList
-            reports={props.reports}
-            addReport={props.addReport}
-            updateReport={props.updateReport}
-            deleteReport={props.deleteReport}
-            fetchReportList={props.fetchReportList}
+          reports={props.reports}
+          addReport={props.addReport}
+          updateReport={props.updateReport}
+          deleteReport={props.deleteReport}
+          fetchReportList={props.fetchReportList}
           />
-        )}
+          )}
+          </div>
       </React.Fragment>
     </MuiThemeProvider>
   );

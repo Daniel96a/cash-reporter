@@ -39,6 +39,7 @@ export const CustomerDetails = props => {
           variant="filled"
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           defaultValue={customer.firstname}
           readOnly
         />
@@ -48,6 +49,7 @@ export const CustomerDetails = props => {
           name="lastname"
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           defaultValue={customer.lastname}
           variant="filled"
           readOnly
@@ -58,6 +60,7 @@ export const CustomerDetails = props => {
           fullWidth
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           defaultValue={customer.id}
           variant="filled"
           readOnly
@@ -68,6 +71,7 @@ export const CustomerDetails = props => {
           fullWidth
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           defaultValue={customer.phonenr}
           readOnly
         />
@@ -77,6 +81,7 @@ export const CustomerDetails = props => {
           fullWidth
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           defaultValue={customer.email}
           readOnly
         />
@@ -86,6 +91,7 @@ export const CustomerDetails = props => {
           fullWidth
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           defaultValue={customer.address}
           readOnly
         />

@@ -1,7 +1,7 @@
 import React from "react";
 import { MuiThemeProvider } from "material-ui/styles";
 import { AppBar } from "material-ui";
-import { BLUE } from "../../colorTheme/colors";
+import { headerStyle } from "../../styles/Styles";
 
 const LoginHeader = props => {
   return (
@@ -18,10 +18,6 @@ const LoginHeader = props => {
     </MuiThemeProvider>
   );
 };
-const headerStyle = {
-  textAlign: "center",
-  height: 48,
-  backgroundColor:  BLUE,
-};
+
 
 export default LoginHeader;

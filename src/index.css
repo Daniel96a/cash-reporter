@@ -1,13 +1,10 @@
 html {
-  margin: auto;
-  height: -webkit-fill-available;
+  margin: auto;;
   background-color: rgba(25, 35, 46, 1);
-
 }
 
 body {
   margin: auto;
-  height: fit-content;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;

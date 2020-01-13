@@ -7,17 +7,14 @@ div.MuiBox-root {
 } */
 
 
-.formStyle {
-  text-align: center;
-  margin: auto;
-  max-width: 600px;
-  padding: 10px;
-}
-
 .logout-button {
   margin: auto;
 }
-
+div.makeStyles-root-1{
+  padding-top: 60px 10px;
+  min-width: 400px;
+  text-align: center;
+}
 
 
 label{

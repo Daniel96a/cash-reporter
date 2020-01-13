@@ -56,6 +56,8 @@ export const EditReport = props => {
           variant="filled"
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
+
           defaultValue={props.reportSelected.firstname}
           disabled
         />
@@ -65,6 +67,8 @@ export const EditReport = props => {
           name="lastname"
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
+
           defaultValue={props.reportSelected.lastname}
           variant="filled"
           disabled
@@ -75,6 +79,8 @@ export const EditReport = props => {
           fullWidth
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
+
           defaultValue={props.reportSelected.id}
           variant="filled"
           disabled
@@ -85,6 +91,8 @@ export const EditReport = props => {
           fullWidth
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
+
           defaultValue={props.reportSelected.phonenr}
           onChange={e => (report.phonenr = e.target.value)}
         />
@@ -94,6 +102,8 @@ export const EditReport = props => {
           fullWidth
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
+
           defaultValue={props.reportSelected.email}
           onChange={e => (report.email = e.target.value)}
         />
@@ -103,6 +113,8 @@ export const EditReport = props => {
           fullWidth
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
+
           defaultValue={props.reportSelected.address}
           onChange={e => (report.address = e.target.value)}
         />

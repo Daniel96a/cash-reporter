@@ -41,6 +41,7 @@ export const EmployeeDetails = props => {
           variant="filled"
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           defaultValue={employee.firstname}
           readOnly
         />
@@ -50,6 +51,7 @@ export const EmployeeDetails = props => {
           name="lastname"
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           defaultValue={employee.lastname}
           variant="filled"
           readOnly
@@ -60,6 +62,7 @@ export const EmployeeDetails = props => {
           fullWidth
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           defaultValue={employee.id}
           variant="filled"
           readOnly
@@ -70,6 +73,7 @@ export const EmployeeDetails = props => {
           fullWidth
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           defaultValue={employee.role}
           readOnly
         />
@@ -79,6 +83,7 @@ export const EmployeeDetails = props => {
           fullWidth
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           defaultValue={employee.phonenr}
           readOnly
         />
@@ -88,6 +93,7 @@ export const EmployeeDetails = props => {
           fullWidth
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           defaultValue={employee.email}
           readOnly
         />

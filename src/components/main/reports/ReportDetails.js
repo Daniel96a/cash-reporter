@@ -37,6 +37,7 @@ export const ReportDetails = props => {
           variant="filled"
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           defaultValue={props.reportSelected.firstname}
           readOnly
         />
@@ -46,6 +47,7 @@ export const ReportDetails = props => {
           name="lastname"
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           defaultValue={props.reportSelected.lastname}
           variant="filled"
           readOnly
@@ -56,6 +58,7 @@ export const ReportDetails = props => {
           fullWidth
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           defaultValue={props.reportSelected.id}
           variant="filled"
           readOnly
@@ -66,6 +69,7 @@ export const ReportDetails = props => {
           fullWidth
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           defaultValue={props.reportSelected.phonenr}
           readOnly
         />
@@ -75,6 +79,7 @@ export const ReportDetails = props => {
           fullWidth
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           defaultValue={props.reportSelected.email}
           readOnly
         />
@@ -84,6 +89,7 @@ export const ReportDetails = props => {
           fullWidth
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           defaultValue={props.reportSelected.address}
           readOnly
         />

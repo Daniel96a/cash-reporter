@@ -122,6 +122,6 @@ const menuIconColor = withStyles({
 const menuPosition = {
   textAlign: EditorFormatAlignCenter,
   margin: "auto",
-  position: "relative",
-  right: "-15px"
+  position: "absolute",
+  right: "0"
 };

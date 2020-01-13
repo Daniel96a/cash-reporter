@@ -59,9 +59,12 @@ export const AddReport = props => {
       <DialogContent>
         <TextField
           style={halfWidth}
-          hintText="Enter employee sign here"
+          hintText="Employee signature"
           floatingLabelText="Employeesign"
           name="employeesign"
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           onChange={e => report.employeesign === e.target.value}
           defaultValue={report.employeesign}
         />
@@ -70,6 +73,9 @@ export const AddReport = props => {
           hintText="Enter revenue here"
           floatingLabelText="Revenue"
           name="revenue"
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           onChange={e => report.revenue === e.target.value}
           defaultValue={report.revenue}
         />
@@ -78,6 +84,9 @@ export const AddReport = props => {
           hintText="Enter reportnr here"
           floatingLabelText="Reportnr"
           name="reportnr"
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           onChange={e => report.reportnr === e.target.value}
           defaultValue={report.reportnr}
         />
@@ -86,6 +95,9 @@ export const AddReport = props => {
           hintText="Enter customer sign here"
           floatingLabelText="Customer sign"
           name="customersign"
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           onChange={e => report.customersign === e.target.value}
           defaultValue={report.customersign}
         />
@@ -94,6 +106,9 @@ export const AddReport = props => {
           hintText="Enter digital cashflow here"
           floatingLabelText="Digital cashflow"
           name="digitalcashflow"
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           onChange={e => report.digitalcashflow === e.target.value}
           defaultValue={report.digitalcashflow}
         />
@@ -102,6 +117,9 @@ export const AddReport = props => {
           hintText="Enter cashflow here"
           floatingLabelText="Cashflow"
           name="cashflow"
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           onChange={e => report.cashflow === e.target.value}
           defaultValue={report.cashflow}
         />
@@ -110,6 +128,9 @@ export const AddReport = props => {
           hintText="Enter location here"
           floatingLabelText="Location"
           name="location"
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           onChange={e => report.location === e.target.value}
           defaultValue={report.location}
         />
@@ -118,6 +139,9 @@ export const AddReport = props => {
           hintText="Enter payment here"
           floatingLabelText="Payment"
           name="payment"
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           onChange={e => report.payment === e.target.value}
           defaultValue={report.payment}
         />
@@ -126,6 +150,9 @@ export const AddReport = props => {
           hintText="Enter extra information here"
           floatingLabelText="Extra info"
           name="infofield"
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           onChange={e => report.infofield === e.target.value}
           defaultValue={report.infofield}
         />
@@ -134,6 +161,9 @@ export const AddReport = props => {
           hintText="Enter table name here"
           floatingLabelText="Table name"
           name="tablename"
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           onChange={e => report.tablename === e.target.value}
           defaultValue={report.tablename}
         />
@@ -142,6 +172,9 @@ export const AddReport = props => {
           hintText="Enter status here"
           floatingLabelText="Status"
           name="status"
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
           onChange={e => report.status === e.target.value}
           defaultValue={report.status}
         />

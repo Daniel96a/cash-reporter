@@ -26,7 +26,7 @@ export const detailsDialog = makeStyles(theme => ({
     },
     "& .MuiButtonBase-root": {
       border: "solid #80808085",
-      borderWidth: "0.5px",
+      borderWidth: "1px",
       margin: "0 20px 20px 20px"
     },
     "& .MuiDialogTitle-root": {
@@ -40,11 +40,13 @@ export const detailsDialog = makeStyles(theme => ({
 }));
 export const listStyle = makeStyles(theme => ({
   root: {
-    maxWidth: 600,
     color: "white",
     margin: "auto",
     paddingTop: 1,
     backgroundColor: "rgba(25, 35, 46, 1)",
+    "& .MuiTab-textColorPrimary":{
+      color: "white",
+    },
     "& .MuiTypography-body2": {
       color: "white"
     },
@@ -53,7 +55,21 @@ export const listStyle = makeStyles(theme => ({
     },
     "& .MuiListItem-gutters": {
       backgroundColor: "rgb(32, 42, 53)",
-      marginBottom: 1,
+      marginBottom: 1
+    }
+  }
+}));
+
+export const headerStyle = {
+  height: 48,
+  backgroundColor: BLUE,
+  zIndex: 100000,
+  position: "fixed",
+};
+export const loginFormStyle = makeStyles(theme => ({
+  root: {
+    "&.makeStyles-root-1":{
+      paddingTop: "60px",
     },
   }
 }));

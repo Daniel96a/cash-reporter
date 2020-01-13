@@ -50,6 +50,7 @@ export const EditCustomer = props => {
           variant="filled"
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "grey" }}
           defaultValue={customer.firstname}
           disabled
         />
@@ -59,6 +60,7 @@ export const EditCustomer = props => {
           name="lastname"
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "grey" }}
           defaultValue={customer.lastname}
           variant="filled"
           disabled
@@ -69,6 +71,7 @@ export const EditCustomer = props => {
           fullWidth
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "grey" }}
           defaultValue={customer.id}
           variant="filled"
           disabled
@@ -79,6 +82,7 @@ export const EditCustomer = props => {
           fullWidth
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "grey" }}
           defaultValue={customer.phonenr}
           onChange={e => (customerData.phonenr = e.target.value)}
         />
@@ -88,6 +92,7 @@ export const EditCustomer = props => {
           fullWidth
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "grey" }}
           defaultValue={customer.email}
           onChange={e => (customerData.email = e.target.value)}
         />
@@ -97,6 +102,7 @@ export const EditCustomer = props => {
           fullWidth
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "grey" }}
           defaultValue={customer.address}
           onChange={e => (customerData.address = e.target.value)}
         />

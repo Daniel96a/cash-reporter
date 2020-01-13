@@ -8,9 +8,8 @@ import { CustomerDetails } from "./CustomerDetails";
 import { EditCustomer } from "./edit/EditCustomer";
 import { listStyle } from "../../../../styles/Styles";
 
-
 const CustomerList = props => {
-  const styles = listStyle()
+  const styles = listStyle();
   const [showCustomerDetails, setShowCustomerDetails] = useState(false);
 
   const [customerSelected, setCustomerSelected] = useState(null);
@@ -59,8 +58,7 @@ const CustomerList = props => {
                 <Avatar alt={`Avatar n°${customer}`} />
               </ListItemAvatar>
               <ListItemText
-                primary={`Customer ID = ${customer.id}
-                ${customer.firstname}`}
+                primary={`${customer.firstname} ${customer.lastname}`}
                 secondary={`Phone number: ${customer.phonenr}`}
               />
             </ListItem>

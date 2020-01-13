@@ -5,7 +5,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
-import Paper from '@material-ui/core/Paper';
+import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import CustomerList from "./customers/CustomerList";
 import EmployeeList from "./employees/EmployeeList";
@@ -44,9 +44,13 @@ function a11yProps(index) {
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: GREY,
-    position: "relative",
-    maxWidth: 600,
-    margin: "auto"
+    position: "fixed",
+    margin: "auto",
+    top: "60px",
+    right: "10px",
+    left: "10px",
+    bottom: "10px",
+    maxWidth: 600
   }
 }));
 
@@ -84,7 +88,15 @@ export const SwitchLists = props => {
         />
       </Tabs>
       <SwipeableViews
-        style={{ minHeight: "calc(100vh - 112px)" }}
+        style={{
+          position: "inherit",
+          top: "108px",
+          right: "10px",
+          left: "10px",
+          bottom: "10px",
+          maxWidth: 600,
+          margin: "auto"
+        }}
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={value}
         onChangeIndex={handleChangeIndex}

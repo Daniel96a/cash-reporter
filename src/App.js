@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import MainView from "./components/main/MainView";
 import { doLogin, doLogout } from "./actions/auth";
-import "./App.css";
 import LoginPage from "./components/login/LoginPage";
 import {
   addCustomer,
