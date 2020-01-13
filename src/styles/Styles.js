@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core";
 export const detailsDialog = makeStyles(theme => ({
   root: {
     "& .MuiPaper-root": {
+      top: 20,
       backgroundColor: "rgba(32, 42, 53, 1)"
     },
     "& input": {
