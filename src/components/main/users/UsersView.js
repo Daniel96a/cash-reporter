@@ -11,7 +11,7 @@ import { SwitchLists } from "./SwitchLists";
 const UsersView = props => {
   const [showAddCustomerForm, setShowAddCustomerForm] = useState(false);
   const [showAddEmployeeForm, setShowAddEmployeeForm] = useState(false);
-  const [selectUserList, setSelectUserList] = useState("Customers");
+  const [selectUserList, setSelectUserList] = useState(0);
   return (
     <React.Fragment>
       {showAddCustomerForm && (
@@ -45,10 +45,10 @@ const UsersView = props => {
         updateEmployee={props.updateEmployee}
         deleteEmployee={props.deleteEmployee}
       />
-      {selectUserList === "Customers" && (
+      {selectUserList === 0 && (
         <AddCustomerButton setShowAddCustomerForm={setShowAddCustomerForm} />
       )}
-      {selectUserList === "Employees" && (
+      {selectUserList === 1 && (
         <AddEmployeeButton setShowAddEmployeeForm={setShowAddEmployeeForm} />
       )}
     </React.Fragment>

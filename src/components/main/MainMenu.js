@@ -6,7 +6,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { IconButton } from "material-ui";
 import MenuIcon from "@material-ui/icons/Menu";
 import { EditorFormatAlignCenter } from "material-ui/svg-icons";
-import { GREY } from "../../colorTheme/colors";
+import { GREY, LIGHT_GREY } from "../../colorTheme/colors";
 
 export const MainMenu = props => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -15,8 +15,8 @@ export const MainMenu = props => {
     setAnchorEl(event.currentTarget);
     if (!open) {
       setOpen(true);
-    }else{
-      setOpen(false)
+    } else {
+      setOpen(false);
     }
   };
 
@@ -104,7 +104,7 @@ const StyledMenuItem = withStyles(theme => ({
     float: "right",
     width: "100%",
     "&:hover": {
-      backgroundColor: "rgb(0, 188, 212)",
+      backgroundColor: LIGHT_GREY,
       color: "black",
       "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
         backgroundColor: theme.palette.primary.white,

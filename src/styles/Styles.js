@@ -1,16 +1,23 @@
-import { BLUE } from "../colorTheme/colors";
+import { BLUE, GREY } from "../colorTheme/colors";
 import { makeStyles } from "@material-ui/core";
 
 export const detailsDialog = makeStyles(theme => ({
   root: {
     "& .MuiPaper-root": {
-      top: 20,
+      margin: "auto",
+      position: "fixed",
+      top: 58,
+      bottom: 10,
+      left: 10,
+      right: 10,
+      maxHeight: "800px",
+      maxWidth: "600px",
+      overflowX: "scrollbar",
       backgroundColor: "rgba(32, 42, 53, 1)"
     },
     "& input": {
-      color: "white"
+      color: "white",
     },
-
     "& .MuiDialog-paperWidthSm": {
       overflowY: "visible"
     },
@@ -20,16 +27,19 @@ export const detailsDialog = makeStyles(theme => ({
       overflowY: "visible"
     },
     "& .MuiDialog-paperScrollPaper": {
-      maxHeight: "100%"
+      // maxHeight: "100%",
+      // maxWidth: "100%"
     },
     "& .MuiDialogContent-root": {
-      overflowY: "visible"
+      overflowY: "scrollbar"
     },
     "& .MuiButtonBase-root": {
       border: "solid #80808085",
       borderWidth: "1px",
-      margin: "0 20px 20px 20px"
+      
+      margin: "0px 20px 20px 20px"
     },
+
     "& .MuiDialogTitle-root": {
       backgroundColor: BLUE,
       color: "white"
@@ -45,8 +55,8 @@ export const listStyle = makeStyles(theme => ({
     margin: "auto",
     paddingTop: 1,
     backgroundColor: "rgba(25, 35, 46, 1)",
-    "& .MuiTab-textColorPrimary":{
-      color: "white",
+    "& .MuiTab-textColorPrimary": {
+      color: "white"
     },
     "& .MuiTypography-body2": {
       color: "white"
@@ -65,12 +75,19 @@ export const headerStyle = {
   height: 48,
   backgroundColor: BLUE,
   zIndex: 100000,
-  position: "fixed",
+  position: "fixed"
 };
 export const loginFormStyle = makeStyles(theme => ({
   root: {
-    "&.makeStyles-root-1":{
-      paddingTop: "60px",
-    },
+    position: "fixed",
+    top: 60,
+    left: 10,
+    right: 10,
+    maxWidth: 400,
+    margin: "auto",
+    textAlign: "center",
+    padding: "0 30px 30px 30px",
+    borderRadius: 10,
+    backgroundColor: GREY
   }
 }));

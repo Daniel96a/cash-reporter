@@ -9,7 +9,7 @@ import { EditEmployee } from "./edit/EditEmployee";
 import { listStyle } from "../../../../styles/Styles";
 
 const EmployeeList = props => {
-  const styles = listStyle()
+  const styles = listStyle();
   const [showEmployeeDetails, setShowEmployeeDetails] = useState(false);
   const [employeeSelected, setEmployeeSelected] = useState(null);
   const [showEditEmployee, setShowEditEmployee] = useState(false);
@@ -45,7 +45,8 @@ const EmployeeList = props => {
           setShowEditEmployee={setShowEditEmployee}
         />
       )}
-      {props.employees !== undefined && (
+
+      {props.employees.employees.length !== 0 && (
         <List dense className={styles.root} disablePadding>
           {props.employees.employees.map((employee, index) => (
             <ListItem

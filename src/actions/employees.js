@@ -8,18 +8,28 @@ export const setEmployees = employees => ({
   employees
 });
 
+export const ADD_EMPLOYEE = employee => ({
+  type: types.ADD_EMPLOYEE,
+  employee
+});
+
+export const REMOVE_EMPLOYEE = employee => ({
+  type: types.REMOVE_EMPLOYEE,
+  employee
+});
+
 export const fetchEmployeeList = () => {
   return async dispatch => {
     const token = {
       token: localStorage.token
     };
     axios
-    .post(URL.localhost + "/employee/employeelist", token, {
+      .post(URL.localhost + "/employee/employeelist", token, {
         headers: customHeaders,
         timeout: 1000
       })
       .then(res => {
-        console.log(res.data.employeeList);
+        console.log(res.data.employeeList)
         dispatch(setEmployees(res.data.employeeList));
       })
       .catch(error => {
@@ -34,17 +44,15 @@ export const addEmployee = employee => {
       token: localStorage.token,
       employee: employee
     };
-    console.log(data);
     axios
-    .post(URL.localhost + "/employee/employee_add", data, {
+      .post(URL.localhost + "/employee/employee_add", data, {
         headers: customHeaders,
         timeout: 1000
       })
       .then(res => {
-        dispatch(fetchEmployeeList());
-        console.log(
-          "Added employee with response: " + JSON.stringify(res.data)
-        );
+        employee.id = res.data.employeeid;
+        console.log(employee);
+        dispatch(ADD_EMPLOYEE(employee));
       })
       .catch(error => {
         alert(error);
@@ -59,19 +67,18 @@ export const deleteEmployee = employee => {
       employeeid: employee.id
     };
     axios
-    .post(URL.localhost + "/employee/employee_remove", data, {
+      .post(URL.localhost + "/employee/employee_remove", data, {
         headers: customHeaders,
         timeout: 1000
       })
       .then(res => {
-        console.log(res.data);
-        dispatch(fetchEmployeeList(res.data));
+        dispatch(REMOVE_EMPLOYEE(employee));
       })
       .catch(error => {
         alert(error);
       });
   };
-}
+};
 
 export const updateEmployee = employee => {
   return async dispatch => {
@@ -80,12 +87,11 @@ export const updateEmployee = employee => {
       employee: employee
     };
     axios
-    .post(URL.localhost + "/employee/employee_update", data, {
+      .post(URL.localhost + "/employee/employee_update", data, {
         headers: customHeaders,
         timeout: 1000
       })
       .then(res => {
-        console.log(res.data);
         dispatch(fetchEmployeeList(res.data));
       })
       .catch(error => {

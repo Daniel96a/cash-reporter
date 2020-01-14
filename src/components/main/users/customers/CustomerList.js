@@ -11,7 +11,6 @@ import { listStyle } from "../../../../styles/Styles";
 const CustomerList = props => {
   const styles = listStyle();
   const [showCustomerDetails, setShowCustomerDetails] = useState(false);
-
   const [customerSelected, setCustomerSelected] = useState(null);
 
   const [showEditCustomer, setShowEditCustomer] = useState(false);

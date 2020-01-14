@@ -42,6 +42,9 @@ function a11yProps(index) {
 }
 
 const useStyles = makeStyles(theme => ({
+  color: {
+    color: "lightgrey"
+  },
   root: {
     backgroundColor: GREY,
     position: "fixed",
@@ -64,8 +67,10 @@ export const SwitchLists = props => {
   };
 
   const handleChangeIndex = index => {
+    props.setSelectUserList(index);
     setValue(index);
   };
+
   return (
     <Paper className={classes.root}>
       <Tabs
@@ -77,12 +82,14 @@ export const SwitchLists = props => {
         aria-label="action tabs example"
       >
         <Tab
-          onClick={e => props.setSelectUserList("Customers")}
+          className={classes.color}
+          onClick={e => props.setSelectUserList(0)}
           label="Customers"
           {...a11yProps(0)}
         />
         <Tab
-          onClick={e => props.setSelectUserList("Employees")}
+          className={classes.color}
+          onClick={e => props.setSelectUserList(1)}
           label="Employees"
           {...a11yProps(1)}
         />

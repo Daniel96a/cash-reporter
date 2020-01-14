@@ -18,7 +18,6 @@ export const EditCustomer = props => {
     phonenr: customer.phonenr,
     email: customer.email.toLowerCase()
   };
-  console.log(customer.phonenr);
 
   const updateCustomer = e => {
     document.getElementsByName("address")[0].value = customerData.address;

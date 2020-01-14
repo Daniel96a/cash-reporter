@@ -84,7 +84,7 @@ export const updateReport = report => {
       })
       .then(res => {
         console.log(res.data);
-        dispatch(fetchReportList(res.data));
+        dispatch(fetchReportList(res.data.customers));
       })
       .catch(error => {
         alert(error);

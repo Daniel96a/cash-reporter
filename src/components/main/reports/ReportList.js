@@ -4,12 +4,9 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { ReportDetails } from "./ReportDetails";
 import { listStyle } from "../../../styles/Styles";
-import { AddCustomerButton } from "../users/customers/add/AddCustomerButton";
-
-
 
 const ReportList = props => {
-  const styles = listStyle()
+  const styles = listStyle();
   const [showReportDetails, setShowReportDetails] = useState(false);
   const [reportSelected, setReportSelected] = useState(null);
 
@@ -50,10 +47,8 @@ const ReportList = props => {
           ))}
         </List>
       )}
-      
-      {props.reports.reports.length === 0 && <p>No reports found</p>}
-      <AddCustomerButton />
 
+      {props.reports.reports.length === 0 && <p>No reports found</p>}
     </React.Fragment>
   );
 };

@@ -3,9 +3,18 @@ import axios from "axios";
 import { customHeaders } from "./customHeaders";
 import { URL } from "./URLs";
 
-export const setCustomers = customers => ({
+export const SET_CUSTOMERS = customers => ({
   type: types.FETCH_CUSTOMERS,
   customers
+});
+
+export const REMOVE_CUSTOMER = customer => ({
+  type: types.REMOVE_CUSTOMER,
+  customer
+});
+export const ADD_CUSTOMER = customer => ({
+  type: types.ADD_CUSTOMER,
+  customer
 });
 
 export const fetchCustomerList = () => {
@@ -14,13 +23,12 @@ export const fetchCustomerList = () => {
       token: localStorage.token
     };
     axios
-    .post(URL.localhost + "/customer/customerlist", token, {
+      .post(URL.localhost + "/customer/customerlist", token, {
         headers: customHeaders,
         timeout: 1000
       })
       .then(res => {
-        console.log(res.data.customerlist);
-        dispatch(setCustomers(res.data.customerlist));
+        dispatch(SET_CUSTOMERS(res.data.customerlist));
       })
       .catch(error => {
         alert(error);
@@ -34,17 +42,14 @@ export const addCustomer = customer => {
       token: localStorage.token,
       customer: customer
     };
-    console.log(data);
     axios
-    .post(URL.localhost + "/customer/customer_add", data, {
+      .post(URL.localhost + "/customer/customer_add", data, {
         headers: customHeaders,
         timeout: 1000
       })
       .then(res => {
-        dispatch(fetchCustomerList());
-        console.log(
-          "Added customer with response: " + JSON.stringify(res.data)
-        );
+        customer.id = res.data.id;
+        dispatch(ADD_CUSTOMER(customer));
       })
       .catch(error => {
         alert(error);
@@ -59,13 +64,12 @@ export const deleteCustomer = customer => {
       id: customer.id
     };
     axios
-    .post(URL.localhost + "/customer/customer_remove", data, {
+      .post(URL.localhost + "/customer/customer_remove", data, {
         headers: customHeaders,
         timeout: 1000
       })
-      .then(res => {
-        console.log(res.data);
-        dispatch(fetchCustomerList(res.data));
+      .then(() => {
+        dispatch(REMOVE_CUSTOMER(customer));
       })
       .catch(error => {
         alert(error);
@@ -80,12 +84,11 @@ export const updateCustomer = customer => {
       customer: customer
     };
     axios
-    .post(URL.localhost + "/customer/customer_update", data, {
+      .post(URL.localhost + "/customer/customer_update", data, {
         headers: customHeaders,
         timeout: 1000
       })
       .then(res => {
-        console.log(res.data);
         dispatch(fetchCustomerList(res.data));
       })
       .catch(error => {

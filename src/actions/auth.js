@@ -6,6 +6,7 @@ import { URL } from "./URLs";
 import { fetchCustomerList } from "./customers";
 import { fetchEmployeeList } from "./employees";
 import { fetchReportList } from "./reports";
+
 export const setCurrentUser = user => ({
   type: types.SET_CURRENT_USER,
   user

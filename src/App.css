@@ -10,10 +10,12 @@ div.MuiBox-root {
 .logout-button {
   margin: auto;
 }
-div.makeStyles-root-1{
-  padding-top: 60px 10px;
-  min-width: 400px;
-  text-align: center;
+input:-webkit-autofill {
+
+  border: 1px solid #009BC2;
+  -webkit-text-fill-color: #009BC2;
+  -webkit-box-shadow:#7196BD;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 
@@ -24,4 +26,10 @@ label{
 
 .MuiTab-textColorPrimary{
   color: white;
+}
+td.MuiTableCell-body, th.MuiTableCell-body{
+  padding: 10px;
+  background-color: #202a35;
+  color: white;
+  text-align: center;
 }

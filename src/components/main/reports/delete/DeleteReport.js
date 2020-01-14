@@ -17,7 +17,6 @@ export const DeleteReport = props => {
     setOpen(false);
     props.setShowDeleteReport(false);
   };
-  console.log(props.reportSelected.id)
   const handleDelete = () => {
     props.deleteReport(props.reportSelected);
     setOpen(false);

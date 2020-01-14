@@ -32,23 +32,23 @@ export const ReportDetails = props => {
       <DialogContent>
         <TextField
           style={halfWidth}
-          floatingLabelText="First name"
-          name="firstname"
+          floatingLabelText="Employee sign"
+          name="employeesign"
           variant="filled"
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "lightgrey" }}
-          defaultValue={props.reportSelected.firstname}
+          defaultValue={props.reportSelected.employeesign}
           readOnly
         />
         <TextField
           style={halfWidth}
-          floatingLabelText="Last name"
-          name="lastname"
+          floatingLabelText="Revenue"
+          name="revenue"
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "lightgrey" }}
-          defaultValue={props.reportSelected.lastname}
+          defaultValue={props.reportSelected.revenue}
           variant="filled"
           readOnly
         />
@@ -64,33 +64,83 @@ export const ReportDetails = props => {
           readOnly
         />
         <TextField
-          floatingLabelText="Phone"
-          name="phonenr"
+          floatingLabelText="Customer sign"
+          name="customersign"
           fullWidth
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "lightgrey" }}
-          defaultValue={props.reportSelected.phonenr}
+          defaultValue={props.reportSelected.customersign}
           readOnly
         />
         <TextField
-          floatingLabelText="Email"
-          name="email"
+          floatingLabelText="Digital cash"
+          name="digitalcashflow"
           fullWidth
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "lightgrey" }}
-          defaultValue={props.reportSelected.email}
+          defaultValue={props.reportSelected.digitalcashflow}
           readOnly
         />
         <TextField
-          floatingLabelText="Address"
-          name="address"
+          floatingLabelText="Cash"
+          name="cashflow"
           fullWidth
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "lightgrey" }}
-          defaultValue={props.reportSelected.address}
+          defaultValue={props.reportSelected.cashflow}
+          readOnly
+        />
+        <TextField
+          floatingLabelText="Location"
+          name="location"
+          fullWidth
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
+          defaultValue={props.reportSelected.location}
+          readOnly
+        />
+        <TextField
+          floatingLabelText="Payment"
+          name="payment"
+          fullWidth
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
+          defaultValue={props.reportSelected.payment}
+          readOnly
+        />
+        <TextField
+          floatingLabelText="Extra info"
+          name="infofield"
+          fullWidth
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
+          defaultValue={props.reportSelected.infofield}
+          readOnly
+        />
+        <TextField
+          floatingLabelText="Table name"
+          name="tablename"
+          fullWidth
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
+          defaultValue={props.reportSelected.tablename}
+          readOnly
+        />
+        <TextField
+          floatingLabelText="Status"
+          name="status"
+          fullWidth
+          inputStyle={{ color: "white" }}
+          floatingLabelStyle={{ color: "lightgrey" }}
+          hintStyle={{ color: "lightgrey" }}
+          defaultValue={props.reportSelected.status}
           readOnly
         />
       </DialogContent>

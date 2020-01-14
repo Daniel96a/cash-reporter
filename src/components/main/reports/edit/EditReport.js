@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import { TextField } from "material-ui";
@@ -18,13 +18,6 @@ export const EditReport = props => {
     phonenr: props.reportSelected.phonenr,
     email: props.reportSelected.email.toLowerCase()
   };
-  useEffect(() => {
-    console.log(props.reportSelected)
-    return () => {
-      console.log(props.reportSelected)
-
-    };
-  }, [props])
 
   const updateReport = e => {
     document.getElementsByName("address")[0].value = report.address;

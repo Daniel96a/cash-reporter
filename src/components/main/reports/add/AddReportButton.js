@@ -11,7 +11,7 @@ export const AddReportButton = props => {
       <Fab
         color="primary"
         aria-label="add"
-        onClick={e => props.setShowAddReportForm(true)}
+        onClick={e => props.setShowAddReportsForm(true)}
         style={{
           float: "right",
           position: "fixed",
