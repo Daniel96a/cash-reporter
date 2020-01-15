@@ -3,14 +3,14 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
-
 import Slide from "@material-ui/core/Slide";
-
+import { connect } from "react-redux";
+import { deleteCustomer } from "../../../../../actions/customers";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export const DeleteCustomer = props => {
+const DeleteCustomer = (props) => {
   const [open, setOpen] = useState(props.showDeleteCustomer);
 
   const handleClose = () => {
@@ -19,10 +19,10 @@ export const DeleteCustomer = props => {
   };
 
   const handleDelete = () => {
-    props.deleteCustomer(props.customers[props.customerSelected]);
+    props.deleteCustomer(props.customers.customers[props.customerSelected]);
     setOpen(false);
     props.setShowDeleteCustomer(false);
-    props.setCustomerSelected(null)
+    props.setCustomerSelected(null);
   };
 
   return (
@@ -50,3 +50,10 @@ export const DeleteCustomer = props => {
     </div>
   );
 };
+
+const mapStateToProps = state => ({
+  customers: state.customers
+});
+export default connect(mapStateToProps, {
+  deleteCustomer
+})(DeleteCustomer);

@@ -1,4 +1,4 @@
-import { BLUE, GREY } from "../colorTheme/colors";
+import { BLUE, GREY, DARK } from "../colorTheme/colors";
 import { makeStyles } from "@material-ui/core";
 
 export const detailsDialog = makeStyles(theme => ({
@@ -12,11 +12,10 @@ export const detailsDialog = makeStyles(theme => ({
       right: 10,
       maxHeight: "800px",
       maxWidth: "600px",
-      overflowX: "scrollbar",
-      backgroundColor: "rgba(32, 42, 53, 1)"
+      backgroundColor: DARK
     },
     "& input": {
-      color: "white",
+      color: "white"
     },
     "& .MuiDialog-paperWidthSm": {
       overflowY: "visible"
@@ -31,12 +30,16 @@ export const detailsDialog = makeStyles(theme => ({
       // maxWidth: "100%"
     },
     "& .MuiDialogContent-root": {
-      overflowY: "scrollbar"
+      "-webkit-overflow-scrolling": "auto",
+      "& ::-webkit-scrollbar": {
+        width: 0,
+        height: 0
+      }
     },
     "& .MuiButtonBase-root": {
       border: "solid #80808085",
       borderWidth: "1px",
-      
+
       margin: "0px 20px 20px 20px"
     },
 
@@ -45,7 +48,10 @@ export const detailsDialog = makeStyles(theme => ({
       color: "white"
     },
     "& .MuiDialog-container": {
-      backdropFilter: "blur(8px)"
+      backdropFilter: "blur(20px)"
+    },
+    "& .MuiBackdrop-root": {
+      backgroundColor: "transparent"
     }
   }
 }));
@@ -91,3 +97,20 @@ export const loginFormStyle = makeStyles(theme => ({
     backgroundColor: GREY
   }
 }));
+export const tableStyle = makeStyles({
+  cells: {
+    "& .MuiTableCell-body": {
+      padding: 10
+    }
+  },
+  table: {
+    color: "white",
+    margin: 20
+  },
+  tableContainer: {
+    "& .MuiTableContainer-root": {
+      marginTop: 20,
+      marginBottom: 20
+    }
+  }
+});

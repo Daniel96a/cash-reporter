@@ -5,6 +5,9 @@ import { TextField } from "material-ui";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { detailsDialog } from "../../../../../styles/Styles";
+import { addEmployee } from "../../../../../actions/employees";
+
+import { connect } from "react-redux";
 
 export const AddEmployee = props => {
   const styles = detailsDialog();
@@ -138,3 +141,9 @@ const halfWidth = {
   width: "49.5%",
   marginLeft: "0.5%"
 };
+const mapStateToProps = state => ({
+  customers: state.customers
+});
+export default connect(mapStateToProps, {
+  addEmployee
+})(AddEmployee);

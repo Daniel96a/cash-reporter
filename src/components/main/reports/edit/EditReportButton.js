@@ -6,7 +6,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { withStyles } from "@material-ui/core/styles";
 import { makeStyles, Button } from "@material-ui/core";
 import { EditReport } from "./EditReport";
-import { DeleteReport } from "../delete/DeleteReport";
+import DeleteReport from "../delete/DeleteReport";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 export const EditReportButton = props => {

@@ -4,30 +4,31 @@ import Dialog from "@material-ui/core/Dialog";
 import { TextField, Paper } from "material-ui";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { detailsDialog } from "../../../../styles/Styles";
+import { detailsDialog, tableStyle } from "../../../../styles/Styles";
 import {
   TableContainer,
   Table,
   TableBody,
   TableRow,
-  TableCell,
-  makeStyles
+  TableCell
 } from "@material-ui/core";
-import { GREY } from "../../../../colorTheme/colors";
+import { DARK } from "../../../../colorTheme/colors";
 
 export const AddReport = props => {
   const styles = detailsDialog();
-  const useStyles = makeStyles({
-    cells: {
-      "& .MuiTableCell-body": {
-        padding: 10
-      }
-    },
-    table: {
-      color: "white"
-    }
-  });
 
+  const report = {
+    employeesign: "",
+    revenue: "",
+    customersign: "",
+    digitalcashflow: "",
+    cashflow: "",
+    location: "",
+    payment: "",
+    infofield: "",
+    tablename: "",
+    status: ""
+  };
   function createData(
     name,
     five,
@@ -46,31 +47,8 @@ export const AddReport = props => {
     createData("Out", 0, 0, 0, 0, 0, 0, 0),
     createData("Dif", 0, 0, 0, 0, 0, 0, 0)
   ];
-  const report = {
-    employeesign: "",
-    revenue: "",
-    customersign: "",
-    digitalcashflow: "",
-    cashflow: "",
-    location: "",
-    payment: "",
-    infofield: "",
-    tablename: "",
-    status: ""
-  };
+
   const createReport = e => {
-    if (report.cashflow.length < 0)
-      document.getElementsByName("employeesign")[0].value = report.employeesign;
-    document.getElementsByName("revenue")[0].value = report.revenue;
-    document.getElementsByName("customersign")[0].value = report.customersign;
-    document.getElementsByName("digitalcashflow")[0].value =
-      report.digitalcashflow;
-    document.getElementsByName("cashflow")[0].value = report.cashflow;
-    document.getElementsByName("location")[0].value = report.location;
-    document.getElementsByName("payment")[0].value = report.payment;
-    document.getElementsByName("infofield")[0].value = report.infofield;
-    document.getElementsByName("tablename")[0].value = report.tablename;
-    document.getElementsByName("status")[0].value = report.status;
     props.addReport(report);
     props.setShowAddReportsForm(false);
     e.preventDefault();
@@ -98,7 +76,7 @@ export const AddReport = props => {
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "lightgrey" }}
           onChange={e => (report.employeesign = e.target.value)}
-          defaultValue={report.employeesign}
+          defaultValue={""}
         />
         <TextField
           style={halfWidth}
@@ -118,7 +96,7 @@ export const AddReport = props => {
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "lightgrey" }}
           onChange={e => (report.tablename = e.target.value)}
-          defaultValue={report.tablename}
+          defaultValue={""}
         />
         <TextField
           fullWidth
@@ -128,7 +106,7 @@ export const AddReport = props => {
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "lightgrey" }}
           onChange={e => (report.location = e.target.value)}
-          defaultValue={report.location}
+          defaultValue={""}
         />
         <TextField
           style={halfWidth}
@@ -140,7 +118,7 @@ export const AddReport = props => {
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "lightgrey" }}
           onChange={e => (report.cashflow = e.target.value)}
-          defaultValue={report.cashflow}
+          defaultValue={""}
         />
         <TextField
           style={halfWidth}
@@ -152,7 +130,7 @@ export const AddReport = props => {
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "lightgrey" }}
           onChange={e => (report.digitalcashflow = e.target.value)}
-          defaultValue={report.digitalcashflow}
+          defaultValue={""}
         />
         <TextField
           style={halfWidth}
@@ -164,7 +142,7 @@ export const AddReport = props => {
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "lightgrey" }}
           onChange={e => (report.payment = e.target.value)}
-          defaultValue={report.payment}
+          defaultValue={""}
         />
         <TextField
           style={halfWidth}
@@ -176,7 +154,7 @@ export const AddReport = props => {
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "lightgrey" }}
           onChange={e => (report.revenue = e.target.value)}
-          defaultValue={report.revenue}
+          defaultValue={""}
         />
         <TextField
           floatingLabelText="Extra info"
@@ -187,7 +165,7 @@ export const AddReport = props => {
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "lightgrey" }}
           onChange={e => (report.infofield = e.target.value)}
-          defaultValue={report.infofield}
+          defaultValue={""}
         />
 
         <TextField
@@ -198,14 +176,15 @@ export const AddReport = props => {
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "lightgrey" }}
           onChange={e => (report.status = e.target.value)}
-          defaultValue={report.status}
+          defaultValue={""}
         />
 
-        <br />
-        <br />
-        <TableContainer component={Paper} style={{ backgroundColor: GREY }}>
-          <Table className={useStyles.table} aria-label="simple table">
-            <TableBody displayrowcheckbox="false" style={useStyles.cells}>
+        <TableContainer
+          component={Paper}
+          style={{ backgroundColor: DARK, margin: "20px 0px 20px 0px" }}
+        >
+          <Table className={tableStyle.table} aria-label="simple table">
+            <TableBody displayrowcheckbox="false" style={tableStyle.cells}>
               <TableRow>
                 <TableCell>Marks</TableCell>
                 <TableCell align="center">5</TableCell>

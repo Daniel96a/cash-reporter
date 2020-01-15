@@ -6,8 +6,10 @@ import LoginHeader from "./LoginHeader";
 const LoginPage = props => {
   return (
     <MuiThemeProvider>
-      <LoginHeader />
-      <LoginForm doLogin={props.doLogin} />
+      <React.Fragment>
+        <LoginHeader />
+        <LoginForm doLogin={props.doLogin} />
+      </React.Fragment>
     </MuiThemeProvider>
   );
 };

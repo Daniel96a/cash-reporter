@@ -5,21 +5,24 @@ import { TextField } from "material-ui";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { detailsDialog } from "../../../../../styles/Styles";
+import { connect } from "react-redux";
+import { updateEmployee } from "../../../../../actions/employees";
 
 export const EditEmployee = props => {
   const styles = detailsDialog();
-  const employee = props.employees[props.employeeSelected];
+  const employee = props.employees.employees[props.employeeSelected];
 
   const employeeData = {
     firstname: employee.firstname,
     lastname: employee.lastname,
     id: employee.id,
-    orgnr: employee.orgnr,
     role: employee.role,
     phonenr: employee.phonenr,
     email: employee.email.toLowerCase()
   };
   const updateEmployee = e => {
+    document.getElementsByName("firstname")[0].value = employeeData.firstname;
+    document.getElementsByName("lastname")[0].value = employeeData.lastname;
     document.getElementsByName("role")[0].value = employeeData.role;
     document.getElementsByName("phonenr")[0].value = employeeData.phonenr;
     document.getElementsByName("email")[0].value = employeeData.email;
@@ -51,7 +54,7 @@ export const EditEmployee = props => {
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "grey" }}
           defaultValue={employee.firstname}
-          disabled
+          onChange={e => (employeeData.firstname = e.target.value)}
         />
         <TextField
           style={halfWidth}
@@ -62,7 +65,7 @@ export const EditEmployee = props => {
           hintStyle={{ color: "grey" }}
           defaultValue={employee.lastname}
           variant="filled"
-          disabled
+          onChange={e => (employeeData.lastname = e.target.value)}
         />
         <TextField
           floatingLabelText="Employee ID"
@@ -119,3 +122,9 @@ const halfWidth = {
   width: "49.5%",
   marginLeft: "0.5%"
 };
+const mapStateToProps = state => ({
+  employees: state.employees
+});
+export default connect(mapStateToProps, {
+  updateEmployee
+})(EditEmployee);

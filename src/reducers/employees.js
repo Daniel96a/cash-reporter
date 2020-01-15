@@ -1,7 +1,8 @@
 import {
   FETCH_EMPLOYEES,
   REMOVE_EMPLOYEE,
-  ADD_EMPLOYEE
+  ADD_EMPLOYEE,
+  EDIT_EMPLOYEE
 } from "../actions/types";
 
 const initialState = {
@@ -27,7 +28,14 @@ export default (state = initialState, action) => {
         ...state,
         employees: state.employees.concat(action.employee)
       };
-
+    case EDIT_EMPLOYEE:
+      return {
+        ...state,
+        employees: state.employees.map(
+          employee =>
+            [action.employee].find(o => o.id === employee.id) || employee
+        )
+      };
     default:
       return state;
   }

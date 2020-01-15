@@ -14,7 +14,7 @@ input:-webkit-autofill {
 
   border: 1px solid #009BC2;
   -webkit-text-fill-color: #009BC2;
-  -webkit-box-shadow:#7196BD;
+  box-shadow:#7196BD;
   transition: background-color 5000s ease-in-out 0s;
 }
 
@@ -29,7 +29,10 @@ label{
 }
 td.MuiTableCell-body, th.MuiTableCell-body{
   padding: 10px;
-  background-color: #202a35;
+  background-color: transparent;
+  backdrop-filter: blur(10px);
   color: white;
   text-align: center;
+  border-bottom: #202a35;
+
 }

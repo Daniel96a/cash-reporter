@@ -72,6 +72,7 @@ const StyledMenu = withStyles({
     width: "100%",
     marginTop: 8,
     borderRadius: 10,
+    
     "& .MuiList-padding": {
       padding: 0
     }
@@ -97,7 +98,8 @@ const StyledMenu = withStyles({
 const StyledMenuItem = withStyles(theme => ({
   root: {
     "& .MuiPaper-root": {
-      backgroundColor: "transparent"
+      backgroundColor: "transparent",
+      backdropFilter: "blur(15px)"
     },
     backgroundColor: "rgba(25, 35, 46, .9 )",
     color: "white",

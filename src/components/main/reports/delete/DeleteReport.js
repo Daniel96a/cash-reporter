@@ -3,14 +3,15 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
-
+import { deleteReport } from "../../../../actions/reports";
 import Slide from "@material-ui/core/Slide";
+import { connect } from "react-redux";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export const DeleteReport = props => {
+const DeleteReport = props => {
   const [open, setOpen] = useState(props.showDeleteReport);
 
   const handleClose = () => {
@@ -21,7 +22,7 @@ export const DeleteReport = props => {
     props.deleteReport(props.reportSelected);
     setOpen(false);
     props.setShowDeleteReport(false);
-    props.setReportSelected(null)
+    props.setReportSelected(null);
   };
 
   return (
@@ -29,7 +30,6 @@ export const DeleteReport = props => {
       <Dialog
         open={open}
         TransitionComponent={Transition}
-        keepMounted
         onClose={handleClose}
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
@@ -49,3 +49,9 @@ export const DeleteReport = props => {
     </div>
   );
 };
+const mapStateToProps = state => ({
+  reports: state.reports
+});
+export default connect(mapStateToProps, {
+  deleteReport
+})(DeleteReport);

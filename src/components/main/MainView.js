@@ -18,7 +18,7 @@ const Main = props => {
           showCase={showCase}
           setshowCase={setshowCase}
         />
-        <div
+        <div className="main-content"
           style={{
             position: "fixed",
             top: "60px",
@@ -33,31 +33,18 @@ const Main = props => {
               status={props.auth.user.permission}
             />
           )}
-          {showCase === "Users" && (
-            <UsersView
-              customers={props.customers}
-              addCustomer={props.addCustomer}
-              updateCustomer={props.updateCustomer}
-              deleteCustomer={props.deleteCustomer}
-              fetchCustomerList={props.fetchCustomerList}
-              employees={props.employees}
-              addEmployee={props.addEmployee}
-              updateEmployee={props.updateEmployee}
-              deleteEmployee={props.deleteEmployee}
-              fetchEmployeeList={props.fetchEmployeeList}
-            />
-          )}
+          {showCase === "Users" && <UsersView />}
           {showCase === "Reports" && (
             <ReportsView
-            showAddReportsForm={showAddReportsForm}
-            setShowAddReportsForm={setShowAddReportsForm}
+              showAddReportsForm={showAddReportsForm}
+              setShowAddReportsForm={setShowAddReportsForm}
               reports={props.reports}
               addReport={props.addReport}
               updateReport={props.updateReport}
               deleteReport={props.deleteReport}
               fetchReportList={props.fetchReportList}
             />
-            )}
+          )}
         </div>
       </React.Fragment>
     </MuiThemeProvider>
@@ -65,4 +52,4 @@ const Main = props => {
   return content;
 };
 
-export default React.memo(Main);
+export default Main;

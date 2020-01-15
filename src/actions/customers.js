@@ -12,6 +12,10 @@ export const REMOVE_CUSTOMER = customer => ({
   type: types.REMOVE_CUSTOMER,
   customer
 });
+export const EDIT_CUSTOMER = customer => ({
+  type: types.EDIT_CUSTOMER,
+  customer
+});
 export const ADD_CUSTOMER = customer => ({
   type: types.ADD_CUSTOMER,
   customer
@@ -89,7 +93,7 @@ export const updateCustomer = customer => {
         timeout: 1000
       })
       .then(res => {
-        dispatch(fetchCustomerList(res.data));
+        dispatch(EDIT_CUSTOMER(customer));
       })
       .catch(error => {
         alert(error);

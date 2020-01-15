@@ -4,9 +4,10 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
-import { CustomerDetails } from "./CustomerDetails";
-import { EditCustomer } from "./edit/EditCustomer";
+import CustomerDetails from "./CustomerDetails";
+import EditCustomer from "./edit/EditCustomer";
 import { listStyle } from "../../../../styles/Styles";
+import { connect } from "react-redux";
 
 const CustomerList = props => {
   const styles = listStyle();
@@ -24,22 +25,16 @@ const CustomerList = props => {
     <React.Fragment>
       {customerSelected !== null && showCustomerDetails && (
         <CustomerDetails
-          customers={props.customers.customers}
           customerSelected={customerSelected}
           setCustomerSelected={setCustomerSelected}
           showCustomerDetails={showCustomerDetails}
           setShowCustomerDetails={setShowCustomerDetails}
-          updateCustomer={props.updateCustomer}
-          deleteCustomer={props.deleteCustomer}
         />
       )}
       {showEditCustomer && (
         <EditCustomer
-          customers={props.customers.customers}
           customerSelected={customerSelected}
           setCustomerSelected={setCustomerSelected}
-          updateCustomer={props.updateCustomer}
-          deleteCustomer={props.deleteCustomer}
           setShowEditCustomer={setShowEditCustomer}
         />
       )}
@@ -68,4 +63,7 @@ const CustomerList = props => {
     </React.Fragment>
   );
 };
-export default CustomerList;
+const mapStateToProps = state => ({
+  customers: state.customers
+});
+export default connect(mapStateToProps)(CustomerList);

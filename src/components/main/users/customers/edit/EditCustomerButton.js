@@ -5,8 +5,8 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { withStyles } from "@material-ui/core/styles";
 import { makeStyles, Button } from "@material-ui/core";
-import { EditCustomer } from "./EditCustomer";
-import { DeleteCustomer } from "../delete/DeleteCustomer";
+import EditCustomer from "./EditCustomer";
+import DeleteCustomer from "../delete/DeleteCustomer";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 export const EditCustomerButton = props => {
@@ -33,7 +33,6 @@ export const EditCustomerButton = props => {
     <div className={useStyles.root}>
       {showEditCustomer && (
         <EditCustomer
-          customers={props.customers}
           customerSelected={props.customerSelected}
           setShowEditCustomer={setShowEditCustomer}
           updateCustomer={props.updateCustomer}
@@ -41,13 +40,11 @@ export const EditCustomerButton = props => {
       )}
       {showDeleteCustomer && (
         <DeleteCustomer
-          customers={props.customers}
           setShowDeleteCustomer={setShowDeleteCustomer}
           showDeleteCustomer={showDeleteCustomer}
           setShowCustomerDetails={props.setShowCustomerDetails}
           customerSelected={props.customerSelected}
           setCustomerSelected={props.setCustomerSelected}
-          deleteCustomer={props.deleteCustomer}
         />
       )}
       <Button

@@ -5,12 +5,14 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
 import Slide from "@material-ui/core/Slide";
+import { connect } from "react-redux";
+import { deleteEmployee } from "../../../../../actions/employees";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export const DeleteEmployee = props => {
+const DeleteEmployee = props => {
   const [open, setOpen] = useState(props.showDeleteEmployee);
 
   const handleClose = () => {
@@ -19,10 +21,10 @@ export const DeleteEmployee = props => {
   };
 
   const handleDelete = () => {
-    props.deleteEmployee(props.employees[props.employeeSelected]);
+    props.deleteEmployee(props.employees.employees[props.employeeSelected]);
     setOpen(false);
     props.setShowDeleteEmployee(false);
-    props.setEmployeeSelected(null)
+    props.setEmployeeSelected(null);
   };
 
   return (
@@ -50,3 +52,9 @@ export const DeleteEmployee = props => {
     </div>
   );
 };
+const mapStateToProps = state => ({
+  employees: state.employees
+});
+export default connect(mapStateToProps, {
+  deleteEmployee
+})(DeleteEmployee);

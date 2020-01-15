@@ -5,10 +5,12 @@ import { TextField } from "material-ui";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { detailsDialog } from "../../../../../styles/Styles";
+import { updateCustomer } from "../../../../../actions/customers";
+import { connect } from "react-redux";
 
-export const EditCustomer = props => {
+const EditCustomer = props => {
   const styles = detailsDialog();
-  const customer = props.customers[props.customerSelected];
+  const customer = props.customers.customers[props.customerSelected];
   const customerData = {
     firstname: customer.firstname,
     lastname: customer.lastname,
@@ -20,6 +22,9 @@ export const EditCustomer = props => {
   };
 
   const updateCustomer = e => {
+    document.getElementsByName("firstname")[0].value = customerData.firstname;
+    document.getElementsByName("lastname")[0].value = customerData.lastname;
+
     document.getElementsByName("address")[0].value = customerData.address;
     document.getElementsByName("phonenr")[0].value = customerData.phonenr;
     document.getElementsByName("email")[0].value = customerData.email;
@@ -51,7 +56,7 @@ export const EditCustomer = props => {
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "grey" }}
           defaultValue={customer.firstname}
-          disabled
+          onChange={e => (customerData.firstname = e.target.value)}
         />
         <TextField
           style={halfWidth}
@@ -61,8 +66,8 @@ export const EditCustomer = props => {
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "grey" }}
           defaultValue={customer.lastname}
+          onChange={e => (customerData.lastname = e.target.value)}
           variant="filled"
-          disabled
         />
         <TextField
           floatingLabelText="Customer ID"
@@ -119,3 +124,9 @@ const halfWidth = {
   width: "49.5%",
   marginLeft: "0.5%"
 };
+const mapStateToProps = state => ({
+  customers: state.customers
+});
+export default connect(mapStateToProps, {
+  updateCustomer
+})(EditCustomer);

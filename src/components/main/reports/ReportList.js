@@ -4,32 +4,34 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { ReportDetails } from "./ReportDetails";
 import { listStyle } from "../../../styles/Styles";
+import { connect } from "react-redux";
+import { updateReport, deleteReport } from "../../../actions/reports";
 
-const ReportList = props => {
+const ReportList = ({ reports, updateReport, deleteReport }) => {
   const styles = listStyle();
   const [showReportDetails, setShowReportDetails] = useState(false);
   const [reportSelected, setReportSelected] = useState(null);
 
   const openDetails = e => {
-    setReportSelected(props.reports.reports[e.currentTarget.id]);
+    setReportSelected(reports.reports[e.currentTarget.id]);
     setShowReportDetails(true);
   };
   return (
     <React.Fragment>
       {reportSelected !== null && showReportDetails && (
         <ReportDetails
-          reports={props.reports.reports}
+          reports={reports.reports}
           reportSelected={reportSelected}
           setReportSelected={setReportSelected}
           showReportDetails={showReportDetails}
           setShowReportDetails={setShowReportDetails}
-          updateReport={props.updateReport}
-          deleteReport={props.deleteReport}
+          updateReport={updateReport}
+          deleteReport={deleteReport}
         />
       )}
-      {props.reports !== undefined && (
+      {reports.reports.length > 0 && (
         <List dense className={styles.root} disablePadding>
-          {props.reports.reports.map((report, index) => (
+          {reports.reports.map((report, index) => (
             <ListItem
               id={index}
               className={`reportid-${report.id}`}
@@ -48,8 +50,14 @@ const ReportList = props => {
         </List>
       )}
 
-      {props.reports.reports.length === 0 && <p>No reports found</p>}
+      {reports.reports.length === 0 && <p>No reports found</p>}
     </React.Fragment>
   );
 };
-export default ReportList;
+const mapStateToProps = state => ({
+  customers: state.customers
+});
+export default connect(mapStateToProps, {
+  updateReport,
+  deleteReport
+})(ReportList);

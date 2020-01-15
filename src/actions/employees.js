@@ -12,7 +12,10 @@ export const ADD_EMPLOYEE = employee => ({
   type: types.ADD_EMPLOYEE,
   employee
 });
-
+export const EDIT_EMPLOYEE = employee => ({
+  type: types.EDIT_EMPLOYEE,
+  employee
+});
 export const REMOVE_EMPLOYEE = employee => ({
   type: types.REMOVE_EMPLOYEE,
   employee
@@ -29,7 +32,6 @@ export const fetchEmployeeList = () => {
         timeout: 1000
       })
       .then(res => {
-        console.log(res.data.employeeList)
         dispatch(setEmployees(res.data.employeeList));
       })
       .catch(error => {
@@ -51,7 +53,6 @@ export const addEmployee = employee => {
       })
       .then(res => {
         employee.id = res.data.employeeid;
-        console.log(employee);
         dispatch(ADD_EMPLOYEE(employee));
       })
       .catch(error => {
@@ -81,6 +82,7 @@ export const deleteEmployee = employee => {
 };
 
 export const updateEmployee = employee => {
+  console.log(employee)
   return async dispatch => {
     const data = {
       token: localStorage.token,
@@ -92,7 +94,7 @@ export const updateEmployee = employee => {
         timeout: 1000
       })
       .then(res => {
-        dispatch(fetchEmployeeList(res.data));
+        dispatch(EDIT_EMPLOYEE(employee));
       })
       .catch(error => {
         alert(error);

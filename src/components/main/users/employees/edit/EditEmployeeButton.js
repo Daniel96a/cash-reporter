@@ -6,8 +6,8 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { withStyles } from "@material-ui/core/styles";
 import { makeStyles, Button } from "@material-ui/core";
-import { EditEmployee } from "./EditEmployee";
-import { DeleteEmployee } from "../delete/DeleteEmployee";
+import EditEmployee from "./EditEmployee";
+import DeleteEmployee from "../delete/DeleteEmployee";
 
 export const EditEmployeeButton = props => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -33,21 +33,17 @@ export const EditEmployeeButton = props => {
     <div className={useStyles.root}>
       {showEditEmployee && (
         <EditEmployee
-          employees={props.employees}
           employeeSelected={props.employeeSelected}
           setShowEditEmployee={setShowEditEmployee}
-          updateEmployee={props.updateEmployee}
         />
       )}
       {showDeleteEmployee && (
         <DeleteEmployee
-          employees={props.employees}
           setShowDeleteEmployee={setShowDeleteEmployee}
           showDeleteEmployee={showDeleteEmployee}
           setShowEmployeeDetails={props.setShowEmployeeDetails}
           employeeSelected={props.employeeSelected}
           setEmployeeSelected={props.setEmployeeSelected}
-          deleteEmployee={props.deleteEmployee}
         />
       )}
       <Button

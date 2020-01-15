@@ -4,10 +4,10 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
-import { EmployeeDetails } from "./EmployeeDetails";
-import { EditEmployee } from "./edit/EditEmployee";
+import EmployeeDetails from "./EmployeeDetails";
+import EditEmployee from "./edit/EditEmployee";
 import { listStyle } from "../../../../styles/Styles";
-
+import { connect } from "react-redux";
 const EmployeeList = props => {
   const styles = listStyle();
   const [showEmployeeDetails, setShowEmployeeDetails] = useState(false);
@@ -26,22 +26,16 @@ const EmployeeList = props => {
     <React.Fragment>
       {employeeSelected !== null && (
         <EmployeeDetails
-          employees={props.employees.employees}
           employeeSelected={employeeSelected}
           setEmployeeSelected={setEmployeeSelected}
           showEmployeeDetails={showEmployeeDetails}
           setShowEmployeeDetails={setShowEmployeeDetails}
-          updateEmployee={props.updateEmployee}
-          deleteEmployee={props.deleteEmployee}
         />
       )}
       {showEditEmployee && (
         <EditEmployee
-          employees={props.employees.employees}
           employeeSelected={employeeSelected}
           setEmployeeSelected={setEmployeeSelected}
-          updateEmployee={props.updateEmployee}
-          deleteEmployee={props.deleteEmployee}
           setShowEditEmployee={setShowEditEmployee}
         />
       )}
@@ -75,4 +69,7 @@ const EmployeeList = props => {
     </React.Fragment>
   );
 };
-export default EmployeeList;
+const mapStateToProps = state => ({
+  employees: state.employees
+});
+export default connect(mapStateToProps, {})(EmployeeList);

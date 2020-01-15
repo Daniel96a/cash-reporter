@@ -6,12 +6,14 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { EditCustomerButton } from "./edit/EditCustomerButton";
 import { detailsDialog } from "../../../../styles/Styles";
-export const CustomerDetails = props => {
+import { connect } from "react-redux";
+
+const CustomerDetails = props => {
   const styles = detailsDialog();
   const handleClose = () => {
     props.setShowCustomerDetails(false);
   };
-  const customer = props.customers[props.customerSelected];
+  const customer = props.customers.customers[props.customerSelected];
 
   return (
     <Dialog
@@ -21,11 +23,8 @@ export const CustomerDetails = props => {
       className={styles.root}
     >
       <EditCustomerButton
-        customers={props.customers}
         customerSelected={props.customerSelected}
         setCustomerSelected={props.setCustomerSelected}
-        updateCustomer={props.updateCustomer}
-        deleteCustomer={props.deleteCustomer}
         setShowCustomerDetails={props.setShowCustomerDetails}
       />
       <DialogTitle id="max-width-dialog-title" className="align-text-center">
@@ -106,3 +105,7 @@ const halfWidth = {
   width: "49.5%",
   marginLeft: "0.5%"
 };
+const mapStateToProps = state => ({
+  customers: state.customers
+});
+export default connect(mapStateToProps)(CustomerDetails);
