@@ -60,6 +60,7 @@ export const listStyle = makeStyles(theme => ({
     color: "white",
     margin: "auto",
     paddingTop: 1,
+    maxWidth: 600,
     backgroundColor: "rgba(25, 35, 46, 1)",
     "& .MuiTab-textColorPrimary": {
       color: "white"

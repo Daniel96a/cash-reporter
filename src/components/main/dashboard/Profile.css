@@ -1,7 +1,10 @@
 .profile-div {
   margin: auto;
-  position: relative;
+  position: fixed;
   text-align: center;
+  right: 10px;
+  left: 10px;
+  max-width: 600px;
   border-radius: 10px;
   min-width: 250px;
 }

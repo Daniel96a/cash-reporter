@@ -15,18 +15,20 @@ export const Profile = props => {
             aria-label="Edit and Delete"
             color="primary"
             style={{
+              margin: "auto",
               border: 0,
               borderRadius: 50,
               height: 50,
               width: 50,
               position: "absolute",
+              float: "right",
               top: 0,
               right: 0
             }}
           >
-            <SettingsIcon style={{}} />
-          </Button>
+            <SettingsIcon />
 
+          </Button>
           <div className="card-div">
             <b>Name: {props.name}</b>
             <hr color={DARK}/>
