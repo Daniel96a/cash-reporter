@@ -18,7 +18,7 @@ const AddCustomer = props => {
     phonenr: "",
     email: "".toLowerCase()
   };
-  console.log(props);
+
   const createCustomer = e => {
     props.addCustomer(customer);
    

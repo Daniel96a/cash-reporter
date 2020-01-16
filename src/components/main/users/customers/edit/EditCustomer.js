@@ -22,12 +22,12 @@ const EditCustomer = props => {
   };
 
   const updateCustomer = e => {
-    document.getElementsByName("firstname")[0].value = customerData.firstname;
-    document.getElementsByName("lastname")[0].value = customerData.lastname;
+    // document.getElementsByName("firstname")[0].value = customerData.firstname;
+    // document.getElementsByName("lastname")[0].value = customerData.lastname;
 
-    document.getElementsByName("address")[0].value = customerData.address;
-    document.getElementsByName("phonenr")[0].value = customerData.phonenr;
-    document.getElementsByName("email")[0].value = customerData.email;
+    // document.getElementsByName("address")[0].value = customerData.address;
+    // document.getElementsByName("phonenr")[0].value = customerData.phonenr;
+    // document.getElementsByName("email")[0].value = customerData.email;
     props.setShowEditCustomer(false);
     props.updateCustomer(customerData);
   };

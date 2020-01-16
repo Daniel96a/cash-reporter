@@ -23,11 +23,9 @@ export const EditEmployeeButton = props => {
   };
   const openEditEmployee = e => {
     setShowEditEmployee(true);
-    // props.setShowCustomerDetails(false)
   };
   const openDeleteEmployee = e => {
     setShowDeleteEmployee(true);
-    // props.setShowCustomerDetails(false)
   };
   return (
     <div className={useStyles.root}>

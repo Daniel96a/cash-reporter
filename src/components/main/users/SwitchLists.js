@@ -57,6 +57,16 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const swipeableViewsStyle = {
+  position: "inherit",
+  top: "108px",
+  right: "10px",
+  left: "10px",
+  bottom: "10px",
+  maxWidth: 600,
+  margin: "auto"
+};
+
 export const SwitchLists = props => {
   const classes = useStyles();
   const theme = useTheme();
@@ -95,34 +105,16 @@ export const SwitchLists = props => {
         />
       </Tabs>
       <SwipeableViews
-        style={{
-          position: "inherit",
-          top: "108px",
-          right: "10px",
-          left: "10px",
-          bottom: "10px",
-          maxWidth: 600,
-          margin: "auto"
-        }}
+        style={swipeableViewsStyle}
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={value}
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <CustomerList
-            fetchCustomerList={props.fetchCustomerList}
-            updateCustomer={props.updateCustomer}
-            deleteCustomer={props.deleteCustomer}
-            customers={props.customers}
-          />
+          <CustomerList />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <EmployeeList
-            fetchEmployeeList={props.fetchEmployeeList}
-            employees={props.employees}
-            updateEmployee={props.updateEmployee}
-            deleteEmployee={props.deleteEmployee}
-          />
+          <EmployeeList />
         </TabPanel>
       </SwipeableViews>
     </Paper>

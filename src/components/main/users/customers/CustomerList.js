@@ -12,11 +12,11 @@ import { connect } from "react-redux";
 const CustomerList = props => {
   const styles = listStyle();
   const [showCustomerDetails, setShowCustomerDetails] = useState(false);
+  const [showEditCustomer, setShowEditCustomer] = useState(false);
   const [customerSelected, setCustomerSelected] = useState(null);
 
-  const [showEditCustomer, setShowEditCustomer] = useState(false);
-
   const openDetails = e => {
+    setShowCustomerDetails(!showEditCustomer);
     setCustomerSelected(e.currentTarget.id);
     setShowCustomerDetails(true);
   };

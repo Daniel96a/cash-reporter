@@ -82,7 +82,6 @@ export const deleteEmployee = employee => {
 };
 
 export const updateEmployee = employee => {
-  console.log(employee)
   return async dispatch => {
     const data = {
       token: localStorage.token,
