@@ -1,26 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { ReportDetails } from "./ReportDetails";
 import { listStyle } from "../../../styles/Styles";
 import { connect } from "react-redux";
-import { updateReport, deleteReport } from "../../../actions/reports";
+import {
+  updateReport,
+  deleteReport,
+  fetchReportList
+} from "../../../actions/reports";
 
-const ReportList = ({ reports, updateReport, deleteReport }) => {
+const ReportList = props => {
   const styles = listStyle();
   const [showReportDetails, setShowReportDetails] = useState(false);
   const [reportSelected, setReportSelected] = useState(null);
 
   const openDetails = e => {
-    setReportSelected(reports.reports[e.currentTarget.id]);
+    setReportSelected(props.reports.reports[e.currentTarget.id]);
     setShowReportDetails(true);
   };
+  useEffect(() => {
+    props.fetchReportList();
+    // eslint-disable-next-line
+  }, []);
   return (
     <React.Fragment>
       {reportSelected !== null && showReportDetails && (
         <ReportDetails
-          reports={reports.reports}
+          reports={props.reports.reports}
           reportSelected={reportSelected}
           setReportSelected={setReportSelected}
           showReportDetails={showReportDetails}
@@ -29,9 +37,9 @@ const ReportList = ({ reports, updateReport, deleteReport }) => {
           deleteReport={deleteReport}
         />
       )}
-      {reports.reports.length > 0 && (
+      {props.reports.reports.length > 0 && (
         <List dense className={styles.root} disablePadding>
-          {reports.reports.map((report, index) => (
+          {props.reports.reports.map((report, index) => (
             <ListItem
               id={index}
               className={`reportid-${report.id}`}
@@ -50,14 +58,15 @@ const ReportList = ({ reports, updateReport, deleteReport }) => {
         </List>
       )}
 
-      {reports.reports.length === 0 && <p>No reports found</p>}
+      {props.reports.reports.length === 0 && <p>No reports found</p>}
     </React.Fragment>
   );
 };
 const mapStateToProps = state => ({
-  customers: state.customers
+  reports: state.reports
 });
 export default connect(mapStateToProps, {
   updateReport,
-  deleteReport
+  deleteReport,
+  fetchReportList
 })(ReportList);

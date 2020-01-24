@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Profile } from "./dashboard/Profile";
+import Profile from "./dashboard/Profile";
 import MainHeader from "./MainHeader";
 import { MuiThemeProvider } from "material-ui/styles";
 import UsersView from "./users/UsersView";
@@ -14,11 +14,11 @@ const Main = props => {
       <React.Fragment>
         <MainHeader
           doLogout={props.doLogout}
-          auth={props.auth}
           showCase={showCase}
           setshowCase={setshowCase}
         />
-        <div className="main-content"
+        <div
+          className="main-content"
           style={{
             position: "fixed",
             top: "60px",
@@ -27,12 +27,7 @@ const Main = props => {
             margin: "auto"
           }}
         >
-          {showCase === "Dashboard" && (
-            <Profile
-              name={props.auth.user.username}
-              status={props.auth.user.permission}
-            />
-          )}
+          {showCase === "Dashboard" && <Profile />}
           {showCase === "Users" && <UsersView />}
           {showCase === "Reports" && (
             <ReportsView

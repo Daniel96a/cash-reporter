@@ -8,7 +8,7 @@ const LoginPage = props => {
     <MuiThemeProvider>
       <React.Fragment>
         <LoginHeader />
-        <LoginForm doLogin={props.doLogin} />
+        <LoginForm />
       </React.Fragment>
     </MuiThemeProvider>
   );

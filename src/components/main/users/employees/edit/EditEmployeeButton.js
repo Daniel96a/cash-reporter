@@ -54,7 +54,7 @@ export const EditEmployeeButton = props => {
           width: 64,
           position: "absolute",
           top: 0,
-          right: -23
+          right: -24
         }}
       >
         <SettingsIcon

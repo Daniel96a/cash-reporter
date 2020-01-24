@@ -1,58 +1,32 @@
 import React from "react";
 import { connect } from "react-redux";
 import MainView from "./components/main/MainView";
-import { doLogin, doLogout } from "./actions/auth";
 import LoginPage from "./components/login/LoginPage";
-
-import {
-  addReport,
-  updateReport,
-  deleteReport,
-  fetchReportList
-} from "./actions/reports";
-
-const App = ({
-  doLogin,
-  doLogout,
-  auth,
-
-  reports,
-  addReport,
-  updateReport,
-  deleteReport,
-  fetchReportList
-}) => {
+import { RestrictedView } from "./components/restrictedView/RestrictedView";
+import { Switch, Route } from "react-router-dom";
+import ProtectedRoute from "./protected.route";
+import { LoginRoute } from "./login.route";
+const App = props => {
   return (
-    <div>
-      {!auth.isAuthenticated && <LoginPage doLogin={doLogin} />}
-      {auth.isAuthenticated && (
-        <MainView
-          doLogout={doLogout}
-          auth={auth}
-          reports={reports}
-          addReport={addReport}
-          updateReport={updateReport}
-          deleteReport={deleteReport}
-          fetchReportList={fetchReportList}
-        />
-      )}
-    </div>
+    <Switch>
+      <LoginRoute
+        exact
+        path="/login"
+        isAuthenticated={props.isAuthenticated}
+        component={LoginPage}
+      />
+      <ProtectedRoute
+        path="/"
+        isAuthenticated={props.isAuthenticated}
+        component={MainView}
+      />
+      <Route exact path="*" component={RestrictedView} />
+    </Switch>
   );
 };
-console.log();
 
 const mapStateToProps = state => ({
-  auth: state.auth,
-  customers: state.customers,
-  employees: state.employees,
-  reports: state.reports
+  isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, {
-  doLogin,
-  doLogout,
-  addReport,
-  updateReport,
-  deleteReport,
-  fetchReportList
-})(App);
+export default connect(mapStateToProps)(App);

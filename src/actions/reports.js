@@ -2,6 +2,7 @@ import * as types from "./types";
 import axios from "axios";
 import { customHeaders } from "./customHeaders";
 import { URL } from "./URLs";
+import { doLogout } from "./auth";
 
 export const setReports = reports => ({
   type: types.FETCH_REPORTS,
@@ -22,7 +23,7 @@ export const fetchReportList = () => {
         dispatch(setReports(res.data.reportlist));
       })
       .catch(error => {
-        alert(error);
+        dispatch(doLogout());
       });
   };
 };
@@ -42,7 +43,7 @@ export const addReport = report => {
         dispatch(fetchReportList());
       })
       .catch(error => {
-        alert(error);
+        dispatch(doLogout());
       });
   };
 };
@@ -62,7 +63,7 @@ export const deleteReport = report => {
         dispatch(fetchReportList(res.data));
       })
       .catch(error => {
-        alert(error);
+        dispatch(doLogout());
       });
   };
 };
@@ -82,7 +83,7 @@ export const updateReport = report => {
         dispatch(fetchReportList(res.data.customers));
       })
       .catch(error => {
-        alert(error);
+        dispatch(doLogout());
       });
   };
 };

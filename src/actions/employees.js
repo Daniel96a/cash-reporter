@@ -2,6 +2,7 @@ import * as types from "./types";
 import axios from "axios";
 import { customHeaders } from "./customHeaders";
 import { URL } from "./URLs";
+import { doLogout } from "./auth";
 
 export const setEmployees = employees => ({
   type: types.FETCH_EMPLOYEES,
@@ -35,7 +36,7 @@ export const fetchEmployeeList = () => {
         dispatch(setEmployees(res.data.employeeList));
       })
       .catch(error => {
-        alert(error);
+        dispatch(doLogout());
       });
   };
 };
@@ -56,7 +57,7 @@ export const addEmployee = employee => {
         dispatch(ADD_EMPLOYEE(employee));
       })
       .catch(error => {
-        alert(error);
+        dispatch(doLogout());
       });
   };
 };
@@ -76,7 +77,7 @@ export const deleteEmployee = employee => {
         dispatch(REMOVE_EMPLOYEE(employee));
       })
       .catch(error => {
-        alert(error);
+        dispatch(doLogout());
       });
   };
 };
@@ -96,7 +97,7 @@ export const updateEmployee = employee => {
         dispatch(EDIT_EMPLOYEE(employee));
       })
       .catch(error => {
-        alert(error);
+        dispatch(doLogout());
       });
   };
 };

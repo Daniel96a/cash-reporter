@@ -6,9 +6,11 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { IconButton } from "material-ui";
 import MenuIcon from "@material-ui/icons/Menu";
 import { EditorFormatAlignCenter } from "material-ui/svg-icons";
-import { GREY, LIGHT_GREY } from "../../colorTheme/colors";
+import { BLUE } from "../../colorTheme/colors";
+import { connect } from "react-redux";
+import { doLogout } from "../../actions/auth";
 
-export const MainMenu = props => {
+const MainMenu = props => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
   const handleClick = event => {
@@ -41,6 +43,7 @@ export const MainMenu = props => {
         <MenuIcon style={menuIconColor} />
       </IconButton>
       <StyledMenu
+      style={{}}
         id="customized-menu"
         anchorEl={anchorEl}
         onClose={handleClose}
@@ -67,14 +70,18 @@ const StyledMenu = withStyles({
   paper: {
     backgroundColor: "transparent",
     backdropFilter: "blur(8px)",
-    border: `1px solid ${GREY}`,
+    border: `1px solid ${"rgba(25, 35, 46, .5 )"}`,
     position: "absolute",
+    maxWidth: "100%",
+    left: "0 !important",
     width: "100%",
     marginTop: 8,
     borderRadius: 10,
-    
     "& .MuiList-padding": {
       padding: 0
+    },
+    "& div.MuiPaper-root":{
+      left: 0,
     }
   }
 })(props => (
@@ -82,12 +89,10 @@ const StyledMenu = withStyles({
     elevation={0}
     getContentAnchorEl={null}
     anchorOrigin={{
-      marginLeft: 0,
       vertical: "bottom",
       horizontal: "center"
     }}
     transformOrigin={{
-      marginLeft: 0,
       vertical: "top",
       horizontal: "center"
     }}
@@ -101,13 +106,13 @@ const StyledMenuItem = withStyles(theme => ({
       backgroundColor: "transparent",
       backdropFilter: "blur(15px)"
     },
-    backgroundColor: "rgba(25, 35, 46, .9 )",
+    backgroundColor: "transparent",
     color: "white",
     float: "right",
     width: "100%",
     "&:hover": {
-      backgroundColor: LIGHT_GREY,
-      color: "black",
+      backgroundColor: BLUE,
+      color: "white",
       "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
         backgroundColor: theme.palette.primary.white,
         color: theme.palette.common.white
@@ -125,5 +130,12 @@ const menuPosition = {
   textAlign: EditorFormatAlignCenter,
   margin: "auto",
   position: "absolute",
-  right: "0"
+  right: "0",
 };
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+export default connect(mapStateToProps, {
+  doLogout
+})(MainMenu);

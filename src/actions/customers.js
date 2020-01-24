@@ -2,10 +2,11 @@ import * as types from "./types";
 import axios from "axios";
 import { customHeaders } from "./customHeaders";
 import { URL } from "./URLs";
+import { doLogout } from "./auth";
 
 export const SET_CUSTOMERS = customers => ({
   type: types.FETCH_CUSTOMERS,
-  customers
+  customers: customers
 });
 
 export const REMOVE_CUSTOMER = customer => ({
@@ -35,7 +36,7 @@ export const fetchCustomerList = () => {
         dispatch(SET_CUSTOMERS(res.data.customerlist));
       })
       .catch(error => {
-        alert(error);
+        dispatch(doLogout());
       });
   };
 };
@@ -56,7 +57,7 @@ export const addCustomer = customer => {
         dispatch(ADD_CUSTOMER(customer));
       })
       .catch(error => {
-        alert(error);
+        dispatch(doLogout());
       });
   };
 };
@@ -76,7 +77,7 @@ export const deleteCustomer = customer => {
         dispatch(REMOVE_CUSTOMER(customer));
       })
       .catch(error => {
-        alert(error);
+        dispatch(doLogout());
       });
   };
 };
@@ -96,7 +97,7 @@ export const updateCustomer = customer => {
         dispatch(EDIT_CUSTOMER(customer));
       })
       .catch(error => {
-        alert(error);
+        dispatch(doLogout());
       });
   };
 };

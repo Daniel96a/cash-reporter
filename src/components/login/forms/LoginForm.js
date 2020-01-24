@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { TextField, RaisedButton } from "material-ui";
 import { loginFormStyle } from "../../../styles/Styles";
+import { doLogin } from "../../../actions/auth";
+import { connect } from "react-redux";
+import history from "../../../history";
 
 const LoginForm = props => {
-  const styles = loginFormStyle();
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
 
@@ -14,16 +16,15 @@ const LoginForm = props => {
 
   const login = e => {
     props.doLogin(data);
+    history.push("/");
     setusername("");
     setpassword("");
     e.preventDefault();
   };
-  useEffect(() => {
-    // document.getElementsByName("username")[0].focus();
-  }, []);
+
   return (
     <form
-      className={styles.root}
+      className={loginFormStyle().root + " fade-in"}
       onSubmit={e => {
         if (e.key === "Enter") {
           login.bind(this);
@@ -40,7 +41,6 @@ const LoginForm = props => {
         floatingLabelStyle={{ color: "lightgrey" }}
         hintStyle={{ color: "lightgrey" }}
         onChange={e => (data.username = e.target.value)}
-        defaultValue={data.username}
         className="form-control"
       />
       <TextField
@@ -51,12 +51,13 @@ const LoginForm = props => {
         floatingLabelStyle={{ color: "lightgrey" }}
         hintStyle={{ color: "lightgrey" }}
         onChange={e => (data.password = e.target.value)}
-        defaultValue={username.value}
       />
       <br />
       <RaisedButton label="Login" type="submit" onClick={login.bind(this)} />
     </form>
   );
 };
-
-export default LoginForm;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+export default connect(mapStateToProps, { doLogin })(LoginForm);

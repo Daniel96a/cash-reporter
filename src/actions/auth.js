@@ -3,9 +3,10 @@ import axios from "axios";
 import { customHeaders } from "./customHeaders";
 import setAuthorizationToken from "../utils/setAuthorizationToken";
 import { URL } from "./URLs";
-import { fetchCustomerList } from "./customers";
-import { fetchEmployeeList } from "./employees";
-import { fetchReportList } from "./reports";
+import history from "../history";
+// import { fetchCustomerList } from "./customers";
+// import { fetchEmployeeList } from "./employees";
+// import { fetchReportList } from "./reports";
 
 export const setCurrentUser = user => ({
   type: types.SET_CURRENT_USER,
@@ -25,12 +26,9 @@ export const verifyToken = token => {
       .then(res => {
         setAuthorizationToken(res.data.token);
         dispatch(setCurrentUser(res.data));
-        dispatch(fetchCustomerList());
-        dispatch(fetchEmployeeList());
-        dispatch(fetchReportList());
       })
       .catch(error => {
-        alert(error);
+        alert(error + "\n Please login to proceed");
         dispatch(doLogout());
       });
   };
@@ -47,9 +45,6 @@ export const doLogin = data => {
         localStorage.setItem("token", res.data.token);
         setAuthorizationToken(res.data.token);
         dispatch(setCurrentUser(res.data));
-        dispatch(fetchCustomerList());
-        dispatch(fetchEmployeeList());
-        dispatch(fetchReportList());
       })
       .catch(error => {
         alert(error);
@@ -59,7 +54,7 @@ export const doLogin = data => {
 export const doLogout = () => {
   return async dispatch => {
     const token = {
-      token: localStorage.getItem("token")
+      token: localStorage.token
     };
     axios
       .post(URL.localhost + "/logout", token, {
@@ -68,6 +63,7 @@ export const doLogout = () => {
       })
       .finally(() => {
         localStorage.removeItem("token");
+        history.push("/login");
         setAuthorizationToken(false);
         dispatch(setCurrentUser({}));
       });

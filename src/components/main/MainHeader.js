@@ -1,7 +1,7 @@
 import React from "react";
 import { MuiThemeProvider } from "material-ui/styles";
 import { AppBar } from "material-ui";
-import { MainMenu } from "./MainMenu";
+import MainMenu from "./MainMenu";
 import { makeStyles } from "@material-ui/core";
 import { headerStyle } from "../../styles/Styles";
 const useStyles = makeStyles(theme => ({
@@ -25,7 +25,6 @@ const DashboardHeader = props => {
           style={headerStyle}
         >
           <MainMenu
-            doLogout={props.doLogout}
             showCase={props.showCase}
             setshowCase={props.setshowCase}
           />

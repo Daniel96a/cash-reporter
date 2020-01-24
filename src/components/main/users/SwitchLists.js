@@ -9,7 +9,7 @@ import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import CustomerList from "./customers/CustomerList";
 import EmployeeList from "./employees/EmployeeList";
-import { GREY } from "../../../colorTheme/colors";
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -46,23 +46,23 @@ const useStyles = makeStyles(theme => ({
     color: "lightgrey"
   },
   root: {
-    backgroundColor: GREY,
+    backgroundColor: "transparent",
     position: "fixed",
     margin: "auto",
-    top: "60px",
-    right: "10px",
-    left: "10px",
-    bottom: "10px",
+    top: "48px",
+    right: "0px",
+    left: "0px",
+    bottom: "0px",
     maxWidth: 600
   }
 }));
 
 const swipeableViewsStyle = {
   position: "inherit",
-  top: "108px",
-  right: "10px",
-  left: "10px",
-  bottom: "10px",
+  top: "98px",
+  right: "0px",
+  left: "0px",
+  bottom: "0px",
   maxWidth: 600,
   margin: "auto"
 };

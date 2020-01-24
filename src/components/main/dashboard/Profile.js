@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import { Card } from "material-ui/Card";
 import SettingsIcon from "@material-ui/icons/Settings";
 import { MuiThemeProvider } from "material-ui/styles";
 import { Button } from "@material-ui/core";
-import { GREY, DARK } from "../../../colorTheme/colors";
+import { GREY } from "../../../colorTheme/colors";
+import { connect } from "react-redux";
 
-export const Profile = props => {
+const Profile = props => {
+  const [user, setUser] = useState("");
+  useEffect(() => {
+    setUser(props.user);
+  }, [props]);
   return (
     <MuiThemeProvider>
       <div className="profile-div">
-        <Card style={{backgroundColor: GREY, color: "white"}}>
+        <Card style={{ backgroundColor: GREY, color: "white" }}>
           <Button
             aria-label="Edit and Delete"
             color="primary"
@@ -27,15 +32,18 @@ export const Profile = props => {
             }}
           >
             <SettingsIcon />
-
           </Button>
           <div className="card-div">
-            <b>Name: {props.name}</b>
-            <hr color={DARK}/>
-            <b>Status: {props.status}</b>
+            <b>Name: {user.username}</b>
+            <hr color={""} />
+            <b>Status: {user.permission}</b>
           </div>
         </Card>
       </div>
     </MuiThemeProvider>
   );
 };
+const mapStateToProps = state => ({
+  user: state.auth.user
+});
+export default connect(mapStateToProps)(Profile);

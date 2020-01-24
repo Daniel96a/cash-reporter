@@ -1,4 +1,4 @@
-import { BLUE, GREY, DARK } from "../colorTheme/colors";
+import { BLUE, DARK, GREY } from "../colorTheme/colors";
 import { makeStyles } from "@material-ui/core";
 
 export const detailsDialog = makeStyles(theme => ({
@@ -6,14 +6,15 @@ export const detailsDialog = makeStyles(theme => ({
     "& .MuiPaper-root": {
       margin: "auto",
       position: "fixed",
-      top: 58,
-      bottom: 10,
-      left: 10,
-      right: 10,
-      maxHeight: "800px",
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      maxHeight: "900px",
       maxWidth: "600px",
       backgroundColor: DARK
     },
+
     "& input": {
       color: "white"
     },
@@ -29,7 +30,18 @@ export const detailsDialog = makeStyles(theme => ({
       // maxHeight: "100%",
       // maxWidth: "100%"
     },
+    "& .MuiDialog-root": {
+      // position: "fixed";
+      // zIndex: 1000000;
+      // right: 0px;
+      // bottom: 0px;
+      // top: 0px;
+      // left: 0px;
+    },
     "& .MuiDialogContent-root": {
+      flex: "1 1 auto",
+      padding: "8px 10px",
+      overflowY: "auto",
       "-webkit-overflow-scrolling": "auto",
       "& ::-webkit-scrollbar": {
         width: 0,
@@ -38,9 +50,9 @@ export const detailsDialog = makeStyles(theme => ({
     },
     "& .MuiButtonBase-root": {
       border: "solid #80808085",
+      margin: "0px 23px 20px 23px",
       borderWidth: "1px",
-
-      margin: "0px 20px 20px 20px"
+      minHeight: "38px"
     },
 
     "& .MuiDialogTitle-root": {
@@ -58,10 +70,12 @@ export const detailsDialog = makeStyles(theme => ({
 export const listStyle = makeStyles(theme => ({
   root: {
     color: "white",
+    left: 0,
+    right: 0,
     margin: "auto",
     paddingTop: 1,
     maxWidth: 600,
-    backgroundColor: "rgba(25, 35, 46, 1)",
+    backgroundColor: "transparent",
     "& .MuiTab-textColorPrimary": {
       color: "white"
     },
@@ -72,7 +86,10 @@ export const listStyle = makeStyles(theme => ({
       userSelect: "none"
     },
     "& .MuiListItem-gutters": {
-      backgroundColor: "rgb(32, 42, 53)",
+      backgroundColor: "rgba(32, 42, 53, .1)",
+      borderBottom: `1px solid ${GREY}`,
+      minHeight: "65px",
+      userSelect: "none",
       marginBottom: 1
     }
   }
@@ -81,26 +98,24 @@ export const listStyle = makeStyles(theme => ({
 export const headerStyle = {
   height: 48,
   backgroundColor: BLUE,
-  zIndex: 100000,
   position: "fixed"
 };
 export const loginFormStyle = makeStyles(theme => ({
   root: {
     position: "fixed",
-    top: 60,
-    left: 10,
-    right: 10,
-    maxWidth: 400,
-    margin: "auto",
+    top: "20%",
     textAlign: "center",
+    left: 0,
+    right: 0,
+    maxWidth: 600,
+    margin: "auto",
     padding: "0 30px 30px 30px",
-    borderRadius: 10,
-    backgroundColor: GREY
+    borderRadius: 10
   }
 }));
 export const tableStyle = makeStyles({
   cells: {
-    "& .MuiTableCell-body": {
+    "& td.MuiTableCell-body, th.MuiTableCell-body": {
       padding: 10
     }
   },

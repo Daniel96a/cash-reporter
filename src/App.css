@@ -5,13 +5,14 @@ div.MuiBox-root {
 /* div.makeStyles-root-173 {
   background-color: rgba(22, 31, 41);
 } */
-
+#customized-menu{
+  left: 0
+}
 
 .logout-button {
   margin: auto;
 }
 input:-webkit-autofill {
-
   border: 1px solid #009BC2;
   -webkit-text-fill-color: #009BC2;
   box-shadow:#7196BD;
@@ -28,11 +29,27 @@ label{
   color: white;
 }
 td.MuiTableCell-body, th.MuiTableCell-body{
-  padding: 10px;
+  padding: 0px;
   background-color: transparent;
   backdrop-filter: blur(10px);
   color: white;
   text-align: center;
   border-bottom: #202a35;
+}
 
+.fade-in {
+	opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 1s;
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }

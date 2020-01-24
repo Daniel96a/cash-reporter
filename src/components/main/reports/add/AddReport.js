@@ -5,6 +5,7 @@ import { TextField, Paper } from "material-ui";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { detailsDialog, tableStyle } from "../../../../styles/Styles";
+import {addReport} from '../../../../actions/reports'
 import {
   TableContainer,
   Table,
@@ -13,8 +14,9 @@ import {
   TableCell
 } from "@material-ui/core";
 import { DARK } from "../../../../colorTheme/colors";
+import { connect } from "react-redux";
 
-export const AddReport = props => {
+const AddReport = props => {
   const styles = detailsDialog();
 
   const report = {
@@ -69,7 +71,7 @@ export const AddReport = props => {
       </DialogTitle>
       <DialogContent>
         <TextField
-          style={halfWidth}
+          style={inputLeft}
           floatingLabelText="Employeesign"
           name="employeesign"
           inputStyle={{ color: "white" }}
@@ -79,7 +81,7 @@ export const AddReport = props => {
           defaultValue={""}
         />
         <TextField
-          style={halfWidth}
+          style={inputRight}
           floatingLabelText="Customer sign"
           name="customersign"
           inputStyle={{ color: "white" }}
@@ -109,7 +111,7 @@ export const AddReport = props => {
           defaultValue={""}
         />
         <TextField
-          style={halfWidth}
+          style={inputLeft}
           floatingLabelText="Cashflow"
           name="cashflow"
           type="number"
@@ -121,7 +123,7 @@ export const AddReport = props => {
           defaultValue={""}
         />
         <TextField
-          style={halfWidth}
+          style={inputRight}
           floatingLabelText="Digital cashflow"
           name="digitalcashflow"
           type="number"
@@ -133,7 +135,7 @@ export const AddReport = props => {
           defaultValue={""}
         />
         <TextField
-          style={halfWidth}
+          style={inputLeft}
           floatingLabelText="Payment"
           name="payment"
           type="number"
@@ -145,7 +147,7 @@ export const AddReport = props => {
           defaultValue={""}
         />
         <TextField
-          style={halfWidth}
+          style={inputRight}
           floatingLabelText="Revenue"
           name="revenue"
           type="number"
@@ -184,7 +186,7 @@ export const AddReport = props => {
           style={{ backgroundColor: DARK, margin: "20px 0px 20px 0px" }}
         >
           <Table className={tableStyle.table} aria-label="simple table">
-            <TableBody displayrowcheckbox="false" style={tableStyle.cells}>
+            <TableBody displayrowcheckbox="false" className={tableStyle.cells}>
               <TableRow>
                 <TableCell>Marks</TableCell>
                 <TableCell align="center">5</TableCell>
@@ -285,7 +287,18 @@ export const AddReport = props => {
     </Dialog>
   );
 };
-const halfWidth = {
-  width: "49.5%",
-  marginLeft: "0.5%"
+const inputLeft = {
+  width: "49%",
+  float: "right"
 };
+const inputRight = {
+  width: "49%",
+  float: "left",
+};
+
+const mapStateToProps = state => ({
+  customers: state.customers
+});
+export default connect(mapStateToProps, {
+  addReport
+})(AddReport);

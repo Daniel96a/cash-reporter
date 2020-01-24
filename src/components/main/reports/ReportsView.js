@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { AddReport } from "./add/AddReport";
+import AddReport from "./add/AddReport";
 import ReportList from "./ReportList";
 import { AddReportButton } from "./add/AddReportButton";
 

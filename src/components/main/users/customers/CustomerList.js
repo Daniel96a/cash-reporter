@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -7,6 +7,7 @@ import Avatar from "@material-ui/core/Avatar";
 import CustomerDetails from "./CustomerDetails";
 import EditCustomer from "./edit/EditCustomer";
 import { listStyle } from "../../../../styles/Styles";
+import { fetchCustomerList } from "../../../../actions/customers";
 import { connect } from "react-redux";
 
 const CustomerList = props => {
@@ -14,6 +15,11 @@ const CustomerList = props => {
   const [showCustomerDetails, setShowCustomerDetails] = useState(false);
   const [showEditCustomer, setShowEditCustomer] = useState(false);
   const [customerSelected, setCustomerSelected] = useState(null);
+
+  useEffect(() => {
+    props.fetchCustomerList();
+    // eslint-disable-next-line
+  }, []);
 
   const openDetails = e => {
     setShowCustomerDetails(!showEditCustomer);
@@ -59,11 +65,13 @@ const CustomerList = props => {
           ))}
         </List>
       )}
-      {props.customers.customers.length === 0 && <p>No customers found</p>}
+      {props.customers.customers.length === 0 && <p>No reports found</p>}
     </React.Fragment>
   );
 };
 const mapStateToProps = state => ({
   customers: state.customers
 });
-export default connect(mapStateToProps)(CustomerList);
+export default connect(mapStateToProps, {
+  fetchCustomerList
+})(CustomerList);
