@@ -17,7 +17,7 @@ export const AddReportButton = props => {
           position: "fixed",
           zIndex: 2000,
           top: "auto",
-          bottom: 10,
+          bottom: 68,
           right: 10
         }}
       >

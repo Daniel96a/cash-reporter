@@ -48,11 +48,12 @@ const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: "transparent",
     position: "fixed",
+    zIndex: 0,
     margin: "auto",
     top: "48px",
     right: "0px",
     left: "0px",
-    bottom: "0px",
+    bottom: "56px",
     maxWidth: 600
   }
 }));

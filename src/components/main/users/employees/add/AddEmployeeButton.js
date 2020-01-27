@@ -17,7 +17,7 @@ export const AddEmployeeButton = props => {
           position: "fixed",
           zIndex: 1201,
           top: "auto",
-          bottom: 10,
+          bottom: 68,
           right: 10
         }}
       >

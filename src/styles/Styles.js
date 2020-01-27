@@ -103,7 +103,7 @@ export const headerStyle = {
 export const loginFormStyle = makeStyles(theme => ({
   root: {
     position: "fixed",
-    top: "20%",
+    top: "calc(50% - 105px)",
     textAlign: "center",
     left: 0,
     right: 0,

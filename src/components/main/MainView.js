@@ -5,17 +5,16 @@ import { MuiThemeProvider } from "material-ui/styles";
 import UsersView from "./users/UsersView";
 import "../../App.css";
 import ReportsView from "./reports/ReportsView";
+import { connect } from "react-redux";
 const Main = props => {
-  const [showCase, setshowCase] = useState("Dashboard");
   const [showAddReportsForm, setShowAddReportsForm] = useState(false);
-
   const content = (
     <MuiThemeProvider>
       <React.Fragment>
         <MainHeader
           doLogout={props.doLogout}
-          showCase={showCase}
-          setshowCase={setshowCase}
+          showCase={props.selectedView}
+          setshowCase={props.setSelectedView}
         />
         <div
           className="main-content"
@@ -27,17 +26,12 @@ const Main = props => {
             margin: "auto"
           }}
         >
-          {showCase === "Dashboard" && <Profile />}
-          {showCase === "Users" && <UsersView />}
-          {showCase === "Reports" && (
+          {props.selectedView === "Dashboard" && <Profile />}
+          {props.selectedView === "Users" && <UsersView />}
+          {props.selectedView === "Reports" && (
             <ReportsView
               showAddReportsForm={showAddReportsForm}
               setShowAddReportsForm={setShowAddReportsForm}
-              reports={props.reports}
-              addReport={props.addReport}
-              updateReport={props.updateReport}
-              deleteReport={props.deleteReport}
-              fetchReportList={props.fetchReportList}
             />
           )}
         </div>
@@ -46,5 +40,8 @@ const Main = props => {
   );
   return content;
 };
+const mapStateToProps = state => ({
+  selectedView: state.states.selectedView
+});
 
-export default Main;
+export default connect(mapStateToProps)(Main);

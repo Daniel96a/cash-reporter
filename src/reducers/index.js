@@ -3,6 +3,8 @@ import auth from "./auth";
 import employees from "./employees";
 import customers from "./customers";
 import reports from "./reports";
+import states from "./states";
+
 
 
 const rootReducer = combineReducers({
@@ -10,6 +12,7 @@ const rootReducer = combineReducers({
   customers,
   employees,
   reports,
+  states,
 });
 
 export default rootReducer;

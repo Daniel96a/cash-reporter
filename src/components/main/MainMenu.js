@@ -9,10 +9,18 @@ import { EditorFormatAlignCenter } from "material-ui/svg-icons";
 import { BLUE } from "../../colorTheme/colors";
 import { connect } from "react-redux";
 import { doLogout } from "../../actions/auth";
+import { changeView } from "../../actions/states";
 
 const MainMenu = props => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
+
+  const setSelectedView = e => {
+    props.changeView(e.currentTarget.id);
+    setAnchorEl(null);
+    setOpen(false);
+    e.preventDefault();
+  };
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
     if (!open) {
@@ -26,11 +34,6 @@ const MainMenu = props => {
     setAnchorEl(null);
     setOpen(false);
   };
-  const setMenuCase = e => {
-    setAnchorEl(null);
-    setOpen(false);
-    props.setshowCase(e);
-  };
 
   return (
     <div style={menuPosition}>
@@ -43,23 +46,31 @@ const MainMenu = props => {
         <MenuIcon style={menuIconColor} />
       </IconButton>
       <StyledMenu
-      style={{}}
+        style={{}}
         id="customized-menu"
         anchorEl={anchorEl}
         onClose={handleClose}
         open={open}
       >
-        <StyledMenuItem onClick={setMenuCase.bind(this, "Dashboard")}>
-          <div style={{ margin: "auto" }}>Dashboard</div>
+        <StyledMenuItem id="Dashboard" onClick={setSelectedView.bind(this)}>
+          <div style={{ margin: "auto" }} id="Dashboard">
+            Dashboard
+          </div>
         </StyledMenuItem>
-        <StyledMenuItem onClick={setMenuCase.bind(this, "Users")}>
-          <div style={{ margin: "auto" }}>Users</div>
+        <StyledMenuItem id="Users" onClick={setSelectedView.bind(this)}>
+          <div style={{ margin: "auto" }} id="Users">
+            Users
+          </div>
         </StyledMenuItem>
-        <StyledMenuItem onClick={setMenuCase.bind(this, "Reports")}>
-          <div style={{ margin: "auto" }}>Reports</div>
+        <StyledMenuItem id="Reports" onClick={setSelectedView.bind(this)}>
+          <div style={{ margin: "auto" }} id="Reports">
+            Reports
+          </div>
         </StyledMenuItem>
         <StyledMenuItem onClick={props.doLogout.bind(this)}>
-          <div style={{ margin: "auto" }}>Logout</div>
+          <div style={{ margin: "auto" }} id="Logout">
+            Logout
+          </div>
         </StyledMenuItem>
       </StyledMenu>
     </div>
@@ -80,8 +91,8 @@ const StyledMenu = withStyles({
     "& .MuiList-padding": {
       padding: 0
     },
-    "& div.MuiPaper-root":{
-      left: 0,
+    "& div.MuiPaper-root": {
+      left: 0
     }
   }
 })(props => (
@@ -130,12 +141,13 @@ const menuPosition = {
   textAlign: EditorFormatAlignCenter,
   margin: "auto",
   position: "absolute",
-  right: "0",
+  right: "0"
 };
 
 const mapStateToProps = state => ({
   auth: state.auth
 });
 export default connect(mapStateToProps, {
-  doLogout
+  doLogout,
+  changeView
 })(MainMenu);
