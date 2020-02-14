@@ -17,13 +17,14 @@ const Main = props => {
           setshowCase={props.setSelectedView}
         />
         <div
-          className="main-content"
           style={{
-            position: "fixed",
-            top: "60px",
-            left: "10px",
-            right: "10px",
-            margin: "auto"
+            position: "relative",
+            top: 58,
+            bottom: 56,
+            left: 0,
+            right: 0,
+            margin: "auto",
+            overflowY: "scroll"
           }}
         >
           {props.selectedView === "Dashboard" && <Profile />}

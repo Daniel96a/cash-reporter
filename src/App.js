@@ -5,6 +5,8 @@ import LoginPage from "./components/login/LoginPage";
 import { RestrictedView } from "./components/restrictedView/RestrictedView";
 import { Switch, Route } from "react-router-dom";
 import ProtectedRoute from "./protected.route";
+import { withCookies } from "react-cookie";
+
 import { LoginRoute } from "./login.route";
 const App = props => {
   return (
@@ -16,11 +18,12 @@ const App = props => {
         component={LoginPage}
       />
       <ProtectedRoute
+        exact
         path="/"
         isAuthenticated={props.isAuthenticated}
         component={MainView}
       />
-      <Route exact path="*" component={RestrictedView} />
+      <Route exact path="/*" component={RestrictedView} />
     </Switch>
   );
 };
@@ -29,4 +32,4 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps)(App);
+export default withCookies(connect(mapStateToProps)(App));

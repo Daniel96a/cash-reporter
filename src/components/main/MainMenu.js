@@ -8,8 +8,8 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { EditorFormatAlignCenter } from "material-ui/svg-icons";
 import { BLUE } from "../../colorTheme/colors";
 import { connect } from "react-redux";
-import { doLogout } from "../../actions/auth";
-import { changeView } from "../../actions/states";
+import { doLogout } from "../../redux/actions/auth";
+import { changeView } from "../../redux/actions/states";
 
 const MainMenu = props => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -46,7 +46,7 @@ const MainMenu = props => {
         <MenuIcon style={menuIconColor} />
       </IconButton>
       <StyledMenu
-        style={{}}
+
         id="customized-menu"
         anchorEl={anchorEl}
         onClose={handleClose}

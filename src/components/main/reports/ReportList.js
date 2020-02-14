@@ -2,22 +2,18 @@ import React, { useState, useEffect } from "react";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import { ReportDetails } from "./ReportDetails";
-import { listStyle } from "../../../styles/Styles";
+import ReportDetails from "./ReportDetails";
+import { reportListStyle } from "../../../styles/Styles";
 import { connect } from "react-redux";
-import {
-  updateReport,
-  deleteReport,
-  fetchReportList
-} from "../../../actions/reports";
+import { fetchReportList } from "../../../redux/actions/reports";
 
 const ReportList = props => {
-  const styles = listStyle();
+  const styles = reportListStyle();
   const [showReportDetails, setShowReportDetails] = useState(false);
   const [reportSelected, setReportSelected] = useState(null);
 
   const openDetails = e => {
-    setReportSelected(props.reports.reports[e.currentTarget.id]);
+    setReportSelected(e.currentTarget.id);
     setShowReportDetails(true);
   };
   useEffect(() => {
@@ -28,13 +24,10 @@ const ReportList = props => {
     <React.Fragment>
       {reportSelected !== null && showReportDetails && (
         <ReportDetails
-          reports={props.reports.reports}
           reportSelected={reportSelected}
           setReportSelected={setReportSelected}
           showReportDetails={showReportDetails}
           setShowReportDetails={setShowReportDetails}
-          updateReport={updateReport}
-          deleteReport={deleteReport}
         />
       )}
       {props.reports.reports.length > 0 && (
@@ -66,7 +59,5 @@ const mapStateToProps = state => ({
   reports: state.reports
 });
 export default connect(mapStateToProps, {
-  updateReport,
-  deleteReport,
   fetchReportList
 })(ReportList);

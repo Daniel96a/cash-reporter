@@ -1,13 +1,12 @@
 import * as types from "./types";
 import axios from "axios";
 import { customHeaders } from "./customHeaders";
-import setAuthorizationToken from "../utils/setAuthorizationToken";
 import { URL } from "./URLs";
-import history from "../history";
-// import { fetchCustomerList } from "./customers";
-// import { fetchEmployeeList } from "./employees";
-// import { fetchReportList } from "./reports";
-
+import history from "../../history";
+import { Cookies } from "react-cookie";
+const cookie = new Cookies();
+const date = new Date(Date.now() + 6000000);
+console.log(date);
 export const setCurrentUser = user => ({
   type: types.SET_CURRENT_USER,
   user
@@ -24,12 +23,16 @@ export const verifyToken = token => {
         timeout: 1000
       })
       .then(res => {
-        setAuthorizationToken(res.data.token);
         dispatch(setCurrentUser(res.data));
+        cookie.set("user", cookie.get("user"), {
+          path: "/",
+          expires: date
+        });
       })
       .catch(error => {
+        cookie.remove("user");
         alert(error + "\n Please login to proceed");
-        dispatch(doLogout());
+        history.push("/login");
       });
   };
 };
@@ -42,8 +45,14 @@ export const doLogin = data => {
         timeout: 1000
       })
       .then(res => {
-        localStorage.setItem("token", res.data.token);
-        setAuthorizationToken(res.data.token);
+        cookie.set("user", res.data.token, {
+          path: "/",
+          expires: date
+        });
+        sessionStorage.setItem(
+          "user",
+          `username= ${res.data.username}, permission= ${res.data.permission}`
+        );
         dispatch(setCurrentUser(res.data));
       })
       .catch(error => {
@@ -54,18 +63,26 @@ export const doLogin = data => {
 export const doLogout = () => {
   return async dispatch => {
     const token = {
-      token: localStorage.token
+      token: cookie.get("user")
     };
     axios
       .post(URL.localhost + "/logout", token, {
         headers: customHeaders,
         timeout: 1000
       })
-      .finally(() => {
-        localStorage.removeItem("token");
+      .then(() => {
+        cookie.remove("user");
+        sessionStorage.clear();
         history.push("/login");
-        setAuthorizationToken(false);
+        dispatch(setCurrentUser({}));
+
+      })
+      .catch(() => {
+        history.push("/login");
+        sessionStorage.clear();
+        cookie.remove("user");
         dispatch(setCurrentUser({}));
       });
+      
   };
 };

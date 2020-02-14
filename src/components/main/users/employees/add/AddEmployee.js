@@ -5,7 +5,7 @@ import { TextField } from "material-ui";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { detailsDialog } from "../../../../../styles/Styles";
-import { addEmployee } from "../../../../../actions/employees";
+import { addEmployee } from "../../../../../redux/actions/employees";
 
 import { connect } from "react-redux";
 

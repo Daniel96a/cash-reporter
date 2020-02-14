@@ -7,7 +7,7 @@ import Avatar from "@material-ui/core/Avatar";
 import CustomerDetails from "./CustomerDetails";
 import EditCustomer from "./edit/EditCustomer";
 import { listStyle } from "../../../../styles/Styles";
-import { fetchCustomerList } from "../../../../actions/customers";
+import { fetchCustomerList } from "../../../../redux/actions/customers";
 import { connect } from "react-redux";
 
 const CustomerList = props => {

@@ -1,9 +1,9 @@
 .profile-div {
   margin: auto;
-  position: fixed;
+  position: relative;
   text-align: center;
-  right: 10px;
-  left: 10px;
+  right: 0;
+  left: 0;
   max-width: 600px;
   border-radius: 10px;
   min-width: 250px;
@@ -17,7 +17,7 @@ hr {
   margin-top: 20px;
   margin-bottom: 20px;
 }
-.settings{
+.settings {
   position: absolute;
   right: 10px;
   top: 10px;

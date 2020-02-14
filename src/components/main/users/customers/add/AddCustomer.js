@@ -5,7 +5,7 @@ import { TextField } from "material-ui";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { detailsDialog } from "../../../../../styles/Styles";
-import { addCustomer } from "../../../../../actions/customers";
+import { addCustomer } from "../../../../../redux/actions/customers";
 import { connect } from "react-redux";
 const AddCustomer = props => {
   const styles=detailsDialog();

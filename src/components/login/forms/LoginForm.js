@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TextField, RaisedButton } from "material-ui";
 import { loginFormStyle } from "../../../styles/Styles";
-import { doLogin } from "../../../actions/auth";
+import { doLogin } from "../../../redux/actions/auth";
 import { connect } from "react-redux";
 import history from "../../../history";
 

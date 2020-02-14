@@ -5,13 +5,15 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 import { connect } from "react-redux";
-import { deleteCustomer } from "../../../../../actions/customers";
+import { deleteCustomer } from "../../../../../redux/actions/customers";
+import { confirmDialog } from "../../../../../styles/Styles";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const DeleteCustomer = (props) => {
+const DeleteCustomer = props => {
   const [open, setOpen] = useState(props.showDeleteCustomer);
+  const dialogStyle = confirmDialog();
 
   const handleClose = () => {
     setOpen(false);
@@ -26,8 +28,9 @@ const DeleteCustomer = (props) => {
   };
 
   return (
-    <div>
       <Dialog
+        className={dialogStyle.root}
+        hideBackdrop
         open={open}
         TransitionComponent={Transition}
         keepMounted
@@ -47,7 +50,6 @@ const DeleteCustomer = (props) => {
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
   );
 };
 

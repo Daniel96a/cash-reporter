@@ -6,7 +6,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { detailsDialog } from "../../../../../styles/Styles";
 import { connect } from "react-redux";
-import { updateEmployee } from "../../../../../actions/employees";
+import { updateEmployee } from "../../../../../redux/actions/employees";
 
 export const EditEmployee = props => {
   const styles = detailsDialog();

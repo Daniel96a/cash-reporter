@@ -6,7 +6,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { EditReportButton } from "./edit/EditReportButton";
 import { detailsDialog } from "../../../styles/Styles";
-export const ReportDetails = props => {
+import { connect } from "react-redux";
+const ReportDetails = props => {
   const styles = detailsDialog();
   const handleClose = () => {
     props.setShowReportDetails(false);
@@ -22,8 +23,6 @@ export const ReportDetails = props => {
       <EditReportButton
         reportSelected={props.reportSelected}
         setReportSelected={props.setReportSelected}
-        updateReport={props.updateReport}
-        deleteReport={props.deleteReport}
         setShowReportDetails={props.setShowReportDetails}
       />
       <DialogTitle id="max-width-dialog-title" className="align-text-center">
@@ -38,7 +37,7 @@ export const ReportDetails = props => {
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "lightgrey" }}
-          defaultValue={props.reportSelected.employeesign}
+          defaultValue={props.reports[props.reportSelected].employeesign}
           readOnly
         />
         <TextField
@@ -48,7 +47,7 @@ export const ReportDetails = props => {
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "lightgrey" }}
-          defaultValue={props.reportSelected.revenue}
+          defaultValue={props.reports[props.reportSelected].revenue}
           variant="filled"
           readOnly
         />
@@ -59,7 +58,7 @@ export const ReportDetails = props => {
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "lightgrey" }}
-          defaultValue={props.reportSelected.id}
+          defaultValue={props.reports[props.reportSelected].id}
           variant="filled"
           readOnly
         />
@@ -70,7 +69,7 @@ export const ReportDetails = props => {
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "lightgrey" }}
-          defaultValue={props.reportSelected.customersign}
+          defaultValue={props.reports[props.reportSelected].customersign}
           readOnly
         />
         <TextField
@@ -80,7 +79,7 @@ export const ReportDetails = props => {
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "lightgrey" }}
-          defaultValue={props.reportSelected.digitalcashflow}
+          defaultValue={props.reports[props.reportSelected].digitalcashflow}
           readOnly
         />
         <TextField
@@ -90,7 +89,7 @@ export const ReportDetails = props => {
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "lightgrey" }}
-          defaultValue={props.reportSelected.cashflow}
+          defaultValue={props.reports[props.reportSelected].cashflow}
           readOnly
         />
         <TextField
@@ -100,7 +99,7 @@ export const ReportDetails = props => {
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "lightgrey" }}
-          defaultValue={props.reportSelected.location}
+          defaultValue={props.reports[props.reportSelected].location}
           readOnly
         />
         <TextField
@@ -110,7 +109,7 @@ export const ReportDetails = props => {
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "lightgrey" }}
-          defaultValue={props.reportSelected.payment}
+          defaultValue={props.reports[props.reportSelected].payment}
           readOnly
         />
         <TextField
@@ -120,7 +119,7 @@ export const ReportDetails = props => {
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "lightgrey" }}
-          defaultValue={props.reportSelected.infofield}
+          defaultValue={props.reports[props.reportSelected].infofield}
           readOnly
         />
         <TextField
@@ -130,7 +129,7 @@ export const ReportDetails = props => {
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "lightgrey" }}
-          defaultValue={props.reportSelected.tablename}
+          defaultValue={props.reports[props.reportSelected].tablename}
           readOnly
         />
         <TextField
@@ -140,7 +139,7 @@ export const ReportDetails = props => {
           inputStyle={{ color: "white" }}
           floatingLabelStyle={{ color: "lightgrey" }}
           hintStyle={{ color: "lightgrey" }}
-          defaultValue={props.reportSelected.status}
+          defaultValue={props.reports[props.reportSelected].status}
           readOnly
         />
       </DialogContent>
@@ -154,3 +153,7 @@ const halfWidth = {
   width: "49.5%",
   marginLeft: "0.5%"
 };
+const mapStateToProps = state => ({
+  reports: state.reports.reports
+});
+export default connect(mapStateToProps)(ReportDetails);

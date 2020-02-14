@@ -5,7 +5,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { withStyles } from "@material-ui/core/styles";
 import { makeStyles, Button } from "@material-ui/core";
-import { EditReport } from "./EditReport";
+import EditReport from "./EditReport";
 import DeleteReport from "../delete/DeleteReport";
 import DeleteIcon from "@material-ui/icons/Delete";
 
@@ -33,7 +33,6 @@ export const EditReportButton = props => {
         <EditReport
           reportSelected={props.reportSelected}
           setShowEditReport={setShowEditReport}
-          updateReport={props.updateReport}
         />
       )}
       {showDeleteReport && (
@@ -43,7 +42,6 @@ export const EditReportButton = props => {
           setShowReportDetails={props.setShowReportDetails}
           reportSelected={props.reportSelected}
           setReportSelected={props.setReportSelected}
-          DeleteReport={props.DeleteReport}
         />
       )}
       <Button
@@ -71,14 +69,11 @@ export const EditReportButton = props => {
         open={Boolean(anchorEl)}
         onClick={handleClose}
       >
-        <StyledMenuItem>
-          <DeleteIcon
-            color={"secondary"}
-            onClick={openDeleteReport.bind(this)}
-          />
+        <StyledMenuItem onClick={openDeleteReport.bind(this)}>
+          <DeleteIcon color={"secondary"} />
         </StyledMenuItem>
-        <StyledMenuItem>
-          <EditIcon color={"primary"} onClick={openEditReport.bind(this)} />
+        <StyledMenuItem onClick={openEditReport.bind(this)}>
+          <EditIcon color={"primary"} />
         </StyledMenuItem>
       </StyledMenu>
     </div>

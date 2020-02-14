@@ -5,10 +5,11 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import EmployeeDetails from "./EmployeeDetails";
-import { fetchEmployeeList } from "../../../../actions/employees";
+import { fetchEmployeeList } from "../../../../redux/actions/employees";
 import EditEmployee from "./edit/EditEmployee";
 import { listStyle } from "../../../../styles/Styles";
 import { connect } from "react-redux";
+
 const EmployeeList = props => {
   const styles = listStyle();
   const [showEmployeeDetails, setShowEmployeeDetails] = useState(false);

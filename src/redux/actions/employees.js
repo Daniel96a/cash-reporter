@@ -3,6 +3,8 @@ import axios from "axios";
 import { customHeaders } from "./customHeaders";
 import { URL } from "./URLs";
 import { doLogout } from "./auth";
+import { Cookies } from "react-cookie";
+const cookie = new Cookies();
 
 export const setEmployees = employees => ({
   type: types.FETCH_EMPLOYEES,
@@ -25,7 +27,7 @@ export const REMOVE_EMPLOYEE = employee => ({
 export const fetchEmployeeList = () => {
   return async dispatch => {
     const token = {
-      token: localStorage.token
+      token: cookie.get("user")
     };
     axios
       .post(URL.localhost + "/employee/employeelist", token, {
@@ -44,7 +46,7 @@ export const fetchEmployeeList = () => {
 export const addEmployee = employee => {
   return async dispatch => {
     const data = {
-      token: localStorage.token,
+      token: cookie.get("user"),
       employee: employee
     };
     axios
@@ -65,7 +67,7 @@ export const addEmployee = employee => {
 export const deleteEmployee = employee => {
   return async dispatch => {
     const data = {
-      token: localStorage.token,
+      token: cookie.get("user"),
       employeeid: employee.id
     };
     axios
@@ -85,7 +87,7 @@ export const deleteEmployee = employee => {
 export const updateEmployee = employee => {
   return async dispatch => {
     const data = {
-      token: localStorage.token,
+      token: cookie.get("user"),
       employee: employee
     };
     axios

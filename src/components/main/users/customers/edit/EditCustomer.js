@@ -5,7 +5,7 @@ import { TextField } from "material-ui";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { detailsDialog } from "../../../../../styles/Styles";
-import { updateCustomer } from "../../../../../actions/customers";
+import { updateCustomer } from "../../../../../redux/actions/customers";
 import { connect } from "react-redux";
 
 const EditCustomer = props => {

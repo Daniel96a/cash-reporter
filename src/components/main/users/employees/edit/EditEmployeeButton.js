@@ -69,14 +69,11 @@ export const EditEmployeeButton = props => {
         open={Boolean(anchorEl)}
         onClick={handleClose}
       >
-        <StyledMenuItem>
-          <DeleteIcon
-            onClick={openDeleteEmployee.bind(this)}
-            color={"secondary"}
-          />
+        <StyledMenuItem onClick={openDeleteEmployee.bind(this)}>
+          <DeleteIcon color={"secondary"} />
         </StyledMenuItem>
-        <StyledMenuItem>
-          <EditIcon color={"primary"} onClick={openEditEmployee.bind(this)} />
+        <StyledMenuItem onClick={openEditEmployee.bind(this)}>
+          <EditIcon color={"primary"} />
         </StyledMenuItem>
       </StyledMenu>
     </div>

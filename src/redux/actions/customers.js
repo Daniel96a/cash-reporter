@@ -3,6 +3,8 @@ import axios from "axios";
 import { customHeaders } from "./customHeaders";
 import { URL } from "./URLs";
 import { doLogout } from "./auth";
+import { Cookies } from "react-cookie";
+const cookie = new Cookies();
 
 export const SET_CUSTOMERS = customers => ({
   type: types.FETCH_CUSTOMERS,
@@ -25,7 +27,7 @@ export const ADD_CUSTOMER = customer => ({
 export const fetchCustomerList = () => {
   return async dispatch => {
     const token = {
-      token: localStorage.token
+      token: cookie.get("user")
     };
     axios
       .post(URL.localhost + "/customer/customerlist", token, {
@@ -44,7 +46,7 @@ export const fetchCustomerList = () => {
 export const addCustomer = customer => {
   return async dispatch => {
     const data = {
-      token: localStorage.token,
+      token: cookie.get("user"),
       customer: customer
     };
     axios
@@ -65,7 +67,7 @@ export const addCustomer = customer => {
 export const deleteCustomer = customer => {
   return async dispatch => {
     const data = {
-      token: localStorage.token,
+      token: cookie.get("user"),
       id: customer.id
     };
     axios
@@ -85,7 +87,7 @@ export const deleteCustomer = customer => {
 export const updateCustomer = customer => {
   return async dispatch => {
     const data = {
-      token: localStorage.token,
+      token: cookie.get("user"),
       customer: customer
     };
     axios

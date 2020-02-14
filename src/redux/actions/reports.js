@@ -3,7 +3,8 @@ import axios from "axios";
 import { customHeaders } from "./customHeaders";
 import { URL } from "./URLs";
 import { doLogout } from "./auth";
-
+import {Cookies} from "react-cookie";
+const cookie = new Cookies();
 export const setReports = reports => ({
   type: types.FETCH_REPORTS,
   reports
@@ -12,7 +13,7 @@ export const setReports = reports => ({
 export const fetchReportList = () => {
   return async dispatch => {
     const token = {
-      token: localStorage.token
+      token: cookie.get("user")
     };
     axios
       .post(URL.localhost + "/report/reportlist", token, {
@@ -22,7 +23,7 @@ export const fetchReportList = () => {
       .then(res => {
         dispatch(setReports(res.data.reportlist));
       })
-      .catch(error => {
+      .catch(() => {
         dispatch(doLogout());
       });
   };
@@ -31,7 +32,7 @@ export const fetchReportList = () => {
 export const addReport = report => {
   return async dispatch => {
     const data = {
-      token: localStorage.token,
+      token: cookie.get("user"),
       report: report
     };
     axios
@@ -51,8 +52,8 @@ export const addReport = report => {
 export const deleteReport = report => {
   return async dispatch => {
     const data = {
-      token: localStorage.token,
-      id: report.id
+      token: cookie.get("user"),
+      reportid: report.id
     };
     axios
       .post(URL.localhost + "/report/report_remove", data, {
@@ -71,7 +72,7 @@ export const deleteReport = report => {
 export const updateReport = report => {
   return async dispatch => {
     const data = {
-      token: localStorage.token,
+      token: cookie.get("user"),
       report: report
     };
     axios

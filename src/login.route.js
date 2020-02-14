@@ -10,7 +10,7 @@ export const LoginRoute = ({
     <Route
       {...rest}
       render={props =>
-        !isAuthenticated && localStorage.token === undefined ? (
+        !isAuthenticated || sessionStorage.getItem("user") === null? (
           <Component {...props} />
         ) : (
           <Redirect

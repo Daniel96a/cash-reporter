@@ -6,7 +6,7 @@ import {
   makeStyles
 } from "@material-ui/core";
 import { connect } from "react-redux";
-import { changeView } from "../../actions/states";
+import { changeView } from "../../redux/actions/states";
 
 const BottomNavBar = props => {
   const useStyles = makeStyles({
@@ -20,7 +20,8 @@ const BottomNavBar = props => {
       position: "fixed",
       zIndex: 1,
       bottom: 0,
-      width: "100%"
+      width: "100%",
+
     }
   });
   const classes = useStyles();

@@ -1,5 +1,40 @@
-import { BLUE, DARK, GREY } from "../colorTheme/colors";
+import { BLUE, GREY, DARK } from "../colorTheme/colors";
 import { makeStyles } from "@material-ui/core";
+
+export const switchListsStyle = makeStyles(theme => ({
+  color: {
+    color: "lightgrey"
+  },
+  root: {
+    backgroundColor: "transparent",
+    position: "fixed",
+    zIndex: 0,
+    margin: "auto",
+    bottom: 46,
+    top: 46,
+    right: "0px",
+    left: "0px",
+    maxWidth: 600,
+    "& .MuiButtonBase-root": {
+      backgroundColor: GREY,
+      borderLeft: `1px solid ${DARK}`,
+      borderRight: `1px solid ${DARK}`
+
+    }
+  }
+}));
+
+export const swipeableViewsStyle = {
+  position: "fixed",
+  overflowY: "scroll",
+  margin: "auto",
+  top: 95,
+  bottom: 56,
+  left: 0,
+  right: 0,
+  maxWidth: 600
+};
+
 
 export const detailsDialog = makeStyles(theme => ({
   root: {
@@ -12,9 +47,8 @@ export const detailsDialog = makeStyles(theme => ({
       right: 0,
       maxHeight: "900px",
       maxWidth: "600px",
-      backgroundColor: DARK
+      backgroundColor: "transparent"
     },
-
     "& input": {
       color: "white"
     },
@@ -67,15 +101,25 @@ export const detailsDialog = makeStyles(theme => ({
     }
   }
 }));
+export const confirmDialog = makeStyles(theme => ({
+  root: {
+    "& .MuiDialog-paper": {
+      backgroundColor: GREY,
+      color: "white"
+    }
+  }
+}));
 export const listStyle = makeStyles(theme => ({
   root: {
+    position: "inherit",
     color: "white",
-    left: 0,
-    right: 0,
     margin: "auto",
     paddingTop: 1,
     maxWidth: 600,
-    backgroundColor: "transparent",
+    backgroundColor: GREY,
+    "& .MuiButtonBase-root": {
+      backgroundColor: GREY
+    },
     "& .MuiTab-textColorPrimary": {
       color: "white"
     },
@@ -87,6 +131,38 @@ export const listStyle = makeStyles(theme => ({
     },
     "& .MuiListItem-gutters": {
       backgroundColor: "rgba(32, 42, 53, .1)",
+      borderBottom: `1px solid ${DARK}`,
+      minHeight: "65px",
+      userSelect: "none",
+      marginBottom: 1
+    }
+  }
+}));
+export const reportListStyle = makeStyles(theme => ({
+  root: {
+    position: "fixed",
+    color: "white",
+    top: 48,
+    left: 0,
+    right: 0,
+    bottom: 40,
+    margin: "auto",
+    paddingTop: 1,
+    maxWidth: 600,
+    overflow: "scroll",
+    "& .MuiButtonBase-root": {
+      backgroundColor: GREY
+    },
+    "& .MuiTab-textColorPrimary": {
+      color: "white"
+    },
+    "& .MuiTypography-body2": {
+      color: "white"
+    },
+    "& .MuiTouchRipple-root": {
+      userSelect: "none"
+    },
+    "& .MuiListItem-gutters": {
       borderBottom: `1px solid ${GREY}`,
       minHeight: "65px",
       userSelect: "none",
