@@ -4,6 +4,8 @@ import { customHeaders } from "./customHeaders";
 import { URL } from "./URLs";
 import history from "../../history";
 import { Cookies } from "react-cookie";
+// import { setAuthorizationToken } from "../../utils/setAuthorizationToken";
+
 const cookie = new Cookies();
 const date = new Date(Date.now() + 6000000);
 console.log(date);
@@ -38,12 +40,17 @@ export const verifyToken = token => {
 };
 
 export const doLogin = data => {
+
   return async dispatch => {
     axios
-      .post(URL.localhost + "/login", data, {
-        headers: customHeaders,
-        timeout: 1000
-      })
+      .post(
+        "/login",
+          data,
+        {
+          headers: { customHeaders, authorization: "Basic Z2d5ZjpkZmdkdA==" },
+          timeout: 1000
+        }
+      )
       .then(res => {
         cookie.set("user", res.data.token, {
           path: "/",
@@ -75,7 +82,6 @@ export const doLogout = () => {
         sessionStorage.clear();
         history.push("/login");
         dispatch(setCurrentUser({}));
-
       })
       .catch(() => {
         history.push("/login");
@@ -83,6 +89,5 @@ export const doLogout = () => {
         cookie.remove("user");
         dispatch(setCurrentUser({}));
       });
-      
   };
 };

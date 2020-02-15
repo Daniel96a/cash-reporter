@@ -8,9 +8,9 @@ export const LoginRoute = ({
 }) => {
   return (
     <Route
-      {...rest}
-      render={props =>
-        !isAuthenticated || sessionStorage.getItem("user") === null? (
+    {...rest}
+    render={props =>
+        !isAuthenticated ? (
           <Component {...props} />
         ) : (
           <Redirect

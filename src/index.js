@@ -9,7 +9,7 @@ import { Router } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { Cookies } from "react-cookie";
 const cookie = new Cookies();
-console.log(sessionStorage.getItem("user"));
+
 if (cookie.get("user")) {
   store.dispatch(verifyToken(cookie.get("user")));
 }
