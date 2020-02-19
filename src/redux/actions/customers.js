@@ -1,10 +1,7 @@
 import * as types from "./types";
 import axios from "axios";
 import { customHeaders } from "./customHeaders";
-import { URL } from "./URLs";
 import { doLogout } from "./auth";
-import { Cookies } from "react-cookie";
-const cookie = new Cookies();
 
 export const SET_CUSTOMERS = customers => ({
   type: types.FETCH_CUSTOMERS,
@@ -26,16 +23,13 @@ export const ADD_CUSTOMER = customer => ({
 
 export const fetchCustomerList = () => {
   return async dispatch => {
-    const token = {
-      token: cookie.get("user")
-    };
     axios
-      .post(URL.localhost + "/customer/customerlist", token, {
-        headers: customHeaders,
+      .get("/customer", {
         timeout: 1000
       })
       .then(res => {
-        dispatch(SET_CUSTOMERS(res.data.customerlist));
+        console.log(res.data);
+        dispatch(SET_CUSTOMERS(res.data));
       })
       .catch(error => {
         dispatch(doLogout());
@@ -45,53 +39,36 @@ export const fetchCustomerList = () => {
 
 export const addCustomer = customer => {
   return async dispatch => {
-    const data = {
-      token: cookie.get("user"),
-      customer: customer
-    };
     axios
-      .post(URL.localhost + "/customer/customer_add", data, {
+      .post("/customer/customer_add", customer, {
         headers: customHeaders,
         timeout: 1000
       })
       .then(res => {
         customer.id = res.data.id;
         dispatch(ADD_CUSTOMER(customer));
-      })
-      .catch(error => {
-        dispatch(doLogout());
       });
   };
 };
 
 export const deleteCustomer = customer => {
   return async dispatch => {
-    const data = {
-      token: cookie.get("user"),
-      id: customer.id
-    };
     axios
-      .post(URL.localhost + "/customer/customer_remove", data, {
+      .post("/customer/customer_remove", customer.id, {
         headers: customHeaders,
         timeout: 1000
       })
       .then(() => {
         dispatch(REMOVE_CUSTOMER(customer));
-      })
-      .catch(error => {
-        dispatch(doLogout());
       });
   };
 };
 
 export const updateCustomer = customer => {
   return async dispatch => {
-    const data = {
-      token: cookie.get("user"),
-      customer: customer
-    };
+
     axios
-      .post(URL.localhost + "/customer/customer_update", data, {
+      .post("/customer/customer_update", customer, {
         headers: customHeaders,
         timeout: 1000
       })

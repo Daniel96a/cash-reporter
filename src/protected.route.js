@@ -5,7 +5,7 @@ const ProtectedRoute = ({ component: Component, isAuthenticated, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      isAuthenticated ? (
+      isAuthenticated || sessionStorage.getItem("loggedin") !== null? (
         <Component {...props} />
       ) : (
         <Redirect

@@ -1,10 +1,7 @@
 import * as types from "./types";
 import axios from "axios";
 import { customHeaders } from "./customHeaders";
-import { URL } from "./URLs";
 import { doLogout } from "./auth";
-import { Cookies } from "react-cookie";
-const cookie = new Cookies();
 
 export const setEmployees = employees => ({
   type: types.FETCH_EMPLOYEES,
@@ -26,16 +23,12 @@ export const REMOVE_EMPLOYEE = employee => ({
 
 export const fetchEmployeeList = () => {
   return async dispatch => {
-    const token = {
-      token: cookie.get("user")
-    };
     axios
-      .post(URL.localhost + "/employee/employeelist", token, {
-        headers: customHeaders,
-        timeout: 1000
+      .get("/employee", {
+        timeout: 1000,
       })
       .then(res => {
-        dispatch(setEmployees(res.data.employeeList));
+        dispatch(setEmployees(res.data));
       })
       .catch(error => {
         dispatch(doLogout());
@@ -45,12 +38,8 @@ export const fetchEmployeeList = () => {
 
 export const addEmployee = employee => {
   return async dispatch => {
-    const data = {
-      token: cookie.get("user"),
-      employee: employee
-    };
     axios
-      .post(URL.localhost + "/employee/employee_add", data, {
+      .post("/employee/employee_add", {
         headers: customHeaders,
         timeout: 1000
       })
@@ -66,12 +55,8 @@ export const addEmployee = employee => {
 
 export const deleteEmployee = employee => {
   return async dispatch => {
-    const data = {
-      token: cookie.get("user"),
-      employeeid: employee.id
-    };
     axios
-      .post(URL.localhost + "/employee/employee_remove", data, {
+      .post("/employee/employee_remove", {
         headers: customHeaders,
         timeout: 1000
       })
@@ -86,12 +71,8 @@ export const deleteEmployee = employee => {
 
 export const updateEmployee = employee => {
   return async dispatch => {
-    const data = {
-      token: cookie.get("user"),
-      employee: employee
-    };
     axios
-      .post(URL.localhost + "/employee/employee_update", data, {
+      .post("/employee/employee_update", {
         headers: customHeaders,
         timeout: 1000
       })

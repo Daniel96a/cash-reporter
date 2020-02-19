@@ -1,10 +1,8 @@
 import * as types from "./types";
 import axios from "axios";
 import { customHeaders } from "./customHeaders";
-import { URL } from "./URLs";
 import { doLogout } from "./auth";
-import {Cookies} from "react-cookie";
-const cookie = new Cookies();
+
 export const setReports = reports => ({
   type: types.FETCH_REPORTS,
   reports
@@ -12,16 +10,14 @@ export const setReports = reports => ({
 
 export const fetchReportList = () => {
   return async dispatch => {
-    const token = {
-      token: cookie.get("user")
-    };
     axios
-      .post(URL.localhost + "/report/reportlist", token, {
+      .get("/company", {
         headers: customHeaders,
         timeout: 1000
       })
       .then(res => {
-        dispatch(setReports(res.data.reportlist));
+        console.log(res.data)
+        dispatch(setReports(res.data));
       })
       .catch(() => {
         dispatch(doLogout());
@@ -31,12 +27,9 @@ export const fetchReportList = () => {
 
 export const addReport = report => {
   return async dispatch => {
-    const data = {
-      token: cookie.get("user"),
-      report: report
-    };
+
     axios
-      .post(URL.localhost + "/report/report_add", data, {
+      .post("/report/report_add", {
         headers: customHeaders,
         timeout: 1000
       })
@@ -51,12 +44,8 @@ export const addReport = report => {
 
 export const deleteReport = report => {
   return async dispatch => {
-    const data = {
-      token: cookie.get("user"),
-      reportid: report.id
-    };
     axios
-      .post(URL.localhost + "/report/report_remove", data, {
+      .post("/report/report_remove", {
         headers: customHeaders,
         timeout: 1000
       })
@@ -71,12 +60,8 @@ export const deleteReport = report => {
 
 export const updateReport = report => {
   return async dispatch => {
-    const data = {
-      token: cookie.get("user"),
-      report: report
-    };
     axios
-      .post(URL.localhost + "/report/report_update", data, {
+      .post("/report/report_update", {
         headers: customHeaders,
         timeout: 1000
       })

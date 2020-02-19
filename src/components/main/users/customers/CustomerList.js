@@ -20,7 +20,7 @@ const CustomerList = props => {
     props.fetchCustomerList();
     // eslint-disable-next-line
   }, []);
-
+  console.log(props.customers)
   const openDetails = e => {
     setShowCustomerDetails(!showEditCustomer);
     setCustomerSelected(e.currentTarget.id);

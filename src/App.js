@@ -9,21 +9,22 @@ import { withCookies } from "react-cookie";
 
 import { LoginRoute } from "./login.route";
 const App = props => {
-  console.log(props.isAuthenticated)
+  console.log(props.isAuthenticated);
   return (
     <Switch>
-      <LoginRoute
-        exact
-        path="/login"
-        isAuthenticated={props.isAuthenticated}
-        component={LoginPage}
-      />
       <ProtectedRoute
         exact
         path="/"
         isAuthenticated={props.isAuthenticated}
         component={MainView}
       />
+      <LoginRoute
+
+        path="/login"
+        isAuthenticated={props.isAuthenticated}
+        component={LoginPage}
+      />
+
       <Route exact path="/*" component={RestrictedView} />
     </Switch>
   );
