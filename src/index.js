@@ -6,7 +6,10 @@ import store from "./redux/store";
 import "./index.css";
 import { Router } from "react-router-dom";
 import { createBrowserHistory } from "history";
-
+import { validateToken } from "./redux/actions/auth";
+if (sessionStorage.access_token !== undefined) {
+  store.dispatch(validateToken());
+}
 render(
   <Provider store={store}>
     <Router history={createBrowserHistory()}>

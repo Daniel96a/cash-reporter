@@ -8,8 +8,8 @@ export const LoginRoute = ({
 }) => {
   return (
     <Route
-    {...rest}
-    render={props =>
+      {...rest}
+      render={props =>
         !isAuthenticated ? (
           <Component {...props} />
         ) : (

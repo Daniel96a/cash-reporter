@@ -9,7 +9,6 @@ import { withCookies } from "react-cookie";
 
 import { LoginRoute } from "./login.route";
 const App = props => {
-  console.log(props.isAuthenticated);
   return (
     <Switch>
       <ProtectedRoute

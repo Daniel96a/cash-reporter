@@ -11,15 +11,18 @@ export const setCurrentUser = user => ({
   user
 });
 
-export const verifyToken = token => {
+export const validateToken = () => {
+  const accessToken = sessionStorage.getItem("access_token");
   return async dispatch => {
     axios
-      .post("/", {
-        headers: customHeaders,
+      .post(`/oauth/check_token?token=${accessToken}`, "", {
+        headers: {
+          Authorization: "Basic cGVyaGFtOjEyMzQ="
+        },
         timeout: 1000
       })
       .then(res => {
-        dispatch(setCurrentUser(res.data));
+        dispatch(setCurrentUser(res.data))
       })
       .catch(error => {
         alert(error + "\n Please login to proceed");
@@ -39,9 +42,11 @@ export const doLogin = data => {
         },
         timeout: 1000
       })
-      .then(token => {
-        setAuthorizationToken(token);
-        dispatch(setCurrentUser(token));
+      .then(res => {
+        sessionStorage.setItem("access_token", res.data.access_token);
+
+        setAuthorizationToken(res);
+        dispatch(setCurrentUser(res));
       })
       .catch(error => {
         alert(error);
