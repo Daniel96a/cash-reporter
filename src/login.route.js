@@ -10,7 +10,7 @@ export const LoginRoute = ({
     <Route
     {...rest}
     render={props =>
-        !isAuthenticated || sessionStorage.getItem("loggedin") === null? (
+        !isAuthenticated ? (
           <Component {...props} />
         ) : (
           <Redirect

@@ -19,7 +19,7 @@ const App = props => {
         component={MainView}
       />
       <LoginRoute
-
+        exact
         path="/login"
         isAuthenticated={props.isAuthenticated}
         component={LoginPage}
