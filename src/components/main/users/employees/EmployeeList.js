@@ -15,10 +15,7 @@ const EmployeeList = props => {
   const [showEmployeeDetails, setShowEmployeeDetails] = useState(false);
   const [employeeSelected, setEmployeeSelected] = useState(null);
   const [showEditEmployee, setShowEditEmployee] = useState(false);
-  // const openEdit = e => {
-  //   setEmployeeSelected(e.currentTarget.id);
-  //   setShowEditEmployee(true);
-  // };
+
   useEffect(() => {
     props.fetchEmployeeList();
     // eslint-disable-next-line
@@ -56,10 +53,7 @@ const EmployeeList = props => {
               button
             >
               <ListItemAvatar>
-                <Avatar
-                  alt={`Avatar n°${employee}`}
-                  src={`/static/images/avatar/${employee.id}.jpg`}
-                />
+                <Avatar />
               </ListItemAvatar>
               <ListItemText
                 primary={`

@@ -2,7 +2,8 @@ import * as types from "./types";
 import axios from "axios";
 import { customHeaders } from "./customHeaders";
 import { doLogout } from "./auth";
-
+import { Cookies } from "react-cookie";
+const cookie = new Cookies();
 export const SET_CUSTOMERS = customers => ({
   type: types.FETCH_CUSTOMERS,
   customers: customers
@@ -24,23 +25,19 @@ export const ADD_CUSTOMER = customer => ({
 export const fetchCustomerList = () => {
   return async dispatch => {
     axios
-      .get("/customer", {
-        timeout: 1000
-      })
+      .get(`http://localhost:8080/customer?access_token=${cookie.get("access_token")}`)
       .then(res => {
         console.log(res.data);
         dispatch(SET_CUSTOMERS(res.data));
       })
-      .catch(error => {
-        dispatch(doLogout());
-      });
+      .catch(error => {});
   };
 };
 
 export const addCustomer = customer => {
   return async dispatch => {
     axios
-      .post("/customer/customer_add", customer, {
+      .post("http://localhost:8080/customer/customer_add", customer, {
         headers: customHeaders,
         timeout: 1000
       })
@@ -54,7 +51,7 @@ export const addCustomer = customer => {
 export const deleteCustomer = customer => {
   return async dispatch => {
     axios
-      .post("/customer/customer_remove", customer.id, {
+      .post("http://localhost:8080/customer/customer_remove", customer.id, {
         headers: customHeaders,
         timeout: 1000
       })
@@ -66,9 +63,8 @@ export const deleteCustomer = customer => {
 
 export const updateCustomer = customer => {
   return async dispatch => {
-
     axios
-      .post("/customer/customer_update", customer, {
+      .post("http://localhost:8080/customer/customer_update", customer, {
         headers: customHeaders,
         timeout: 1000
       })

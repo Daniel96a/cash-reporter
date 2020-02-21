@@ -10,7 +10,7 @@ export const LoginRoute = ({
     <Route
       {...rest}
       render={props =>
-        !isAuthenticated || !sessionStorage.access_token ? (
+        !isAuthenticated ? (
           <Component {...props} />
         ) : ( 
           <Redirect

@@ -2,7 +2,8 @@ import * as types from "./types";
 import axios from "axios";
 import { customHeaders } from "./customHeaders";
 import { doLogout } from "./auth";
-
+import Cookies from "universal-cookie";
+const cookie = new Cookies();
 export const setEmployees = employees => ({
   type: types.FETCH_EMPLOYEES,
   employees
@@ -24,22 +25,18 @@ export const REMOVE_EMPLOYEE = employee => ({
 export const fetchEmployeeList = () => {
   return async dispatch => {
     axios
-      .get("/employee", {
-        timeout: 1000,
-      })
+      .get(`http://localhost:8080/customer?access_token=${cookie.get("access_token")}`)
       .then(res => {
         dispatch(setEmployees(res.data));
       })
-      .catch(error => {
-        dispatch(doLogout());
-      });
+      .catch(error => {});
   };
 };
 
 export const addEmployee = employee => {
   return async dispatch => {
     axios
-      .post("/employee/employee_add", {
+      .post("http://localhost:8080/employee/employee_add", {
         headers: customHeaders,
         timeout: 1000
       })
@@ -56,7 +53,7 @@ export const addEmployee = employee => {
 export const deleteEmployee = employee => {
   return async dispatch => {
     axios
-      .post("/employee/employee_remove", {
+      .post("http://localhost:8080/employee/employee_remove", {
         headers: customHeaders,
         timeout: 1000
       })
@@ -72,7 +69,7 @@ export const deleteEmployee = employee => {
 export const updateEmployee = employee => {
   return async dispatch => {
     axios
-      .post("/employee/employee_update", {
+      .post("http://localhost:8080/employee/employee_update", {
         headers: customHeaders,
         timeout: 1000
       })

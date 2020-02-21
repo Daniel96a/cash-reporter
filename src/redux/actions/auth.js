@@ -1,10 +1,13 @@
 import * as types from "./types";
 import axios from "axios";
 import { customHeaders } from "./customHeaders";
-import history from "../../history";
-// import base64 from "base-64";
-import { setGrantTypePassword } from "../../utils/setGrantType";
+import {
+  setGrantTypePassword,
+  setGrantTypeRefreshToken
+} from "../../utils/setGrantType";
 import { setAuthorizationToken } from "../../utils/setAuthorizationToken";
+import Cookies from "universal-cookie";
+const cookie = new Cookies();
 
 export const setCurrentUser = user => ({
   type: types.SET_CURRENT_USER,
@@ -12,21 +15,47 @@ export const setCurrentUser = user => ({
 });
 
 export const validateToken = () => {
-  const accessToken = sessionStorage.getItem("access_token");
+  const accessToken = cookie.get("access_token");
   return async dispatch => {
     axios
-      .post(`/oauth/check_token?token=${accessToken}`, "", {
+      .post(`http://localhost:8080/oauth/check_token?token=${accessToken}`, "", {
         headers: {
           Authorization: "Basic cGVyaGFtOjEyMzQ="
         },
         timeout: 1000
       })
       .then(res => {
-        dispatch(setCurrentUser(res.data))
+        console.log(res);
+        dispatch(setCurrentUser(res.data));
       })
       .catch(error => {
-        alert(error + "\n Please login to proceed");
-        history.push("/login");
+        cookie.remove("access_token");
+      });
+  };
+};
+export const refreshToken = () => {
+  // var encodedData =
+  //   "Basic " + base64.encode(`${data.username}:${data.password}`);
+  return async dispatch => {
+    axios
+      .post("http://localhost:8080/oauth/token", setGrantTypeRefreshToken(), {
+        headers: {
+          Authorization: "Basic cGVyaGFtOjEyMzQ="
+        },
+        timeout: 1000
+      })
+      .then(res => {
+        cookie.set("access_token", res.data.access_token, {
+          maxAge: res.data.expires_in
+        });
+        cookie.set("refresh_token", res.data.refresh_token, {
+          maxAge: res.data.expires_in
+        });
+        setAuthorizationToken(res);
+        dispatch(setCurrentUser(res));
+      })
+      .catch(error => {
+        dispatch(doLogout())
       });
   };
 };
@@ -36,14 +65,20 @@ export const doLogin = data => {
   //   "Basic " + base64.encode(`${data.username}:${data.password}`);
   return async dispatch => {
     axios
-      .post("/oauth/token", setGrantTypePassword(data), {
+      .post("http://localhost:8080/oauth/token", setGrantTypePassword(data), {
         headers: {
           Authorization: "Basic cGVyaGFtOjEyMzQ="
         },
         timeout: 1000
       })
       .then(res => {
-        sessionStorage.setItem("access_token", res.data.access_token);
+        console.log(res.data);
+        cookie.set("access_token", res.data.access_token, {
+          maxAge: res.data.expires_in
+        });
+        cookie.set("refresh_token", res.data.refresh_token, {
+          maxAge: res.data.expires_in
+        });
 
         setAuthorizationToken(res);
         dispatch(setCurrentUser(res));
@@ -56,19 +91,15 @@ export const doLogin = data => {
 export const doLogout = () => {
   return async dispatch => {
     axios
-      .get("/logout", {
+      .get("http://localhost:8080/logout", {
         headers: customHeaders,
         timeout: 1000
       })
-      .then(() => {
-        history.push("/login");
+      .finally(() => {
         dispatch(setCurrentUser({}));
-        sessionStorage.clear();
-      })
-      .catch(() => {
-        dispatch(setCurrentUser({}));
-        history.push("/login");
-        sessionStorage.clear();
+        cookie.remove("access_token");
+        cookie.remove("refresh_token");
+        window.location.reload();
       });
   };
 };
