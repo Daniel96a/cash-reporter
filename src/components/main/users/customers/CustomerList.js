@@ -9,17 +9,14 @@ import EditCustomer from "./edit/EditCustomer";
 import { listStyle } from "../../../../styles/Styles";
 import { fetchCustomerList } from "../../../../redux/actions/customers";
 import { connect } from "react-redux";
-import Cookies from "universal-cookie";
 
 const CustomerList = props => {
-  const cookie = new Cookies();
   const styles = listStyle();
   const [showCustomerDetails, setShowCustomerDetails] = useState(false);
   const [showEditCustomer, setShowEditCustomer] = useState(false);
   const [customerSelected, setCustomerSelected] = useState(null);
 
   useEffect(() => {
-    console.log(cookie.get("access_token"));
     props.fetchCustomerList();
     // eslint-disable-next-line
   }, []);

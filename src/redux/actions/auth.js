@@ -18,14 +18,11 @@ export const validateToken = () => {
   const accessToken = cookie.get("access_token");
   return async dispatch => {
     axios
-      .post(`http://localhost:8080/oauth/check_token?token=${accessToken}`, "", {
-        headers: {
-          Authorization: "Basic cGVyaGFtOjEyMzQ="
-        },
+      .post(`http://192.168.1.131:8080/oauth/check_token?token=${accessToken}`, {
+        customHeaders,
         timeout: 1000
       })
       .then(res => {
-        console.log(res);
         dispatch(setCurrentUser(res.data));
       })
       .catch(error => {
@@ -38,7 +35,7 @@ export const refreshToken = () => {
   //   "Basic " + base64.encode(`${data.username}:${data.password}`);
   return async dispatch => {
     axios
-      .post("http://localhost:8080/oauth/token", setGrantTypeRefreshToken(), {
+      .post("http://192.168.1.131:8080/oauth/token", setGrantTypeRefreshToken(), {
         headers: {
           Authorization: "Basic cGVyaGFtOjEyMzQ="
         },
@@ -55,7 +52,7 @@ export const refreshToken = () => {
         dispatch(setCurrentUser(res));
       })
       .catch(error => {
-        dispatch(doLogout())
+        dispatch(doLogout());
       });
   };
 };
@@ -65,14 +62,13 @@ export const doLogin = data => {
   //   "Basic " + base64.encode(`${data.username}:${data.password}`);
   return async dispatch => {
     axios
-      .post("http://localhost:8080/oauth/token", setGrantTypePassword(data), {
+      .post("http://192.168.1.131:8080/oauth/token", setGrantTypePassword(data), {
         headers: {
           Authorization: "Basic cGVyaGFtOjEyMzQ="
         },
         timeout: 1000
       })
       .then(res => {
-        console.log(res.data);
         cookie.set("access_token", res.data.access_token, {
           maxAge: res.data.expires_in
         });
@@ -91,7 +87,7 @@ export const doLogin = data => {
 export const doLogout = () => {
   return async dispatch => {
     axios
-      .get("http://localhost:8080/logout", {
+      .get("http://192.168.1.131:8080/logout", {
         headers: customHeaders,
         timeout: 1000
       })
