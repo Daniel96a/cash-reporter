@@ -1,9 +1,12 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import { TextField } from "material-ui";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
+
+import {
+  TextField,
+  Dialog,
+  Button,
+  DialogContent,
+  DialogTitle
+} from "@material-ui/core";
 import { detailsDialog } from "../../../../../styles/Styles";
 import { updateCustomer } from "../../../../../redux/actions/customers";
 import { connect } from "react-redux";
@@ -111,7 +114,7 @@ const EditCustomer = props => {
           onChange={e => (customerData.address = e.target.value)}
         />
       </DialogContent>
-      <Button onClick={updateCustomer.bind(this)} color="primary">
+      <Button onClick={updateCustomer.bind(this)}>
         Update
       </Button>
       <Button onClick={handleClose} color="secondary">

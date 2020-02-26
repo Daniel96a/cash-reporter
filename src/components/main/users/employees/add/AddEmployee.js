@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import { TextField } from "material-ui";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
+import {
+  TextField,
+  Dialog,
+  Button,
+  DialogContent,
+  DialogTitle
+} from "@material-ui/core";
 import { detailsDialog } from "../../../../../styles/Styles";
 import { addEmployee } from "../../../../../redux/actions/employees";
 
@@ -28,18 +30,6 @@ export const AddEmployee = props => {
   };
   const createEmployee = e => {
     props.addEmployee(employee);
-    setfirstname("");
-    setlastname("");
-    setRole("");
-    setaddress("");
-    setphonenr("");
-    setemail("");
-    document.getElementsByName("firstname")[0].value = "";
-    document.getElementsByName("lastname")[0].value = "";
-    document.getElementsByName("role")[0].value = "";
-    document.getElementsByName("address")[0].value = "";
-    document.getElementsByName("phonenr")[0].value = "";
-    document.getElementsByName("email")[0].value = "";
     props.setShowAddEmployeeForm(false);
     e.preventDefault();
   };
@@ -58,72 +48,41 @@ export const AddEmployee = props => {
       <DialogTitle id="max-width-dialog-title" className="align-text-center">
         Add Employee
       </DialogTitle>
-      <DialogContent>
+      <DialogContent className={styles.label}>
         <TextField
-          style={halfWidth}
-          hintText="Enter first name here"
-          floatingLabelText="Enter first name"
+          label="Enter first name"
           name="firstname"
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           onChange={e => setfirstname(e.target.value)}
           defaultValue={firstname}
         />
         <TextField
-          style={halfWidth}
-          hintText="Enter last name here"
-          floatingLabelText="Enter last name"
+          label="Enter last name"
           name="lastname"
           required={true}
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           onChange={e => setlastname(e.target.value)}
           defaultValue={lastname}
         />
         <TextField
-          hintText="Enter role"
-          floatingLabelText="Enter role"
+          label="Enter role"
           name="role"
-          fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "grey" }}
           onChange={e => setRole(e.target.value)}
           defaultValue={role}
         />
         <TextField
-          hintText="Enter address"
-          floatingLabelText="Enter address"
+          label="Enter address"
           name="address"
-          fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "grey" }}
           onChange={e => setaddress(e.target.value)}
           defaultValue={address}
         />
         <TextField
-          hintText="Enter phone number here"
-          floatingLabelText="Enter phone number"
+          label="Enter phone number"
           name="phonenr"
-          fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "grey" }}
           onChange={e => setphonenr(e.target.value)}
           defaultValue={phonenr}
         />
-        <br />
         <TextField
-          hintText="Enter email here"
-          floatingLabelText="Enter email"
+          label="Enter email"
           name="email"
-          fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "grey" }}
           onChange={e => setemail(e.target.value)}
           defaultValue={email}
         />
@@ -137,10 +96,7 @@ export const AddEmployee = props => {
     </Dialog>
   );
 };
-const halfWidth = {
-  width: "49.5%",
-  marginLeft: "0.5%"
-};
+
 const mapStateToProps = state => ({
   customers: state.customers
 });

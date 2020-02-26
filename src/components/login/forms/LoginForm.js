@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextField, RaisedButton } from "material-ui";
+import { TextField, Button, FormGroup } from "@material-ui/core";
 import { loginFormStyle } from "../../../styles/Styles";
 import { doLogin } from "../../../redux/actions/auth";
 import { connect } from "react-redux";
@@ -23,7 +23,7 @@ const LoginForm = props => {
   };
 
   return (
-    <form
+    <FormGroup
       className={loginFormStyle().root + " fade-in"}
       onSubmit={e => {
         if (e.key === "Enter") {
@@ -31,30 +31,30 @@ const LoginForm = props => {
         }
       }}
     >
-      <TextField
-        fullWidth
-        autoComplete="true"
-        type="text"
-        name="username"
-        floatingLabelText="Enter username"
-        inputStyle={{ color: "white" }}
-        floatingLabelStyle={{ color: "lightgrey" }}
-        hintStyle={{ color: "lightgrey" }}
-        onChange={e => (data.username = e.target.value)}
-        className="form-control"
-      />
-      <TextField
-        fullWidth
-        floatingLabelText="Enter password"
-        type="password"
-        inputStyle={{ color: "white" }}
-        floatingLabelStyle={{ color: "lightgrey" }}
-        hintStyle={{ color: "lightgrey" }}
-        onChange={e => (data.password = e.target.value)}
-      />
+      <FormGroup className={loginFormStyle().label}>
+        <TextField
+          label="Username"
+          name="username"
+          autoComplete="current-username"
+          onChange={e => setusername(e.target.value)}
+        />
+        <TextField
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+          onChange={e => setpassword(e.target.value)}
+        />
+      </FormGroup>
       <br />
-      <RaisedButton label="Login" type="submit" onClick={login.bind(this)} />
-    </form>
+      <Button
+        variant="contained"
+        label="Login"
+        type="submit"
+        onClick={login.bind(this)}
+      >
+        Login
+      </Button>
+    </FormGroup>
   );
 };
 const mapStateToProps = state => ({

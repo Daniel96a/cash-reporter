@@ -18,7 +18,7 @@ export const validateToken = () => {
   const accessToken = cookie.get("access_token");
   return async dispatch => {
     axios
-      .post(`http://192.168.1.131:8080/oauth/check_token?token=${accessToken}`, {
+      .post(`http://localhost:8080/oauth/check_token?token=${accessToken}`, {
         customHeaders,
         timeout: 1000
       })
@@ -35,7 +35,7 @@ export const refreshToken = () => {
   //   "Basic " + base64.encode(`${data.username}:${data.password}`);
   return async dispatch => {
     axios
-      .post("http://192.168.1.131:8080/oauth/token", setGrantTypeRefreshToken(), {
+      .post("http://localhost:8080/oauth/token", setGrantTypeRefreshToken(), {
         headers: {
           Authorization: "Basic cGVyaGFtOjEyMzQ="
         },
@@ -58,11 +58,12 @@ export const refreshToken = () => {
 };
 
 export const doLogin = data => {
+  console.log(data)
   // var encodedData =
   //   "Basic " + base64.encode(`${data.username}:${data.password}`);
   return async dispatch => {
     axios
-      .post("http://192.168.1.131:8080/oauth/token", setGrantTypePassword(data), {
+      .post("http://localhost:8080/oauth/token", setGrantTypePassword(data), {
         headers: {
           Authorization: "Basic cGVyaGFtOjEyMzQ="
         },
@@ -87,7 +88,7 @@ export const doLogin = data => {
 export const doLogout = () => {
   return async dispatch => {
     axios
-      .get("http://192.168.1.131:8080/logout", {
+      .get("http://localhost:8080/logout", {
         headers: customHeaders,
         timeout: 1000
       })

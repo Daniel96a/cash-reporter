@@ -1,9 +1,11 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import { TextField } from "material-ui";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
+import {
+  TextField,
+  Dialog,
+  Button,
+  DialogContent,
+  DialogTitle
+} from "@material-ui/core";
 import { EditReportButton } from "./edit/EditReportButton";
 import { detailsDialog } from "../../../styles/Styles";
 import { connect } from "react-redux";
@@ -28,131 +30,89 @@ const ReportDetails = props => {
       <DialogTitle id="max-width-dialog-title" className="align-text-center">
         Report details
       </DialogTitle>
-      <DialogContent>
+      <DialogContent className={styles.label}>
         <TextField
-          style={halfWidth}
-          floatingLabelText="Employee sign"
+          label="Employee sign"
           name="employeesign"
-          variant="filled"
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           defaultValue={props.reports[props.reportSelected].employeesign}
-          readOnly
         />
         <TextField
-          style={halfWidth}
-          floatingLabelText="Revenue"
+          label="Revenue"
           name="revenue"
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           defaultValue={props.reports[props.reportSelected].revenue}
-          variant="filled"
           readOnly
         />
         <TextField
-          floatingLabelText="Report ID"
+          label="Report ID"
           name="reportid"
           fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           defaultValue={props.reports[props.reportSelected].id}
-          variant="filled"
           readOnly
         />
         <TextField
-          floatingLabelText="Customer sign"
+          label="Customer sign"
           name="customersign"
           fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           defaultValue={props.reports[props.reportSelected].customersign}
           readOnly
         />
         <TextField
-          floatingLabelText="Digital cash"
+          label="Digital cash"
           name="digitalcashflow"
           fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           defaultValue={props.reports[props.reportSelected].digitalcashflow}
           readOnly
         />
         <TextField
-          floatingLabelText="Cash"
+          label="Cash"
           name="cashflow"
           fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           defaultValue={props.reports[props.reportSelected].cashflow}
           readOnly
         />
         <TextField
-          floatingLabelText="Location"
+          label="Location"
           name="location"
           fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           defaultValue={props.reports[props.reportSelected].location}
           readOnly
         />
         <TextField
-          floatingLabelText="Payment"
+          label="Payment"
           name="payment"
           fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           defaultValue={props.reports[props.reportSelected].payment}
           readOnly
         />
         <TextField
-          floatingLabelText="Extra info"
+          label="Extra info"
           name="infofield"
           fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           defaultValue={props.reports[props.reportSelected].infofield}
           readOnly
         />
         <TextField
-          floatingLabelText="Table name"
+          label="Table name"
           name="tablename"
           fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           defaultValue={props.reports[props.reportSelected].tablename}
           readOnly
         />
         <TextField
-          floatingLabelText="Status"
+          label="Status"
           name="status"
           fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           defaultValue={props.reports[props.reportSelected].status}
           readOnly
         />
       </DialogContent>
-      <Button onClick={handleClose} color="primary">
+      <Button variant="contained" onClick={handleClose}>
         Close
       </Button>
     </Dialog>
   );
 };
-const halfWidth = {
-  width: "49.5%",
-  marginLeft: "0.5%"
-};
+
 const mapStateToProps = state => ({
   reports: state.reports.reports
 });

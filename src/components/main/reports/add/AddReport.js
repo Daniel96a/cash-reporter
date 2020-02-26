@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import { TextField } from "material-ui";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import { detailsDialog, tableStyle } from "../../../../styles/Styles";
-import { addReport } from "../../../../redux/actions/reports";
 import {
+  TextField,
+  DialogTitle,
+  DialogContent,
+  Dialog,
+  Button,
   TableContainer,
   Table,
   TableBody,
   TableRow,
   TableCell
 } from "@material-ui/core";
+import { detailsDialog, tableStyle } from "../../../../styles/Styles";
+import { addReport } from "../../../../redux/actions/reports";
 import { DARK } from "../../../../colorTheme/colors";
 import { connect } from "react-redux";
 
@@ -83,116 +83,68 @@ const AddReport = props => {
       <DialogTitle id="max-width-dialog-title" className="align-text-center">
         Add Report
       </DialogTitle>
-      <DialogContent>
+      <DialogContent className={styles.label}>
         <TextField
-          style={inputLeft}
-          floatingLabelText="Employeesign"
+          label="Employee sign"
           name="employeesign"
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
+          color="white"
           onChange={e => (report.employeesign = e.target.value)}
-          defaultValue={""}
         />
         <TextField
-          style={inputRight}
-          floatingLabelText="Customer sign"
+          label="Customer sign"
           name="customersign"
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           onChange={e => (report.customersign = e.target.value)}
           defaultValue={report.customersign}
         />
         <TextField
-          floatingLabelText="Table name"
+          label="Table name"
           name="tablename"
-          fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           onChange={e => (report.tablename = e.target.value)}
-          defaultValue={""}
         />
         <TextField
-          fullWidth
-          floatingLabelText="Location"
+          label="Location"
           name="location"
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           onChange={e => (report.location = e.target.value)}
-          defaultValue={""}
         />
         <TextField
-          style={inputLeft}
-          floatingLabelText="Cashflow"
+          label="Cash flow"
           name="cashflow"
           type="number"
           required
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           onChange={e => (report.cashflow = e.target.value)}
-          defaultValue={""}
         />
         <TextField
-          style={inputRight}
-          floatingLabelText="Digital cashflow"
+          label="Digital cash flow"
           name="digitalcashflow"
           type="number"
           required
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           onChange={e => (report.digitalcashflow = e.target.value)}
-          defaultValue={""}
         />
         <TextField
-          style={inputLeft}
-          floatingLabelText="Payment"
+          label="Payment"
           name="payment"
           type="number"
           required
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           onChange={e => (report.payment = e.target.value)}
-          defaultValue={""}
         />
         <TextField
-          style={inputRight}
-          floatingLabelText="Revenue"
+          label="Revenue"
           name="revenue"
           type="number"
           required
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           onChange={e => (report.revenue = e.target.value)}
-          defaultValue={""}
         />
         <TextField
-          floatingLabelText="Extra info"
+          label="Extra info"
           name="infofield"
-          fullWidth
           multiLine
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           onChange={e => (report.infofield = e.target.value)}
-          defaultValue={""}
         />
 
         <TextField
-          floatingLabelText="Status"
+          label="Status"
           name="status"
-          fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           onChange={e => (report.status = e.target.value)}
-          defaultValue={""}
         />
 
         <TableContainer
@@ -453,14 +405,6 @@ const AddReport = props => {
       </Button>
     </Dialog>
   );
-};
-const inputLeft = {
-  width: "49%",
-  float: "right"
-};
-const inputRight = {
-  width: "49%",
-  float: "left"
 };
 
 const mapStateToProps = state => ({

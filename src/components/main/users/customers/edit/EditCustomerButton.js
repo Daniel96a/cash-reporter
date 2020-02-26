@@ -50,9 +50,9 @@ export const EditCustomerButton = props => {
       <Button
         aria-label="Settings"
         onClick={handleClick}
-        color="primary"
         style={{
-          border: "none",
+          backgroundColor:"transparent",
+          borderRadius: 50,
           height: 64,
           width: 64,
           position: "absolute",
@@ -73,13 +73,10 @@ export const EditCustomerButton = props => {
         onClick={handleClose}
       >
         <StyledMenuItem onClick={openDeleteCustomer.bind(this)}>
-          <DeleteIcon
-            color={"secondary"}
-            
-          />
+          <DeleteIcon color="error" />
         </StyledMenuItem>
         <StyledMenuItem onClick={openEditCustomer.bind(this)}>
-          <EditIcon color={"primary"}  />
+          <EditIcon color="action" />
         </StyledMenuItem>
       </StyledMenu>
     </div>

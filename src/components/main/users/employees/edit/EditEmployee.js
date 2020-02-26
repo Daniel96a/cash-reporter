@@ -1,9 +1,11 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import { TextField } from "material-ui";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
+import {
+  TextField,
+  Dialog,
+  Button,
+  DialogContent,
+  DialogTitle
+} from "@material-ui/core";
 import { detailsDialog } from "../../../../../styles/Styles";
 import { connect } from "react-redux";
 import { updateEmployee } from "../../../../../redux/actions/employees";
@@ -44,67 +46,40 @@ export const EditEmployee = props => {
       <DialogTitle id="max-width-dialog-title" className="align-text-center">
         Edit Employee
       </DialogTitle>
-      <DialogContent>
+      <DialogContent className={styles.label}>
         <TextField
-          style={halfWidth}
-          floatingLabelText="First name"
+          label="First name"
           name="firstname"
-          variant="filled"
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "grey" }}
           defaultValue={employee.firstname}
           onChange={e => (employeeData.firstname = e.target.value)}
         />
         <TextField
-          style={halfWidth}
-          floatingLabelText="Last name"
+          label="Last name"
           name="lastname"
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "grey" }}
           defaultValue={employee.lastname}
-          variant="filled"
           onChange={e => (employeeData.lastname = e.target.value)}
         />
         <TextField
-          floatingLabelText="Employee ID"
+          label="Employee ID"
           name="employeeid"
-          fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "grey" }}
           defaultValue={employee.id}
-          variant="filled"
           disabled
         />
         <TextField
-          floatingLabelText="Role"
+          label="Role"
           name="role"
-          fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "grey" }}
           defaultValue={employee.role}
           onChange={e => (employeeData.role = e.target.value)}
         />
         <TextField
-          floatingLabelText="Phone"
+          label="Phone"
           name="phonenr"
-          fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "grey" }}
           defaultValue={employee.phonenr}
           onChange={e => (employeeData.phonenr = e.target.value)}
         />
         <TextField
-          floatingLabelText="Email"
+          label="Email"
           name="email"
-          fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "grey" }}
           defaultValue={employee.email}
           onChange={e => (employeeData.email = e.target.value)}
         />
@@ -118,10 +93,7 @@ export const EditEmployee = props => {
     </Dialog>
   );
 };
-const halfWidth = {
-  width: "49.5%",
-  marginLeft: "0.5%"
-};
+
 const mapStateToProps = state => ({
   employees: state.employees
 });

@@ -9,7 +9,7 @@ import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import CustomerList from "./customers/CustomerList";
 import EmployeeList from "./employees/EmployeeList";
-import { switchListsStyle, swipeableViewsStyle } from "../../../styles/Styles";
+import { switchListsStyle } from "../../../styles/Styles";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -64,7 +64,6 @@ export const SwitchLists = props => {
         indicatorColor="primary"
         textColor="primary"
         variant="fullWidth"
-        aria-label="action tabs example"
       >
         <Tab
           className={classes.color}
@@ -80,7 +79,6 @@ export const SwitchLists = props => {
         />
       </Tabs>
       <SwipeableViews
-        style={swipeableViewsStyle}
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={value}
         onChangeIndex={handleChangeIndex}

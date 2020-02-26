@@ -1,10 +1,9 @@
 import React from "react";
-import { MuiThemeProvider } from "material-ui/styles";
-import { AppBar } from "material-ui";
+import { AppBar, makeStyles, Typography } from "@material-ui/core";
 import MainMenu from "./MainMenu";
-import { makeStyles } from "@material-ui/core";
 import { headerStyle } from "../../styles/Styles";
 import BottomNavBar from "./BottomNavBar";
+import ThemeSwitch from "../../switches/ThemeSwitch";
 const useStyles = makeStyles(theme => ({
   root: {
     "& .MuiSvgIcon-root": {
@@ -16,23 +15,18 @@ const DashboardHeader = props => {
   const classes = useStyles();
 
   return (
-    <MuiThemeProvider>
-      <React.Fragment>
-        <AppBar
-          showMenuIconButton={false}
-          className={classes.root}
-          title="Cash Reporter"
-          titleStyle={{ lineHeight: "48px" }}
-          style={headerStyle}
-        >
-          <MainMenu showCase={props.showCase} setshowCase={props.setshowCase} />
-        </AppBar>
-        <BottomNavBar
-          showCase={props.showCase}
-          setshowCase={props.setshowCase}
-        />
-      </React.Fragment>
-    </MuiThemeProvider>
+    <React.Fragment>
+      <AppBar className={classes.root} style={headerStyle}>
+        <Typography style={{ fontSize: 20, margin: 10 }}>
+          Cash Reporter
+        </Typography>
+        <div style={{ position: "fixed", right: 40, top: 5 }}>
+          <ThemeSwitch />
+        </div>
+        <MainMenu showCase={props.showCase} setshowCase={props.setshowCase} />
+      </AppBar>
+      <BottomNavBar showCase={props.showCase} setshowCase={props.setshowCase} />
+    </React.Fragment>
   );
 };
 

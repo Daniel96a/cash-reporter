@@ -1,19 +1,20 @@
 import React, { useState } from "react";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import { TextField } from "material-ui";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import { detailsDialog, tableStyle } from "../../../../styles/Styles";
-import { updateReport } from "../../../../redux/actions/reports";
-import { connect } from "react-redux";
 import {
+  TextField,
+  DialogContent,
+  DialogTitle,
+  Dialog,
+  Button,
   TableContainer,
   Table,
   TableBody,
   TableRow,
   TableCell
 } from "@material-ui/core";
+import { detailsDialog, tableStyle } from "../../../../styles/Styles";
+import { updateReport } from "../../../../redux/actions/reports";
+import { connect } from "react-redux";
+
 import { DARK } from "../../../../colorTheme/colors";
 
 const EditReport = props => {
@@ -81,67 +82,40 @@ const EditReport = props => {
       <DialogTitle id="max-width-dialog-title" className="align-text-center">
         Edit Report
       </DialogTitle>
-      <DialogContent>
+      <DialogContent className={styles.label}>
         <TextField
-          style={halfWidth}
-          floatingLabelText="First name"
+          label="First name"
           name="firstname"
-          variant="filled"
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           defaultValue={report.firstname}
           disabled
         />
         <TextField
-          style={halfWidth}
-          floatingLabelText="Last name"
+          label="Last name"
           name="lastname"
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           defaultValue={report.lastname}
-          variant="filled"
           disabled
         />
         <TextField
-          floatingLabelText="Report ID"
+          label="Report ID"
           name="reportid"
-          fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           defaultValue={props.reportSelected.id}
-          variant="filled"
           disabled
         />
         <TextField
-          floatingLabelText="Phone"
+          label="Phone"
           name="phonenr"
-          fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           defaultValue={report.phonenr}
           onChange={e => (report.phonenr = e.target.value)}
         />
         <TextField
-          floatingLabelText="Email"
+          label="Email"
           name="email"
-          fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           defaultValue={report.email}
           onChange={e => (report.email = e.target.value)}
         />
         <TextField
-          floatingLabelText="Address"
+          label="Address"
           name="address"
-          fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           defaultValue={report.address}
           onChange={e => (report.address = e.target.value)}
         />
@@ -411,10 +385,7 @@ const EditReport = props => {
     </Dialog>
   );
 };
-const halfWidth = {
-  width: "49.5%",
-  marginLeft: "0.5%"
-};
+
 const mapStateToProps = state => ({
   reports: state.reports.reports
 });

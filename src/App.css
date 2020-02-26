@@ -5,23 +5,10 @@ div.MuiBox-root {
 /* div.makeStyles-root-173 {
   background-color: rgba(22, 31, 41);
 } */
-#customized-menu {
-  left: 0;
-}
 
-.logout-button {
-  margin: auto;
-}
 input:-webkit-autofill {
-  border: 1px solid #009bc2;
   -webkit-text-fill-color: #009bc2;
-  box-shadow: #7196bd;
   transition: background-color 5000s ease-in-out 0s;
-}
-
-label {
-  color: white;
-  color: #202a35;
 }
 
 .MuiTab-textColorPrimary {
@@ -36,7 +23,6 @@ th.MuiTableCell-body {
   text-align: center;
   border-bottom: #202a35;
 }
-
 
 .MuiBottomNavigationAction-root {
   color: white;

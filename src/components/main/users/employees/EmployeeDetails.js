@@ -1,10 +1,12 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
+import {
+  Button,
+  Dialog,
+  TextField,
+  DialogContent,
+  DialogTitle
+} from "@material-ui/core";
 import { EditEmployeeButton } from "./edit/EditEmployeeButton";
-import { TextField } from "material-ui";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import { detailsDialog } from "../../../../styles/Styles";
 import { connect } from "react-redux";
 
@@ -36,82 +38,63 @@ const EmployeeDetails = props => {
           >
             Employee details
           </DialogTitle>
-          <DialogContent>
+          <DialogContent className={styles.label}>
             <TextField
-              style={halfWidth}
-              floatingLabelText="First name"
+              label="First name"
               name="firstname"
-              variant="filled"
-              inputStyle={{ color: "white" }}
-              floatingLabelStyle={{ color: "lightgrey" }}
-              hintStyle={{ color: "lightgrey" }}
               defaultValue={employee.firstname}
-              readOnly
+              InputProps={{
+                readOnly: true
+              }}
             />
             <TextField
-              style={halfWidth}
-              floatingLabelText="Last name"
+              label="Last name"
               name="lastname"
-              inputStyle={{ color: "white" }}
-              floatingLabelStyle={{ color: "lightgrey" }}
-              hintStyle={{ color: "lightgrey" }}
               defaultValue={employee.lastname}
-              variant="filled"
-              readOnly
+              InputProps={{
+                readOnly: true
+              }}
             />
             <TextField
-              floatingLabelText="Employee ID"
+              label="Employee ID"
               name="employeeid"
-              fullWidth
-              inputStyle={{ color: "white" }}
-              floatingLabelStyle={{ color: "lightgrey" }}
-              hintStyle={{ color: "lightgrey" }}
               defaultValue={employee.id}
-              variant="filled"
-              readOnly
+              InputProps={{
+                readOnly: true
+              }}
             />
             <TextField
-              floatingLabelText="Role"
+              label="Role"
               name="role"
-              fullWidth
-              inputStyle={{ color: "white" }}
-              floatingLabelStyle={{ color: "lightgrey" }}
-              hintStyle={{ color: "lightgrey" }}
               defaultValue={employee.role}
-              readOnly
+              InputProps={{
+                readOnly: true
+              }}
             />
             <TextField
-              floatingLabelText="Phone"
+              label="Phone"
               name="phonenr"
-              fullWidth
-              inputStyle={{ color: "white" }}
-              floatingLabelStyle={{ color: "lightgrey" }}
-              hintStyle={{ color: "lightgrey" }}
               defaultValue={employee.phonenr}
-              readOnly
+              InputProps={{
+                readOnly: true
+              }}
             />
             <TextField
-              floatingLabelText="Email"
+              label="Email"
               name="email"
-              fullWidth
-              inputStyle={{ color: "white" }}
-              floatingLabelStyle={{ color: "lightgrey" }}
-              hintStyle={{ color: "lightgrey" }}
               defaultValue={employee.email}
-              readOnly
+              InputProps={{
+                readOnly: true
+              }}
             />
           </DialogContent>
-          <Button onClick={handleClose} color="primary">
+          <Button variant="contained" onClick={handleClose}>
             Close
           </Button>
         </Dialog>
       )}
     </React.Fragment>
   );
-};
-const halfWidth = {
-  width: "49.5%",
-  marginLeft: "0.5%"
 };
 const mapStateToProps = state => ({
   employees: state.employees

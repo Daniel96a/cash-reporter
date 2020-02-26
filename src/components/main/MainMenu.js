@@ -1,15 +1,11 @@
 import React, { useState } from "react";
-import { withStyles } from "@material-ui/core/styles";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
 
-import { IconButton } from "material-ui";
 import MenuIcon from "@material-ui/icons/Menu";
-import { EditorFormatAlignCenter } from "material-ui/svg-icons";
 import { BLUE } from "../../colorTheme/colors";
 import { connect } from "react-redux";
 import { doLogout } from "../../redux/actions/auth";
 import { changeView } from "../../redux/actions/states";
+import { IconButton, withStyles, Menu, MenuItem } from "@material-ui/core";
 
 const MainMenu = props => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -43,10 +39,9 @@ const MainMenu = props => {
         color="primary"
         onClick={handleClick}
       >
-        <MenuIcon style={menuIconColor} />
+        <MenuIcon />
       </IconButton>
       <StyledMenu
-
         id="customized-menu"
         anchorEl={anchorEl}
         onClose={handleClose}
@@ -77,25 +72,25 @@ const MainMenu = props => {
   );
 };
 
-const StyledMenu = withStyles({
+const StyledMenu = withStyles(theme =>({
   paper: {
-    backgroundColor: "transparent",
+    backgroundColor: theme.palette.primary.transparent,
     backdropFilter: "blur(8px)",
     border: `1px solid ${"rgba(25, 35, 46, .5 )"}`,
     position: "absolute",
     maxWidth: "100%",
     left: "0 !important",
     width: "100%",
-    marginTop: 8,
+    marginTop: 0,
     borderRadius: 10,
     "& .MuiList-padding": {
       padding: 0
     },
     "& div.MuiPaper-root": {
-      left: 0
+      left: 1
     }
   }
-})(props => (
+}))(props => (
   <Menu
     elevation={0}
     getContentAnchorEl={null}
@@ -118,7 +113,7 @@ const StyledMenuItem = withStyles(theme => ({
       backdropFilter: "blur(15px)"
     },
     backgroundColor: "transparent",
-    color: "white",
+
     float: "right",
     width: "100%",
     "&:hover": {
@@ -132,13 +127,8 @@ const StyledMenuItem = withStyles(theme => ({
   }
 }))(MenuItem);
 
-const menuIconColor = withStyles({
-  " & .MuiSvgIcon-root": {
-    fill: "white"
-  }
-});
 const menuPosition = {
-  textAlign: EditorFormatAlignCenter,
+  textAlign: "center",
   margin: "auto",
   position: "absolute",
   right: "0"

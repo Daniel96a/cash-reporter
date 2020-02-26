@@ -1,21 +1,23 @@
 import React from "react";
-import { MuiThemeProvider } from "material-ui/styles";
-import { AppBar } from "material-ui";
+import { AppBar, Typography } from "@material-ui/core";
 import { headerStyle } from "../../styles/Styles";
+import ThemeSwitch from "../../switches/ThemeSwitch";
 
 const LoginHeader = props => {
   return (
-    <MuiThemeProvider>
-      <React.Fragment>
-        <AppBar
-          style={headerStyle}
-          showMenuIconButton={false}
-          className="app-bar"
-          title="Cash Reporter"
-          titleStyle={{ lineHeight: "48px" }}
-        ></AppBar>
-      </React.Fragment>
-    </MuiThemeProvider>
+    <React.Fragment>
+      <AppBar
+        style={headerStyle}
+        className="app-bar"
+      >
+        <Typography style={{ fontSize: 20, margin: 10 }}>
+          Cash Reporter
+        </Typography>
+        <div style={{ position: "fixed", right: 10, top: 5 }}>
+          <ThemeSwitch />
+        </div>
+      </AppBar>
+    </React.Fragment>
   );
 };
 

@@ -26,7 +26,7 @@ export const fetchCustomerList = () => {
   return async dispatch => {
     axios
       .get(
-        `http://192.168.1.131:8080/customer?access_token=${cookie.get(
+        `http://localhost:8080/customer?access_token=${cookie.get(
           "access_token"
         )}`
       )
@@ -40,7 +40,7 @@ export const fetchCustomerList = () => {
 export const addCustomer = customer => {
   return async dispatch => {
     axios
-      .post("http://192.168.1.131:8080/customer/customer_add", customer, {
+      .post("http://localhost:8080/customer/customer_add", customer, {
         headers: customHeaders,
         timeout: 1000
       })
@@ -54,7 +54,7 @@ export const addCustomer = customer => {
 export const deleteCustomer = customer => {
   return async dispatch => {
     axios
-      .post("http://192.168.1.131:8080/customer/customer_remove", customer.id, {
+      .post("http://localhost:8080/customer/customer_remove", customer.id, {
         headers: customHeaders,
         timeout: 1000
       })
@@ -67,7 +67,7 @@ export const deleteCustomer = customer => {
 export const updateCustomer = customer => {
   return async dispatch => {
     axios
-      .post("http://192.168.1.131:8080/customer/customer_update", customer, {
+      .post("http://localhost:8080/customer/customer_update", customer, {
         headers: customHeaders,
         timeout: 1000
       })

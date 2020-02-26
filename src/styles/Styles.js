@@ -1,6 +1,23 @@
-import { BLUE, GREY, DARK } from "../colorTheme/colors";
+import { BLUE, GREY } from "../colorTheme/colors";
 import { makeStyles } from "@material-ui/core";
 
+export const bottomNavbarStyle = makeStyles(theme => ({
+  button: {
+    color: "lightgrey"
+  },
+  root: {
+    backgroundColor: "rgba(32, 42, 53, 1 )",
+    color: "white",
+    backdropFilter: "blur(8px)",
+    position: "fixed",
+    zIndex: 1,
+    bottom: 0,
+    width: "100%",
+    "& .MuiBottomNavigationAction-root .Mui-selected": {
+      color: theme.palette.primary.light
+    }
+  }
+}));
 export const switchListsStyle = makeStyles(theme => ({
   color: {
     color: "lightgrey"
@@ -8,32 +25,22 @@ export const switchListsStyle = makeStyles(theme => ({
   root: {
     backgroundColor: "transparent",
     position: "fixed",
-    zIndex: 0,
-    margin: "auto",
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: 10,
     bottom: 46,
     top: 46,
-    right: "0px",
-    left: "0px",
+    right: 0,
+    left: 0,
     maxWidth: 600,
     "& .MuiButtonBase-root": {
-      backgroundColor: GREY,
-      borderLeft: `1px solid ${DARK}`,
-      borderRight: `1px solid ${DARK}`
-
+      backgroundColor: theme.palette.primary.main
+    },
+    "& .MuiTab-textColorPrimary.Mui-selected": {
+      color: theme.palette.primary.light
     }
   }
 }));
-
-export const swipeableViewsStyle = {
-  position: "fixed",
-  overflowY: "scroll",
-  margin: "auto",
-  top: 95,
-  bottom: 56,
-  left: 0,
-  right: 0,
-  maxWidth: 600
-};
 
 
 export const detailsDialog = makeStyles(theme => ({
@@ -47,30 +54,23 @@ export const detailsDialog = makeStyles(theme => ({
       right: 0,
       maxHeight: "900px",
       maxWidth: "600px",
-      backgroundColor: "transparent"
+      overflow: "hidden",
+      backgroundColor: theme.palette.primary.transparent
     },
-    "& input": {
+    "& .MuiButton-containedPrimary": {
+      backgroundColor: theme.palette.primary.transparent
+    },
+    "& .MuiTypography-h6":{
       color: "white"
     },
-    "& .MuiDialog-paperWidthSm": {
-      overflowY: "visible"
+    "& input": {
+      color: theme.palette.text.primary,
+      borderColor: theme.palette.primary.transparent
     },
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
       width: 200,
       overflowY: "visible"
-    },
-    "& .MuiDialog-paperScrollPaper": {
-      // maxHeight: "100%",
-      // maxWidth: "100%"
-    },
-    "& .MuiDialog-root": {
-      // position: "fixed";
-      // zIndex: 1000000;
-      // right: 0px;
-      // bottom: 0px;
-      // top: 0px;
-      // left: 0px;
     },
     "& .MuiDialogContent-root": {
       flex: "1 1 auto",
@@ -83,55 +83,76 @@ export const detailsDialog = makeStyles(theme => ({
       }
     },
     "& .MuiButtonBase-root": {
-      border: "solid #80808085",
       margin: "0px 23px 20px 23px",
-      borderWidth: "1px",
+      backgroundColor: theme.palette.background.paper,
+      color: theme.palette.primary.light,
       minHeight: "38px"
     },
 
     "& .MuiDialogTitle-root": {
-      backgroundColor: BLUE,
-      color: "white"
-    },
-    "& .MuiDialog-container": {
-      backdropFilter: "blur(20px)"
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.text.primary
     },
     "& .MuiBackdrop-root": {
+      backdropFilter: "blur(8px)",
+
       backgroundColor: "transparent"
+    }
+  },
+  label: {
+    "& .MuiFormLabel-root": {
+      color: theme.palette.text.primary,
+    },
+    "& .MuiFormControl-root": {
+      margin: "10px 0px 10px 0px",
+      width: "-webkit-fill-available"
+    },
+    "& .MuiInputLabel-root.Mui-focused": {
+      color: theme.palette.primary.light
+    },
+    "& .MuiInput-underline:before": {
+      borderColor: theme.palette.primary.main
+    },
+    "& .MuiInput-underline:after": {
+      borderColor: theme.palette.primary.light
+    },
+    "& .MuiFormLabel-root.Mui-focused": {
+      color: theme.palette.primary.light
+    },
+    "& .MuiInput-underline.Mui-focused": {
+      color: theme.palette.primary.light
+    },
+    "& .MuiInput-underline:hover .MuiInput-underline": {
+      borderColor: theme.palette.primary.light
     }
   }
 }));
 export const confirmDialog = makeStyles(theme => ({
   root: {
     "& .MuiDialog-paper": {
-      backgroundColor: GREY,
-      color: "white"
+      backgroundColor: theme.palette.background.paper,
+      color: theme.palette.text.primary
     }
   }
 }));
 export const listStyle = makeStyles(theme => ({
   root: {
-    position: "inherit",
-    color: "white",
-    margin: "auto",
-    paddingTop: 1,
-    maxWidth: 600,
-    backgroundColor: GREY,
+    backgroundColor: theme.palette.background.paper,
     "& .MuiButtonBase-root": {
-      backgroundColor: GREY
-    },
-    "& .MuiTab-textColorPrimary": {
-      color: "white"
+      backgroundColor: theme.palette.background.paper,
     },
     "& .MuiTypography-body2": {
-      color: "white"
+      color: theme.palette.text.primary
+    },
+    "& .MuiTypography-colorTextSecondary": {
+      color: theme.palette.text.secondary
     },
     "& .MuiTouchRipple-root": {
       userSelect: "none"
     },
     "& .MuiListItem-gutters": {
-      backgroundColor: "rgba(32, 42, 53, .1)",
-      borderBottom: `1px solid ${DARK}`,
+      backgroundColor: theme.palette.background.paper,
+      borderBottom: `1px solid ${theme.palette.primary.main}`,
       minHeight: "65px",
       userSelect: "none",
       marginBottom: 1
@@ -178,18 +199,48 @@ export const headerStyle = {
 };
 export const loginFormStyle = makeStyles(theme => ({
   root: {
+    // backgroundColor: theme.palette.background.paper,
     position: "fixed",
     top: "calc(50% - 105px)",
     textAlign: "center",
-    left: 0,
-    right: 0,
+    left: 10,
+    right: 10,
     maxWidth: 600,
     margin: "auto",
-    padding: "0 30px 30px 30px",
-    borderRadius: 10
+    padding: "20px 20px 20px 20px",
+    borderRadius: 10,
+    "& input": {
+      color: theme.palette.text.primary
+    },
+    "& button": {
+      width: "fit-content",
+      margin: "auto",
+      color: theme.palette.primary.dark
+    }
+  },
+  label: {
+    "& .MuiFormControl-root": {
+      padding: "10px 10px 10px 10px",
+      width: "-webkit-fill-available"
+    },
+    "& .MuiInput-underline:before": {
+      borderColor: theme.palette.text.primary
+    },
+    "& .MuiInput-underline:after": {
+      borderColor: theme.palette.primary.light
+    },
+    "& .MuiFormLabel-root.Mui-focused": {
+      color: theme.palette.primary.light
+    },
+    "& .MuiInput-underline.Mui-focused": {
+      color: theme.palette.primary.light
+    },
+    "& .MuiInput-underline:hover .MuiInput-underline": {
+      borderColor: theme.palette.primary.light
+    }
   }
 }));
-export const tableStyle = makeStyles({
+export const tableStyle = makeStyles(theme => ({
   cells: {
     "& td.MuiTableCell-body, th.MuiTableCell-body": {
       padding: 10
@@ -205,4 +256,37 @@ export const tableStyle = makeStyles({
       marginBottom: 20
     }
   }
-});
+}));
+
+export const profileStyle = makeStyles(theme => ({
+  root: {
+    "& *": {
+      margin: "auto",
+      backgroundColor: theme.palette.primary.paper
+    },
+    position: "fixed",
+    top: 58,
+    left: 10,
+    right: 10,
+    maxWidth: 600,
+    margin: "auto"
+  },
+  hr: {
+    margin: "10px 0px 10px 0px"
+  },
+  button: {
+    margin: "auto",
+    border: 0,
+    position: "absolute",
+    float: "right",
+    top: 4,
+    right: -5,
+    "& .MuiSvgIcon-root": {
+      color: theme.palette.primary.light,
+      width: 30,
+      height: 30,
+      borderRadius: 50,
+      zIndex: 10
+    }
+  }
+}));

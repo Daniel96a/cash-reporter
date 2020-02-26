@@ -1,9 +1,11 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import { TextField } from "material-ui";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
+import {
+  DialogTitle,
+  DialogContent,
+  TextField,
+  Dialog,
+  Button
+} from "@material-ui/core";
 import { EditCustomerButton } from "./edit/EditCustomerButton";
 import { detailsDialog } from "../../../../styles/Styles";
 import { connect } from "react-redux";
@@ -30,80 +32,62 @@ const CustomerDetails = props => {
       <DialogTitle id="max-width-dialog-title" className="align-text-center">
         Customer details
       </DialogTitle>
-      <DialogContent>
+      <DialogContent className={styles.label}>
         <TextField
-          style={halfWidth}
-          floatingLabelText="First name"
+          label="First name"
           name="firstname"
-          variant="filled"
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           defaultValue={customer.firstname}
-          readOnly
+          InputProps={{
+            readOnly: true
+          }}
         />
         <TextField
-          style={halfWidth}
-          floatingLabelText="Last name"
+          label="Last name"
           name="lastname"
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           defaultValue={customer.lastname}
-          variant="filled"
-          readOnly
+          InputProps={{
+            readOnly: true
+          }}
         />
         <TextField
-          floatingLabelText="Customer ID"
+          label="Customer ID"
           name="customerid"
           fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           defaultValue={customer.id}
-          variant="filled"
-          readOnly
+          InputProps={{
+            readOnly: true
+          }}
         />
         <TextField
-          floatingLabelText="Phone"
+          label="Phone"
           name="phonenr"
-          fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           defaultValue={customer.phonenr}
-          readOnly
+          InputProps={{
+            readOnly: true
+          }}
         />
         <TextField
-          floatingLabelText="Email"
+          label="Email"
           name="email"
-          fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           defaultValue={customer.email}
-          readOnly
+          InputProps={{
+            readOnly: true
+          }}
         />
         <TextField
-          floatingLabelText="Address"
+          label="Address"
           name="address"
-          fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "lightgrey" }}
           defaultValue={customer.address}
-          readOnly
+          InputProps={{
+            readOnly: true
+          }}
         />
       </DialogContent>
-      <Button onClick={handleClose} color="primary">
+      <Button variant="contained" onClick={handleClose}>
         Close
       </Button>
     </Dialog>
   );
-};
-const halfWidth = {
-  width: "49.5%",
-  marginLeft: "0.5%"
 };
 const mapStateToProps = state => ({
   customers: state.customers

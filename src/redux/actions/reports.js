@@ -12,7 +12,7 @@ export const setReports = reports => ({
 export const fetchReportList = () => {
   return async dispatch => {
     axios
-      .get(`http://192.168.1.131:8080/customer?access_token=${cookie.get("access_token")}`)
+      .get(`http://localhost:8080/customer?access_token=${cookie.get("access_token")}`)
       .then(res => {
         console.log(res.data);
         dispatch(setReports(res.data));
@@ -26,7 +26,7 @@ export const fetchReportList = () => {
 export const addReport = report => {
   return async dispatch => {
     axios
-      .get("http://192.168.1.131:8080/report", "", {
+      .get("http://localhost:8080/report", "", {
         headers: {
           Authorization: axios.defaults.headers.common["Authorization"]
         },
@@ -44,7 +44,7 @@ export const addReport = report => {
 export const deleteReport = report => {
   return async dispatch => {
     axios
-      .post("http://192.168.1.131:8080/report/report_remove", {
+      .post("http://localhost:8080/report/report_remove", {
         headers: customHeaders,
         timeout: 1000
       })
@@ -60,7 +60,7 @@ export const deleteReport = report => {
 export const updateReport = report => {
   return async dispatch => {
     axios
-      .post("http://192.168.1.131:8080/report/report_update", {
+      .post("http://localhost:8080/report/report_update", {
         headers: customHeaders,
         timeout: 1000
       })

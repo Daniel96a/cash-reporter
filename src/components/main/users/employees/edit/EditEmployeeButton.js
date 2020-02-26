@@ -49,7 +49,8 @@ export const EditEmployeeButton = props => {
         onClick={handleClick}
         color="primary"
         style={{
-          border: "none",
+          backgroundColor:"transparent",
+          borderRadius: 50,
           height: 64,
           width: 64,
           position: "absolute",
@@ -70,10 +71,10 @@ export const EditEmployeeButton = props => {
         onClick={handleClose}
       >
         <StyledMenuItem onClick={openDeleteEmployee.bind(this)}>
-          <DeleteIcon color={"secondary"} />
+          <DeleteIcon color="error" />
         </StyledMenuItem>
         <StyledMenuItem onClick={openEditEmployee.bind(this)}>
-          <EditIcon color={"primary"} />
+          <EditIcon color="action" />
         </StyledMenuItem>
       </StyledMenu>
     </div>

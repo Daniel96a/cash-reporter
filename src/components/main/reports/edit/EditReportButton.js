@@ -47,9 +47,9 @@ export const EditReportButton = props => {
       <Button
         aria-label="Settings"
         onClick={handleClick}
-        color="primary"
         style={{
-          border: "none",
+          backgroundColor:"transparent",
+          borderRadius: 50,
           height: 64,
           width: 64,
           position: "absolute",
@@ -70,10 +70,10 @@ export const EditReportButton = props => {
         onClick={handleClose}
       >
         <StyledMenuItem onClick={openDeleteReport.bind(this)}>
-          <DeleteIcon color={"secondary"} />
+          <DeleteIcon color="error" />
         </StyledMenuItem>
         <StyledMenuItem onClick={openEditReport.bind(this)}>
-          <EditIcon color={"primary"} />
+          <EditIcon color="action" />
         </StyledMenuItem>
       </StyledMenu>
     </div>

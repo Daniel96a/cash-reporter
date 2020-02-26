@@ -25,7 +25,11 @@ export const REMOVE_EMPLOYEE = employee => ({
 export const fetchEmployeeList = () => {
   return async dispatch => {
     axios
-      .get(`http://192.168.1.131:8080/customer?access_token=${cookie.get("access_token")}`)
+      .get(
+        `http://localhost:8080/employee?access_token=${cookie.get(
+          "access_token"
+        )}`
+      )
       .then(res => {
         dispatch(setEmployees(res.data));
       })
@@ -36,7 +40,7 @@ export const fetchEmployeeList = () => {
 export const addEmployee = employee => {
   return async dispatch => {
     axios
-      .post("http://192.168.1.131:8080/employee/employee_add", {
+      .post("http://localhost:8080/employee/employee_add", {
         headers: customHeaders,
         timeout: 1000
       })
@@ -53,7 +57,7 @@ export const addEmployee = employee => {
 export const deleteEmployee = employee => {
   return async dispatch => {
     axios
-      .post("http://192.168.1.131:8080/employee/employee_remove", {
+      .post("http://localhost:8080/employee/employee_remove", {
         headers: customHeaders,
         timeout: 1000
       })
@@ -69,7 +73,7 @@ export const deleteEmployee = employee => {
 export const updateEmployee = employee => {
   return async dispatch => {
     axios
-      .post("http://192.168.1.131:8080/employee/employee_update", {
+      .post("http://localhost:8080/employee/employee_update", {
         headers: customHeaders,
         timeout: 1000
       })

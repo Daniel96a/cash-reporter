@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 
 import AddCustomer from "./customers/add/AddCustomer";
 import AddEmployee from "./employees/add/AddEmployee";
@@ -13,7 +13,7 @@ const UsersView = () => {
   const [showAddEmployeeForm, setShowAddEmployeeForm] = useState(false);
   const [selectUserList, setSelectUserList] = useState(0);
   return (
-    <React.Fragment>
+    <Fragment>
       {showAddCustomerForm && (
         <AddCustomer
           showAddCustomerForm={showAddCustomerForm}
@@ -39,7 +39,7 @@ const UsersView = () => {
       {selectUserList === 1 && (
         <AddEmployeeButton setShowAddEmployeeForm={setShowAddEmployeeForm} />
       )}
-    </React.Fragment>
+    </Fragment>
   );
 };
 export default UsersView;
