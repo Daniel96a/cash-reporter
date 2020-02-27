@@ -11,7 +11,7 @@ export const lightTheme = createMuiTheme({
     primary: {
       main: BLUE,
       light: LIGHT_BLUE,
-      transparent: "rgba(0,0,0, .1)"
+      transparent: "rgba(0,0,0, .12)"
     },
     secondary: {
       main: GREY
@@ -28,7 +28,7 @@ export const darkTheme = createMuiTheme({
     primary: {
       main: BLUE,
       light: LIGHT_BLUE,
-      transparent: "rgba(55,55,55, .1)"
+      transparent: "rgba(55,55,55, .05)"
     },
     secondary: {
       main: GREY

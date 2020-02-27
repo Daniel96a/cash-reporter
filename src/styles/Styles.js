@@ -1,4 +1,4 @@
-import { BLUE, GREY } from "../colorTheme/colors";
+
 import { makeStyles } from "@material-ui/core";
 
 export const bottomNavbarStyle = makeStyles(theme => ({
@@ -34,14 +34,16 @@ export const switchListsStyle = makeStyles(theme => ({
     left: 0,
     maxWidth: 600,
     "& .MuiButtonBase-root": {
-      backgroundColor: theme.palette.primary.main
+      backgroundColor: theme.palette.background.default
     },
     "& .MuiTab-textColorPrimary.Mui-selected": {
       color: theme.palette.primary.light
+    },
+    "& .PrivateTabIndicator-colorPrimary-145": {
+      backgroundColor: theme.palette.primary.light
     }
   }
 }));
-
 
 export const detailsDialog = makeStyles(theme => ({
   root: {
@@ -60,7 +62,7 @@ export const detailsDialog = makeStyles(theme => ({
     "& .MuiButton-containedPrimary": {
       backgroundColor: theme.palette.primary.transparent
     },
-    "& .MuiTypography-h6":{
+    "& .MuiTypography-h6": {
       color: "white"
     },
     "& input": {
@@ -84,7 +86,7 @@ export const detailsDialog = makeStyles(theme => ({
     },
     "& .MuiButtonBase-root": {
       margin: "0px 23px 20px 23px",
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: theme.palette.secondary.light,
       color: theme.palette.primary.light,
       minHeight: "38px"
     },
@@ -101,7 +103,7 @@ export const detailsDialog = makeStyles(theme => ({
   },
   label: {
     "& .MuiFormLabel-root": {
-      color: theme.palette.text.primary,
+      color: theme.palette.text.primary
     },
     "& .MuiFormControl-root": {
       margin: "10px 0px 10px 0px",
@@ -139,7 +141,7 @@ export const listStyle = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     "& .MuiButtonBase-root": {
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: theme.palette.background.paper
     },
     "& .MuiTypography-body2": {
       color: theme.palette.text.primary
@@ -152,7 +154,7 @@ export const listStyle = makeStyles(theme => ({
     },
     "& .MuiListItem-gutters": {
       backgroundColor: theme.palette.background.paper,
-      borderBottom: `1px solid ${theme.palette.primary.main}`,
+      borderBottom: `1px solid ${theme.palette.text.secondary}`,
       minHeight: "65px",
       userSelect: "none",
       marginBottom: 1
@@ -167,24 +169,27 @@ export const reportListStyle = makeStyles(theme => ({
     left: 0,
     right: 0,
     bottom: 40,
-    margin: "auto",
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: 10,
     paddingTop: 1,
     maxWidth: 600,
     overflow: "scroll",
     "& .MuiButtonBase-root": {
-      backgroundColor: GREY
-    },
-    "& .MuiTab-textColorPrimary": {
-      color: "white"
+      backgroundColor: theme.palette.background.paper
     },
     "& .MuiTypography-body2": {
-      color: "white"
+      color: theme.palette.text.primary
+    },
+    "& .MuiTypography-colorTextSecondary": {
+      color: theme.palette.text.secondary
     },
     "& .MuiTouchRipple-root": {
       userSelect: "none"
     },
     "& .MuiListItem-gutters": {
-      borderBottom: `1px solid ${GREY}`,
+      backgroundColor: theme.palette.background.paper,
+      borderBottom: `1px solid ${theme.palette.text.secondary}`,
       minHeight: "65px",
       userSelect: "none",
       marginBottom: 1
@@ -193,9 +198,7 @@ export const reportListStyle = makeStyles(theme => ({
 }));
 
 export const headerStyle = {
-  height: 48,
-  backgroundColor: BLUE,
-  position: "fixed"
+  boxShadow: "none",
 };
 export const loginFormStyle = makeStyles(theme => ({
   root: {

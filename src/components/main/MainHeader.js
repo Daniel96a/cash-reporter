@@ -7,7 +7,10 @@ import ThemeSwitch from "../../switches/ThemeSwitch";
 const useStyles = makeStyles(theme => ({
   root: {
     "& .MuiSvgIcon-root": {
-      fill: "white"
+      fill: "white",
+     "& .MuiPaper-elevation4":{
+      boxShadow: "none",
+     }
     }
   }
 }));
