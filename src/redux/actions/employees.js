@@ -31,6 +31,7 @@ export const fetchEmployeeList = () => {
         )}`
       )
       .then(res => {
+        console.log(res.data);
         dispatch(setEmployees(res.data));
       })
       .catch(error => {});
@@ -73,10 +74,12 @@ export const deleteEmployee = employee => {
 export const updateEmployee = employee => {
   return async dispatch => {
     axios
-      .post("http://localhost:8080/employee/employee_update", {
-        headers: customHeaders,
-        timeout: 1000
-      })
+      .get(
+        `http://localhost:8080/employee?access_token=${cookie.get(
+          "access_token"
+        )}`,
+        employee
+      )
       .then(res => {
         dispatch(EDIT_EMPLOYEE(employee));
       })

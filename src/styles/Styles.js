@@ -22,7 +22,7 @@ export const switchListsStyle = makeStyles(theme => ({
     color: theme.palette.text.primary
   },
   root: {
-    backgroundColor: theme.palette.primary.transparent,
+    backgroundColor: "transparent",
     position: "fixed",
     marginLeft: "auto",
     marginRight: "auto",

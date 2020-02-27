@@ -5,6 +5,7 @@ import customers from "./customers";
 import reports from "./reports";
 import states from "./states";
 import theme from "./theme";
+import person from "./person";
 
 const rootReducer = combineReducers({
   auth,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   employees,
   reports,
   states,
-  theme
+  theme,
+  person
 });
 
 export default rootReducer;

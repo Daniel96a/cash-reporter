@@ -34,26 +34,18 @@ const CustomerDetails = props => {
       </DialogTitle>
       <DialogContent className={styles.label}>
         <TextField
-          label="First name"
-          name="firstname"
-          defaultValue={customer.firstname}
+          label="Full name"
+          name="fullname"
+          defaultValue={customer.fullname}
           InputProps={{
             readOnly: true
           }}
         />
         <TextField
-          label="Last name"
-          name="lastname"
-          defaultValue={customer.lastname}
-          InputProps={{
-            readOnly: true
-          }}
-        />
-        <TextField
-          label="Customer ID"
-          name="customerid"
+          label="Role"
+          name="role"
           fullWidth
-          defaultValue={customer.id}
+          defaultValue={customer.role}
           InputProps={{
             readOnly: true
           }}
@@ -74,10 +66,42 @@ const CustomerDetails = props => {
             readOnly: true
           }}
         />
+         <TextField
+          label="Company"
+          name="company"
+          defaultValue={customer.company}
+          InputProps={{
+            readOnly: true
+          }}
+        />
+         <TextField
+          label="Organisation number"
+          name="orgnr"
+          defaultValue={customer.orgnr}
+          InputProps={{
+            readOnly: true
+          }}
+        />
         <TextField
-          label="Address"
-          name="address"
-          defaultValue={customer.address}
+          label="Street"
+          name="street"
+          defaultValue={customer.street}
+          InputProps={{
+            readOnly: true
+          }}
+        />
+        <TextField
+          label="City"
+          name="city"
+          defaultValue={customer.city}
+          InputProps={{
+            readOnly: true
+          }}
+        />
+        <TextField
+          label="Zip-code"
+          name="zipcode"
+          defaultValue={customer.zipcode}
           InputProps={{
             readOnly: true
           }}

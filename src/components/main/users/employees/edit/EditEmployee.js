@@ -8,27 +8,41 @@ import {
 } from "@material-ui/core";
 import { detailsDialog } from "../../../../../styles/Styles";
 import { connect } from "react-redux";
+import { updatePerson } from "../../../../../redux/actions/person";
 import { updateEmployee } from "../../../../../redux/actions/employees";
 
 export const EditEmployee = props => {
   const styles = detailsDialog();
-  const employee = props.employees.employees[props.employeeSelected];
-
-  const employeeData = {
-    firstname: employee.firstname,
-    lastname: employee.lastname,
-    id: employee.id,
-    role: employee.role,
-    phonenr: employee.phonenr,
-    email: employee.email.toLowerCase()
+  console.log(props.person)
+  const personData = {
+    personid: props.person.personid,
+    roleid: props.person.roleid,
+    companyid: props.person.companyid,
+    firstname: props.person.firstname,
+    lastname: props.person.lastname,
+    email: props.person.email,
+    phonenr: props.person.phonenr,
+    password: props.person.password,
+    username: props.person.username,
+    salt: props.person.salt
   };
-  const updateEmployee = e => {
-    document.getElementsByName("firstname")[0].value = employeeData.firstname;
-    document.getElementsByName("lastname")[0].value = employeeData.lastname;
-    document.getElementsByName("role")[0].value = employeeData.role;
-    document.getElementsByName("phonenr")[0].value = employeeData.phonenr;
-    document.getElementsByName("email")[0].value = employeeData.email;
+
+  const update = e => {
+    document.getElementsByName("firstname")[0].value = personData.firstname;
+    document.getElementsByName("lastname")[0].value = personData.lastname;
+    document.getElementsByName("email")[0].value = personData.email;
+    document.getElementsByName("phonenr")[0].value = personData.phonenr;
+    document.getElementsByName("fullname")[0].value =
+      personData.firstname + " " + personData.lastname;
     props.setShowEditEmployee(false);
+    const employeeData = {
+      fullname: personData.firstname + " " + personData.lastname,
+      role: personData.lastname,
+      email: personData.email,
+      phonenr: personData.phonenr,
+      personid: personData.personid
+    };
+    props.updatePerson(personData);
     props.updateEmployee(employeeData);
   };
 
@@ -50,41 +64,35 @@ export const EditEmployee = props => {
         <TextField
           label="First name"
           name="firstname"
-          defaultValue={employee.firstname}
-          onChange={e => (employeeData.firstname = e.target.value)}
+          defaultValue={props.person.firstname}
+          onChange={e => (personData.firstname = e.target.value)}
         />
         <TextField
           label="Last name"
           name="lastname"
-          defaultValue={employee.lastname}
-          onChange={e => (employeeData.lastname = e.target.value)}
+          defaultValue={props.person.lastname}
+          onChange={e => (personData.lastname = e.target.value)}
         />
-        <TextField
-          label="Employee ID"
-          name="employeeid"
-          defaultValue={employee.id}
-          disabled
-        />
-        <TextField
+        {/* <TextField
           label="Role"
           name="role"
-          defaultValue={employee.role}
-          onChange={e => (employeeData.role = e.target.value)}
-        />
+          defaultValue={props.person.role}
+          onChange={e => (personData.role = e.target.value)}
+        /> */}
         <TextField
           label="Phone"
           name="phonenr"
-          defaultValue={employee.phonenr}
-          onChange={e => (employeeData.phonenr = e.target.value)}
+          defaultValue={props.person.phonenr}
+          onChange={e => (personData.phonenr = e.target.value)}
         />
         <TextField
           label="Email"
           name="email"
-          defaultValue={employee.email}
-          onChange={e => (employeeData.email = e.target.value)}
+          defaultValue={props.person.email}
+          onChange={e => (personData.email = e.target.value)}
         />
       </DialogContent>
-      <Button onClick={updateEmployee.bind(this)} color="primary">
+      <Button onClick={update.bind(this)} color="primary">
         Update
       </Button>
       <Button onClick={handleClose} color="secondary">
@@ -95,8 +103,10 @@ export const EditEmployee = props => {
 };
 
 const mapStateToProps = state => ({
-  employees: state.employees
+  employees: state.employees,
+  person: state.person.person
 });
 export default connect(mapStateToProps, {
+  updatePerson,
   updateEmployee
 })(EditEmployee);

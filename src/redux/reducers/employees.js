@@ -33,7 +33,8 @@ export default (state = initialState, action) => {
         ...state,
         employees: state.employees.map(
           employee =>
-            [action.employee].find(o => o.id === employee.id) || employee
+            [action.employee].find(o => o.personid === employee.personid) ||
+            employee
         )
       };
     default:

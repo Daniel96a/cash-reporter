@@ -58,7 +58,7 @@ const CustomerList = props => {
                 <Avatar />
               </ListItemAvatar>
               <ListItemText
-                primary={`${customer.firstname} ${customer.lastname}`}
+                primary={customer.fullname}
                 secondary={`Phone number: ${customer.phonenr}`}
               />
             </ListItem>

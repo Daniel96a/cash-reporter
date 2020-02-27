@@ -48,7 +48,7 @@ const EmployeeList = props => {
             <ListItem
               id={index}
               key={index}
-              className={`employeeid-${employee.id} employeeListItem`}
+              className={`personid-${employee.personid} employeeListItem`}
               onClick={openDetails.bind(this)}
               button
             >
@@ -56,8 +56,7 @@ const EmployeeList = props => {
                 <Avatar />
               </ListItemAvatar>
               <ListItemText
-                primary={`
-                ${employee.firstname} ${employee.lastname}`}
+                primary={employee.fullname}
                 secondary={`Phone number: ${employee.phonenr}`}
               />
             </ListItem>

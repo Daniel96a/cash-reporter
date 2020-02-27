@@ -30,6 +30,7 @@ export const validateToken = () => {
       });
   };
 };
+
 export const refreshToken = () => {
   // var encodedData =
   //   "Basic " + base64.encode(`${data.username}:${data.password}`);

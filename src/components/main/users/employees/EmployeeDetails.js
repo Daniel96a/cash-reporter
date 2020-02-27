@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Button,
   Dialog,
@@ -9,15 +9,19 @@ import {
 import { EditEmployeeButton } from "./edit/EditEmployeeButton";
 import { detailsDialog } from "../../../../styles/Styles";
 import { connect } from "react-redux";
+import { fetchPerson } from "../../../../redux/actions/person";
 
 const EmployeeDetails = props => {
   const styles = detailsDialog();
   const employee = props.employees.employees[props.employeeSelected];
-
   const handleClose = () => {
     props.setShowEmployeeDetails(false);
+    props.setEmployeeSelected(null);
   };
-
+  useEffect(() => {
+    props.fetchPerson(employee.personid);
+    // eslint-disable-next-line
+  }, []);
   return (
     <React.Fragment>
       {employee !== undefined && (
@@ -40,25 +44,9 @@ const EmployeeDetails = props => {
           </DialogTitle>
           <DialogContent className={styles.label}>
             <TextField
-              label="First name"
-              name="firstname"
-              defaultValue={employee.firstname}
-              InputProps={{
-                readOnly: true
-              }}
-            />
-            <TextField
-              label="Last name"
-              name="lastname"
-              defaultValue={employee.lastname}
-              InputProps={{
-                readOnly: true
-              }}
-            />
-            <TextField
-              label="Employee ID"
-              name="employeeid"
-              defaultValue={employee.id}
+              label="Full name"
+              name="fullname"
+              defaultValue={employee.fullname}
               InputProps={{
                 readOnly: true
               }}
@@ -72,17 +60,17 @@ const EmployeeDetails = props => {
               }}
             />
             <TextField
-              label="Phone"
-              name="phonenr"
-              defaultValue={employee.phonenr}
+              label="Email"
+              name="email"
+              defaultValue={employee.email}
               InputProps={{
                 readOnly: true
               }}
             />
             <TextField
-              label="Email"
-              name="email"
-              defaultValue={employee.email}
+              label="Phone"
+              name="phonenr"
+              defaultValue={employee.phonenr}
               InputProps={{
                 readOnly: true
               }}
@@ -97,6 +85,7 @@ const EmployeeDetails = props => {
   );
 };
 const mapStateToProps = state => ({
-  employees: state.employees
+  employees: state.employees,
+  person: state.person
 });
-export default connect(mapStateToProps)(EmployeeDetails);
+export default connect(mapStateToProps, { fetchPerson })(EmployeeDetails);
