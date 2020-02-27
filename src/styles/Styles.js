@@ -1,12 +1,11 @@
-
 import { makeStyles } from "@material-ui/core";
 
 export const bottomNavbarStyle = makeStyles(theme => ({
   button: {
-    color: "lightgrey"
+    color: theme.palette.text.primary
   },
   root: {
-    backgroundColor: "rgba(32, 42, 53, 1 )",
+    backgroundColor: theme.palette.primary.transparent,
     color: "white",
     backdropFilter: "blur(8px)",
     position: "fixed",
@@ -20,10 +19,10 @@ export const bottomNavbarStyle = makeStyles(theme => ({
 }));
 export const switchListsStyle = makeStyles(theme => ({
   color: {
-    color: "lightgrey"
+    color: theme.palette.text.primary
   },
   root: {
-    backgroundColor: "transparent",
+    backgroundColor: theme.palette.primary.transparent,
     position: "fixed",
     marginLeft: "auto",
     marginRight: "auto",
@@ -39,7 +38,7 @@ export const switchListsStyle = makeStyles(theme => ({
     "& .MuiTab-textColorPrimary.Mui-selected": {
       color: theme.palette.primary.light
     },
-    "& .PrivateTabIndicator-colorPrimary-145": {
+    "& .MuiTabs-indicator": {
       backgroundColor: theme.palette.primary.light
     }
   }
@@ -154,7 +153,7 @@ export const listStyle = makeStyles(theme => ({
     },
     "& .MuiListItem-gutters": {
       backgroundColor: theme.palette.background.paper,
-      borderBottom: `1px solid ${theme.palette.text.secondary}`,
+      // borderBottom: `1px solid ${theme.palette.text.secondary}`,
       minHeight: "65px",
       userSelect: "none",
       marginBottom: 1
@@ -189,7 +188,7 @@ export const reportListStyle = makeStyles(theme => ({
     },
     "& .MuiListItem-gutters": {
       backgroundColor: theme.palette.background.paper,
-      borderBottom: `1px solid ${theme.palette.text.secondary}`,
+      // borderBottom: `1px solid ${theme.palette.text.secondary}`,
       minHeight: "65px",
       userSelect: "none",
       marginBottom: 1
@@ -198,7 +197,7 @@ export const reportListStyle = makeStyles(theme => ({
 }));
 
 export const headerStyle = {
-  boxShadow: "none",
+  boxShadow: "none"
 };
 export const loginFormStyle = makeStyles(theme => ({
   root: {
