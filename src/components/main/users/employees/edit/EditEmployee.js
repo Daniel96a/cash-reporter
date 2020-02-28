@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   TextField,
   Dialog,
@@ -8,12 +8,17 @@ import {
 } from "@material-ui/core";
 import { detailsDialog } from "../../../../../styles/Styles";
 import { connect } from "react-redux";
-import { updatePerson } from "../../../../../redux/actions/person";
+import {
+  updatePerson,
+  fetchPerson,
+  clearPerson
+} from "../../../../../redux/actions/person";
 import { updateEmployee } from "../../../../../redux/actions/employees";
 
 export const EditEmployee = props => {
+  const employee = props.employees.employees[props.employeeSelected];
+
   const styles = detailsDialog();
-  console.log(props.person)
   const personData = {
     personid: props.person.personid,
     roleid: props.person.roleid,
@@ -27,6 +32,13 @@ export const EditEmployee = props => {
     salt: props.person.salt
   };
 
+  useEffect(() => {
+    props.fetchPerson(employee.personid);
+    return () => {
+      props.clearPerson();
+    };
+    // eslint-disable-next-line
+  }, []);
   const update = e => {
     document.getElementsByName("firstname")[0].value = personData.firstname;
     document.getElementsByName("lastname")[0].value = personData.lastname;
@@ -45,6 +57,7 @@ export const EditEmployee = props => {
     props.updatePerson(personData);
     props.updateEmployee(employeeData);
   };
+  console.log(props.person);
 
   const handleClose = () => {
     props.setShowEditEmployee(false);
@@ -60,38 +73,41 @@ export const EditEmployee = props => {
       <DialogTitle id="max-width-dialog-title" className="align-text-center">
         Edit Employee
       </DialogTitle>
-      <DialogContent className={styles.label}>
-        <TextField
-          label="First name"
-          name="firstname"
-          defaultValue={props.person.firstname}
-          onChange={e => (personData.firstname = e.target.value)}
-        />
-        <TextField
-          label="Last name"
-          name="lastname"
-          defaultValue={props.person.lastname}
-          onChange={e => (personData.lastname = e.target.value)}
-        />
-        {/* <TextField
+
+      {props.person.personid !== undefined && (
+        <DialogContent className={styles.label}>
+          <TextField
+            label="First name"
+            name="firstname"
+            defaultValue={props.person.firstname}
+            onChange={e => (personData.firstname = e.target.value)}
+          />
+          <TextField
+            label="Last name"
+            name="lastname"
+            defaultValue={props.person.lastname}
+            onChange={e => (personData.lastname = e.target.value)}
+          />
+          {/* <TextField
           label="Role"
           name="role"
           defaultValue={props.person.role}
           onChange={e => (personData.role = e.target.value)}
         /> */}
-        <TextField
-          label="Phone"
-          name="phonenr"
-          defaultValue={props.person.phonenr}
-          onChange={e => (personData.phonenr = e.target.value)}
-        />
-        <TextField
-          label="Email"
-          name="email"
-          defaultValue={props.person.email}
-          onChange={e => (personData.email = e.target.value)}
-        />
-      </DialogContent>
+          <TextField
+            label="Phone"
+            name="phonenr"
+            defaultValue={props.person.phonenr}
+            onChange={e => (personData.phonenr = e.target.value)}
+          />
+          <TextField
+            label="Email"
+            name="email"
+            defaultValue={props.person.email}
+            onChange={e => (personData.email = e.target.value)}
+          />
+        </DialogContent>
+      )}
       <Button onClick={update.bind(this)} color="primary">
         Update
       </Button>
@@ -108,5 +124,7 @@ const mapStateToProps = state => ({
 });
 export default connect(mapStateToProps, {
   updatePerson,
-  updateEmployee
+  updateEmployee,
+  fetchPerson,
+  clearPerson
 })(EditEmployee);

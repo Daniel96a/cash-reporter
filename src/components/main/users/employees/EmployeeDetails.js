@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Button,
   Dialog,
@@ -9,7 +9,6 @@ import {
 import { EditEmployeeButton } from "./edit/EditEmployeeButton";
 import { detailsDialog } from "../../../../styles/Styles";
 import { connect } from "react-redux";
-import { fetchPerson } from "../../../../redux/actions/person";
 
 const EmployeeDetails = props => {
   const styles = detailsDialog();
@@ -18,10 +17,7 @@ const EmployeeDetails = props => {
     props.setShowEmployeeDetails(false);
     props.setEmployeeSelected(null);
   };
-  useEffect(() => {
-    props.fetchPerson(employee.personid);
-    // eslint-disable-next-line
-  }, []);
+
   return (
     <React.Fragment>
       {employee !== undefined && (
@@ -86,6 +82,5 @@ const EmployeeDetails = props => {
 };
 const mapStateToProps = state => ({
   employees: state.employees,
-  person: state.person
 });
-export default connect(mapStateToProps, { fetchPerson })(EmployeeDetails);
+export default connect(mapStateToProps)(EmployeeDetails);

@@ -26,6 +26,7 @@ export const fetchPerson = id => {
   };
 };
 export const updatePerson = person => {
+  console.log(person.personid);
   return async dispatch => {
     axios
       .put(
@@ -42,5 +43,10 @@ export const updatePerson = person => {
       .then(res => {
         dispatch(UPDATE_PERSON(person));
       });
+  };
+};
+export const clearPerson = person => {
+  return async dispatch => {
+    dispatch(SET_PERSON({}));
   };
 };
