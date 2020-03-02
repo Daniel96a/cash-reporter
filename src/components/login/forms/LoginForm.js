@@ -23,15 +23,13 @@ const LoginForm = props => {
   };
 
   return (
-    <FormGroup
-      className={loginFormStyle().root + " fade-in"}
+    <form className={loginFormStyle().root + " fade-in"}
       onSubmit={e => {
         if (e.key === "Enter") {
           login.bind(this);
         }
-      }}
-    >
-      <FormGroup className={loginFormStyle().label}>
+      }}>
+      <FormGroup>
         <TextField
           label="Username"
           name="username"
@@ -54,7 +52,7 @@ const LoginForm = props => {
       >
         Login
       </Button>
-    </FormGroup>
+    </form>
   );
 };
 const mapStateToProps = state => ({

@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { useEffect } from "react";
 import {
   TextField,
   Dialog,
@@ -7,6 +6,11 @@ import {
   DialogContent,
   DialogTitle
 } from "@material-ui/core";
+import {
+  updatePerson,
+  fetchPerson,
+  clearPerson
+} from "../../../../../redux/actions/person";
 import { detailsDialog } from "../../../../../styles/Styles";
 import { updateCustomer } from "../../../../../redux/actions/customers";
 import { connect } from "react-redux";
@@ -14,24 +18,41 @@ import { connect } from "react-redux";
 const EditCustomer = props => {
   const styles = detailsDialog();
   const customer = props.customers.customers[props.customerSelected];
-  const customerData = {
-    firstname: customer.firstname,
-    lastname: customer.lastname,
-    id: customer.id,
-    orgnr: customer.orgnr,
-    address: customer.address,
-    phonenr: customer.phonenr,
-    email: customer.email.toLowerCase()
+  const personData = {
+    personid: props.person.personid,
+    roleid: props.person.roleid,
+    companyid: props.person.companyid,
+    firstname: props.person.firstname,
+    lastname: props.person.lastname,
+    email: props.person.email,
+    phonenr: props.person.phonenr,
+    password: props.person.password,
+    username: props.person.username,
+    salt: props.person.salt
   };
 
+  useEffect(() => {
+    props.fetchPerson(customer.personid);
+    return () => {
+      props.clearPerson();
+    };
+    // eslint-disable-next-line
+  }, []);
   const updateCustomer = e => {
-    document.getElementsByName("firstname")[0].value = customerData.firstname;
-    document.getElementsByName("lastname")[0].value = customerData.lastname;
-
-    document.getElementsByName("address")[0].value = customerData.address;
-    document.getElementsByName("phonenr")[0].value = customerData.phonenr;
-    document.getElementsByName("email")[0].value = customerData.email;
+    document.getElementsByName("firstname")[0].value = personData.firstname;
+    document.getElementsByName("lastname")[0].value = personData.lastname;
+    document.getElementsByName("email")[0].value = personData.email;
+    document.getElementsByName("phonenr")[0].value = personData.phonenr;
+    document.getElementsByName("fullname")[0].value = personData.firstname + " " + personData.lastname;
+    const customerData = {
+      fullname: personData.firstname + " " + personData.lastname,
+      role: personData.lastname,
+      email: personData.email,
+      phonenr: personData.phonenr,
+      personid: personData.personid
+    };
     props.setShowEditCustomer(false);
+    props.updatePerson(personData);
     props.updateCustomer(customerData);
   };
 
@@ -49,87 +70,56 @@ const EditCustomer = props => {
       <DialogTitle id="max-width-dialog-title" className="align-text-center">
         Edit Customer
       </DialogTitle>
-      <DialogContent>
-        <TextField
-          style={halfWidth}
-          floatingLabelText="First name"
-          name="firstname"
-          variant="filled"
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "grey" }}
-          defaultValue={customer.firstname}
-          onChange={e => (customerData.firstname = e.target.value)}
-        />
-        <TextField
-          style={halfWidth}
-          floatingLabelText="Last name"
-          name="lastname"
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "grey" }}
-          defaultValue={customer.lastname}
-          onChange={e => (customerData.lastname = e.target.value)}
-          variant="filled"
-        />
-        <TextField
-          floatingLabelText="Customer ID"
-          name="customerid"
-          fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "grey" }}
-          defaultValue={customer.id}
-          variant="filled"
-          disabled
-        />
-        <TextField
-          floatingLabelText="Phone"
-          name="phonenr"
-          fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "grey" }}
-          defaultValue={customer.phonenr}
-          onChange={e => (customerData.phonenr = e.target.value)}
-        />
-        <TextField
-          floatingLabelText="Email"
-          name="email"
-          fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "grey" }}
-          defaultValue={customer.email}
-          onChange={e => (customerData.email = e.target.value)}
-        />
-        <TextField
-          floatingLabelText="Address"
-          name="address"
-          fullWidth
-          inputStyle={{ color: "white" }}
-          floatingLabelStyle={{ color: "lightgrey" }}
-          hintStyle={{ color: "grey" }}
-          defaultValue={customer.address}
-          onChange={e => (customerData.address = e.target.value)}
-        />
-      </DialogContent>
+      {props.person.personid !== undefined && (
+        <DialogContent className={styles.label}>
+          <TextField
+            label="First name"
+            name="firstname"
+            defaultValue={props.person.firstname}
+            onChange={e => (personData.firstname = e.target.value)}
+          />
+          <TextField
+            label="Last name"
+            name="lastname"
+            defaultValue={props.person.lastname}
+            onChange={e => (personData.lastname = e.target.value)}
+          />
+          {/* <TextField
+          label="Role"
+          name="role"
+          defaultValue={props.person.role}
+          onChange={e => (personData.role = e.target.value)}
+        /> */}
+          <TextField
+            label="Phone"
+            name="phonenr"
+            defaultValue={props.person.phonenr}
+            onChange={e => (personData.phonenr = e.target.value)}
+          />
+          <TextField
+            label="Email"
+            name="email"
+            defaultValue={props.person.email}
+            onChange={e => (personData.email = e.target.value)}
+          />
+        </DialogContent>
+      )}
       <Button onClick={updateCustomer.bind(this)}>
         Update
       </Button>
       <Button onClick={handleClose} color="secondary">
-        Abort
-      </Button>
+        Abort      </Button>
     </Dialog>
   );
 };
-const halfWidth = {
-  width: "49.5%",
-  marginLeft: "0.5%"
-};
+
 const mapStateToProps = state => ({
-  customers: state.customers
+  customers: state.customers,
+  person: state.person.person
 });
 export default connect(mapStateToProps, {
-  updateCustomer
+  updatePerson,
+  updateCustomer,
+  fetchPerson,
+  clearPerson
 })(EditCustomer);

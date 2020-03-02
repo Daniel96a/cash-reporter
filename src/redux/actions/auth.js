@@ -43,6 +43,7 @@ export const refreshToken = () => {
         timeout: 1000
       })
       .then(res => {
+        console.log(res)
         cookie.set("access_token", res.data.access_token, {
           maxAge: res.data.expires_in
         });
@@ -87,10 +88,10 @@ export const doLogin = data => {
   };
 };
 export const doLogout = () => {
+  const accessToken = cookie.get("access_token");
   return async dispatch => {
     axios
-      .get("http://localhost:8080/logout", {
-        headers: customHeaders,
+      .get(`http://localhost:8080/oauth/logout?access_token=${accessToken}`, {
         timeout: 1000
       })
       .finally(() => {

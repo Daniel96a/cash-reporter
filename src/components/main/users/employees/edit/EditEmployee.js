@@ -46,7 +46,6 @@ export const EditEmployee = props => {
     document.getElementsByName("phonenr")[0].value = personData.phonenr;
     document.getElementsByName("fullname")[0].value =
       personData.firstname + " " + personData.lastname;
-    props.setShowEditEmployee(false);
     const employeeData = {
       fullname: personData.firstname + " " + personData.lastname,
       role: personData.lastname,
@@ -54,10 +53,10 @@ export const EditEmployee = props => {
       phonenr: personData.phonenr,
       personid: personData.personid
     };
+    props.setShowEditEmployee(false);
     props.updatePerson(personData);
     props.updateEmployee(employeeData);
   };
-  console.log(props.person);
 
   const handleClose = () => {
     props.setShowEditEmployee(false);

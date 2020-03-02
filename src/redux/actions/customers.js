@@ -1,7 +1,6 @@
 import * as types from "./types";
 import axios from "axios";
 import { customHeaders } from "./customHeaders";
-import { doLogout } from "./auth";
 import { Cookies } from "react-cookie";
 const cookie = new Cookies();
 export const SET_CUSTOMERS = customers => ({
@@ -33,7 +32,7 @@ export const fetchCustomerList = () => {
       .then(res => {
         dispatch(SET_CUSTOMERS(res.data));
       })
-      .catch(error => {});
+      .catch(error => { });
   };
 };
 
@@ -66,16 +65,6 @@ export const deleteCustomer = customer => {
 
 export const updateCustomer = customer => {
   return async dispatch => {
-    axios
-      .post("http://localhost:8080/customer/customer_update", customer, {
-        headers: customHeaders,
-        timeout: 1000
-      })
-      .then(res => {
-        dispatch(EDIT_CUSTOMER(customer));
-      })
-      .catch(error => {
-        dispatch(doLogout());
-      });
+    dispatch(EDIT_CUSTOMER(customer));
   };
 };

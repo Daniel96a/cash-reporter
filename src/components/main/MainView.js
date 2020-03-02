@@ -1,19 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import Profile from "./dashboard/Profile";
-import MainHeader from "./MainHeader";
 import UsersView from "./users/UsersView";
 import "../../App.css";
+import BottomNavBar from "./BottomNavBar";
 import ReportsView from "./reports/ReportsView";
 import { connect } from "react-redux";
 const Main = props => {
   const [showAddReportsForm, setShowAddReportsForm] = useState(false);
   const content = (
-    <React.Fragment>
-      <MainHeader
-        doLogout={props.doLogout}
-        showCase={props.selectedView}
-        setshowCase={props.setSelectedView}
-      />
+    <Fragment>
       {props.selectedView === "Dashboard" && <Profile />}
       {props.selectedView === "Users" && <UsersView />}
       {props.selectedView === "Reports" && (
@@ -22,7 +17,8 @@ const Main = props => {
           setShowAddReportsForm={setShowAddReportsForm}
         />
       )}
-    </React.Fragment>
+      <BottomNavBar />
+    </Fragment>
   );
   return content;
 };

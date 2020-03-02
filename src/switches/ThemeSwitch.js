@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Switch } from "@material-ui/core";
 import { toggleDarkMode } from "../redux/actions/theme";
@@ -12,7 +12,6 @@ const ThemeSwitch = props => {
     props.toggleDarkMode(event.target.checked);
     localStorage.setItem("isDark", event.target.checked);
   };
-  console.log(props.isDark);
 
   return (
     <div style={{ position: "fixed", right: 40, top: 5 }}>

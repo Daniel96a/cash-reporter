@@ -8,6 +8,7 @@ import ProtectedRoute from "./protected.route";
 import { LoginRoute } from "./login.route";
 import { ThemeProvider } from "@material-ui/core";
 import { darkTheme, lightTheme } from "./theme/theme";
+import MainHeader from "./components/main/MainHeader";
 
 const App = props => {
   const useTheme = () => {
@@ -19,9 +20,14 @@ const App = props => {
   };
 
   document.body.style.backgroundColor = useTheme().palette.background.default;
-
   return (
     <ThemeProvider theme={useTheme()}>
+      <MainHeader
+        isAuthenticated={props.isAuthenticated}
+        doLogout={props.doLogout}
+        showCase={props.selectedView}
+        setshowCase={props.setSelectedView}
+      />
       <Switch>
         <ProtectedRoute
           exact
@@ -29,6 +35,7 @@ const App = props => {
           isAuthenticated={props.isAuthenticated}
           component={MainView}
         />
+
         <LoginRoute
           exact
           path="/login"
@@ -43,7 +50,8 @@ const App = props => {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  isDark: state.theme.isDark
+  isDark: state.theme.isDark,
+
 });
 
 export default connect(mapStateToProps)(App);

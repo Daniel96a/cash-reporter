@@ -14,6 +14,7 @@ const CustomerDetails = props => {
   const styles = detailsDialog();
   const handleClose = () => {
     props.setShowCustomerDetails(false);
+    props.setCustomerSelected(null)
   };
   const customer = props.customers.customers[props.customerSelected];
 
@@ -66,7 +67,7 @@ const CustomerDetails = props => {
             readOnly: true
           }}
         />
-         <TextField
+        <TextField
           label="Company"
           name="company"
           defaultValue={customer.company}
@@ -74,7 +75,7 @@ const CustomerDetails = props => {
             readOnly: true
           }}
         />
-         <TextField
+        <TextField
           label="Organisation number"
           name="orgnr"
           defaultValue={customer.orgnr}

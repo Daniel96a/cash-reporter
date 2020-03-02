@@ -34,7 +34,7 @@ export const fetchEmployeeList = () => {
         console.log(res.data);
         dispatch(setEmployees(res.data));
       })
-      .catch(error => {});
+      .catch(error => { });
   };
 };
 
@@ -73,18 +73,7 @@ export const deleteEmployee = employee => {
 
 export const updateEmployee = employee => {
   return async dispatch => {
-    axios
-      .get(
-        `http://localhost:8080/employee?access_token=${cookie.get(
-          "access_token"
-        )}`,
-        employee
-      )
-      .then(res => {
-        dispatch(EDIT_EMPLOYEE(employee));
-      })
-      .catch(error => {
-        dispatch(doLogout());
-      });
+    dispatch(EDIT_EMPLOYEE(employee));
+
   };
 };

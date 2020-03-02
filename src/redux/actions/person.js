@@ -22,7 +22,7 @@ export const fetchPerson = id => {
       .then(res => {
         dispatch(SET_PERSON(res.data));
       })
-      .catch(error => {});
+      .catch(error => { });
   };
 };
 export const updatePerson = person => {
@@ -30,9 +30,7 @@ export const updatePerson = person => {
   return async dispatch => {
     axios
       .put(
-        `http://localhost:8080/person/${
-          person.personid
-        }?access_token=${cookie.get("access_token")}`,
+        `http://localhost:8080/person?access_token=${cookie.get("access_token")}`,
         person,
         {
           headers: {

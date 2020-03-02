@@ -32,6 +32,10 @@ export const switchListsStyle = makeStyles(theme => ({
     right: 0,
     left: 0,
     maxWidth: 600,
+    "& .react-swipeable-view-container": {
+      height: "calc(100vh - 158px)",
+    },
+    minHeight: "calc( 100vh - 158px)",
     "& .MuiButtonBase-root": {
       backgroundColor: theme.palette.background.default
     },
@@ -56,6 +60,7 @@ export const detailsDialog = makeStyles(theme => ({
       maxHeight: "900px",
       maxWidth: "600px",
       overflow: "hidden",
+      backdropFilter: "blur(8px)",
       backgroundColor: theme.palette.primary.transparent
     },
     "& .MuiButton-containedPrimary": {
@@ -95,8 +100,6 @@ export const detailsDialog = makeStyles(theme => ({
       color: theme.palette.text.primary
     },
     "& .MuiBackdrop-root": {
-      backdropFilter: "blur(8px)",
-
       backgroundColor: "transparent"
     }
   },
