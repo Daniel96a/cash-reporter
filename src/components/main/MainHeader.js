@@ -8,9 +8,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     "& .MuiSvgIcon-root": {
       fill: "white",
-     "& .MuiPaper-elevation4":{
-      boxShadow: "none",
-     }
+      "& .MuiPaper-elevation4": {
+        boxShadow: "none",
+      }
     }
   }
 }));
@@ -23,9 +23,7 @@ const DashboardHeader = props => {
         <Typography style={{ fontSize: 20, margin: 10 }}>
           Cash Reporter
         </Typography>
-        <div style={{ position: "fixed", right: 40, top: 5 }}>
-          <ThemeSwitch />
-        </div>
+        <ThemeSwitch />
         <MainMenu showCase={props.showCase} setshowCase={props.setshowCase} />
       </AppBar>
       <BottomNavBar showCase={props.showCase} setshowCase={props.setshowCase} />

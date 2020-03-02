@@ -1,18 +1,10 @@
-import React, { Fragment } from "react";
+import React  from "react";
 import { connect } from "react-redux";
 import { Switch } from "@material-ui/core";
 import { toggleDarkMode } from "../redux/actions/theme";
 const ThemeSwitch = props => {
-  const savedTheme = () => {
-    let savedTheme = true;
-    if (localStorage.isDark === "false") {
-      return false;
-    } else {
-      return savedTheme;
-    }
-  };
   const [theme, setTheme] = React.useState({
-    isDark: savedTheme()
+    isDark: props.isDark
   });
 
   const handleChange = name => event => {
@@ -23,14 +15,14 @@ const ThemeSwitch = props => {
   console.log(props.isDark);
 
   return (
-    <Fragment>
+    <div style={{ position: "fixed", right: 40, top: 5 }}>
       <Switch
         checked={theme.isDark}
         onChange={handleChange("isDark")}
         value="isDark"
         inputProps={{ "aria-label": "secondary checkbox" }}
       />
-    </Fragment>
+    </div>
   );
 };
 const mapStateToProps = state => ({
