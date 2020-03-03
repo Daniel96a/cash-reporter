@@ -14,7 +14,6 @@ export const fetchReportList = () => {
     axios
       .get(`http://localhost:8080/customer?access_token=${cookie.get("access_token")}`)
       .then(res => {
-        console.log(res.data);
         dispatch(setReports(res.data));
       })
       .catch(() => {

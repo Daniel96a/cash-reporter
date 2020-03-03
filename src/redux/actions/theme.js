@@ -1,11 +1,11 @@
 import * as types from "./types";
 
-export const setTheme = isDark => ({
-  type: types.TOGGLE_DARK_MODE,
-  isDark
+export const SET_THEME = theme => ({
+  type: types.SET_THEME,
+  theme
 });
-export const toggleDarkMode = isDark => {
+export const chooseTheme = theme => {
   return async dispatch => {
-    dispatch(setTheme(isDark));
+    dispatch(SET_THEME(theme));
   };
 };

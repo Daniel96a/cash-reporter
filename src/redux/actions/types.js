@@ -9,6 +9,6 @@ export const ADD_EMPLOYEE = "ADD_EMPLOYEE";
 export const EDIT_EMPLOYEE = "EDIT_EMPLOYEE";
 export const REMOVE_EMPLOYEE = "REMOVE_EMPLOYEE";
 export const SELECTED_VIEW = "SELECTED_VIEW";
-export const TOGGLE_DARK_MODE = "TOGGLE_DARK_MODE";
 export const FETCH_PERSON = "FETCH_PERSON";
 export const UPDATE_PERSON = "UPDATE_PERSON";
+export const SET_THEME = "SET_THEME";

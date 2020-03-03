@@ -47,7 +47,27 @@ export const switchListsStyle = makeStyles(theme => ({
     }
   }
 }));
-
+export const switchThemeStyle = makeStyles(theme => ({
+  color: {
+    color: theme.palette.text.primary
+  },
+  root: {
+    backgroundColor: "transparent",
+    width:" -webkit-fill-available",
+    "& .MuiTab-root": {
+      minWidth: 109,
+    },
+    "& .MuiButtonBase-root": {
+      backgroundColor: theme.palette.background.default
+    },
+    "& .MuiTab-textColorPrimary.Mui-selected": {
+      color: theme.palette.primary.light
+    },
+    "& .MuiTabs-indicator": {
+      backgroundColor: theme.palette.primary.light
+    }
+  }
+}));
 export const detailsDialog = makeStyles(theme => ({
   root: {
     "& .MuiPaper-root": {
@@ -131,6 +151,7 @@ export const detailsDialog = makeStyles(theme => ({
     }
   }
 }));
+
 export const confirmDialog = makeStyles(theme => ({
   root: {
     "& .MuiDialog-paper": {
@@ -224,12 +245,18 @@ export const loginFormStyle = makeStyles(theme => ({
     }
   },
   label: {
+    "& .MuiFormLabel-root": {
+      color: theme.palette.text.primary
+    },
     "& .MuiFormControl-root": {
-      padding: "10px 10px 10px 10px",
+      margin: "10px 0px 10px 0px",
       width: "-webkit-fill-available"
     },
+    "& .MuiInputLabel-root.Mui-focused": {
+      color: theme.palette.primary.light
+    },
     "& .MuiInput-underline:before": {
-      borderColor: theme.palette.text.primary
+      borderColor: theme.palette.primary.main
     },
     "& .MuiInput-underline:after": {
       borderColor: theme.palette.primary.light

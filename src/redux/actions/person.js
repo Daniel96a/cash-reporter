@@ -26,7 +26,6 @@ export const fetchPerson = id => {
   };
 };
 export const updatePerson = person => {
-  console.log(person.personid);
   return async dispatch => {
     axios
       .put(

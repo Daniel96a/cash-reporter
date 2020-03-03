@@ -31,7 +31,6 @@ export const fetchEmployeeList = () => {
         )}`
       )
       .then(res => {
-        console.log(res.data);
         dispatch(setEmployees(res.data));
       })
       .catch(error => { });

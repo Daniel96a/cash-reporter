@@ -12,13 +12,12 @@ import MainHeader from "./components/main/MainHeader";
 
 const App = props => {
   const useTheme = () => {
-    if (props.isDark) {
+    if (props.theme === 'dark') {
       return darkTheme;
     } else {
       return lightTheme;
     }
   };
-
   document.body.style.backgroundColor = useTheme().palette.background.default;
   return (
     <ThemeProvider theme={useTheme()}>
@@ -33,6 +32,7 @@ const App = props => {
           exact
           path="/"
           isAuthenticated={props.isAuthenticated}
+          user={props.user}
           component={MainView}
         />
 
@@ -50,8 +50,8 @@ const App = props => {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  isDark: state.theme.isDark,
-
+  theme: state.theme.theme,
+  user: state.auth.user
 });
 
 export default connect(mapStateToProps)(App);

@@ -1,20 +1,20 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import Cookies from 'universal-cookie';
-const cookie = new Cookies();
-const ProtectedRoute = ({ component: Component, isAuthenticated, ...rest }) => (
+import isEmpty from "lodash/isEmpty";
+
+const ProtectedRoute = ({ component: Component, isAuthenticated, user, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      isAuthenticated || cookie.get("access_token") ? (
+      isAuthenticated || !isEmpty(user) ? (
         <Component {...props} />
       ) : (
-        <Redirect
-          to={{
-            pathname: "/login"
-          }}
-        />
-      )
+          <Redirect
+            to={{
+              pathname: "/login"
+            }}
+          />
+        )
     }
   />
 );

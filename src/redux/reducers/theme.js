@@ -1,21 +1,23 @@
-import { TOGGLE_DARK_MODE } from "../actions/types";
+import { SET_THEME } from "../actions/types";
 
 const savedTheme = () => {
-  if (localStorage.isDark === "true") {
-    return true;
+  if (localStorage.theme === "dark") {
+    localStorage.setItem("theme", 'dark')
+    return "dark";
   } else {
-    return false;
+    localStorage.setItem("theme", 'light')
+    return "light";
   }
 };
 const initialState = {
-  isDark: savedTheme()
+  theme: savedTheme()
 };
 export default (state = initialState, action = []) => {
   switch (action.type) {
-    case TOGGLE_DARK_MODE:
+    case SET_THEME:
       return {
         ...state,
-        isDark: action.isDark
+        theme: action.theme
       };
     default:
       return state;

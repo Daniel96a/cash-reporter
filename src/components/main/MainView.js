@@ -4,6 +4,7 @@ import UsersView from "./users/UsersView";
 import "../../App.css";
 import BottomNavBar from "./BottomNavBar";
 import ReportsView from "./reports/ReportsView";
+
 import { connect } from "react-redux";
 const Main = props => {
   const [showAddReportsForm, setShowAddReportsForm] = useState(false);
@@ -23,7 +24,8 @@ const Main = props => {
   return content;
 };
 const mapStateToProps = state => ({
-  selectedView: state.states.selectedView
+  selectedView: state.states.selectedView,
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(mapStateToProps)(Main);

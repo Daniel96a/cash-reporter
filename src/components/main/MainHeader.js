@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
 import { AppBar, makeStyles, Typography } from "@material-ui/core";
-import MainMenu from "./MainMenu";
 import { headerStyle } from "../../styles/Styles";
-import ThemeSwitch from "../../switches/ThemeSwitch";
+import DrawerMenu from './DrawerMenu'
+
 const useStyles = makeStyles(theme => ({
   root: {
     "& .MuiSvgIcon-root": {
@@ -19,14 +19,10 @@ const DashboardHeader = props => {
   return (
     <Fragment>
       <AppBar className={classes.root} style={headerStyle}>
-        <Typography style={{ fontSize: 20, margin: 10 }}>
+        <DrawerMenu />
+        <Typography style={{ fontSize: 20, marginLeft: "auto", marginRight: "auto", marginTop: 10, marginBottom: 10 }}>
           Cash Reporter
         </Typography>
-        <ThemeSwitch />
-        {props.isAuthenticated ? (
-          <MainMenu showCase={props.showCase} setshowCase={props.setshowCase} />
-
-        ) : <Fragment />}
       </AppBar>
     </Fragment>
   );

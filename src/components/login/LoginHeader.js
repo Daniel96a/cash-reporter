@@ -13,9 +13,6 @@ const LoginHeader = props => {
         <Typography style={{ fontSize: 20, margin: 10 }}>
           Cash Reporter
         </Typography>
-        <div style={{ position: "fixed", right: 10, top: 5 }}>
-          <ThemeSwitch />
-        </div>
       </AppBar>
     </React.Fragment>
   );

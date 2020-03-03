@@ -1,9 +1,11 @@
 import { SET_CURRENT_USER } from "../actions/types";
 import isEmpty from "lodash/isEmpty";
+import Cookies from "universal-cookie";
+const cookie = new Cookies();
 
 const initialState = {
   isAuthenticated: false,
-  user: {}
+  user: cookie.get("access_token")
 };
 
 export default (state = initialState, action = []) => {

@@ -4,24 +4,21 @@ import { Switch } from "@material-ui/core";
 import { toggleDarkMode } from "../redux/actions/theme";
 const ThemeSwitch = props => {
   const [theme, setTheme] = React.useState({
-    isDark: props.isDark
+    theme: props.theme
   });
 
   const handleChange = name => event => {
     setTheme({ ...theme, [name]: event.target.checked });
     props.toggleDarkMode(event.target.checked);
-    localStorage.setItem("isDark", event.target.checked);
+    localStorage.setItem("theme", event.target.checked);
   };
 
   return (
-    <div style={{ position: "fixed", right: 40, top: 5 }}>
-      <Switch
-        checked={theme.isDark}
-        onChange={handleChange("isDark")}
-        value="isDark"
-        inputProps={{ "aria-label": "secondary checkbox" }}
-      />
-    </div>
+    <Switch
+      checked={theme.isDark}
+      onChange={handleChange("theme")}
+      value="theme"
+    />
   );
 };
 const mapStateToProps = state => ({

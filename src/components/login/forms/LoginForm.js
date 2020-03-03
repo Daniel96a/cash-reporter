@@ -29,7 +29,7 @@ const LoginForm = props => {
           login.bind(this);
         }
       }}>
-      <FormGroup>
+      <FormGroup className={loginFormStyle().label}>
         <TextField
           label="Username"
           name="username"

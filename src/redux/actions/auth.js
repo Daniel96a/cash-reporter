@@ -43,7 +43,6 @@ export const refreshToken = () => {
         timeout: 1000
       })
       .then(res => {
-        console.log(res)
         cookie.set("access_token", res.data.access_token, {
           maxAge: res.data.expires_in
         });
@@ -51,7 +50,7 @@ export const refreshToken = () => {
           maxAge: res.data.expires_in
         });
         setAuthorizationToken(res);
-        dispatch(setCurrentUser(res));
+        dispatch(setCurrentUser(res.data.access_token));
       })
       .catch(error => {
         dispatch(doLogout());
@@ -60,7 +59,6 @@ export const refreshToken = () => {
 };
 
 export const doLogin = data => {
-  console.log(data)
   // var encodedData =
   //   "Basic " + base64.encode(`${data.username}:${data.password}`);
   return async dispatch => {
@@ -80,7 +78,7 @@ export const doLogin = data => {
         });
 
         setAuthorizationToken(res);
-        dispatch(setCurrentUser(res));
+        dispatch(setCurrentUser(res.data.access_token));
       })
       .catch(error => {
         alert(error);
@@ -98,7 +96,6 @@ export const doLogout = () => {
         dispatch(setCurrentUser({}));
         cookie.remove("access_token");
         cookie.remove("refresh_token");
-        window.location.reload();
       });
   };
 };
