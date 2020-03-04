@@ -5,7 +5,7 @@ const savedTheme = () => {
     localStorage.setItem("theme", 'light')
     return "light";
   } else {
-    localStorage.setItem("theme", 'dark')
+    localStorage.removeItem('theme')
     return "dark";
   }
 };

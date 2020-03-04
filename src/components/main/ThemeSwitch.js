@@ -56,8 +56,7 @@ export const SwitchTheme = props => {
     if (newValue === 0) {
       localStorage.setItem('theme', 'light')
     } else {
-      localStorage.setItem('theme', 'dark')
-
+      localStorage.removeItem('theme')
     }
     setValue(newValue);
   };
