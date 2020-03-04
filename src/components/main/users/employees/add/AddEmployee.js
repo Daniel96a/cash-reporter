@@ -8,7 +8,6 @@ import {
 } from "@material-ui/core";
 import { detailsDialog } from "../../../../../styles/Styles";
 import { addPerson } from "../../../../../redux/actions/person";
-
 import { connect } from "react-redux";
 import CompanyList from "../../../company/CompanyList";
 

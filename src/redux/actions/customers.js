@@ -1,6 +1,5 @@
 import * as types from "./types";
 import axios from "axios";
-import { customHeaders } from "./customHeaders";
 import { Cookies } from "react-cookie";
 const cookie = new Cookies();
 export const SET_CUSTOMERS = customers => ({
@@ -36,30 +35,15 @@ export const fetchCustomerList = () => {
   };
 };
 
-export const addCustomer = customer => {
+export const addCustomer = person => {
   return async dispatch => {
-    axios
-      .post("http://localhost:8080/customer/customer_add", customer, {
-        headers: customHeaders,
-        timeout: 1000
-      })
-      .then(res => {
-        customer.id = res.data.id;
-        dispatch(ADD_CUSTOMER(customer));
-      });
+    dispatch(ADD_CUSTOMER(person))
   };
 };
 
 export const deleteCustomer = customer => {
   return async dispatch => {
-    axios
-      .post("http://localhost:8080/customer/customer_remove", customer.id, {
-        headers: customHeaders,
-        timeout: 1000
-      })
-      .then(() => {
-        dispatch(REMOVE_CUSTOMER(customer));
-      });
+    dispatch(REMOVE_CUSTOMER(customer));
   };
 };
 

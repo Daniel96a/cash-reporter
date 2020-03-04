@@ -36,7 +36,6 @@ const AddCustomer = props => {
 
   const createCustomer = e => {
     props.addPerson(customer);
-
     props.setShowAddCustomerForm(false);
     e.preventDefault();
   };

@@ -7,6 +7,8 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 import { connect } from "react-redux";
 import { deletePerson } from "../../../../../redux/actions/person";
+import { deleteEmployee } from "../../../../../redux/actions/employees";
+
 import { confirmDialog } from "../../../../../styles/Styles";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -58,5 +60,6 @@ const mapStateToProps = state => ({
   employees: state.employees
 });
 export default connect(mapStateToProps, {
-  deletePerson
+  deletePerson,
+  deleteEmployee
 })(DeleteEmployee);

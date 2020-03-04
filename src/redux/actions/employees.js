@@ -1,7 +1,5 @@
 import * as types from "./types";
 import axios from "axios";
-import { customHeaders } from "./customHeaders";
-import { doLogout } from "./auth";
 import Cookies from "universal-cookie";
 const cookie = new Cookies();
 export const setEmployees = employees => ({
@@ -39,34 +37,13 @@ export const fetchEmployeeList = () => {
 
 export const addEmployee = employee => {
   return async dispatch => {
-    axios
-      .post("http://localhost:8080/employee/employee_add", {
-        headers: customHeaders,
-        timeout: 1000
-      })
-      .then(res => {
-        employee.id = res.data.employeeid;
-        dispatch(ADD_EMPLOYEE(employee));
-      })
-      .catch(error => {
-        dispatch(doLogout());
-      });
+    dispatch(ADD_EMPLOYEE(employee));
   };
 };
 
 export const deleteEmployee = employee => {
   return async dispatch => {
-    axios
-      .post("http://localhost:8080/employee/employee_remove", {
-        headers: customHeaders,
-        timeout: 1000
-      })
-      .then(res => {
-        dispatch(REMOVE_EMPLOYEE(employee));
-      })
-      .catch(error => {
-        dispatch(doLogout());
-      });
+    dispatch(REMOVE_EMPLOYEE(employee));
   };
 };
 

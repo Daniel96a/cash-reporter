@@ -1,6 +1,9 @@
 import * as types from "./types";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import { addEmployee, deleteEmployee } from "./employees";
+import { addCustomer, deleteCustomer } from "./customers";
+
 const cookie = new Cookies();
 export const SET_PERSON = person => ({
   type: types.FETCH_PERSON,
@@ -53,7 +56,16 @@ export const addPerson = person => {
             Authorization: axios.defaults.headers.common.Authorization
           }
         }
-      )
+      ).then(res => {
+        person.fullname = res.data.firstname + " " + res.data.lastname;
+        person.personid = res.data.personid;
+        if (person.roleid === 1) {
+          dispatch(addEmployee(person))
+        }
+        if (person.roleid === 2) {
+          dispatch(addCustomer(person))
+        }
+      })
       .then(res => {
         console.log(res)
       });
@@ -68,7 +80,8 @@ export const deletePerson = id => {
         )}`
       )
       .then(res => {
-        // dispatch(DELETE_PERSON(res.data));
+        dispatch(deleteCustomer(id));
+        dispatch(deleteEmployee(id))
       })
       .catch(error => { });
   };

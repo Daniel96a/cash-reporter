@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         employees: state.employees.filter(
-          employee => employee !== action.employee
+          employee => employee.personid !== action.employee
         )
       };
     case ADD_EMPLOYEE:

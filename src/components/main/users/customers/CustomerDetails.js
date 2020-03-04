@@ -43,15 +43,6 @@ const CustomerDetails = props => {
           }}
         />
         <TextField
-          label="Role"
-          name="role"
-          fullWidth
-          defaultValue={customer.role}
-          InputProps={{
-            readOnly: true
-          }}
-        />
-        <TextField
           label="Phone"
           name="phonenr"
           defaultValue={customer.phonenr}
