@@ -54,7 +54,6 @@ const DrawerMenu = props => {
         <div
             className={classes.list}
             role="presentation"
-            on
             onKeyDown={toggleDrawer(side, false)}
         >
             <List>

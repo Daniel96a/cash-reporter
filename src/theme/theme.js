@@ -2,6 +2,7 @@ import { createMuiTheme } from "@material-ui/core";
 import { BLUE, GREY, DARK, LIGHT_BLUE } from "../colorTheme/colors";
 
 export const lightTheme = createMuiTheme({
+
   palette: {
     type: "light",
     background: {

@@ -1,12 +1,12 @@
 import { SET_THEME } from "../actions/types";
 
 const savedTheme = () => {
-  if (localStorage.theme === "dark") {
-    localStorage.setItem("theme", 'dark')
-    return "dark";
-  } else {
+  if (localStorage.theme === "light") {
     localStorage.setItem("theme", 'light')
     return "light";
+  } else {
+    localStorage.setItem("theme", 'dark')
+    return "dark";
   }
 };
 const initialState = {
