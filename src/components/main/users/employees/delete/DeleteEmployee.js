@@ -6,7 +6,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 
 import Slide from "@material-ui/core/Slide";
 import { connect } from "react-redux";
-import { deleteEmployee } from "../../../../../redux/actions/employees";
+import { deletePerson } from "../../../../../redux/actions/person";
 import { confirmDialog } from "../../../../../styles/Styles";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -16,14 +16,14 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const DeleteEmployee = props => {
   const [open, setOpen] = useState(props.showDeleteEmployee);
   const dialogStyle = confirmDialog();
-
+  const personid = props.employees.employees[props.employeeSelected].personid;
   const handleClose = () => {
     setOpen(false);
     props.setShowDeleteEmployee(false);
   };
 
   const handleDelete = () => {
-    props.deleteEmployee(props.employees.employees[props.employeeSelected]);
+    props.deletePerson(personid)
     setOpen(false);
     props.setShowDeleteEmployee(false);
     props.setEmployeeSelected(null);
@@ -44,10 +44,10 @@ const DeleteEmployee = props => {
         {"Are you sure you want to delete this this employee?"}
       </DialogTitle>
       <DialogActions>
-        <Button onClick={handleClose} color="primary">
+        <Button onClick={handleClose} >
           Cancel
         </Button>
-        <Button onClick={handleDelete} color="secondary">
+        <Button onClick={handleDelete} style={{ color: "red" }}>
           Delete
         </Button>
       </DialogActions>
@@ -58,5 +58,5 @@ const mapStateToProps = state => ({
   employees: state.employees
 });
 export default connect(mapStateToProps, {
-  deleteEmployee
+  deletePerson
 })(DeleteEmployee);

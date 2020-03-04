@@ -12,3 +12,5 @@ export const SELECTED_VIEW = "SELECTED_VIEW";
 export const FETCH_PERSON = "FETCH_PERSON";
 export const UPDATE_PERSON = "UPDATE_PERSON";
 export const SET_THEME = "SET_THEME";
+export const ADD_PERSON = "ADD_PERSON";
+export const FETCH_COMPANY = "FETCH_COMPANY";

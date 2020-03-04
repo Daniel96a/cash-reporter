@@ -87,12 +87,6 @@ export const EditEmployee = props => {
             defaultValue={props.person.lastname}
             onChange={e => (personData.lastname = e.target.value)}
           />
-          {/* <TextField
-          label="Role"
-          name="role"
-          defaultValue={props.person.role}
-          onChange={e => (personData.role = e.target.value)}
-        /> */}
           <TextField
             label="Phone"
             name="phonenr"

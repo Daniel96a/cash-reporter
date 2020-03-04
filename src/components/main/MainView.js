@@ -6,6 +6,7 @@ import BottomNavBar from "./BottomNavBar";
 import ReportsView from "./reports/ReportsView";
 
 import { connect } from "react-redux";
+
 const Main = props => {
   const [showAddReportsForm, setShowAddReportsForm] = useState(false);
   const content = (

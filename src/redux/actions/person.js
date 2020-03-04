@@ -42,6 +42,37 @@ export const updatePerson = person => {
       });
   };
 };
+export const addPerson = person => {
+  return async dispatch => {
+    axios
+      .post(
+        `http://localhost:8080/person?access_token=${cookie.get("access_token")}`,
+        person,
+        {
+          headers: {
+            Authorization: axios.defaults.headers.common.Authorization
+          }
+        }
+      )
+      .then(res => {
+        console.log(res)
+      });
+  };
+};
+export const deletePerson = id => {
+  return async dispatch => {
+    axios
+      .delete(
+        `http://localhost:8080/person/${id}?access_token=${cookie.get(
+          "access_token"
+        )}`
+      )
+      .then(res => {
+        // dispatch(DELETE_PERSON(res.data));
+      })
+      .catch(error => { });
+  };
+};
 export const clearPerson = person => {
   return async dispatch => {
     dispatch(SET_PERSON({}));

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   DialogTitle,
   DialogContent,
@@ -7,21 +7,35 @@ import {
   Button
 } from "@material-ui/core";
 import { detailsDialog } from "../../../../../styles/Styles";
-import { addCustomer } from "../../../../../redux/actions/customers";
+import { addPerson } from "../../../../../redux/actions/person";
 import { connect } from "react-redux";
+import CompanyList from "../../../company/CompanyList";
 const AddCustomer = props => {
   const styles = detailsDialog();
+  const [companyid, setCompanyid] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [salt, setSalt] = useState("");
+  const [phonenr, setPhonenr] = useState("");
+  const [email, setEmail] = useState("");
+
   const customer = {
-    orgnr: "",
-    firstname: "",
-    lastname: "",
-    address: "",
-    phonenr: "",
-    email: "".toLowerCase()
+    personid: null,
+    firstname: firstname,
+    lastname: lastname,
+    phonenr: phonenr,
+    email: email.toLowerCase(),
+    roleid: 2,
+    companyid: companyid,
+    username: username,
+    password: password,
+    salt: salt,
   };
 
   const createCustomer = e => {
-    props.addCustomer(customer);
+    props.addPerson(customer);
 
     props.setShowAddCustomerForm(false);
     e.preventDefault();
@@ -45,35 +59,50 @@ const AddCustomer = props => {
         <TextField
           label="Enter first name"
           name="firstname"
-          onChange={e => (customer.firstname = e.target.value)}
-          required
+          onChange={e => setFirstname(e.target.value)}
+          defaultValue={firstname}
         />
         <TextField
           label="Enter last name"
           name="lastname"
           required={true}
-          onChange={e => (customer.lastname = e.target.value)}
-        />
-        <TextField
-          label="Enter organisation number"
-          name="orgnr"
-          onChange={e => (customer.orgnr = e.target.value)}
-        />
-        <TextField
-          label="Enter address"
-          name="address"
-          onChange={e => (customer.address = e.target.value)}
+          onChange={e => setLastname(e.target.value)}
+          defaultValue={lastname}
         />
         <TextField
           label="Enter phone number"
           name="phonenr"
-          onChange={e => (customer.phonenr = e.target.value)}
+          onChange={e => setPhonenr(e.target.value)}
+          defaultValue={phonenr}
         />
-        <br />
         <TextField
-          label="Enter email"
+          label="Enter mail"
           name="email"
-          onChange={e => (customer.email = e.target.value)}
+          onChange={e => setEmail(e.target.value)}
+          defaultValue={email}
+        />
+        <CompanyList onChange={e => setCompanyid(e.target.value)}
+          defaultValue={companyid} />
+        <TextField
+          label="Enter username"
+          name="username"
+          required={true}
+          onChange={e => setUsername(e.target.value)}
+          defaultValue={username}
+        />
+        <TextField
+          label="Enter new password"
+          name="password"
+          required={true}
+          onChange={e => setPassword(e.target.value)}
+          defaultValue={password}
+        />
+        <TextField
+          label="Enter salt"
+          name="salt"
+          required={true}
+          onChange={e => setSalt(e.target.value)}
+          defaultValue={salt}
         />
       </DialogContent>
       <Button color="primary" onClick={createCustomer.bind(this)}>
@@ -87,8 +116,8 @@ const AddCustomer = props => {
 };
 
 const mapStateToProps = state => ({
-  customers: state.customers
+  person: state.person
 });
 export default connect(mapStateToProps, {
-  addCustomer
+  addPerson
 })(AddCustomer);

@@ -27,7 +27,7 @@ const DeleteReport = props => {
   };
 
 
-  return ( 
+  return (
     <Dialog
       className={dialogStyle.root}
       hideBackdrop
@@ -41,10 +41,10 @@ const DeleteReport = props => {
         {"Are you sure you want to delete this this Report?"}
       </DialogTitle>
       <DialogActions>
-        <Button onClick={handleClose} color="primary">
+        <Button onClick={handleClose} >
           Cancel
         </Button>
-        <Button onClick={handleDelete} color="secondary">
+        <Button onClick={handleDelete} style={{ color: "red" }}>
           Delete
         </Button>
       </DialogActions>

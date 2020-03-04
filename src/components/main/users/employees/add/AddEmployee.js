@@ -7,29 +7,37 @@ import {
   DialogTitle
 } from "@material-ui/core";
 import { detailsDialog } from "../../../../../styles/Styles";
-import { addEmployee } from "../../../../../redux/actions/employees";
+import { addPerson } from "../../../../../redux/actions/person";
 
 import { connect } from "react-redux";
+import CompanyList from "../../../company/CompanyList";
 
 export const AddEmployee = props => {
   const styles = detailsDialog();
-  const [role, setRole] = useState("");
-  const [firstname, setfirstname] = useState("");
-  const [lastname, setlastname] = useState("");
-  const [address, setaddress] = useState("");
-  const [phonenr, setphonenr] = useState("");
-  const [email, setemail] = useState("");
+  const [companyid, setCompanyid] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [salt, setSalt] = useState("");
+  const [phonenr, setPhonenr] = useState("");
+  const [email, setEmail] = useState("");
 
   const employee = {
-    role: role,
+    personid: null,
     firstname: firstname,
     lastname: lastname,
-    address: address,
     phonenr: phonenr,
-    email: email.toLowerCase()
+    email: email.toLowerCase(),
+    roleid: 1,
+    companyid: companyid,
+    username: username,
+    password: password,
+    salt: salt,
   };
+
   const createEmployee = e => {
-    props.addEmployee(employee);
+    props.addPerson(employee);
     props.setShowAddEmployeeForm(false);
     e.preventDefault();
   };
@@ -52,40 +60,53 @@ export const AddEmployee = props => {
         <TextField
           label="Enter first name"
           name="firstname"
-          onChange={e => setfirstname(e.target.value)}
+          onChange={e => setFirstname(e.target.value)}
           defaultValue={firstname}
         />
         <TextField
           label="Enter last name"
           name="lastname"
           required={true}
-          onChange={e => setlastname(e.target.value)}
+          onChange={e => setLastname(e.target.value)}
           defaultValue={lastname}
-        />
-        <TextField
-          label="Enter role"
-          name="role"
-          onChange={e => setRole(e.target.value)}
-          defaultValue={role}
-        />
-        <TextField
-          label="Enter address"
-          name="address"
-          onChange={e => setaddress(e.target.value)}
-          defaultValue={address}
         />
         <TextField
           label="Enter phone number"
           name="phonenr"
-          onChange={e => setphonenr(e.target.value)}
+          onChange={e => setPhonenr(e.target.value)}
           defaultValue={phonenr}
         />
         <TextField
-          label="Enter email"
+          label="Enter mail"
           name="email"
-          onChange={e => setemail(e.target.value)}
+          onChange={e => setEmail(e.target.value)}
           defaultValue={email}
         />
+        <CompanyList onChange={e => setCompanyid(e.target.value)}
+          defaultValue={companyid} />
+        <TextField
+          label="Enter username"
+          name="username"
+          required={true}
+          onChange={e => setUsername(e.target.value)}
+          defaultValue={username}
+        />
+        <TextField
+          label="Enter new password"
+          name="password"
+          required={true}
+          onChange={e => setPassword(e.target.value)}
+          defaultValue={password}
+        />
+        <TextField
+          label="Enter salt"
+          name="salt"
+          required={true}
+          onChange={e => setSalt(e.target.value)}
+          defaultValue={salt}
+        />
+
+
       </DialogContent>
       <Button color="primary" onClick={createEmployee.bind(this)}>
         Add Employee
@@ -98,8 +119,8 @@ export const AddEmployee = props => {
 };
 
 const mapStateToProps = state => ({
-  customers: state.customers
+  person: state.person
 });
 export default connect(mapStateToProps, {
-  addEmployee
+  addPerson
 })(AddEmployee);
