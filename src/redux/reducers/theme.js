@@ -1,15 +1,12 @@
-import { SET_THEME, SET_THEME_NUMBER, ENABLE_THEME } from "../actions/types";
+import { SET_THEME } from "../actions/types";
 
-const savedTheme = () => {
-  if (localStorage.theme === 'dark') {
-    return 'dark'
+const isDark = () => {
+  if (localStorage.theme !== undefined) {
+    return true
   }
-  if (localStorage.theme === 'light') {
-    return 'light'
-  }
-  return null
+  return false
 };
-const themeSwitchSave = () => {
+const themeDisabled = () => {
   if (localStorage.theme === undefined) {
     return true
   }
@@ -22,33 +19,23 @@ const themeNumber = () => {
   if (localStorage.theme === 'light') {
     return 0
   }
+  return 0
 };
 
 const initialState = {
-  theme: savedTheme(),
+  isDark: isDark(),
   themeNumber: themeNumber(),
-  enableTheme: themeSwitchSave(),
+  themeDisabled: themeDisabled(),
 };
+
 export default (state = initialState, action = []) => {
   switch (action.type) {
     case SET_THEME:
       return {
         ...state,
-        theme: action.theme,
-      };
-    case ENABLE_THEME:
-      return {
-        ...state,
-        theme: state.theme,
-        themeNumber: state.themeNumber,
-        enableTheme: !state.enableTheme
-      };
-    case SET_THEME_NUMBER:
-      return {
-        ...state,
-        theme: state.theme,
-        enableTheme: state.enableTheme,
-        themeNumber: action.themeNumber
+        isDark: action.theme.isDark,
+        themeNumber: action.theme.themeNumber,
+        themeDisabled: action.theme.themeDisabled
       };
     default:
       return state;

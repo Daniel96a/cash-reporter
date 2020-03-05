@@ -6,41 +6,14 @@ import { RestrictedView } from "./components/restrictedView/RestrictedView";
 import { Switch, Route } from "react-router-dom";
 import ProtectedRoute from "./protected.route";
 import { LoginRoute } from "./login.route";
-import { ThemeProvider } from "@material-ui/core";
-import { darkTheme, lightTheme } from "./theme/theme";
 import MainHeader from "./components/main/MainHeader";
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { chooseTheme, themeNumber } from './redux/actions/theme';
+import CustomThemeProvider from "./ThemeProvider";
 
 const App = props => {
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const useTheme = () => {
-    if (localStorage.theme === undefined) {
-      if (prefersDarkMode) {
-        props.themeNumber(1)
-        props.chooseTheme('dark')
-        return darkTheme
-      } if (!prefersDarkMode) {
-        props.themeNumber(0)
-        props.chooseTheme('light')
-        return lightTheme
-      }
-    }
-    if (localStorage.theme === 'dark') {
-      props.chooseTheme('dark')
-      return darkTheme
-    } else {
-      props.chooseTheme('light')
-      return lightTheme
-    }
-  }
-  document.body.style.backgroundColor = useTheme().palette.background.default;
-
   return (
-    <ThemeProvider theme={useTheme()}>
+    <CustomThemeProvider>
       <MainHeader
         isAuthenticated={props.isAuthenticated}
-        doLogout={props.doLogout}
         showCase={props.selectedView}
         setshowCase={props.setSelectedView}
       />
@@ -61,14 +34,13 @@ const App = props => {
         />
         <Route exact path="/*" component={RestrictedView} />
       </Switch>
-    </ThemeProvider>
+    </CustomThemeProvider>
   );
 };
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  currentTheme: state.theme.theme,
   user: state.auth.user
 });
 
-export default connect(mapStateToProps, { chooseTheme, themeNumber })(App);
+export default connect(mapStateToProps)(App);

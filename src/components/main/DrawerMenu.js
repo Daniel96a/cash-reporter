@@ -9,7 +9,7 @@ import { IconButton, useMediaQuery, Typography, Paper } from "@material-ui/core"
 import MenuIcon from "@material-ui/icons/Menu";
 import ThemeSwitch from './ThemeSwitch';
 import { doLogout } from '../../redux/actions/auth'
-import { enableTheme, chooseTheme, themeNumber } from '../../redux/actions/theme'
+import { chooseTheme } from '../../redux/actions/theme'
 
 import { connect } from 'react-redux';
 
@@ -62,22 +62,19 @@ const DrawerMenu = props => {
         setState({ ...state, [side]: open });
     };
 
+    const themeDisabled = !props.theme.themeDisabled;
     const toggleEnableTheme = () => {
-
-        if (props.theme.enableTheme === false) {
-            if (prefersDarkMode) {
-                props.themeNumber(1)
-                props.chooseTheme('dark')
-            }
-            if (!prefersDarkMode) {
-                props.themeNumber(0)
-                props.chooseTheme('light')
-            }
-            localStorage.removeItem("theme")
+        if (prefersDarkMode) {
+            props.chooseTheme({ isDark: true, themeNumber: 1, themeDisabled: props.theme.themeDisabled })
         }
-        props.enableTheme(!props.theme.enableTheme)
-    };
+        if (!prefersDarkMode) {
+            props.chooseTheme({ isDark: false, themeNumber: 0, themeDisabled: props.theme.themeDisabled })
+        }
+        localStorage.removeItem("theme")
 
+        props.chooseTheme({ isDark: !props.theme.isDark, themeNumber: props.theme.themeNumber, themeDisabled: themeDisabled})
+    };
+    console.log(props.theme)
     const sideList = side => (
         <div
             className={classes.list}
@@ -95,7 +92,7 @@ const DrawerMenu = props => {
                     <ThemeSwitch />
                 </ListItem>
                 <ListItem className={classes.button} button component={Paper} onClick={toggleEnableTheme.bind(this)}>
-                    {props.theme.enableTheme ? (
+                    {props.theme.themeDisabled ? (
                         <Typography style={{ margin: "auto" }}>Select theme</Typography>
                     ) :
                         <Typography color="error" style={{ margin: "auto" }}>Use preferred theme</Typography>
@@ -134,4 +131,4 @@ const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
     theme: state.theme
 });
-export default connect(mapStateToProps, { doLogout, enableTheme, chooseTheme, themeNumber })(DrawerMenu);
+export default connect(mapStateToProps, { doLogout, chooseTheme })(DrawerMenu);

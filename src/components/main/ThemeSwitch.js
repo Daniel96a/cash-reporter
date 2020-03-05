@@ -5,7 +5,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
-import { themeNumber, chooseTheme } from '../../redux/actions/theme'
+import { chooseTheme } from '../../redux/actions/theme'
 
 import { switchThemeStyle } from '../../styles/Styles'
 import { connect } from "react-redux";
@@ -45,13 +45,11 @@ export const SwitchTheme = props => {
   const classes = switchThemeStyle();
   const chooseLightTheme = () => {
     localStorage.setItem("theme", "light")
-    props.themeNumber(0)
-    props.chooseTheme('light')
+    props.chooseTheme({ isDark: false, themeNumber: 0, themeDisabled: props.theme.themeDisabled })
   }
   const chooseDarkTheme = () => {
     localStorage.setItem("theme", "dark")
-    props.themeNumber(1)
-    props.chooseTheme('dark')
+    props.chooseTheme({ isDark: true, themeNumber: 1, themeDisabled: props.theme.themeDisabled })
   }
 
   return (
@@ -66,13 +64,13 @@ export const SwitchTheme = props => {
           className={classes.color}
           onClick={chooseLightTheme.bind(this)}
           label="Light"
-          disabled={props.theme.enableTheme}
+          disabled={props.theme.themeDisabled}
           {...a11yProps(0)}
         />
         <Tab
           className={classes.color}
           onClick={chooseDarkTheme.bind(this)}
-          disabled={props.theme.enableTheme}
+          disabled={props.theme.themeDisabled}
           label="Dark"
           {...a11yProps(1)}
         />
@@ -84,4 +82,4 @@ export const SwitchTheme = props => {
 const mapStateToProps = state => ({
   theme: state.theme
 });
-export default connect(mapStateToProps, { themeNumber, chooseTheme })(SwitchTheme)
+export default connect(mapStateToProps, { chooseTheme })(SwitchTheme)
