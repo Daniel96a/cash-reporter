@@ -9,6 +9,7 @@ import { chooseTheme } from '../../redux/actions/theme'
 
 import { switchThemeStyle } from '../../styles/Styles'
 import { connect } from "react-redux";
+import { useMediaQuery } from "@material-ui/core";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -25,13 +26,7 @@ function TabPanel(props) {
     </Typography>
   );
 }
-const currentTheme = () => {
-  if (localStorage.theme === 'light') {
-    return 0;
-  } else {
-    return 1;
-  }
-}
+
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
@@ -48,15 +43,35 @@ function a11yProps(index) {
 
 
 export const SwitchTheme = props => {
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const currentTheme = () => {
+    if (props.currentTheme === 'dark') {
+      localStorage.setItem('theme', 'dark')
+      return 1
+    }
+    if (props.currentTheme === 'light') {
+      localStorage.setItem('theme', 'light')
+      return 0
+    }
+    if (props.currentTheme === null) {
+      if (prefersDarkMode) {
+        localStorage.setItem('theme', 'dark')
+        return 1
+      }
+      localStorage.setItem('theme', 'light')
+      return 0
+    }
+    return 0
 
+  }
   const classes = switchThemeStyle();
   const [value, setValue] = React.useState(currentTheme());
 
   const handleChange = (event, newValue) => {
     if (newValue === 0) {
-      localStorage.setItem('theme', 'light')
+      props.chooseTheme('light')
     } else {
-      localStorage.removeItem('theme')
+      props.chooseTheme('dark')
     }
     setValue(newValue);
   };
@@ -88,6 +103,6 @@ export const SwitchTheme = props => {
 };
 
 const mapStateToProps = state => ({
-  theme: state.theme
+  currentTheme: state.theme.theme
 });
 export default connect(mapStateToProps, { chooseTheme })(SwitchTheme)

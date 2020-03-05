@@ -2,11 +2,10 @@ import { makeStyles } from "@material-ui/core";
 
 export const bottomNavbarStyle = makeStyles(theme => ({
   button: {
-    color: theme.palette.text.primary
+    color: "white"
   },
   root: {
-    backgroundColor: theme.palette.primary.transparent,
-    color: "white",
+    backgroundColor: theme.palette.secondary.light,
     backdropFilter: "blur(8px)",
     position: "fixed",
     zIndex: 1,
@@ -53,7 +52,7 @@ export const switchThemeStyle = makeStyles(theme => ({
   },
   root: {
     backgroundColor: "transparent",
-    width:" -webkit-fill-available",
+    width: " -webkit-fill-available",
     "& .MuiTab-root": {
       minWidth: 109,
     },
