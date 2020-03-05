@@ -14,3 +14,5 @@ export const UPDATE_PERSON = "UPDATE_PERSON";
 export const SET_THEME = "SET_THEME";
 export const ADD_PERSON = "ADD_PERSON";
 export const FETCH_COMPANY = "FETCH_COMPANY";
+export const ENABLE_THEME = 'ENABLE_THEME';
+export const SET_THEME_NUMBER = 'SET_THEME_NUMBER';

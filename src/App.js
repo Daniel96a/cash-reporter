@@ -10,24 +10,27 @@ import { ThemeProvider } from "@material-ui/core";
 import { darkTheme, lightTheme } from "./theme/theme";
 import MainHeader from "./components/main/MainHeader";
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { chooseTheme } from './redux/actions/theme';
+import { chooseTheme, themeNumber } from './redux/actions/theme';
 
 const App = props => {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const useTheme = () => {
     if (localStorage.theme === undefined) {
       if (prefersDarkMode) {
+        props.themeNumber(1)
         props.chooseTheme('dark')
         return darkTheme
       } if (!prefersDarkMode) {
+        props.themeNumber(0)
         props.chooseTheme('light')
         return lightTheme
       }
     }
-
-    if (props.currentTheme === 'dark') {
+    if (localStorage.theme === 'dark') {
+      props.chooseTheme('dark')
       return darkTheme
     } else {
+      props.chooseTheme('light')
       return lightTheme
     }
   }
@@ -68,4 +71,4 @@ const mapStateToProps = state => ({
   user: state.auth.user
 });
 
-export default connect(mapStateToProps, { chooseTheme })(App);
+export default connect(mapStateToProps, { chooseTheme, themeNumber })(App);

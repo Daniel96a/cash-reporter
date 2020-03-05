@@ -2,10 +2,10 @@ import { makeStyles } from "@material-ui/core";
 
 export const bottomNavbarStyle = makeStyles(theme => ({
   button: {
-    color: "white"
+    color: theme.palette.text.primary
   },
   root: {
-    backgroundColor: theme.palette.secondary.light,
+    backgroundColor: theme.palette.background.paper,
     backdropFilter: "blur(8px)",
     position: "fixed",
     zIndex: 1,
