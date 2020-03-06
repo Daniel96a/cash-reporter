@@ -3,6 +3,7 @@ import axios from "axios";
 import Cookies from "universal-cookie";
 import { addEmployee, deleteEmployee } from "./employees";
 import { addCustomer, deleteCustomer } from "./customers";
+import { useUrl } from "./URL";
 
 const cookie = new Cookies();
 export const SET_PERSON = person => ({
@@ -13,12 +14,11 @@ export const UPDATE_PERSON = person => ({
   type: types.UPDATE_PERSON,
   person
 });
-
 export const fetchPerson = id => {
   return async dispatch => {
     axios
       .get(
-        `http://localhost:8080/person/${id}?access_token=${cookie.get(
+        `${useUrl}/person/${id}?access_token=${cookie.get(
           "access_token"
         )}`
       )
@@ -32,7 +32,7 @@ export const updatePerson = person => {
   return async dispatch => {
     axios
       .put(
-        `http://localhost:8080/person?access_token=${cookie.get("access_token")}`,
+        `${useUrl}/person?access_token=${cookie.get("access_token")}`,
         person,
         {
           headers: {
@@ -49,7 +49,7 @@ export const addPerson = person => {
   return async dispatch => {
     axios
       .post(
-        `http://localhost:8080/person?access_token=${cookie.get("access_token")}`,
+        `${useUrl}/person?access_token=${cookie.get("access_token")}`,
         person,
         {
           headers: {
@@ -75,7 +75,7 @@ export const deletePerson = id => {
   return async dispatch => {
     axios
       .delete(
-        `http://localhost:8080/person/${id}?access_token=${cookie.get(
+        `${useUrl}/person/${id}?access_token=${cookie.get(
           "access_token"
         )}`
       )

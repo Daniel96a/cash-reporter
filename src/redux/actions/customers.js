@@ -1,6 +1,7 @@
 import * as types from "./types";
 import axios from "axios";
 import { Cookies } from "react-cookie";
+import { useUrl } from "./URL";
 const cookie = new Cookies();
 export const SET_CUSTOMERS = customers => ({
   type: types.FETCH_CUSTOMERS,
@@ -24,7 +25,7 @@ export const fetchCustomerList = () => {
   return async dispatch => {
     axios
       .get(
-        `http://localhost:8080/customer?access_token=${cookie.get(
+        `${useUrl}/customer?access_token=${cookie.get(
           "access_token"
         )}`
       )

@@ -1,11 +1,10 @@
 import React, { Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { IconButton, useMediaQuery, Typography, Paper } from "@material-ui/core";
+import { IconButton, useMediaQuery, Typography, Paper, SwipeableDrawer } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import ThemeSwitch from './ThemeSwitch';
 import { doLogout } from '../../redux/actions/auth'
@@ -49,11 +48,12 @@ const DrawerMenu = props => {
 
 
     const toggleDrawer = (side, open) => event => {
-        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+        if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
         }
         setState({ ...state, [side]: open });
     };
+
     const logout = (side, open) => event => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
@@ -72,14 +72,13 @@ const DrawerMenu = props => {
         }
         localStorage.removeItem("theme")
 
-        props.chooseTheme({ isDark: !props.theme.isDark, themeNumber: props.theme.themeNumber, themeDisabled: themeDisabled})
+        props.chooseTheme({ isDark: !props.theme.isDark, themeNumber: props.theme.themeNumber, themeDisabled: themeDisabled })
     };
     console.log(props.theme)
     const sideList = side => (
         <div
             className={classes.list}
             role="presentation"
-            onKeyDown={toggleDrawer(side, false)}
         >
             <List>
                 <ListItem>
@@ -121,9 +120,15 @@ const DrawerMenu = props => {
             >
                 <MenuIcon />
             </IconButton>
-            <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
+            <SwipeableDrawer
+                open={state.left}
+                onClose={toggleDrawer('left', false)}
+                onOpen={toggleDrawer('left', true)}
+                BackdropProps={{}}
+                hideBackdrop
+            >
                 {sideList('left')}
-            </Drawer>
+            </SwipeableDrawer>
         </div>
     );
 }

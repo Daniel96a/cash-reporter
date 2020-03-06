@@ -1,6 +1,7 @@
 import * as types from "./types";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import { useUrl } from "./URL";
 
 const cookie = new Cookies();
 export const SET_COMPANY = company => ({
@@ -13,7 +14,7 @@ export const fetchCompany = () => {
   return async dispatch => {
     axios
       .get(
-        `http://localhost:8080/company?access_token=${cookie.get(
+        `${useUrl}/company?access_token=${cookie.get(
           "access_token"
         )}`
       )

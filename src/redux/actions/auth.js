@@ -1,5 +1,6 @@
 import * as types from "./types";
 import axios from "axios";
+import {useUrl} from './URL'
 import { customHeaders } from "./customHeaders";
 import {
   setGrantTypePassword,
@@ -18,7 +19,7 @@ export const validateToken = () => {
   const accessToken = cookie.get("access_token");
   return async dispatch => {
     axios
-      .post(`http://localhost:8080/oauth/check_token?token=${accessToken}`, {
+      .post(`${useUrl}/oauth/check_token?token=${accessToken}`, {
         customHeaders,
         timeout: 1000
       })
@@ -36,7 +37,7 @@ export const refreshToken = () => {
   //   "Basic " + base64.encode(`${data.username}:${data.password}`);
   return async dispatch => {
     axios
-      .post("http://localhost:8080/oauth/token", setGrantTypeRefreshToken(), {
+      .post(`${useUrl}/oauth/token`, setGrantTypeRefreshToken(), {
         headers: {
           Authorization: "Basic cGVyaGFtOjEyMzQ="
         },
@@ -63,7 +64,7 @@ export const doLogin = data => {
   //   "Basic " + base64.encode(`${data.username}:${data.password}`);
   return async dispatch => {
     axios
-      .post("http://localhost:8080/oauth/token", setGrantTypePassword(data), {
+      .post(`${useUrl}/oauth/token`, setGrantTypePassword(data), {
         headers: {
           Authorization: "Basic cGVyaGFtOjEyMzQ="
         },
@@ -89,7 +90,7 @@ export const doLogout = () => {
   const accessToken = cookie.get("access_token");
   return async dispatch => {
     axios
-      .get(`http://localhost:8080/oauth/logout?access_token=${accessToken}`, {
+      .get(`${useUrl}/oauth/logout?access_token=${accessToken}`, {
         timeout: 1000
       })
       .finally(() => {
