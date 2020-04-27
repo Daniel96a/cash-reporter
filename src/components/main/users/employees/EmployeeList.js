@@ -52,7 +52,7 @@ const EmployeeList = props => {
               onClick={openDetails.bind(this)}
               button
             >
-              <ListItemAvatar>
+              <ListItemAvatar className={styles.large}>
                 <Avatar />
               </ListItemAvatar>
               <ListItemText

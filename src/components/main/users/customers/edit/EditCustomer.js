@@ -11,12 +11,12 @@ import {
   fetchPerson,
   clearPerson
 } from "../../../../../redux/actions/person";
-import { detailsDialog } from "../../../../../styles/Styles";
+import { editDialog } from "../../../../../styles/Styles";
 import { updateCustomer } from "../../../../../redux/actions/customers";
 import { connect } from "react-redux";
 
 const EditCustomer = props => {
-  const styles = detailsDialog();
+  const styles = editDialog();
   const customer = props.customers.customers[props.customerSelected];
   const personData = {
     personid: props.person.personid,
@@ -43,7 +43,8 @@ const EditCustomer = props => {
     document.getElementsByName("lastname")[0].value = personData.lastname;
     document.getElementsByName("email")[0].value = personData.email;
     document.getElementsByName("phonenr")[0].value = personData.phonenr;
-    document.getElementsByName("fullname")[0].value = personData.firstname + " " + personData.lastname;
+    document.getElementsByName("fullname")[0].value =
+      personData.firstname + " " + personData.lastname;
     const customerData = {
       fullname: personData.firstname + " " + personData.lastname,
       role: personData.lastname,
@@ -104,11 +105,10 @@ const EditCustomer = props => {
           />
         </DialogContent>
       )}
-      <Button onClick={updateCustomer.bind(this)}>
-        Update
+      <Button variant="contained" onClick={updateCustomer.bind(this)}>Update</Button>
+      <Button variant="contained" onClick={handleClose} color="secondary">
+        Abort{" "}
       </Button>
-      <Button onClick={handleClose} color="secondary">
-        Abort      </Button>
     </Dialog>
   );
 };

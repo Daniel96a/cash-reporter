@@ -2,6 +2,8 @@ import React from "react";
 import { render } from "react-dom";
 import App from "./App";
 import { Provider } from "react-redux";
+import CustomThemeProvider from "./ThemeProvider";
+
 import store from "./redux/store";
 import "./index.css";
 import { Router } from "react-router-dom";
@@ -16,9 +18,11 @@ if (cookie.get("refresh_token")) {
 
 render(
   <Provider store={store}>
-    <Router history={createBrowserHistory()}>
-      <App />
-    </Router>
+    <CustomThemeProvider>
+      <Router history={createBrowserHistory()}>
+        <App />
+      </Router>
+    </CustomThemeProvider>
   </Provider>,
   document.getElementById("root")
 );

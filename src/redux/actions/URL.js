@@ -1,2 +1,3 @@
-export const useUrl ='http://172.29.144.189:8080';
-    // 'http://172.29.144.189:8080'
+// export const useUrl ='http://localhost:8080';
+export const useUrl ='http://192.168.1.131:8080';
+// export const useUrl ='http://localhost:8080';

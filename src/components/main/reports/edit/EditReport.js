@@ -11,7 +11,7 @@ import {
   TableRow,
   TableCell
 } from "@material-ui/core";
-import { detailsDialog, tableStyle } from "../../../../styles/Styles";
+import { editDialog, tableStyle } from "../../../../styles/Styles";
 import { updateReport } from "../../../../redux/actions/reports";
 import { connect } from "react-redux";
 
@@ -33,7 +33,7 @@ const EditReport = props => {
   const [outHundreds, setOutHundreds] = useState(0);
   const [outExcange, setOutExchange] = useState(0);
   const [outSum, setOutSum] = useState(0);
-  const styles = detailsDialog();
+  const styles = editDialog();
   function createData(
     name,
     five,
@@ -376,10 +376,10 @@ const EditReport = props => {
           </Table>
         </TableContainer>
       </DialogContent>
-      <Button onClick={updateReport.bind(this)} color="primary">
+      <Button variant="contained" onClick={updateReport.bind(this)} color="primary">
         Update
       </Button>
-      <Button onClick={handleClose} color="secondary">
+      <Button variant="contained" onClick={handleClose} color="secondary">
         Abort
       </Button>
     </Dialog>

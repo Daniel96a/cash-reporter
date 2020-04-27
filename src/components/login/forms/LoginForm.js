@@ -5,16 +5,16 @@ import { doLogin } from "../../../redux/actions/auth";
 import { connect } from "react-redux";
 import history from "../../../history";
 
-const LoginForm = props => {
+const LoginForm = (props) => {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
-
+  const passwordRef = React.createRef();
   const data = {
     username: username.toLocaleLowerCase(),
-    password: password
+    password: password,
   };
 
-  const login = e => {
+  const login = (e) => {
     props.doLogin(data);
     history.push("/");
     setusername("");
@@ -23,31 +23,38 @@ const LoginForm = props => {
   };
 
   return (
-    <form className={loginFormStyle().root + " fade-in"}
-      onSubmit={e => {
-        if (e.key === "Enter") {
-          login.bind(this);
-        }
-      }}>
+    <form className={loginFormStyle().root + " fade-in"}>
       <FormGroup className={loginFormStyle().label}>
         <TextField
           label="Username"
           name="username"
           autoComplete="current-username"
-          onChange={e => setusername(e.target.value)}
+          autoFocus
+          onChange={(e) => setusername(e.target.value)}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              passwordRef.current.focus();
+            }
+          }}
         />
         <TextField
           label="Password"
           type="password"
-          autoComplete="current-password"
-          onChange={e => setpassword(e.target.value)}
+          inputRef={passwordRef}
+          // autoComplete="current-password"
+          onChange={(e) => setpassword(e.target.value)}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              login(e);
+            }
+          }}
         />
       </FormGroup>
       <br />
       <Button
         variant="contained"
         label="Login"
-        type="submit"
+        // type="submit"
         onClick={login.bind(this)}
       >
         Login
@@ -55,7 +62,7 @@ const LoginForm = props => {
     </form>
   );
 };
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = (state) => ({
+  auth: state.auth,
 });
 export default connect(mapStateToProps, { doLogin })(LoginForm);

@@ -5,7 +5,7 @@ const cookie = new Cookies();
 
 const initialState = {
   isAuthenticated: false,
-  user: cookie.get("access_token")
+  user: cookie.get("access_token"),
 };
 
 export default (state = initialState, action = []) => {
@@ -13,7 +13,7 @@ export default (state = initialState, action = []) => {
     case SET_CURRENT_USER:
       return {
         isAuthenticated: !isEmpty(action.user),
-        user: action.user
+        user: action.user,
       };
     default:
       return state;
