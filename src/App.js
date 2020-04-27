@@ -1,37 +1,39 @@
 import React from "react";
 import { connect } from "react-redux";
 import LoginPage from "./pages/LoginPage";
-import { RestrictedView } from "./components/restrictedView/RestrictedView";
-import { Switch, Route } from "react-router-dom";
-import ProtectedRoute from "./protected.route";
-import { LoginRoute } from "./login.route";
 import MainHeader from "./components/main/MainHeader";
-import MainView from "./pages/MainPage";
+import AnimatedRouter from "./AnimatedRouter";
+import isEmpty from "lodash/isEmpty";
+import UsersView from "./components/main/users/UsersView";
+import BottomNavBar from "./components/main/BottomNavBar";
+import Profile from "./components/main/dashboard/Profile";
+import ReportsView from "./components/main/reports/ReportsView";
+import { Redirect, navigate } from "@reach/router";
+import ProtectedRoute from "./protected.route";
 
 const App = (props) => {
+  if (isEmpty(props.user)) {
+    navigate("/login");
+  }
   return (
     <>
       <MainHeader
         isAuthenticated={props.isAuthenticated}
         showCase={props.selectedView}
-        setshowCase={props.setSelectedView}
       />
-      <Switch>
-        <ProtectedRoute
-          exact
-          path="/"
-          isAuthenticated={props.isAuthenticated}
-          user={props.user}
-          component={MainView}
-        />
-        <LoginRoute
-          exact
-          path="/login"
-          isAuthenticated={props.isAuthenticated}
-          component={LoginPage}
-        />
-        <Route exact path="/*" component={RestrictedView} />
-      </Switch>
+      <AnimatedRouter basePath={""}>
+        {props.isAuthenticated || !isEmpty(props.user) ? (
+          <>
+            <Profile path={"/dashboard"} />
+            <UsersView path={"/users"} />
+            <ReportsView path={"/reports"} />
+          </>
+        ) : null}
+      <LoginPage path={"/login"} />
+      </AnimatedRouter>
+      {props.isAuthenticated || !isEmpty(props.user) ? (
+        <BottomNavBar default />
+      ) : null}
     </>
   );
 };

@@ -47,18 +47,18 @@ const MainMenu = props => {
         onClose={handleClose}
         open={open}
       >
-        <StyledMenuItem id="Dashboard" onClick={setSelectedView.bind(this)}>
-          <div style={{ margin: "auto" }} id="Dashboard">
+        <StyledMenuItem id="dashboard" onClick={setSelectedView.bind(this)}>
+          <div style={{ margin: "auto" }} id="dashboard">
             Dashboard
           </div>
         </StyledMenuItem>
-        <StyledMenuItem id="Users" onClick={setSelectedView.bind(this)}>
-          <div style={{ margin: "auto" }} id="Users">
+        <StyledMenuItem id="users" onClick={setSelectedView.bind(this)}>
+          <div style={{ margin: "auto" }} id="users">
             Users
           </div>
         </StyledMenuItem>
-        <StyledMenuItem id="Reports" onClick={setSelectedView.bind(this)}>
-          <div style={{ margin: "auto" }} id="Reports">
+        <StyledMenuItem id="reports" onClick={setSelectedView.bind(this)}>
+          <div style={{ margin: "auto" }} id="reports">
             Reports
           </div>
         </StyledMenuItem>

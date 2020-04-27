@@ -12,14 +12,7 @@ export const AddReportButton = props => {
         color="primary"
         aria-label="add"
         onClick={e => props.setShowAddReportsForm(true)}
-        style={{
-          float: "right",
-          position: "fixed",
-          zIndex: 1,
-          top: "auto",
-          bottom: 68,
-          right: 10
-        }}
+
       >
         <AddIcon />
       </Fab>
@@ -29,7 +22,12 @@ export const AddReportButton = props => {
 const useStyles = makeStyles(theme => ({
   root: {
     "& > *": {
-      margin: theme.spacing(1)
+      margin: theme.spacing(1),
+      position: "fixed",
+      zIndex: 1000,
+      right: 10,
+      bottom: 0,
+      top: 'calc(100vh - 136px)'
     }
   },
   extendedIcon: {

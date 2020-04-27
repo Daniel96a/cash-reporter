@@ -8,7 +8,7 @@ export const bottomNavbarStyle = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     backdropFilter: "blur(8px)",
     position: "fixed",
-    zIndex: 1,
+    zIndex: 1000,
     bottom: 0,
     width: "100%",
     "& .MuiBottomNavigationAction-root .Mui-selected": {

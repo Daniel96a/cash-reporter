@@ -8,6 +8,7 @@ import {
 } from "../../utils/setGrantType";
 import { setAuthorizationToken } from "../../utils/setAuthorizationToken";
 import Cookies from "universal-cookie";
+import { navigate } from "@reach/router";
 const cookie = new Cookies();
 
 export const setCurrentUser = (user) => ({
@@ -76,6 +77,8 @@ export const doLogin = (data) => {
         });
         setAuthorizationToken(res);
         dispatch(setCurrentUser(res.data.access_token));
+        navigate("/dashboard");
+
       })
       .catch((error) => {
         alert(error);

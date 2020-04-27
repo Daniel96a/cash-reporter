@@ -17,6 +17,7 @@ import { doLogout } from "../../redux/actions/auth";
 import { chooseTheme } from "../../redux/actions/theme";
 
 import { connect } from "react-redux";
+import { Link } from "@reach/router";
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -134,6 +135,8 @@ const DrawerMenu = (props) => {
       </List>
       {props.isAuthenticated ? (
         <ListItem
+          component={Link}
+          to={'/login'}
           button
           className={classes.logoutButton}
           onClick={logout(side, false)}

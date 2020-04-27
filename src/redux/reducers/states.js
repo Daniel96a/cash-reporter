@@ -1,21 +1,18 @@
 import { SELECTED_VIEW } from "../actions/types";
 
-const savedSession = () => {
-  let savedSession = "Dashboard";
-  if (sessionStorage.appView) {
-    savedSession = sessionStorage.getItem("appView");
-  }
-  return savedSession;
-};
+let route = window.location.pathname.split("/").filter((string) => string)
+  .shift();
+  console.log(route)
+
 const initialState = {
-  selectedView: savedSession()
+  selectedView: route,
 };
 
 export default (state = initialState, action = []) => {
   switch (action.type) {
     case SELECTED_VIEW:
       return {
-        selectedView: action.selectedView
+        selectedView: action.selectedView,
       };
     default:
       return state;

@@ -5,21 +5,19 @@ import Profile from "../components/main/dashboard/Profile";
 import ReportsView from "../components/main/reports/ReportsView";
 
 import { connect } from "react-redux";
-import BottomNavBar from "../components/main/BottomNavBar";
 
 const Main = (props) => {
   const [showAddReportsForm, setShowAddReportsForm] = useState(false);
   const content = (
     <>
-      {props.selectedView === "Dashboard" && <Profile />}
-      {props.selectedView === "Users" && <UsersView />}
-      {props.selectedView === "Reports" && (
+      {props.selectedView === "dashboard" && <Profile />}
+      {props.selectedView === "users" && <UsersView />}
+      {props.selectedView === "reports" && (
         <ReportsView
           showAddReportsForm={showAddReportsForm}
           setShowAddReportsForm={setShowAddReportsForm}
         />
       )}
-      <BottomNavBar selectedView={props.selectedView} />
     </>
   );
   return content;

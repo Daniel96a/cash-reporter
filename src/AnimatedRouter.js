@@ -15,7 +15,7 @@ const AnimatedRouter = ({ children, basePath }) => {
     getLevel(globalHistory.location.pathname)
   );
   const baseStyles = {
-    position: "absolute",
+    position: "fixed",
     right: 0,
     left: 0,
   };
@@ -37,8 +37,8 @@ const AnimatedRouter = ({ children, basePath }) => {
               ...baseStyles,
               transform:
                 routeChangeType === POP
-                  ? "translate3d(-100%, 0, 0)"
-                  : "translate3d(100%, 0, 0)",
+                  ? "translate3d(-100%, -50%, 0)"
+                  : "translate3d(100%, 50%, 0)",
               opacity: 0,
             }}
             enter={{ transform: "translate3d(0%, 0, 0)", opacity: 1 }}
