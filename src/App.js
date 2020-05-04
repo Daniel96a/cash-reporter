@@ -3,37 +3,27 @@ import { connect } from "react-redux";
 import LoginPage from "./pages/LoginPage";
 import MainHeader from "./components/main/MainHeader";
 import AnimatedRouter from "./AnimatedRouter";
-import isEmpty from "lodash/isEmpty";
 import UsersView from "./components/main/users/UsersView";
 import BottomNavBar from "./components/main/BottomNavBar";
 import Profile from "./components/main/dashboard/Profile";
 import ReportsView from "./components/main/reports/ReportsView";
-import { Redirect, navigate } from "@reach/router";
-import ProtectedRoute from "./protected.route";
 
-const App = (props) => {
-  if (isEmpty(props.user)) {
-    navigate("/login");
-  }
+const App = ({ isAuthenticated, user, selectedView }) => {
   return (
     <>
-      <MainHeader
-        isAuthenticated={props.isAuthenticated}
-        showCase={props.selectedView}
-      />
-      <AnimatedRouter basePath={""}>
-        {props.isAuthenticated || !isEmpty(props.user) ? (
+      <MainHeader isAuthenticated={isAuthenticated} showCase={selectedView} />
+      <AnimatedRouter basePath={""} user={user}>
+        {isAuthenticated && (
           <>
             <Profile path={"/dashboard"} />
             <UsersView path={"/users"} />
             <ReportsView path={"/reports"} />
           </>
-        ) : null}
-      <LoginPage path={"/login"} />
+        )}
+        <LoginPage path={"/login"} isAuthenticated={isAuthenticated} />
       </AnimatedRouter>
-      {props.isAuthenticated || !isEmpty(props.user) ? (
-        <BottomNavBar default />
-      ) : null}
+
+      {isAuthenticated && <BottomNavBar default />}
     </>
   );
 };

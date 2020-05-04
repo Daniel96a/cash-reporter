@@ -1,8 +1,9 @@
 import { SELECTED_VIEW } from "../actions/types";
 
-let route = window.location.pathname.split("/").filter((string) => string)
+let route = window.location.pathname
+  .split("/")
+  .filter((string) => string)
   .shift();
-  console.log(route)
 
 const initialState = {
   selectedView: route,

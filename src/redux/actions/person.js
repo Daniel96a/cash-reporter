@@ -6,88 +6,72 @@ import { addCustomer, deleteCustomer } from "./customers";
 import { useUrl } from "./URL";
 
 const cookie = new Cookies();
-export const SET_PERSON = person => ({
+export const SET_PERSON = (person) => ({
   type: types.FETCH_PERSON,
-  person
+  person,
 });
-export const UPDATE_PERSON = person => ({
+export const UPDATE_PERSON = (person) => ({
   type: types.UPDATE_PERSON,
-  person
+  person,
 });
-export const fetchPerson = id => {
-  return async dispatch => {
+export const fetchPerson = (id) => {
+  return async (dispatch) => {
     axios
-      .get(
-        `${useUrl}/person/${id}?access_token=${cookie.get(
-          "access_token"
-        )}`
-      )
-      .then(res => {
+      .get(`${useUrl}/person/${id}`)
+      .then((res) => {
         dispatch(SET_PERSON(res.data));
       })
-      .catch(error => { });
+      .catch((error) => {});
   };
 };
-export const updatePerson = person => {
-  return async dispatch => {
+export const updatePerson = (person) => {
+  return async (dispatch) => {
     axios
-      .put(
-        `${useUrl}/person?access_token=${cookie.get("access_token")}`,
-        person,
-        {
-          headers: {
-            Authorization: axios.defaults.headers.common.Authorization
-          }
-        }
-      )
-      .then(res => {
+      .put(`${useUrl}/person`, person, {
+        headers: {
+          Authorization: axios.defaults.headers.common.Authorization,
+        },
+      })
+      .then((res) => {
         dispatch(UPDATE_PERSON(person));
       });
   };
 };
-export const addPerson = person => {
-  return async dispatch => {
+export const addPerson = (person) => {
+  return async (dispatch) => {
     axios
-      .post(
-        `${useUrl}/person?access_token=${cookie.get("access_token")}`,
-        person,
-        {
-          headers: {
-            Authorization: axios.defaults.headers.common.Authorization
-          }
-        }
-      ).then(res => {
+      .post(`${useUrl}/person`, person, {
+        headers: {
+          Authorization: axios.defaults.headers.common.Authorization,
+        },
+      })
+      .then((res) => {
         person.fullname = res.data.firstname + " " + res.data.lastname;
         person.personid = res.data.personid;
         if (person.roleid === 1) {
-          dispatch(addEmployee(person))
+          dispatch(addEmployee(person));
         }
         if (person.roleid === 2) {
-          dispatch(addCustomer(person))
+          dispatch(addCustomer(person));
         }
-      })
-      .then(res => {
-        console.log(res)
       });
   };
 };
-export const deletePerson = id => {
-  return async dispatch => {
+export const deletePerson = (id) => {
+  return async (dispatch) => {
     axios
       .delete(
-        `${useUrl}/person/${id}?access_token=${cookie.get(
-          "access_token"
-        )}`
+        `${useUrl}/person/${id}?access_token=${cookie.get("access_token")}`
       )
-      .then(res => {
+      .then((res) => {
         dispatch(deleteCustomer(id));
-        dispatch(deleteEmployee(id))
+        dispatch(deleteEmployee(id));
       })
-      .catch(error => { });
+      .catch((error) => {});
   };
 };
-export const clearPerson = person => {
-  return async dispatch => {
+export const clearPerson = (person) => {
+  return async (dispatch) => {
     dispatch(SET_PERSON({}));
   };
 };

@@ -13,22 +13,26 @@ export const setReports = (reports) => ({
 export const fetchReportList = () => {
   return async (dispatch) => {
     axios
-      .get(`${useUrl}/customer?access_token=${cookie.get("access_token")}`)
+      .get(`${useUrl}/report?access_token=${cookie.get("access_token")}`)
       .then((res) => {
         dispatch(setReports(res.data));
       });
   };
 };
 
-export const addReport = (report) => {
+export const addReport = (data) => {
   return async (dispatch) => {
     axios
-      .get(`${useUrl}/report`, "", {
-        headers: {
-          Authorization: axios.defaults.headers.common["Authorization"],
-        },
-        timeout: 1000,
-      })
+      .post(
+        `${useUrl}/person?access_token=${cookie.get("access_token")}`,
+        data,
+        {
+          headers: {
+            Authorization: axios.defaults.headers.common.Authorization,
+          },
+          timeout: 1000,
+        }
+      )
       .then((res) => {
         dispatch(fetchReportList());
       });
@@ -38,7 +42,7 @@ export const addReport = (report) => {
 export const deleteReport = (report) => {
   return async (dispatch) => {
     axios
-      .post(`${useUrl}/report/report_remove`, {
+      .delete(`${useUrl}/report/${report.id}`, {
         headers: customHeaders,
         timeout: 1000,
       })
@@ -51,7 +55,7 @@ export const deleteReport = (report) => {
 export const updateReport = (report) => {
   return async (dispatch) => {
     axios
-      .post(`${useUrl}/report/report_update`, {
+      .put(`${useUrl}/report/${report.id}`, {
         headers: customHeaders,
         timeout: 1000,
       })

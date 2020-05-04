@@ -4,14 +4,15 @@ import { connect } from "react-redux";
 import { changeView } from "../../redux/actions/states";
 import { bottomNavbarStyle } from "../../styles/Styles";
 import { navigate } from "@reach/router";
-export const BottomNavBar = (props) => {
+export const BottomNavBar = ({ changeView, view }) => {
   const handleChange = (event, newValue) => {
-    props.changeView(newValue);
+    changeView(newValue);
     navigate(`/${newValue}`);
   };
+
   return (
     <BottomNavigation
-      value={props.view}
+      value={view}
       onChange={handleChange}
       className={bottomNavbarStyle().root}
     >

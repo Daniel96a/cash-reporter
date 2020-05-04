@@ -11,7 +11,11 @@ import { addReport } from "../../../../redux/actions/reports";
 import { connect } from "react-redux";
 import MarkerTable from "./MarkerTable";
 
-const AddReport = (props) => {
+const AddReport = ({
+  addReport,
+  setShowAddReportsForm,
+  showAddReportsForm,
+}) => {
   const styles = detailsDialog();
 
   const report = {
@@ -28,18 +32,17 @@ const AddReport = (props) => {
   };
 
   const createReport = (e) => {
-    props.addReport(report);
-    props.setShowAddReportsForm(false);
-    e.preventDefault();
+    addReport(report);
+    setShowAddReportsForm(false);
   };
 
   const handleClose = () => {
-    props.setShowAddReportsForm(false);
+    setShowAddReportsForm(false);
   };
 
-  return (  
+  return (
     <Dialog
-      open={props.showAddReportsForm}
+      open={showAddReportsForm}
       onClose={handleClose}
       aria-labelledby="max-width-dialog-title"
       className={styles.root}
@@ -125,7 +128,7 @@ const AddReport = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  customers: state.customers,
+  reports: state.reports,
 });
 export default connect(mapStateToProps, {
   addReport,

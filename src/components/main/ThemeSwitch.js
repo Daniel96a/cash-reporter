@@ -5,9 +5,9 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
-import { chooseTheme } from '../../redux/actions/theme'
+import { chooseTheme } from "../../redux/actions/theme";
 
-import { switchThemeStyle } from '../../styles/Styles'
+import { switchThemeStyle } from "../../styles/Styles";
 import { connect } from "react-redux";
 
 function TabPanel(props) {
@@ -29,33 +29,42 @@ function TabPanel(props) {
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired
+  value: PropTypes.any.isRequired,
 };
 
 function a11yProps(index) {
   return {
     id: `action-tab-${index}`,
-    "aria-controls": `action-tabpanel-${index}`
+    "aria-controls": `action-tabpanel-${index}`,
   };
 }
 
-
-
-export const SwitchTheme = props => {
+export const SwitchTheme = ({
+  theme: { themeDisabled, themeNumber, isDark },
+  chooseTheme,
+}) => {
   const classes = switchThemeStyle();
   const chooseLightTheme = () => {
-    localStorage.setItem("theme", "light")
-    props.chooseTheme({ isDark: false, themeNumber: 0, themeDisabled: props.theme.themeDisabled })
-  }
+    localStorage.setItem("theme", "light");
+    chooseTheme({
+      isDark: false,
+      themeNumber: 0,
+      themeDisabled: themeDisabled,
+    });
+  };
   const chooseDarkTheme = () => {
-    localStorage.setItem("theme", "dark")
-    props.chooseTheme({ isDark: true, themeNumber: 1, themeDisabled: props.theme.themeDisabled })
-  }
+    localStorage.setItem("theme", "dark");
+    chooseTheme({
+      isDark: true,
+      themeNumber: 1,
+      themeDisabled: themeDisabled,
+    });
+  };
 
   return (
     <Paper className={classes.root}>
       <Tabs
-        value={props.theme.themeNumber}
+        value={themeNumber}
         indicatorColor="primary"
         textColor="primary"
         variant="fullWidth"
@@ -64,13 +73,13 @@ export const SwitchTheme = props => {
           className={classes.color}
           onClick={chooseLightTheme.bind(this)}
           label="Light"
-          disabled={props.theme.themeDisabled}
+          disabled={themeDisabled}
           {...a11yProps(0)}
         />
         <Tab
           className={classes.color}
           onClick={chooseDarkTheme.bind(this)}
-          disabled={props.theme.themeDisabled}
+          disabled={themeDisabled}
           label="Dark"
           {...a11yProps(1)}
         />
@@ -79,7 +88,7 @@ export const SwitchTheme = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  theme: state.theme
+const mapStateToProps = (state) => ({
+  theme: state.theme,
 });
-export default connect(mapStateToProps, { chooseTheme })(SwitchTheme)
+export default connect(mapStateToProps, { chooseTheme })(SwitchTheme);

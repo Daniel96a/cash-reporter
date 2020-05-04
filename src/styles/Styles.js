@@ -297,7 +297,7 @@ export const listStyle = makeStyles((theme) => ({
 }));
 export const reportListStyle = makeStyles((theme) => ({
   root: {
-    position: "fixed",
+    // position: "fixed",
     color: "white",
     top: 58,
     left: 10,

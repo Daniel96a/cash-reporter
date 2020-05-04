@@ -2,24 +2,24 @@ import { SET_THEME } from "../actions/types";
 
 const isDark = () => {
   if (localStorage.theme !== undefined) {
-    return true
+    return true;
   }
-  return false
+  return false;
 };
 const themeDisabled = () => {
   if (localStorage.theme === undefined) {
-    return true
+    return true;
   }
-  return false
+  return false;
 };
 const themeNumber = () => {
-  if (localStorage.theme === 'dark') {
-    return 1
+  if (localStorage.theme === "dark") {
+    return 1;
   }
-  if (localStorage.theme === 'light') {
-    return 0
+  if (localStorage.theme === "light") {
+    return 0;
   }
-  return 0
+  return 0;
 };
 
 const initialState = {
@@ -35,7 +35,7 @@ export default (state = initialState, action = []) => {
         ...state,
         isDark: action.theme.isDark,
         themeNumber: action.theme.themeNumber,
-        themeDisabled: action.theme.themeDisabled
+        themeDisabled: action.theme.themeDisabled,
       };
     default:
       return state;

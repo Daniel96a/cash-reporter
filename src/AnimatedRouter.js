@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-
-import { Router, Location, globalHistory } from "@reach/router";
+import React, { useState, useEffect } from "react";
+import isEmpty from "lodash/isEmpty";
+import { Router, Location, globalHistory, navigate } from "@reach/router";
 import { animated, config as reactSpringConfig } from "react-spring/web.cjs";
 import { Transition } from "react-spring/renderprops.cjs";
 
 /* animated router experiment */
-const AnimatedRouter = ({ children, basePath }) => {
+const AnimatedRouter = ({ children, basePath, isAuthenticated,user }) => {
   const POP = "POP";
   const PUSH = "PUSH";
 
@@ -19,6 +19,17 @@ const AnimatedRouter = ({ children, basePath }) => {
     right: 0,
     left: 0,
   };
+  useEffect(() => {
+    if (!isEmpty(user)) {
+      if (window.location.pathname === "/" || window.location.pathname === "/login") {
+        navigate("/dashboard");
+      }
+    } else {
+      if (window.location.pathname !== "/login") {
+        navigate("/login");
+      }
+    }
+  });
 
   return (
     <Location>
@@ -37,8 +48,8 @@ const AnimatedRouter = ({ children, basePath }) => {
               ...baseStyles,
               transform:
                 routeChangeType === POP
-                  ? "translate3d(-100%, -50%, 0)"
-                  : "translate3d(100%, 50%, 0)",
+                  ? "translate3d(-100%, 0, 0)"
+                  : "translate3d(100%, 0, 0)",
               opacity: 0,
             }}
             enter={{ transform: "translate3d(0%, 0, 0)", opacity: 1 }}

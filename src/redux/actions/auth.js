@@ -27,8 +27,8 @@ export const validateToken = () => {
       .then((res) => {
         dispatch(setCurrentUser(res.data));
       })
-      .catch((error) => {
-        cookie.remove("access_token");
+      .catch(() => {
+        dispatch(setCurrentUser({}));
       });
   };
 };
@@ -53,6 +53,9 @@ export const refreshToken = () => {
         });
         setAuthorizationToken(res);
         dispatch(setCurrentUser(res.data.access_token));
+      })
+      .catch(() => {
+        dispatch(setCurrentUser({}));
       });
   };
 };
@@ -78,9 +81,9 @@ export const doLogin = (data) => {
         setAuthorizationToken(res);
         dispatch(setCurrentUser(res.data.access_token));
         navigate("/dashboard");
-
       })
       .catch((error) => {
+        dispatch(setCurrentUser({}));
         alert(error);
       });
   };
@@ -92,11 +95,15 @@ export const doLogout = () => {
       .get(`${useUrl}/oauth/logout?access_token=${accessToken}`, {
         timeout: 1000,
       })
+      .catch(() => {
+        dispatch(setCurrentUser({}));
+      })
       .finally(() => {
         dispatch(setCurrentUser({}));
         sessionStorage.removeItem("appView");
         cookie.remove("access_token");
         cookie.remove("refresh_token");
+        navigate("/login");
       });
   };
 };

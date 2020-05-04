@@ -4,7 +4,7 @@ import { loginFormStyle } from "../../../styles/Styles";
 import { doLogin } from "../../../redux/actions/auth";
 import { connect } from "react-redux";
 
-const LoginForm = (props) => {
+const LoginForm = ({ doLogin }) => {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
   const passwordRef = React.createRef();
@@ -13,8 +13,8 @@ const LoginForm = (props) => {
     password: password,
   };
 
-  const login = (e) => {
-    props.doLogin(data);
+  const login = () => {
+    doLogin(data);
   };
 
   return (

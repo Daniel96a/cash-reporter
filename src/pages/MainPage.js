@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 
 const Main = (props) => {
   const [showAddReportsForm, setShowAddReportsForm] = useState(false);
-  const content = (
+  return (
     <>
       {props.selectedView === "dashboard" && <Profile />}
       {props.selectedView === "users" && <UsersView />}
@@ -20,7 +20,6 @@ const Main = (props) => {
       )}
     </>
   );
-  return content;
 };
 const mapStateToProps = (state) => ({
   selectedView: state.states.selectedView,

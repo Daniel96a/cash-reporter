@@ -6,7 +6,6 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import {
   IconButton,
-  useMediaQuery,
   Typography,
   Paper,
   SwipeableDrawer,
@@ -17,7 +16,6 @@ import { doLogout } from "../../redux/actions/auth";
 import { chooseTheme } from "../../redux/actions/theme";
 
 import { connect } from "react-redux";
-import { Link } from "@reach/router";
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -49,9 +47,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DrawerMenu = (props) => {
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-
+const DrawerMenu = ({
+  theme: { isDark, themeNumber, themeDisabled },
+  isAuthenticated,
+  doLogout,
+  chooseTheme,
+}) => {
   const classes = useStyles();
 
   const [state, setState] = React.useState({
@@ -76,35 +77,19 @@ const DrawerMenu = (props) => {
     ) {
       return;
     }
-    props.doLogout();
+    doLogout();
     setState({ ...state, [side]: open });
   };
 
-  const themeDisabled = !props.theme.themeDisabled;
   const toggleEnableTheme = () => {
-    if (prefersDarkMode) {
-      props.chooseTheme({
-        isDark: true,
-        themeNumber: 1,
-        themeDisabled: props.theme.themeDisabled,
-      });
-    }
-    if (!prefersDarkMode) {
-      props.chooseTheme({
-        isDark: false,
-        themeNumber: 0,
-        themeDisabled: props.theme.themeDisabled,
-      });
-    }
     localStorage.removeItem("theme");
-
-    props.chooseTheme({
-      isDark: !props.theme.isDark,
-      themeNumber: props.theme.themeNumber,
-      themeDisabled: themeDisabled,
+    chooseTheme({
+      isDark: isDark,
+      themeNumber: themeNumber,
+      themeDisabled: !themeDisabled,
     });
   };
-  console.log(props.theme);
+
   const sideList = (side) => (
     <div className={classes.list} role="presentation">
       <List>
@@ -123,7 +108,7 @@ const DrawerMenu = (props) => {
           component={Paper}
           onClick={toggleEnableTheme.bind(this)}
         >
-          {props.theme.themeDisabled ? (
+          {themeDisabled ? (
             <Typography style={{ margin: "auto" }}>Select theme</Typography>
           ) : (
             <Typography color="error" style={{ margin: "auto" }}>
@@ -133,10 +118,8 @@ const DrawerMenu = (props) => {
         </ListItem>
         <Divider />
       </List>
-      {props.isAuthenticated ? (
+      {isAuthenticated ? (
         <ListItem
-          component={Link}
-          to={'/login'}
           button
           className={classes.logoutButton}
           onClick={logout(side, false)}

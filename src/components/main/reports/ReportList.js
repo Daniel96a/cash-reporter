@@ -7,19 +7,20 @@ import { reportListStyle } from "../../../styles/Styles";
 import { connect } from "react-redux";
 import { fetchReportList } from "../../../redux/actions/reports";
 
-const ReportList = props => {
+const ReportList = ({ fetchReportList, reports }) => {
   const styles = reportListStyle();
   const [showReportDetails, setShowReportDetails] = useState(false);
   const [reportSelected, setReportSelected] = useState(null);
 
-  const openDetails = e => {
+  const openDetails = (e) => {
     setReportSelected(e.currentTarget.id);
     setShowReportDetails(true);
   };
   useEffect(() => {
-    props.fetchReportList();
+    fetchReportList();
     // eslint-disable-next-line
   }, []);
+
   return (
     <React.Fragment>
       {reportSelected !== null && showReportDetails && (
@@ -30,9 +31,9 @@ const ReportList = props => {
           setShowReportDetails={setShowReportDetails}
         />
       )}
-      {props.reports.reports.length > 0 && (
+      {reports.reports.length > 0 && (
         <List dense className={styles.root} disablePadding>
-          {props.reports.reports.map((report, index) => (
+          {reports.reports.map((report, index) => (
             <ListItem
               id={index}
               className={`reportid-${report.id}`}
@@ -51,13 +52,15 @@ const ReportList = props => {
         </List>
       )}
 
-      {props.reports.reports.length === 0 && <p>No reports found</p>}
+      {reports.reports.length === 0 && <p>No reports found</p>}
     </React.Fragment>
   );
 };
-const mapStateToProps = state => ({
-  reports: state.reports
+
+const mapStateToProps = (state) => ({
+  reports: state.reports,
 });
+
 export default connect(mapStateToProps, {
-  fetchReportList
+  fetchReportList,
 })(ReportList);

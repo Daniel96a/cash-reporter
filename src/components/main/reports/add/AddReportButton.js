@@ -3,7 +3,7 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import { makeStyles } from "@material-ui/core";
 
-export const AddReportButton = props => {
+export const AddReportButton = ({ setShowAddReportsForm }) => {
   const classes = useStyles();
 
   return (
@@ -11,15 +11,14 @@ export const AddReportButton = props => {
       <Fab
         color="primary"
         aria-label="add"
-        onClick={e => props.setShowAddReportsForm(true)}
-
+        onClick={(e) => setShowAddReportsForm(true)}
       >
         <AddIcon />
       </Fab>
     </div>
   );
 };
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
       margin: theme.spacing(1),
@@ -27,10 +26,10 @@ const useStyles = makeStyles(theme => ({
       zIndex: 1000,
       right: 10,
       bottom: 0,
-      top: 'calc(100vh - 136px)'
-    }
+      top: "calc(100vh - 136px)",
+    },
   },
   extendedIcon: {
-    marginRight: theme.spacing(1)
-  }
+    marginRight: theme.spacing(1),
+  },
 }));
