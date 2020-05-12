@@ -8,11 +8,44 @@ export const bottomNavbarStyle = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     backdropFilter: "blur(8px)",
     position: "fixed",
-    zIndex: 1000,
+    zIndex: 1,
     bottom: 0,
-    width: "100%",
+    left: 0,
+    right: 0,
     "& .MuiBottomNavigationAction-root .Mui-selected": {
       color: theme.palette.primary.light,
+    },
+  },
+}));
+export const switchListsMobileStyle = makeStyles((theme) => ({
+  color: {
+    color: theme.palette.text.primary,
+  },
+  root: {
+    backgroundColor: "transparent",
+    boxShadow: "none",
+    position: "relative",
+    left: 0,
+    right: 0,
+    "& .MuiTabs-flexContainer": {
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      maxWidth: 600,
+    },
+    "& ul": {
+      height: "calc(100vh - 340px)",
+      marginBottom: 66,
+    },
+    "& .MuiButtonBase-root": {
+      backgroundColor: theme.palette.background.default,
+    },
+    "& .MuiTab-textColorPrimary.Mui-selected": {
+      color: theme.palette.primary.light,
+    },
+    "& .MuiTabs-indicator": {
+      backgroundColor: theme.palette.primary.light,
     },
   },
 }));
@@ -23,22 +56,17 @@ export const switchListsStyle = makeStyles((theme) => ({
   root: {
     backgroundColor: "transparent",
     boxShadow: "none",
-    flex: 1,
-    position: "fixed",
-    marginLeft: "auto",
-    marginRight: "auto",
-    bottom: 46,
-    top: 56,
-    right: 10,
-    left: 10,
+    position: "relative",
+    marginTop: 10,
     borderRadius: 20,
-    minHeight: "calc( 100vh - 158px)",
-    "& .MuiTabs-root": {
+    "& .MuiTabs-flexContainer": {
       maxWidth: 600,
+      height: "100%",
       margin: "auto",
     },
-    "& .react-swipeable-view-container": {
-      height: "calc(100vh - 158px)",
+    "& ul": {
+      height: "calc(100vh - 170px)",
+      position: "relative",
     },
     "& .MuiButtonBase-root": {
       backgroundColor: theme.palette.background.default,
@@ -297,14 +325,9 @@ export const listStyle = makeStyles((theme) => ({
 }));
 export const reportListStyle = makeStyles((theme) => ({
   root: {
-    // position: "fixed",
+    position: "relative",
     color: "white",
-    top: 58,
-    left: 10,
-    right: 10,
-    bottom: 40,
     margin: "auto",
-    overflow: "scroll",
     maxWidth: 600,
     "& .MuiButtonBase-root": {
       borderRadius: 20,
@@ -413,15 +436,11 @@ export const tableStyle = makeStyles((theme) => ({
 export const profileStyle = makeStyles((theme) => ({
   root: {
     "& *": {
-      margin: "auto",
       backgroundColor: theme.palette.primary.paper,
     },
-    position: "fixed",
-    top: 58,
-    left: 10,
-    right: 10,
+    margin: 'auto',
+    position: "relative",
     maxWidth: 600,
-    margin: "auto",
   },
   hr: {
     margin: "10px 0px 10px 0px",

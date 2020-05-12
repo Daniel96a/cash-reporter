@@ -9,16 +9,16 @@ import { connect } from "react-redux";
 const Main = (props) => {
   const [showAddReportsForm, setShowAddReportsForm] = useState(false);
   return (
-    <>
+    <div style={{position: 'relative', marginBottom: -11, overflow: 'scroll'}}>
       {props.selectedView === "dashboard" && <Profile />}
       {props.selectedView === "users" && <UsersView />}
       {props.selectedView === "reports" && (
-        <ReportsView
+        <ReportsViews
           showAddReportsForm={showAddReportsForm}
           setShowAddReportsForm={setShowAddReportsForm}
         />
       )}
-    </>
+    </div>
   );
 };
 const mapStateToProps = (state) => ({

@@ -33,6 +33,7 @@ const UsersView = () => {
         showAddEmployeeForm={showAddEmployeeForm}
         setShowAddEmployeeForm={setShowAddEmployeeForm}
       />
+
       {selectUserList === 0 && (
         <AddCustomerButton setShowAddCustomerForm={setShowAddCustomerForm} />
       )}

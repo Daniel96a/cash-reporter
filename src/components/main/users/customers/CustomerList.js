@@ -10,7 +10,7 @@ import { listStyle } from "../../../../styles/Styles";
 import { fetchCustomerList } from "../../../../redux/actions/customers";
 import { connect } from "react-redux";
 
-const CustomerList = props => {
+const CustomerList = (props) => {
   const styles = listStyle();
   const [showCustomerDetails, setShowCustomerDetails] = useState(false);
   const [showEditCustomer, setShowEditCustomer] = useState(false);
@@ -21,7 +21,7 @@ const CustomerList = props => {
     // eslint-disable-next-line
   }, []);
 
-  const openDetails = e => {
+  const openDetails = (e) => {
     setShowCustomerDetails(!showEditCustomer);
     setCustomerSelected(e.currentTarget.id);
     setShowCustomerDetails(true);
@@ -69,9 +69,9 @@ const CustomerList = props => {
     </React.Fragment>
   );
 };
-const mapStateToProps = state => ({
-  customers: state.customers
+const mapStateToProps = (state) => ({
+  customers: state.customers,
 });
 export default connect(mapStateToProps, {
-  fetchCustomerList
+  fetchCustomerList,
 })(CustomerList);

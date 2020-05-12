@@ -5,23 +5,47 @@ import { animated, config as reactSpringConfig } from "react-spring/web.cjs";
 import { Transition } from "react-spring/renderprops.cjs";
 
 /* animated router experiment */
-const AnimatedRouter = ({ children, basePath, isAuthenticated,user }) => {
+const AnimatedRouter = ({ children, basePath, user, changeView }) => {
   const POP = "POP";
   const PUSH = "PUSH";
 
-  const getLevel = (pathname) =>
-    [...pathname].filter((char) => char === "/").length;
+  const getLevel = (pathname) => {
+    switch (pathname) {
+      case (pathname = "/login"): {
+        return 0;
+      }
+      case (pathname = "/dashboard"): {
+        return 1;
+      }
+      case (pathname = "/users"): {
+        return 2;
+      }
+      case (pathname = "/reports"): {
+        return 3;
+      }
+      default:
+        return 0;
+    }
+  };
   const [lastPathLevel, setLastPathLevel] = useState(
     getLevel(globalHistory.location.pathname)
   );
+
   const baseStyles = {
     position: "fixed",
     right: 0,
     left: 0,
   };
+
+  onpopstate = () => {
+    console.log("hej");
+  };
   useEffect(() => {
     if (!isEmpty(user)) {
-      if (window.location.pathname === "/" || window.location.pathname === "/login") {
+      if (
+        window.location.pathname === "/" ||
+        window.location.pathname === "/login"
+      ) {
         navigate("/dashboard");
       }
     } else {
@@ -29,36 +53,38 @@ const AnimatedRouter = ({ children, basePath, isAuthenticated,user }) => {
         navigate("/login");
       }
     }
-  });
+  }, [user]);
+  useEffect(() => {
 
+  }, []);
   return (
     <Location>
       {({ location }) => {
         const currentLevel = getLevel(location.pathname);
         const routeChangeType = lastPathLevel > currentLevel ? POP : PUSH;
         setLastPathLevel(currentLevel);
-
+        console.log(currentLevel + " " + lastPathLevel);
         return (
           <Transition
             items={location}
             keys={(location) => location.key}
             initial={baseStyles}
-            config={{ ...reactSpringConfig.stiff, clamp: true }}
+            config={{ ...reactSpringConfig.gentle, clamp: true }}
             from={{
               ...baseStyles,
               transform:
                 routeChangeType === POP
                   ? "translate3d(-100%, 0, 0)"
                   : "translate3d(100%, 0, 0)",
-              opacity: 0,
+              opacity: 1,
             }}
             enter={{ transform: "translate3d(0%, 0, 0)", opacity: 1 }}
             leave={{
               transform:
                 routeChangeType === POP
-                  ? "translate3d(80%, 0, 0)"
-                  : "translate3d(-80%, 0, 0)",
-              opacity: 0,
+                  ? "translate3d(100%, 0, 0)"
+                  : "translate3d(-100%, 0, 0)",
+              opacity: 1,
             }}
           >
             {(location) => (props) => (

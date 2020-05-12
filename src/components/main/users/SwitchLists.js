@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
-import {  useTheme } from "@material-ui/core/styles";
+import { useTheme } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
@@ -9,7 +9,11 @@ import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import CustomerList from "./customers/CustomerList";
 import EmployeeList from "./employees/EmployeeList";
-import { switchListsStyle } from "../../../styles/Styles";
+import {
+  switchListsStyle,
+  switchListsMobileStyle,
+} from "../../../styles/Styles";
+import { isMobile } from "react-device-detect";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -30,20 +34,19 @@ function TabPanel(props) {
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired
+  value: PropTypes.any.isRequired,
 };
 
 function a11yProps(index) {
   return {
     id: `action-tab-${index}`,
-    "aria-controls": `action-tabpanel-${index}`
+    "aria-controls": `action-tabpanel-${index}`,
   };
 }
 
-
-
-export const SwitchLists = props => {
+export const SwitchLists = (props) => {
   const classes = switchListsStyle();
+  const mobileClasses = switchListsMobileStyle();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
@@ -51,13 +54,13 @@ export const SwitchLists = props => {
     setValue(newValue);
   };
 
-  const handleChangeIndex = index => {
+  const handleChangeIndex = (index) => {
     props.setSelectUserList(index);
     setValue(index);
   };
 
   return (
-    <Paper className={classes.root}>
+    <Paper  className={isMobile ? mobileClasses.root : classes.root}>
       <Tabs
         value={value}
         onChange={handleChange}
@@ -67,13 +70,13 @@ export const SwitchLists = props => {
       >
         <Tab
           className={classes.color}
-          onClick={e => props.setSelectUserList(0)}
+          onClick={(e) => props.setSelectUserList(0)}
           label="Customers"
           {...a11yProps(0)}
         />
         <Tab
           className={classes.color}
-          onClick={e => props.setSelectUserList(1)}
+          onClick={(e) => props.setSelectUserList(1)}
           label="Employees"
           {...a11yProps(1)}
         />
@@ -81,6 +84,7 @@ export const SwitchLists = props => {
       <SwipeableViews
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={value}
+
         onChangeIndex={handleChangeIndex}
       >
         <div value={value} index={0} dir={theme.direction}>

@@ -23,10 +23,9 @@ const useStyles = makeStyles((theme) => ({
     "& > *": {
       margin: theme.spacing(1),
       position: "fixed",
-      zIndex: 1000,
       right: 10,
-      bottom: 0,
-      top: "calc(100vh - 136px)",
+      bottom: 156,
+      top: 'calc(100vh - 190px)',
     },
   },
   extendedIcon: {

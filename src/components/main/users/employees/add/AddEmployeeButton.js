@@ -18,18 +18,17 @@ export const AddEmployeeButton = props => {
     </div>
   );
 };
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
       margin: theme.spacing(1),
       position: "fixed",
-      zIndex: 1000,
       right: 10,
-      bottom: 0,
-      top: 'calc(100vh - 136px)'
-    }
+      bottom: 156,
+      top: 'calc(100vh - 190px)',
+    },
   },
   extendedIcon: {
-    marginRight: theme.spacing(1)
-  }
+    marginRight: theme.spacing(1),
+  },
 }));

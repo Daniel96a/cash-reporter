@@ -22,7 +22,7 @@ const ReportList = ({ fetchReportList, reports }) => {
   }, []);
 
   return (
-    <React.Fragment>
+    <>
       {reportSelected !== null && showReportDetails && (
         <ReportDetails
           reportSelected={reportSelected}
@@ -53,7 +53,7 @@ const ReportList = ({ fetchReportList, reports }) => {
       )}
 
       {reports.reports.length === 0 && <p>No reports found</p>}
-    </React.Fragment>
+    </>
   );
 };
 
