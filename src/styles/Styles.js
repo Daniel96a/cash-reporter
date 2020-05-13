@@ -293,7 +293,7 @@ export const reportListStyle = makeStyles((theme) => ({
     position: "relative",
     margin: 10,
     width: 600,
-    height: window.innerHeight - 102,
+    height: window.innerHeight - 126,
     "& .MuiButtonBase-root": {
       borderRadius: 20,
       backgroundColor: theme.palette.background.paper,
@@ -323,7 +323,7 @@ export const headerStyle = {
 export const loginFormStyle = makeStyles((theme) => ({
   root: {
     // backgroundColor: theme.palette.background.paper,
-    position: "fixed",
+    position: "relative",
     top: 200,
     textAlign: "center",
     left: 10,

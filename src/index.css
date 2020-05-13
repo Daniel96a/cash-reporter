@@ -3,11 +3,12 @@ html, body {
   margin: 0;
 }
 body {
+  overflow: hidden;
   position: relative;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  height: 100vh;
+  /* height: calc(100vh); */
 }
 ::-webkit-scrollbar {
   display: none;

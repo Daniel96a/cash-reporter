@@ -35,7 +35,7 @@ const AnimatedRouter = ({ children, basePath, user, changeView }) => {
   );
 
   const baseStyles = {
-    position: "absolute",
+    position: "fixed",
     right: 0,
     left: 0,
   };

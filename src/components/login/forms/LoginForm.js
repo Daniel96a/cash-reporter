@@ -24,7 +24,7 @@ const LoginForm = ({ doLogin }) => {
           label="Username"
           name="username"
           autoComplete="current-username"
-          autoFocus
+
           onChange={(e) => setusername(e.target.value)}
           onKeyPress={(e) => {
             if (e.key === "Enter") {
@@ -41,6 +41,7 @@ const LoginForm = ({ doLogin }) => {
           onKeyPress={(e) => {
             if (e.key === "Enter") {
               login(e);
+              
             }
           }}
         />
