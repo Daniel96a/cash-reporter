@@ -7,7 +7,8 @@ import { AddReportButton } from "./add/AddReportButton";
 const ReportsView = () => {
   const [showAddReportsForm, setShowAddReportsForm] = useState(false);
   return (
-    <>
+    <div style={{ display: "flex", alignItems: 'center', justifyContent: 'center' }}>
+
       {showAddReportsForm && (
         <AddReport
           showAddReportsForm={showAddReportsForm}
@@ -19,7 +20,7 @@ const ReportsView = () => {
         setShowAddReportsForm={setShowAddReportsForm}
         showAddReportsForm={showAddReportsForm}
       />
-    </>
+    </div>
   );
 };
 

@@ -28,14 +28,15 @@ export default (state = initialState, action) => {
         ...state,
         customers: state.customers.concat(action.customer)
       };
-    case EDIT_CUSTOMER:
-      return {
-        ...state,
-        customers: state.customers.map(
-          customer =>
-            [action.customer].find(o => o.id === customer.id) || customer
-        )
-      };
+      case EDIT_CUSTOMER:
+        return {
+          ...state,
+          customers: state.customers.map(
+            customer =>
+              [action.customer].find(o => o.personid === customer.personid) ||
+              customer
+          )
+        };
     default:
       return state;
   }

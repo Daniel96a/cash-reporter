@@ -28,7 +28,7 @@ const CustomerList = (props) => {
   };
 
   return (
-    <React.Fragment>
+    <>
       {customerSelected !== null && showCustomerDetails && (
         <CustomerDetails
           customerSelected={customerSelected}
@@ -46,27 +46,30 @@ const CustomerList = (props) => {
       )}
       {props.customers.customers.length > 0 && (
         <List dense className={styles.root} disablePadding>
-          {props.customers.customers.map((customer, index) => (
-            <ListItem
-              id={index}
-              className={`customerid-${customer.id} employeeListItem`}
-              key={index}
-              button
-              onClick={openDetails.bind(this)}
-            >
-              <ListItemAvatar>
-                <Avatar />
-              </ListItemAvatar>
-              <ListItemText
-                primary={customer.fullname}
-                secondary={`Phone number: ${customer.phonenr}`}
-              />
-            </ListItem>
-          ))}
+          <div style={{ marginBottom: 10 }}>
+            {props.customers.customers.map((customer, index) => (
+              <ListItem
+                id={index}
+                className={`customerid-${customer.id} employeeListItem`}
+                key={index}
+                button
+                onClick={openDetails.bind(this)}
+              >
+                <ListItemAvatar>
+                  <Avatar />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={customer.fullname}
+                  secondary={`Phone number: ${customer.phonenr}`}
+                />
+              </ListItem>
+            ))}
+          </div>
         </List>
       )}
+
       {props.customers.customers.length === 0 && <p>No reports found</p>}
-    </React.Fragment>
+    </>
   );
 };
 const mapStateToProps = (state) => ({

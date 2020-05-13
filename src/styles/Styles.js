@@ -17,38 +17,7 @@ export const bottomNavbarStyle = makeStyles((theme) => ({
     },
   },
 }));
-export const switchListsMobileStyle = makeStyles((theme) => ({
-  color: {
-    color: theme.palette.text.primary,
-  },
-  root: {
-    backgroundColor: "transparent",
-    boxShadow: "none",
-    position: "relative",
-    left: 0,
-    right: 0,
-    "& .MuiTabs-flexContainer": {
-      position: "fixed",
-      top: 0,
-      left: 0,
-      right: 0,
-      maxWidth: 600,
-    },
-    "& ul": {
-      height: "calc(100vh - 340px)",
-      marginBottom: 66,
-    },
-    "& .MuiButtonBase-root": {
-      backgroundColor: theme.palette.background.default,
-    },
-    "& .MuiTab-textColorPrimary.Mui-selected": {
-      color: theme.palette.primary.light,
-    },
-    "& .MuiTabs-indicator": {
-      backgroundColor: theme.palette.primary.light,
-    },
-  },
-}));
+
 export const switchListsStyle = makeStyles((theme) => ({
   color: {
     color: theme.palette.text.primary,
@@ -56,18 +25,12 @@ export const switchListsStyle = makeStyles((theme) => ({
   root: {
     backgroundColor: "transparent",
     boxShadow: "none",
-    position: "relative",
-    marginTop: 10,
     borderRadius: 20,
     "& .MuiTabs-flexContainer": {
-      maxWidth: 600,
-      height: "100%",
       margin: "auto",
+      maxWidth: 600,
     },
-    "& ul": {
-      height: "calc(100vh - 170px)",
-      position: "relative",
-    },
+
     "& .MuiButtonBase-root": {
       backgroundColor: theme.palette.background.default,
     },
@@ -295,11 +258,13 @@ export const listStyle = makeStyles((theme) => ({
   root: {
     maxWidth: 600,
     margin: "auto",
+    display: "list-item",
+    height: window.innerHeight - 158,
     "& .MuiButtonBase-root": {
       padding: 10,
-      marginBottom: 5,
       marginTop: 5,
     },
+
     "& .MuiTypography-body2": {
       color: theme.palette.text.primary,
     },
@@ -326,9 +291,9 @@ export const listStyle = makeStyles((theme) => ({
 export const reportListStyle = makeStyles((theme) => ({
   root: {
     position: "relative",
-    color: "white",
-    margin: "auto",
-    maxWidth: 600,
+    margin: 10,
+    width: 600,
+    height: window.innerHeight - 102,
     "& .MuiButtonBase-root": {
       borderRadius: 20,
       backgroundColor: theme.palette.background.paper,
@@ -438,9 +403,9 @@ export const profileStyle = makeStyles((theme) => ({
     "& *": {
       backgroundColor: theme.palette.primary.paper,
     },
-    margin: 'auto',
+    margin: 10,
     position: "relative",
-    maxWidth: 600,
+    width: 600,
   },
   hr: {
     margin: "10px 0px 10px 0px",

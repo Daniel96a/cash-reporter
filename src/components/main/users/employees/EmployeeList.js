@@ -10,7 +10,7 @@ import EditEmployee from "./edit/EditEmployee";
 import { listStyle } from "../../../../styles/Styles";
 import { connect } from "react-redux";
 
-const EmployeeList = props => {
+const EmployeeList = (props) => {
   const styles = listStyle();
   const [showEmployeeDetails, setShowEmployeeDetails] = useState(false);
   const [employeeSelected, setEmployeeSelected] = useState(null);
@@ -20,7 +20,7 @@ const EmployeeList = props => {
     props.fetchEmployeeList();
     // eslint-disable-next-line
   }, []);
-  const openDetails = e => {
+  const openDetails = (e) => {
     setEmployeeSelected(e.currentTarget.id);
     setShowEmployeeDetails(true);
   };
@@ -44,30 +44,32 @@ const EmployeeList = props => {
 
       {props.employees.employees.length > 0 && (
         <List dense className={styles.root} disablePadding>
-          {props.employees.employees.map((employee, index) => (
-            <ListItem
-              id={index}
-              key={index}
-              className={`personid-${employee.personid} employeeListItem`}
-              onClick={openDetails.bind(this)}
-              button
-            >
-              <ListItemAvatar className={styles.large}>
-                <Avatar />
-              </ListItemAvatar>
-              <ListItemText
-                primary={employee.fullname}
-                secondary={`Phone number: ${employee.phonenr}`}
-              />
-            </ListItem>
-          ))}
+          <div style={{ marginBottom: 10 }}>
+            {props.employees.employees.map((employee, index) => (
+              <ListItem
+                id={index}
+                key={index}
+                className={`personid-${employee.personid} employeeListItem`}
+                onClick={openDetails.bind(this)}
+                button
+              >
+                <ListItemAvatar className={styles.large}>
+                  <Avatar />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={employee.fullname}
+                  secondary={`Phone number: ${employee.phonenr}`}
+                />
+              </ListItem>
+            ))}
+          </div>
         </List>
       )}
       {props.employees.employees.length === 0 && <p>No employees found</p>}
     </React.Fragment>
   );
 };
-const mapStateToProps = state => ({
-  employees: state.employees
+const mapStateToProps = (state) => ({
+  employees: state.employees,
 });
 export default connect(mapStateToProps, { fetchEmployeeList })(EmployeeList);

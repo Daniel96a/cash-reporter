@@ -18,18 +18,19 @@ const App = ({
   return (
     <>
       <MainHeader isAuthenticated={isAuthenticated} />
+      {isAuthenticated && <BottomNavBar selectedView={selectedView} />}
+
       <AnimatedRouter basePath={""} user={user} changeView={changeView}>
         {isAuthenticated ? (
-          <div path={"/"} style={{ margin: 10 }}>
+          <>
             <Profile path={"/dashboard"} />
             <UsersView path={"/users"} />
             <ReportsView path={"/reports"} />
-          </div>
+          </>
         ) : (
           <LoginPage path={"/login"} isAuthenticated={isAuthenticated} />
         )}
       </AnimatedRouter>
-      {isAuthenticated && <BottomNavBar selectedView={selectedView} />}
     </>
   );
 };

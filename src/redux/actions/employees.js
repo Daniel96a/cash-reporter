@@ -3,7 +3,7 @@ import axios from "axios";
 import Cookies from "universal-cookie";
 import { useUrl } from "./URL";
 const cookie = new Cookies();
-export const setEmployees = employees => ({
+export const SET_EMPLOYEES = employees => ({
   type: types.FETCH_EMPLOYEES,
   employees
 });
@@ -30,7 +30,7 @@ export const fetchEmployeeList = () => {
         )}`
       )
       .then(res => {
-        dispatch(setEmployees(res.data));
+        dispatch(SET_EMPLOYEES(res.data));
       })
       .catch(error => { });
   };

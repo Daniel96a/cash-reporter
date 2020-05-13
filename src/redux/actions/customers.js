@@ -3,53 +3,49 @@ import axios from "axios";
 import { Cookies } from "react-cookie";
 import { useUrl } from "./URL";
 const cookie = new Cookies();
-export const SET_CUSTOMERS = customers => ({
+export const SET_CUSTOMERS = (customers) => ({
   type: types.FETCH_CUSTOMERS,
-  customers: customers
+  customers: customers,
 });
 
-export const REMOVE_CUSTOMER = customer => ({
+export const REMOVE_CUSTOMER = (customer) => ({
   type: types.REMOVE_CUSTOMER,
-  customer
+  customer,
 });
-export const EDIT_CUSTOMER = customer => ({
+export const EDIT_CUSTOMER = (customer) => ({
   type: types.EDIT_CUSTOMER,
-  customer
+  customer,
 });
-export const ADD_CUSTOMER = customer => ({
+export const ADD_CUSTOMER = (customer) => ({
   type: types.ADD_CUSTOMER,
-  customer
+  customer,
 });
 
 export const fetchCustomerList = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     axios
-      .get(
-        `${useUrl}/customer?access_token=${cookie.get(
-          "access_token"
-        )}`
-      )
-      .then(res => {
+      .get(`${useUrl}/customer?access_token=${cookie.get("access_token")}`)
+      .then((res) => {
         dispatch(SET_CUSTOMERS(res.data));
       })
-      .catch(error => { });
+      .catch((error) => {});
   };
 };
 
-export const addCustomer = person => {
-  return async dispatch => {
-    dispatch(ADD_CUSTOMER(person))
+export const addCustomer = (person) => {
+  return async (dispatch) => {
+    dispatch(ADD_CUSTOMER(person));
   };
 };
 
-export const deleteCustomer = customer => {
-  return async dispatch => {
+export const deleteCustomer = (customer) => {
+  return async (dispatch) => {
     dispatch(REMOVE_CUSTOMER(customer));
   };
 };
 
-export const updateCustomer = customer => {
-  return async dispatch => {
+export const updateCustomer = (customer) => {
+  return async (dispatch) => {
     dispatch(EDIT_CUSTOMER(customer));
   };
 };

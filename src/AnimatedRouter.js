@@ -30,16 +30,16 @@ const AnimatedRouter = ({ children, basePath, user, changeView }) => {
   const [lastPathLevel, setLastPathLevel] = useState(
     getLevel(globalHistory.location.pathname)
   );
+  const [path, setpath] = useState(
+    globalHistory.location.pathname.replace("/", "")
+  );
 
   const baseStyles = {
-    position: "fixed",
+    position: "absolute",
     right: 0,
     left: 0,
   };
 
-  onpopstate = () => {
-    console.log("hej");
-  };
   useEffect(() => {
     if (!isEmpty(user)) {
       if (
@@ -55,15 +55,15 @@ const AnimatedRouter = ({ children, basePath, user, changeView }) => {
     }
   }, [user]);
   useEffect(() => {
-
-  }, []);
+    changeView(path.replace("/", ""));
+  }, [path, changeView]);
   return (
     <Location>
       {({ location }) => {
         const currentLevel = getLevel(location.pathname);
         const routeChangeType = lastPathLevel > currentLevel ? POP : PUSH;
-        setLastPathLevel(currentLevel);
-        console.log(currentLevel + " " + lastPathLevel);
+        setLastPathLevel(location.pathname);
+        setpath(location.pathname.replace("/", ""));
         return (
           <Transition
             items={location}

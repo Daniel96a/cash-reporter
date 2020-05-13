@@ -9,11 +9,7 @@ import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import CustomerList from "./customers/CustomerList";
 import EmployeeList from "./employees/EmployeeList";
-import {
-  switchListsStyle,
-  switchListsMobileStyle,
-} from "../../../styles/Styles";
-import { isMobile } from "react-device-detect";
+import { switchListsStyle } from "../../../styles/Styles";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -46,7 +42,6 @@ function a11yProps(index) {
 
 export const SwitchLists = (props) => {
   const classes = switchListsStyle();
-  const mobileClasses = switchListsMobileStyle();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
@@ -60,7 +55,7 @@ export const SwitchLists = (props) => {
   };
 
   return (
-    <Paper  className={isMobile ? mobileClasses.root : classes.root}>
+    <Paper className={classes.root}>
       <Tabs
         value={value}
         onChange={handleChange}
@@ -84,7 +79,6 @@ export const SwitchLists = (props) => {
       <SwipeableViews
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={value}
-
         onChangeIndex={handleChangeIndex}
       >
         <div value={value} index={0} dir={theme.direction}>

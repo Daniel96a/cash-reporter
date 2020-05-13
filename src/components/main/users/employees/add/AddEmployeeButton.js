@@ -22,10 +22,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
       margin: theme.spacing(1),
-      position: "fixed",
-      right: 10,
-      bottom: 156,
-      top: 'calc(100vh - 190px)',
+      position: "absolute",
+      zIndex: 100,
+      bottom: 10,
+      right: 10
     },
   },
   extendedIcon: {
