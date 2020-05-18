@@ -5,8 +5,9 @@ import DrawerMenu from "./DrawerMenu";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    position: 'relative',
-    marginBottom: 0,
+    position: "fixed",
+    height: 50,
+    marginBottom: 50,
     "& .MuiSvgIcon-root": {
       fill: "white",
       "& .MuiPaper-elevation4": {
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 const DashboardHeader = (props) => {
   const classes = useStyles();
   return (
-
+    <div style={{position: 'relative', top: 0, left: 0, right: 0}}>
       <AppBar className={classes.root} style={headerStyle}>
         <DrawerMenu />
         <Typography
@@ -33,6 +34,7 @@ const DashboardHeader = (props) => {
           Cash Reporter
         </Typography>
       </AppBar>
+    </div>
   );
 };
 

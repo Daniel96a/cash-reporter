@@ -1,8 +1,9 @@
 import * as types from "./types";
 import axios from "axios";
-import { Cookies } from "react-cookie";
 import { useUrl } from "./URL";
-const cookie = new Cookies();
+import { authorizationParams } from "../../utils/authorizationParams";
+import { API_ENDPOINTS } from "./endpoint-constants/api-endpoint.constants";
+
 export const SET_CUSTOMERS = (customers) => ({
   type: types.FETCH_CUSTOMERS,
   customers: customers,
@@ -24,7 +25,7 @@ export const ADD_CUSTOMER = (customer) => ({
 export const fetchCustomerList = () => {
   return async (dispatch) => {
     axios
-      .get(`${useUrl}/customer?access_token=${cookie.get("access_token")}`)
+      .get(useUrl + API_ENDPOINTS.customer.all + authorizationParams)
       .then((res) => {
         dispatch(SET_CUSTOMERS(res.data));
       })

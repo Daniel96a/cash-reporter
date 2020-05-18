@@ -1,26 +1,39 @@
 import React, { useState, useEffect } from "react";
-import isEmpty from "lodash/isEmpty";
-import { Router, Location, globalHistory, navigate } from "@reach/router";
+import { Router, Location, globalHistory } from "@reach/router";
 import { animated, config as reactSpringConfig } from "react-spring/web.cjs";
 import { Transition } from "react-spring/renderprops.cjs";
+const routerDivStyles = {
+  display: "flex",
+  flexDirection: "column",
+  boxSizing: "border-box",
+  // height: "calc(100vh - 50px)",
+  marginTop: 50,
+};
+const baseStyles = {
+  position: "absolute",
+  top: 0,
+  right: 0,
+  left: 0,
+  bottom: 56
+};
 
 /* animated router experiment */
-const AnimatedRouter = ({ children, basePath, user, changeView }) => {
+const AnimatedRouter = ({ children, basePath, changeView }) => {
   const POP = "POP";
   const PUSH = "PUSH";
 
   const getLevel = (pathname) => {
     switch (pathname) {
-      case (pathname = "/login"): {
+      case pathname.includes("/login"): {
         return 0;
       }
-      case (pathname = "/dashboard"): {
+      case pathname.includes("/dashboard"): {
         return 1;
       }
-      case (pathname = "/users"): {
+      case pathname.includes("/users"): {
         return 2;
       }
-      case (pathname = "/reports"): {
+      case pathname.includes("/reports"): {
         return 3;
       }
       default:
@@ -33,50 +46,39 @@ const AnimatedRouter = ({ children, basePath, user, changeView }) => {
   const [path, setpath] = useState(
     globalHistory.location.pathname.replace("/", "")
   );
-
-  const baseStyles = {
-    position: "fixed",
-    right: 0,
-    left: 0,
-  };
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
-    if (!isEmpty(user)) {
-      if (
-        window.location.pathname === "/" ||
-        window.location.pathname === "/login"
-      ) {
-        navigate("/dashboard");
-      }
-    } else {
-      if (window.location.pathname !== "/login") {
-        navigate("/login");
-      }
-    }
-  }, [user]);
-  useEffect(() => {
-    changeView(path.replace("/", ""));
+    changeView(path);
   }, [path, changeView]);
+  useEffect(() => {
+    document.body.style.overflow = isAnimating ? "hidden" : "";
+  }, [isAnimating]);
   return (
     <Location>
       {({ location }) => {
+        const isSamePath =
+          location.state && location.state.PrevPath === location.pathname;
         const currentLevel = getLevel(location.pathname);
         const routeChangeType = lastPathLevel > currentLevel ? POP : PUSH;
-        setLastPathLevel(location.pathname);
+        setLastPathLevel(currentLevel);
         setpath(location.pathname.replace("/", ""));
         return (
           <Transition
+            immediate={isSamePath}
             items={location}
             keys={(location) => location.key}
             initial={baseStyles}
             config={{ ...reactSpringConfig.gentle, clamp: true }}
+            onStart={() => setIsAnimating(true)}
+            onRest={() => setIsAnimating(false)}
             from={{
               ...baseStyles,
               transform:
                 routeChangeType === POP
                   ? "translate3d(-100%, 0, 0)"
                   : "translate3d(100%, 0, 0)",
-              opacity: 1,
+              opacity: 0,
             }}
             enter={{ transform: "translate3d(0%, 0, 0)", opacity: 1 }}
             leave={{
@@ -84,12 +86,17 @@ const AnimatedRouter = ({ children, basePath, user, changeView }) => {
                 routeChangeType === POP
                   ? "translate3d(100%, 0, 0)"
                   : "translate3d(-100%, 0, 0)",
-              opacity: 1,
+              opacity: 0,
             }}
           >
             {(location) => (props) => (
               <animated.div style={props}>
-                <Router basepath={basePath} primary={false} location={location}>
+                <Router
+                  basepath={basePath}
+                  primary={false}
+                  location={location}
+                  style={routerDivStyles}
+                >
                   {children}
                 </Router>
               </animated.div>

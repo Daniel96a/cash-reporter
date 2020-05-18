@@ -81,10 +81,10 @@ export const SwitchLists = (props) => {
         index={value}
         onChangeIndex={handleChangeIndex}
       >
-        <div value={value} index={0} dir={theme.direction}>
+        <div value={value} index={0}>
           <CustomerList />
         </div>
-        <div value={value} index={1} dir={theme.direction}>
+        <div value={value} index={1}>
           <EmployeeList />
         </div>
       </SwipeableViews>

@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core";
+import { isMobile } from "react-device-detect";
 
 export const bottomNavbarStyle = makeStyles((theme) => ({
   button: {
@@ -18,30 +19,6 @@ export const bottomNavbarStyle = makeStyles((theme) => ({
   },
 }));
 
-export const switchListsStyle = makeStyles((theme) => ({
-  color: {
-    color: theme.palette.text.primary,
-  },
-  root: {
-    backgroundColor: "transparent",
-    boxShadow: "none",
-    borderRadius: 20,
-    "& .MuiTabs-flexContainer": {
-      margin: "auto",
-      maxWidth: 600,
-    },
-
-    "& .MuiButtonBase-root": {
-      backgroundColor: theme.palette.background.default,
-    },
-    "& .MuiTab-textColorPrimary.Mui-selected": {
-      color: theme.palette.primary.light,
-    },
-    "& .MuiTabs-indicator": {
-      backgroundColor: theme.palette.primary.light,
-    },
-  },
-}));
 export const switchThemeStyle = makeStyles((theme) => ({
   color: {
     color: theme.palette.text.primary,
@@ -254,15 +231,42 @@ export const confirmDialog = makeStyles((theme) => ({
     },
   },
 }));
+
+export const switchListsStyle = makeStyles((theme) => ({
+  color: {
+    color: theme.palette.text.primary,
+  },
+  root: {
+    backgroundColor: "transparent",
+    boxShadow: "none",
+    borderRadius: 20,
+    "& .MuiTabs-root": {
+      margin: "auto",
+      maxWidth: 600,
+    },
+    "& .react-swipeable-view-container": {
+      height: "calc(100vh - 154px)",
+    },
+    "& ul": {},
+    "& .MuiButtonBase-root": {
+      backgroundColor: theme.palette.background.default,
+    },
+    "& .MuiTab-textColorPrimary.Mui-selected": {
+      color: theme.palette.primary.light,
+    },
+    "& .MuiTabs-indicator": {
+      backgroundColor: theme.palette.primary.light,
+    },
+  },
+}));
 export const listStyle = makeStyles((theme) => ({
   root: {
-    maxWidth: 600,
-    margin: "auto",
     display: "list-item",
-    height: window.innerHeight - 158,
     "& .MuiButtonBase-root": {
       padding: 10,
       marginTop: 5,
+      maxWidth: 600,
+      margin: "auto",
     },
 
     "& .MuiTypography-body2": {
@@ -276,7 +280,7 @@ export const listStyle = makeStyles((theme) => ({
     },
     "& .MuiListItem-gutters": {
       backgroundColor: theme.palette.background.paper,
-      // borderBottom: `1px solid ${theme.palette.text.secondary}`,
+
       minHeight: "65px",
       userSelect: "none",
       borderRadius: 20,
@@ -290,13 +294,14 @@ export const listStyle = makeStyles((theme) => ({
 }));
 export const reportListStyle = makeStyles((theme) => ({
   root: {
-    position: "relative",
-    margin: 10,
-    width: 600,
-    height: window.innerHeight - 126,
+    display: "list-item",
+    overflow: "auto",
+    height: isMobile ?'calc(100vh - 216px)' : 'calc(100vh - 106px)',
     "& .MuiButtonBase-root": {
-      borderRadius: 20,
-      backgroundColor: theme.palette.background.paper,
+      padding: 10,
+      marginTop: 5,
+      maxWidth: 600,
+      margin: 'auto',
     },
     "& .MuiTypography-body2": {
       color: theme.palette.text.primary,
@@ -313,6 +318,7 @@ export const reportListStyle = makeStyles((theme) => ({
       minHeight: "65px",
       userSelect: "none",
       marginBottom: 5,
+      borderRadius: 20,
     },
   },
 }));
@@ -323,7 +329,7 @@ export const headerStyle = {
 export const loginFormStyle = makeStyles((theme) => ({
   root: {
     // backgroundColor: theme.palette.background.paper,
-    position: "relative",
+    position: "fixed",
     top: 200,
     textAlign: "center",
     left: 10,

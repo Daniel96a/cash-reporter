@@ -1,10 +1,10 @@
 import * as types from "./types";
 import axios from "axios";
 import { customHeaders } from "./customHeaders";
-import { Cookies } from "react-cookie";
 import { useUrl } from "./URL";
+import { API_ENDPOINTS } from "./endpoint-constants/api-endpoint.constants";
+import { authorizationParams } from "../../utils/authorizationParams";
 
-const cookie = new Cookies();
 export const setReports = (reports) => ({
   type: types.FETCH_REPORTS,
   reports,
@@ -13,7 +13,7 @@ export const setReports = (reports) => ({
 export const fetchReportList = () => {
   return async (dispatch) => {
     axios
-      .get(`${useUrl}/report?access_token=${cookie.get("access_token")}`)
+      .get(useUrl + API_ENDPOINTS.customer.all + authorizationParams)
       .then((res) => {
         dispatch(setReports(res.data));
       });
@@ -23,16 +23,12 @@ export const fetchReportList = () => {
 export const addReport = (data) => {
   return async (dispatch) => {
     axios
-      .post(
-        `${useUrl}/person?access_token=${cookie.get("access_token")}`,
-        data,
-        {
-          headers: {
-            Authorization: axios.defaults.headers.common.Authorization,
-          },
-          timeout: 1000,
-        }
-      )
+      .post(useUrl + API_ENDPOINTS.report.all, data, {
+        headers: {
+          Authorization: axios.defaults.headers.common.Authorization,
+        },
+        timeout: 1000,
+      })
       .then((res) => {
         dispatch(fetchReportList());
       });
@@ -42,7 +38,7 @@ export const addReport = (data) => {
 export const deleteReport = (report) => {
   return async (dispatch) => {
     axios
-      .delete(`${useUrl}/report/${report.id}`, {
+      .delete(`${useUrl + API_ENDPOINTS.report.all}/${report.id}`, {
         headers: customHeaders,
         timeout: 1000,
       })
@@ -55,7 +51,7 @@ export const deleteReport = (report) => {
 export const updateReport = (report) => {
   return async (dispatch) => {
     axios
-      .put(`${useUrl}/report/${report.id}`, {
+      .put(`${useUrl + API_ENDPOINTS.report.all}/${report.id}`, {
         headers: customHeaders,
         timeout: 1000,
       })

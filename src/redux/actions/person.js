@@ -1,11 +1,9 @@
 import * as types from "./types";
 import axios from "axios";
-import Cookies from "universal-cookie";
 import { addEmployee, deleteEmployee } from "./employees";
 import { addCustomer, deleteCustomer } from "./customers";
 import { useUrl } from "./URL";
-
-const cookie = new Cookies();
+import {API_ENDPOINTS} from './endpoint-constants/api-endpoint.constants'
 export const SET_PERSON = (person) => ({
   type: types.FETCH_PERSON,
   person,
@@ -17,7 +15,7 @@ export const UPDATE_PERSON = (person) => ({
 export const fetchPerson = (id) => {
   return async (dispatch) => {
     axios
-      .get(`${useUrl}/person/${id}`)
+      .get(`${useUrl + API_ENDPOINTS.person.all.person}/${id}`)
       .then((res) => {
         dispatch(SET_PERSON(res.data));
       })
@@ -27,7 +25,7 @@ export const fetchPerson = (id) => {
 export const updatePerson = (person) => {
   return async (dispatch) => {
     axios
-      .put(`${useUrl}/person`, person, {
+      .put(useUrl + API_ENDPOINTS.person.all.person, person, {
         headers: {
           Authorization: axios.defaults.headers.common.Authorization,
         },
@@ -40,7 +38,7 @@ export const updatePerson = (person) => {
 export const addPerson = (person) => {
   return async (dispatch) => {
     axios
-      .post(`${useUrl}/person`, person, {
+      .post(useUrl + API_ENDPOINTS.person.all.person, person, {
         headers: {
           Authorization: axios.defaults.headers.common.Authorization,
         },
@@ -60,9 +58,11 @@ export const addPerson = (person) => {
 export const deletePerson = (id) => {
   return async (dispatch) => {
     axios
-      .delete(
-        `${useUrl}/person/${id}?access_token=${cookie.get("access_token")}`
-      )
+      .delete(`${useUrl + API_ENDPOINTS.person.all}/${id}`, {
+        headers: {
+          Authorization: axios.defaults.headers.common.Authorization,
+        },
+      })
       .then((res) => {
         dispatch(deleteCustomer(id));
         dispatch(deleteEmployee(id));

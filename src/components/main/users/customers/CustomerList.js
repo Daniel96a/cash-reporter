@@ -9,6 +9,7 @@ import EditCustomer from "./edit/EditCustomer";
 import { listStyle } from "../../../../styles/Styles";
 import { fetchCustomerList } from "../../../../redux/actions/customers";
 import { connect } from "react-redux";
+import { isMobile } from "react-device-detect";
 
 const CustomerList = (props) => {
   const styles = listStyle();
@@ -25,10 +26,11 @@ const CustomerList = (props) => {
     setShowCustomerDetails(!showEditCustomer);
     setCustomerSelected(e.currentTarget.id);
     setShowCustomerDetails(true);
+    console.log(e.currentTarget.id)
   };
 
   return (
-    <>
+    <div style={{ marginBottom: isMobile ? 116 : 0 }}>
       {customerSelected !== null && showCustomerDetails && (
         <CustomerDetails
           customerSelected={customerSelected}
@@ -46,7 +48,7 @@ const CustomerList = (props) => {
       )}
       {props.customers.customers.length > 0 && (
         <List dense className={styles.root} disablePadding>
-          <div style={{ marginBottom: 10 }}>
+          <div style={{ marginBottom: 5 }}>
             {props.customers.customers.map((customer, index) => (
               <ListItem
                 id={index}
@@ -69,7 +71,7 @@ const CustomerList = (props) => {
       )}
 
       {props.customers.customers.length === 0 && <p>No reports found</p>}
-    </>
+    </div>
   );
 };
 const mapStateToProps = (state) => ({

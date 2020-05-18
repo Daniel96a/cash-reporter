@@ -17,7 +17,7 @@ const CustomerDetails = props => {
     props.setCustomerSelected(null)
   };
   const customer = props.customers.customers[props.customerSelected];
-
+  console.log(customer)
   return (
     <Dialog
       open={props.showCustomerDetails}

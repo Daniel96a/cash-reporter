@@ -9,6 +9,7 @@ import { fetchEmployeeList } from "../../../../redux/actions/employees";
 import EditEmployee from "./edit/EditEmployee";
 import { listStyle } from "../../../../styles/Styles";
 import { connect } from "react-redux";
+import { isMobile } from "react-device-detect";
 
 const EmployeeList = (props) => {
   const styles = listStyle();
@@ -25,7 +26,7 @@ const EmployeeList = (props) => {
     setShowEmployeeDetails(true);
   };
   return (
-    <React.Fragment>
+    <div style={{ marginBottom: isMobile ? 116 : 0 }}>
       {employeeSelected !== null && (
         <EmployeeDetails
           employeeSelected={employeeSelected}
@@ -44,7 +45,7 @@ const EmployeeList = (props) => {
 
       {props.employees.employees.length > 0 && (
         <List dense className={styles.root} disablePadding>
-          <div style={{ marginBottom: 10 }}>
+          <div style={{ marginBottom: 5 }}>
             {props.employees.employees.map((employee, index) => (
               <ListItem
                 id={index}
@@ -66,7 +67,7 @@ const EmployeeList = (props) => {
         </List>
       )}
       {props.employees.employees.length === 0 && <p>No employees found</p>}
-    </React.Fragment>
+    </div>
   );
 };
 const mapStateToProps = (state) => ({

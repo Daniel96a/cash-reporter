@@ -8,6 +8,7 @@ import BottomNavBar from "./components/main/BottomNavBar";
 import Profile from "./components/main/dashboard/Profile";
 import ReportsView from "./components/main/reports/ReportsView";
 import { changeView } from "./redux/actions/states";
+import ProtectedRoute from "./protected.route";
 
 const App = ({
   isAuthenticated,
@@ -18,17 +19,29 @@ const App = ({
   return (
     <>
       <MainHeader isAuthenticated={isAuthenticated} />
-
       <AnimatedRouter basePath={""} user={user} changeView={changeView}>
-        {isAuthenticated ? (
-          <>
-            <Profile path={"/dashboard"} />
-            <UsersView path={"/users"} />
-            <ReportsView path={"/reports"} />
-          </>
-        ) : (
-          <LoginPage path={"/login"} isAuthenticated={isAuthenticated} />
-        )}
+        <ProtectedRoute
+          component={Profile}
+          isAuthenticated={isAuthenticated}
+          user={user}
+          path={"/dashboard"}
+          redirectTo={"/login"}
+        />
+        <ProtectedRoute
+          component={UsersView}
+          isAuthenticated={isAuthenticated}
+          user={user}
+          path={"/users"}
+          redirectTo={"/login"}
+        />
+        <ProtectedRoute
+          component={ReportsView}
+          isAuthenticated={isAuthenticated}
+          user={user}
+          path={"/reports"}
+          redirectTo={"/login"}
+        />
+        <LoginPage path={"/login"} default isAuthenticated={isAuthenticated} />
       </AnimatedRouter>
       {isAuthenticated && <BottomNavBar selectedView={selectedView} />}
     </>
@@ -42,3 +55,16 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { changeView })(App);
+// export const fetchReportList = () => {
+//   return async (dispatch) => {
+//     axios
+//       .get(`${useUrl + API_ENDPOINTS.report.all}`,{
+//         headers: {
+//           Authorization: axios.defaults.headers.common.Authorization,
+//         },
+//       })
+//       .then((res) => {
+//         dispatch(setReports(res.data));
+//       });
+//   };
+// };

@@ -20,12 +20,11 @@ export const AddCustomerButton = (props) => {
 };
 const useStyles = makeStyles((theme) => ({
   root: {
-    "& > *": {
-      margin: theme.spacing(1),
+    "& button": {
       position: "absolute",
-      zIndex: 100,
       bottom: 10,
-      right: 10
+      right: 10,
+      zIndex: 9999,
     },
   },
   extendedIcon: {

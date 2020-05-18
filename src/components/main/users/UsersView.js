@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import AddCustomer from "./customers/add/AddCustomer";
 import AddEmployee from "./employees/add/AddEmployee";
 
-import { AddCustomerButton } from "./customers/add/AddCustomerButton";
-import { AddEmployeeButton } from "./employees/add/AddEmployeeButton";
+
 
 import { SwitchLists } from "./SwitchLists";
+import { AddEmployeeButton } from "./employees/add/AddEmployeeButton";
+import { AddCustomerButton } from "./customers/add/AddCustomerButton";
 
 const UsersView = () => {
   const [showAddCustomerForm, setShowAddCustomerForm] = useState(false);
@@ -33,8 +34,7 @@ const UsersView = () => {
         showAddEmployeeForm={showAddEmployeeForm}
         setShowAddEmployeeForm={setShowAddEmployeeForm}
       />
-
-      {selectUserList === 0 && (
+       {selectUserList === 0 && (
         <AddCustomerButton setShowAddCustomerForm={setShowAddCustomerForm} />
       )}
       {selectUserList === 1 && (

@@ -15,6 +15,7 @@ const DeleteCustomer = props => {
   const [open, setOpen] = useState(props.showDeleteCustomer);
   const dialogStyle = confirmDialog();
   const personid = props.customers.customers[props.customerSelected].personid;
+  console.log(personid)
   const handleClose = () => {
     setOpen(false);
     props.setShowDeleteCustomer(false);

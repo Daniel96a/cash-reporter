@@ -1,14 +1,11 @@
-html, body {
-  overflow: hidden;
+html {
   margin: 0;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 body {
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  /* height: calc(100vh); */
+  margin: 0;
+  overflow: auto;
 }
 ::-webkit-scrollbar {
   display: none;

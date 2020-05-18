@@ -18,11 +18,12 @@ export const AddReportButton = ({ setShowAddReportsForm }) => {
     </div>
   );
 };
+console.log(window.innerHeight)
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
       margin: theme.spacing(1),
-      position: "absolute",
+      position: "fixed",
       zIndex: 100,
       bottom: 10,
       right: 10

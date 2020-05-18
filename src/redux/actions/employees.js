@@ -1,8 +1,9 @@
 import * as types from "./types";
 import axios from "axios";
-import Cookies from "universal-cookie";
 import { useUrl } from "./URL";
-const cookie = new Cookies();
+import { API_ENDPOINTS } from "./endpoint-constants/api-endpoint.constants";
+import { authorizationParams } from "../../utils/authorizationParams";
+
 export const SET_EMPLOYEES = employees => ({
   type: types.FETCH_EMPLOYEES,
   employees
@@ -24,11 +25,8 @@ export const REMOVE_EMPLOYEE = employee => ({
 export const fetchEmployeeList = () => {
   return async dispatch => {
     axios
-      .get(
-        `${useUrl}/employee?access_token=${cookie.get(
-          "access_token"
-        )}`
-      )
+    .get(useUrl + API_ENDPOINTS.employee.all + authorizationParams)
+
       .then(res => {
         dispatch(SET_EMPLOYEES(res.data));
       })
