@@ -6,7 +6,6 @@ import ReportDetails from "./ReportDetails";
 import { reportListStyle } from "../../../styles/Styles";
 import { connect } from "react-redux";
 import { fetchReportList } from "../../../redux/actions/reports";
-import { isMobile } from "react-device-detect";
 
 const ReportList = ({ fetchReportList, reports }) => {
   const styles = reportListStyle();
@@ -14,16 +13,18 @@ const ReportList = ({ fetchReportList, reports }) => {
   const [reportSelected, setReportSelected] = useState(null);
 
   const openDetails = (e) => {
+    console.log(e.currentTarget.id)
     setReportSelected(e.currentTarget.id);
     setShowReportDetails(true);
   };
   useEffect(() => {
     fetchReportList();
+    console.log(reports)
     // eslint-disable-next-line
   }, []);
 
   return (
-    <div style={{ marginBottom: isMobile ? 116 : 0 }}>
+    <>
       {reportSelected !== null && showReportDetails && (
         <ReportDetails
           reportSelected={reportSelected}
@@ -33,31 +34,34 @@ const ReportList = ({ fetchReportList, reports }) => {
         />
       )}
 
-      <div style={{marginBottom: 5}}>
+      <>
         {reports.reports.length > 0 && (
           <List dense className={styles.root} disablePadding>
-            {reports.reports.map((report, index) => (
-              <ListItem
-                id={index}
-                className={`reportid-${report.id}`}
-                key={index}
-                button
-                onClick={openDetails.bind(this)}
-              >
-                <ListItemText
-                  primary={`Report ID: ${report.id}, with Employee Signature: 
+            <div style={{ marginBottom: 5 }}>
+              {reports.reports.map((report, index) => (
+                
+                <ListItem
+                  id={index}
+                  className={`reportid-${report.id}`}
+                  key={index}
+                  button
+                  onClick={openDetails.bind(this)}
+                >
+                  <ListItemText
+                    primary={`Report ID: ${report.id}, with Employee Signature: 
                   ${report.employeesign}`}
-                  secondary={`Table name: ${report.tablename}
+                    secondary={`Table name: ${report.tablename}
                   | Location: ${report.location}`}
-                />
-              </ListItem>
-            ))}
+                  />
+                </ListItem>
+              ))}
+            </div>
           </List>
         )}
-      </div>
- 
+      </>
+
       {reports.reports.length === 0 && <p>No reports found</p>}
-    </div>
+    </>
   );
 };
 

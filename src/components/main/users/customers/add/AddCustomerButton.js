@@ -1,17 +1,16 @@
-import React from "react";
+import React  from "react";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import { makeStyles } from "@material-ui/core";
 
-export const AddCustomerButton = (props) => {
+const AddCustomerButton = ({ toggleShowAddCustomer }) => {
   const classes = useStyles();
-
   return (
     <div className={classes.root}>
       <Fab
         color="primary"
         aria-label="add"
-        onClick={(e) => props.setShowAddCustomerForm(true)}
+        onClick={() => toggleShowAddCustomer(true)}
       >
         <AddIcon />
       </Fab>
@@ -21,13 +20,14 @@ export const AddCustomerButton = (props) => {
 const useStyles = makeStyles((theme) => ({
   root: {
     "& button": {
-      position: "absolute",
-      bottom: 10,
+      position: "fixed",
+      bottom: 66,
       right: 10,
-      zIndex: 9999,
+      zIndex: 1,
     },
   },
   extendedIcon: {
     marginRight: theme.spacing(1),
   },
 }));
+export default AddCustomerButton;

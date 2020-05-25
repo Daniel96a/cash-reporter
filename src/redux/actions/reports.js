@@ -10,10 +10,15 @@ export const setReports = (reports) => ({
   reports,
 });
 
+export const setReport = (report) => ({
+  type: types.ADD_REPORT,
+  report,
+});
+
 export const fetchReportList = () => {
   return async (dispatch) => {
     axios
-      .get(useUrl + API_ENDPOINTS.customer.all + authorizationParams)
+      .get(useUrl + API_ENDPOINTS.report.all + authorizationParams)
       .then((res) => {
         dispatch(setReports(res.data));
       });
@@ -30,7 +35,11 @@ export const addReport = (data) => {
         timeout: 1000,
       })
       .then((res) => {
+        console.log(res);
         dispatch(fetchReportList());
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 };
@@ -38,7 +47,7 @@ export const addReport = (data) => {
 export const deleteReport = (report) => {
   return async (dispatch) => {
     axios
-      .delete(`${useUrl + API_ENDPOINTS.report.all}/${report.id}`, {
+      .delete(`${useUrl + API_ENDPOINTS.report.all}/${report}`, {
         headers: customHeaders,
         timeout: 1000,
       })

@@ -40,7 +40,7 @@ function a11yProps(index) {
   };
 }
 
-export const SwitchLists = (props) => {
+export const SwitchLists = ({ showList }) => {
   const classes = switchListsStyle();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -50,7 +50,7 @@ export const SwitchLists = (props) => {
   };
 
   const handleChangeIndex = (index) => {
-    props.setSelectUserList(index);
+    showList(index);
     setValue(index);
   };
 
@@ -65,13 +65,13 @@ export const SwitchLists = (props) => {
       >
         <Tab
           className={classes.color}
-          onClick={(e) => props.setSelectUserList(0)}
+          onClick={(e) => showList(0)}
           label="Customers"
           {...a11yProps(0)}
         />
         <Tab
           className={classes.color}
-          onClick={(e) => props.setSelectUserList(1)}
+          onClick={(e) => showList(1)}
           label="Employees"
           {...a11yProps(1)}
         />

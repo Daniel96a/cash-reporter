@@ -1,46 +1,41 @@
-import React, { useState } from "react";
+import React from "react";
 
 import AddCustomer from "./customers/add/AddCustomer";
 import AddEmployee from "./employees/add/AddEmployee";
 
-
-
 import { SwitchLists } from "./SwitchLists";
-import { AddEmployeeButton } from "./employees/add/AddEmployeeButton";
-import { AddCustomerButton } from "./customers/add/AddCustomerButton";
+import { connect } from "react-redux";
+import {
+  showList,
+  toggleShowAddCustomer,
+  toggleShowAddEmployee,
+} from "../../../redux/actions/states";
 
-const UsersView = () => {
-  const [showAddCustomerForm, setShowAddCustomerForm] = useState(false);
-  const [showAddEmployeeForm, setShowAddEmployeeForm] = useState(false);
-  const [selectUserList, setSelectUserList] = useState(0);
+const UsersView = ({
+  states: { showAddCustomer, showAddEmployee },
+  showList,
+  toggleShowAddCustomer,
+  toggleShowAddEmployee,
+}) => {
   return (
     <>
-      {showAddCustomerForm && (
-        <AddCustomer
-          showAddCustomerForm={showAddCustomerForm}
-          setShowAddCustomerForm={setShowAddCustomerForm}
-        />
-      )}
-      {showAddEmployeeForm && (
-        <AddEmployee
-          showAddEmployeeForm={showAddEmployeeForm}
-          setShowAddEmployeeForm={setShowAddEmployeeForm}
-        />
-      )}
-      <SwitchLists
-        setSelectUserList={setSelectUserList}
-        showAddCustomerForm={showAddCustomerForm}
-        setShowAddCustomerForm={setShowAddCustomerForm}
-        showAddEmployeeForm={showAddEmployeeForm}
-        setShowAddEmployeeForm={setShowAddEmployeeForm}
+      <AddCustomer
+        toggleShowAddCustomer={toggleShowAddCustomer}
+        showAddCustomer={showAddCustomer}
       />
-       {selectUserList === 0 && (
-        <AddCustomerButton setShowAddCustomerForm={setShowAddCustomerForm} />
-      )}
-      {selectUserList === 1 && (
-        <AddEmployeeButton setShowAddEmployeeForm={setShowAddEmployeeForm} />
-      )}
+      <AddEmployee
+        toggleShowAddEmployee={toggleShowAddEmployee}
+        showAddEmployee={showAddEmployee}
+      />
+      <SwitchLists showList={showList} />
     </>
   );
 };
-export default UsersView;
+const mapStateToProps = (state) => ({
+  states: state.states,
+});
+export default connect(mapStateToProps, {
+  showList,
+  toggleShowAddCustomer,
+  toggleShowAddEmployee,
+})(UsersView);

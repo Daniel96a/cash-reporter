@@ -3,7 +3,7 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import { makeStyles } from "@material-ui/core";
 
-export const AddEmployeeButton = (props) => {
+const AddEmployeeButton = ({ toggleShowAddEmployee }) => {
   const classes = useStyles();
 
   return (
@@ -11,7 +11,7 @@ export const AddEmployeeButton = (props) => {
       <Fab
         color="primary"
         aria-label="add"
-        onClick={(e) => props.setShowAddEmployeeForm(true)}
+        onClick={() => toggleShowAddEmployee(true)}
         className={classes.root}
       >
         <AddIcon />
@@ -23,12 +23,13 @@ const useStyles = makeStyles((theme) => ({
   root: {
     "& button": {
       position: "fixed",
-      zIndex: 1,
-      bottom: 10,
+      bottom: 66,
       right: 10,
+      zIndex: 1,
     },
   },
   extendedIcon: {
     marginRight: theme.spacing(1),
   },
 }));
+export default AddEmployeeButton;

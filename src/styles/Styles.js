@@ -44,14 +44,12 @@ export const detailsDialog = makeStyles((theme) => ({
     "& .MuiPaper-root": {
       margin: "auto",
       position: "fixed",
-      top: 0,
-      bottom: 0,
-      left: 0,
-      right: 0,
+      top: isMobile && 0,
+      bottom: isMobile && 0,
+      left: isMobile && 0,
+      right: isMobile && 0,
+      maxHeight: isMobile && "100%",
       zIndex: 9999999,
-      maxHeight: "900px",
-      maxWidth: "600px",
-      overflow: "hidden",
     },
     "& .MuiBackdrop-root": {
       backdropFilter: theme.palette.backdrop.blur,
@@ -82,8 +80,16 @@ export const detailsDialog = makeStyles((theme) => ({
         height: 0,
       },
     },
+    "& .MuiDialog-paper": {
+      maxHeight: "100%",
+    },
     "& .MuiButtonBase-root": {
+      display: "flex",
+      flex: "1 1 auto",
+      width: "-webkit-fill-available",
+      maxWidth: 600,
       margin: "10px 20px 10px 20px",
+      maxHeight: 50,
       backgroundColor: theme.palette.background.paper,
       color: theme.palette.primary.light,
       minHeight: "38px",
@@ -240,14 +246,18 @@ export const switchListsStyle = makeStyles((theme) => ({
     backgroundColor: "transparent",
     boxShadow: "none",
     borderRadius: 20,
+    position: "relative",
+    overflow: "auto",
     "& .MuiTabs-root": {
       margin: "auto",
       maxWidth: 600,
     },
     "& .react-swipeable-view-container": {
-      height: "calc(100vh - 154px)",
+      height: window.innerHeight - 154,
     },
-    "& ul": {},
+    "& ul": {
+      height: "100vh",
+    },
     "& .MuiButtonBase-root": {
       backgroundColor: theme.palette.background.default,
     },
@@ -296,12 +306,12 @@ export const reportListStyle = makeStyles((theme) => ({
   root: {
     display: "list-item",
     overflow: "auto",
-    height: isMobile ?'calc(100vh - 216px)' : 'calc(100vh - 106px)',
+    height: isMobile ? "calc(100vh - 216px)" : "calc(100vh - 106px)",
     "& .MuiButtonBase-root": {
       padding: 10,
       marginTop: 5,
       maxWidth: 600,
-      margin: 'auto',
+      margin: "auto",
     },
     "& .MuiTypography-body2": {
       color: theme.palette.text.primary,
@@ -317,7 +327,6 @@ export const reportListStyle = makeStyles((theme) => ({
       // borderBottom: `1px solid ${theme.palette.text.secondary}`,
       minHeight: "65px",
       userSelect: "none",
-      marginBottom: 5,
       borderRadius: 20,
     },
   },

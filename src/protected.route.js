@@ -4,15 +4,14 @@ import { Redirect } from "@reach/router";
 
 const ProtectedRoute = ({
   component: Component,
-  isAuthenticated,
   user,
   redirectTo,
   ...props
 }) => {
-  if (isAuthenticated || !isEmpty(user)) {
+  if (!isEmpty(user)) {
     return <Component {...props} />;
   } else {
-    return <Redirect to={redirectTo} from={"/"} noThrow/>;
+    return <Redirect to={redirectTo} from={"/"} noThrow />;
   }
 };
 

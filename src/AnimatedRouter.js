@@ -2,19 +2,19 @@ import React, { useState, useEffect } from "react";
 import { Router, Location, globalHistory } from "@reach/router";
 import { animated, config as reactSpringConfig } from "react-spring/web.cjs";
 import { Transition } from "react-spring/renderprops.cjs";
+
 const routerDivStyles = {
   display: "flex",
   flexDirection: "column",
   boxSizing: "border-box",
-  // height: "calc(100vh - 50px)",
   marginTop: 50,
+  marginBottom: 56,
 };
 const baseStyles = {
   position: "absolute",
   top: 0,
   right: 0,
   left: 0,
-  bottom: 56
 };
 
 /* animated router experiment */
@@ -40,6 +40,7 @@ const AnimatedRouter = ({ children, basePath, changeView }) => {
         return 0;
     }
   };
+
   const [lastPathLevel, setLastPathLevel] = useState(
     getLevel(globalHistory.location.pathname)
   );
@@ -51,8 +52,10 @@ const AnimatedRouter = ({ children, basePath, changeView }) => {
   useEffect(() => {
     changeView(path);
   }, [path, changeView]);
+
   useEffect(() => {
     document.body.style.overflow = isAnimating ? "hidden" : "";
+    // document.body.style.overflow = isMobile ? "hidden" : "";
   }, [isAnimating]);
   return (
     <Location>

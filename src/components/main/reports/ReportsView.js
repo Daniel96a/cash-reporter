@@ -1,28 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 
 import AddReport from "./add/AddReport";
 import ReportList from "./ReportList";
-import { AddReportButton } from "./add/AddReportButton";
-
-const ReportsView = () => {
-  const [showAddReportsForm, setShowAddReportsForm] = useState(false);
+import { toggleShowAddReport } from "../../../redux/actions/states";
+import { connect } from "react-redux";
+const ReportsView = ({ showAddReport, toggleShowAddReport }) => {
+  console.log(showAddReport);
   return (
-    <div style={{}}>
-
-      {showAddReportsForm && (
-        <AddReport
-          showAddReportsForm={showAddReportsForm}
-          setShowAddReportsForm={setShowAddReportsForm}
-        />
-      )}
-      <ReportList
-        showAddReportsForm={showAddReportsForm}
-        setShowAddReportsForm={setShowAddReportsForm}
+    <>
+      <AddReport
+        showAddReport={showAddReport}
+        toggleShowAddReport={toggleShowAddReport}
       />
-      <AddReportButton showAddReportsForm={showAddReportsForm}
-        setShowAddReportsForm={setShowAddReportsForm}/>
-    </div>
+      <ReportList />
+    </>
   );
 };
 
-export default ReportsView;
+const mapStateToProps = (state) => ({
+  showAddReport: state.states.showAddReport,
+});
+export default connect(mapStateToProps, {
+  toggleShowAddReport,
+})(ReportsView);

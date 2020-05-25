@@ -1,10 +1,8 @@
 import React from "react";
 import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
-import { connect } from "react-redux";
-import { changeView } from "../../redux/actions/states";
 import { bottomNavbarStyle } from "../../styles/Styles";
 import { navigate } from "@reach/router";
-export const BottomNavBar = ({ changeView, selectedView }) => {
+export const BottomNavBar = ({ changeView, states: { selectedView } }) => {
   const handleChange = (event, newValue) => {
     changeView(newValue);
     navigate(`/${newValue}`);
@@ -21,7 +19,7 @@ export const BottomNavBar = ({ changeView, selectedView }) => {
         showLabel
         label="Dashboard"
         value="dashboard"
-      />∆
+      />
       <BottomNavigationAction
         className={bottomNavbarStyle().button}
         showLabel
@@ -38,9 +36,4 @@ export const BottomNavBar = ({ changeView, selectedView }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  view: state.states.selectedView,
-});
-export default connect(mapStateToProps, {
-  changeView,
-})(BottomNavBar);
+export default BottomNavBar;

@@ -1,25 +1,19 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Redirect } from "@reach/router";
+import isEmpty from "lodash/isEmpty";
 
-export const LoginRoute = ({
+const LoginRoute = ({
   component: Component,
   isAuthenticated,
-  ...rest
+  user,
+  redirectTo,
+  ...props
 }) => {
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        !isAuthenticated ? (
-          <Component {...props} />
-        ) : ( 
-          <Redirect
-            to={{
-              pathname: "/"
-            }}
-          />
-        )
-      }
-    />
-  );
+  if (isEmpty(user)) {
+    return <Component {...props} />;
+  } else {
+    return <Redirect to={redirectTo} from={"/"} noThrow />;
+  }
 };
+
+export default LoginRoute;

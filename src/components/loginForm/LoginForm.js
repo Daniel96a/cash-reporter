@@ -13,41 +13,32 @@ const LoginForm = ({ doLogin }) => {
     password: password,
   };
 
-  const login = () => {
+  const login = (e) => {
+    e.preventDefault();
+    console.log(data);
     doLogin(data);
   };
 
   return (
-    <form className={loginFormStyle().root + " fade-in"}>
+    <form className={loginFormStyle().root + " fade-in"} onSubmit={login}>
       <FormGroup className={loginFormStyle().label}>
         <TextField
           label="Username"
           name="username"
           autoComplete="current-username"
-
+          required={true}
           onChange={(e) => setusername(e.target.value)}
-          onKeyPress={(e) => {
-            if (e.key === "Enter") {
-              passwordRef.current.focus();
-            }
-          }}
         />
         <TextField
           label="Password"
           type="password"
           inputRef={passwordRef}
+          required={true}
           // autoComplete="current-password"
           onChange={(e) => setpassword(e.target.value)}
-          onKeyPress={(e) => {
-            if (e.key === "Enter") {
-              login(e);
-              
-            }
-          }}
         />
       </FormGroup>
-      <br />
-      <Button variant="contained" label="Login" onClick={login.bind(this)}>
+      <Button variant="contained" label="Login" type="submit">
         Login
       </Button>
     </form>
