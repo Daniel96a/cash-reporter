@@ -23,21 +23,17 @@ const AnimatedRouter = ({ children, basePath, changeView }) => {
   const PUSH = "PUSH";
 
   const getLevel = (pathname) => {
-    switch (pathname) {
-      case pathname.includes("/login"): {
-        return 0;
-      }
-      case pathname.includes("/dashboard"): {
-        return 1;
-      }
-      case pathname.includes("/users"): {
-        return 2;
-      }
-      case pathname.includes("/reports"): {
-        return 3;
-      }
-      default:
-        return 0;
+    if (pathname === "/login") {
+      return 0;
+    }
+    if (pathname === "/dashboard") {
+      return 1;
+    }
+    if (pathname === "/users") {
+      return 2;
+    }
+    if (pathname === "/reports") {
+      return 3;
     }
   };
 
@@ -63,7 +59,7 @@ const AnimatedRouter = ({ children, basePath, changeView }) => {
         const isSamePath =
           location.state && location.state.PrevPath === location.pathname;
         const currentLevel = getLevel(location.pathname);
-        const routeChangeType = lastPathLevel > currentLevel ? POP : PUSH;
+        const routeChangeType = currentLevel < lastPathLevel ? POP : PUSH;
         setLastPathLevel(currentLevel);
         setpath(location.pathname.replace("/", ""));
         return (

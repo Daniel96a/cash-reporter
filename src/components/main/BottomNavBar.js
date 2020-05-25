@@ -5,7 +5,7 @@ import { navigate } from "@reach/router";
 export const BottomNavBar = ({ changeView, states: { selectedView } }) => {
   const handleChange = (event, newValue) => {
     changeView(newValue);
-    navigate(`/${newValue}`);
+    navigate(`/${newValue}`, { state: { PrevPath: `/${selectedView}` } });
   };
 
   return (
