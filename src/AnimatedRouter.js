@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Router, Location, globalHistory } from "@reach/router";
 import { animated, config as reactSpringConfig } from "react-spring/web.cjs";
 import { Transition } from "react-spring/renderprops.cjs";
+import { isMobile } from "react-device-detect";
 
 const routerDivStyles = {
   display: "flex",
@@ -52,8 +53,29 @@ const AnimatedRouter = ({ children, basePath, changeView }) => {
 
   useEffect(() => {
     document.body.style.overflow = isAnimating ? "hidden" : "";
-    // document.body.style.overflow = isMobile ? "hidden" : "";
+    let vh = window.innerHeight;
+    let swipableView = document.getElementsByClassName(
+      "react-swipeable-view-container"
+    )[0];
+
+    if (swipableView) {
+      swipableView.style.height = `calc(${vh}px - 154px)`;
+    }
+
+    document.body.style.overflow = isMobile ? "hidden" : "";
   }, [isAnimating]);
+  window.addEventListener("resize", () => {
+    // We execute the same script as before
+    const vh = window.innerHeight;
+    const swipableView = document.getElementsByClassName(
+      "react-swipeable-view-container"
+    )[0];
+    if (swipableView) {
+      swipableView.style.height = `calc(${vh}px - 154px)`;
+    }
+    document.body.style.overflow = isMobile ? "hidden" : "";
+  });
+
   return (
     <Location>
       {({ location }) => {

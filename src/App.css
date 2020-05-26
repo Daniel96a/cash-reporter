@@ -6,6 +6,7 @@ div.MuiBox-root {
   background-color: rgba(22, 31, 41);
 } */
 
+
 input:-webkit-autofill {
   -webkit-text-fill-color: #009bc2;
   transition: background-color 5000s ease-in-out 0s;

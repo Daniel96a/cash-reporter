@@ -6,8 +6,10 @@ html {
 }
 body {
   height: 100%;
-
   margin: 0;
+}
+.react-swipeable-view-container {
+  height: calc(var(--vh) - 154px);
 }
 ::-webkit-scrollbar {
   display: none;

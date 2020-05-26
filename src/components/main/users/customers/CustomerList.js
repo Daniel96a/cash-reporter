@@ -46,23 +46,23 @@ const CustomerList = (props) => {
       )}
       {props.customers.customers.length > 0 && (
         <List dense className={styles.root} disablePadding>
-            {props.customers.customers.map((customer, index) => (
-              <ListItem
-                id={index}
-                className={`customerid-${customer.id} employeeListItem`}
-                key={index}
-                button
-                onClick={openDetails.bind(this)}
-              >
-                <ListItemAvatar>
-                  <Avatar />
-                </ListItemAvatar>
-                <ListItemText
-                  primary={customer.fullname}
-                  secondary={`Phone number: ${customer.phonenr}`}
-                />
-              </ListItem>
-            ))}
+          {props.customers.customers.map((customer, index) => (
+            <ListItem
+              id={index}
+              className={`customerid-${customer.id} employeeListItem`}
+              key={index}
+              button
+              onClick={openDetails.bind(this)}
+            >
+              <ListItemAvatar>
+                <Avatar />
+              </ListItemAvatar>
+              <ListItemText
+                primary={customer.fullname}
+                secondary={`Phone number: ${customer.phonenr}`}
+              />
+            </ListItem>
+          ))}
         </List>
       )}
       {props.customers.customers.length === 0 && <p>No reports found</p>}

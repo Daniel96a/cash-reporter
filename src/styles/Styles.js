@@ -269,10 +269,10 @@ export const switchListsStyle = makeStyles((theme) => ({
       maxWidth: 600,
     },
     "& .react-swipeable-view-container": {
-      height: window.innerHeight - 154,
+      // height: window.innerHeight - 154,
     },
     "& ul": {
-      marginBottom: 5
+      marginBottom: 5,
     },
     "& .MuiButtonBase-root": {
       backgroundColor: theme.palette.background.default,
