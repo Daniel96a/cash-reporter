@@ -44,7 +44,6 @@ const EmployeeList = (props) => {
 
       {props.employees.employees.length > 0 && (
         <List dense className={styles.root} disablePadding>
-          <div style={{ marginBottom: 10 }}>
             {props.employees.employees.map((employee, index) => (
               <ListItem
                 id={index}
@@ -62,7 +61,6 @@ const EmployeeList = (props) => {
                 />
               </ListItem>
             ))}
-          </div>
         </List>
       )}
       {props.employees.employees.length === 0 && <p>No employees found</p>}

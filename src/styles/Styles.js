@@ -57,7 +57,7 @@ export const detailsDialog = makeStyles((theme) => ({
         bottom: 0,
         maxWidth: 600,
         margin: "auto",
-        backgroundColor: theme.palette.background.paper
+        backgroundColor: theme.palette.background.paper,
       },
     },
     "& .MuiBackdrop-root": {
@@ -153,15 +153,22 @@ export const editDialog = makeStyles((theme) => ({
     "& .MuiPaper-root": {
       margin: "auto",
       position: "fixed",
-      top: 0,
-      bottom: 0,
-      left: 0,
-      right: 0,
+      top: isMobile && 0,
+      bottom: isMobile && 0,
+      left: isMobile && 0,
+      right: isMobile && 0,
+      maxHeight: isMobile && "100%",
       zIndex: 9999999,
-      maxHeight: "900px",
-      maxWidth: "600px",
-      overflow: "hidden",
-      backdropFilter: "blur(8px)",
+      "& div.buttons": {
+        position: "absolute",
+        left: 0,
+        right: 0,
+        bottom: 0,
+        maxWidth: 600,
+        margin: "auto",
+        display: "contents",
+        backgroundColor: theme.palette.background.paper,
+      },
     },
     "& .MuiButton-containedPrimary": {
       backgroundColor: "theme.palette.background.paper",
@@ -265,7 +272,7 @@ export const switchListsStyle = makeStyles((theme) => ({
       height: window.innerHeight - 154,
     },
     "& ul": {
-      height: "100vh",
+      marginBottom: 5
     },
     "& .MuiButtonBase-root": {
       backgroundColor: theme.palette.background.default,
@@ -400,6 +407,7 @@ export const loginFormStyle = makeStyles((theme) => ({
 }));
 export const tableStyle = makeStyles((theme) => ({
   root: {
+    backgroundColor: theme.palette.background.paper,
     overflow: "hidden",
     "& td, th": {
       padding: 5,

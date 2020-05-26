@@ -8,7 +8,14 @@ const ProfileCard = (props) => {
   const styles = profileStyle();
 
   return (
-    <div style={{position: 'relative', display: "flex", alignItems: 'center', justifyContent: 'center' }}>
+    <div
+      style={{
+        position: "relative",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <Card className={styles.root}>
         <CardContent>
           <Typography

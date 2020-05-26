@@ -101,12 +101,15 @@ export const EditEmployee = (props) => {
           />
         </DialogContent>
       )}
-      <Button variant="contained" onClick={update.bind(this)} color="primary">
-        Update
-      </Button>
-      <Button variant="contained" onClick={handleClose} color="secondary">
-        Abort
-      </Button>
+
+      <div className="buttons">
+        <Button variant="contained" onClick={update.bind(this)} color="primary">
+          Update
+        </Button>
+        <Button variant="contained" onClick={handleClose} color="secondary">
+          Abort
+        </Button>
+      </div>
     </Dialog>
   );
 };

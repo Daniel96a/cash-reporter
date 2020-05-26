@@ -46,7 +46,6 @@ const CustomerList = (props) => {
       )}
       {props.customers.customers.length > 0 && (
         <List dense className={styles.root} disablePadding>
-          <div style={{ marginBottom: 10 }}>
             {props.customers.customers.map((customer, index) => (
               <ListItem
                 id={index}
@@ -64,7 +63,6 @@ const CustomerList = (props) => {
                 />
               </ListItem>
             ))}
-          </div>
         </List>
       )}
       {props.customers.customers.length === 0 && <p>No reports found</p>}
