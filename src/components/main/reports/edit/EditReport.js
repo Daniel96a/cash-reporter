@@ -15,8 +15,6 @@ import { editDialog, tableStyle } from "../../../../styles/Styles";
 import { updateReport } from "../../../../redux/actions/reports";
 import { connect } from "react-redux";
 
-import { DARK } from "../../../../colorTheme/colors";
-
 const EditReport = props => {
   const [inFives, setInFives] = useState(0);
   const [inTens, setInTens] = useState(0);
@@ -120,7 +118,7 @@ const EditReport = props => {
           onChange={e => (report.address = e.target.value)}
         />
         <TableContainer
-          style={{ backgroundColor: DARK, margin: "20px 0px 20px 0px" }}
+          style={{ margin: "20px 0px 20px 0px" }}
         >
           <Table className={tableStyle.table} aria-label="simple table">
             <TableBody displayrowcheckbox="false" className={tableStyle.cells}>

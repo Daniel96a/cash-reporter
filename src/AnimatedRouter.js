@@ -64,8 +64,7 @@ const AnimatedRouter = ({ children, basePath, changeView }) => {
 
     document.body.style.overflow = isMobile ? "hidden" : "";
   }, [isAnimating]);
-  window.addEventListener("resize", () => {
-    // We execute the same script as before
+  window.addEventListener("orientationchange", () => {
     const vh = window.innerHeight;
     const swipableView = document.getElementsByClassName(
       "react-swipeable-view-container"
@@ -73,7 +72,15 @@ const AnimatedRouter = ({ children, basePath, changeView }) => {
     if (swipableView) {
       swipableView.style.height = `calc(${vh}px - 154px)`;
     }
-    document.body.style.overflow = isMobile ? "hidden" : "";
+  });
+  window.addEventListener("resize", () => {
+    const vh = window.innerHeight;
+    const swipableView = document.getElementsByClassName(
+      "react-swipeable-view-container"
+    )[0];
+    if (swipableView) {
+      swipableView.style.height = `calc(${vh}px - 154px)`;
+    }
   });
 
   return (
