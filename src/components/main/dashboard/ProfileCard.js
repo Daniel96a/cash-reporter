@@ -4,7 +4,7 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import { connect } from "react-redux";
 import { profileStyle } from "../../../styles/Styles";
 
-const Profile = (props) => {
+const ProfileCard = (props) => {
   const styles = profileStyle();
 
   return (
@@ -41,4 +41,4 @@ const Profile = (props) => {
 const mapStateToProps = (state) => ({
   user: state.auth.user,
 });
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps)(ProfileCard);

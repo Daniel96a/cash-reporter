@@ -115,16 +115,7 @@ const AddCustomer = ({ toggleShowAddCustomer, addPerson, showAddCustomer }) => {
               defaultValue={salt}
             />
           </div>
-          <div
-            style={{
-              position: "absolute",
-              left: 0,
-              right: 0,
-              bottom: 0,
-              maxWidth: 600,
-              margin: "auto",
-            }}
-          >
+          <div className="buttons">
             <Button variant="contained" color="primary" type="submit">
               Add Customer
             </Button>

@@ -15,6 +15,7 @@ const baseStyles = {
   top: 0,
   right: 0,
   left: 0,
+  bottom: 56,
 };
 
 /* animated router experiment */

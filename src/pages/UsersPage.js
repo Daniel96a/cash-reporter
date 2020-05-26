@@ -1,15 +1,15 @@
 import React from "react";
 
-import AddCustomer from "./customers/add/AddCustomer";
-import AddEmployee from "./employees/add/AddEmployee";
+import AddCustomer from "../components/main/users/customers/add/AddCustomer";
+import AddEmployee from "../components/main/users/employees/add/AddEmployee";
 
-import { SwitchLists } from "./SwitchLists";
+import { SwitchLists } from "../components/main/users/SwitchLists";
 import { connect } from "react-redux";
 import {
   showList,
   toggleShowAddCustomer,
   toggleShowAddEmployee,
-} from "../../../redux/actions/states";
+} from "../redux/actions/states";
 
 const UsersView = ({
   states: { showAddCustomer, showAddEmployee },

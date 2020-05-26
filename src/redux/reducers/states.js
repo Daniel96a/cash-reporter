@@ -37,7 +37,6 @@ export default (state = initialState, action = {}) => {
         showAddReport: action.showAddReport,
       };
     case SHOW_LIST:
-      console.log(action.showList === 0 ? "customers" : "employees");
       return {
         ...state,
         showList: action.showList === 0 ? "customers" : "employees",

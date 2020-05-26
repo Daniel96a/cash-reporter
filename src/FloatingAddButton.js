@@ -12,7 +12,7 @@ const FloatingAddButton = ({
   if (selectedView.includes("users") && showList.includes("customers")) {
     return <AddCustomerButton toggleShowAddCustomer={toggleShowAddCustomer} />;
   }
-  if (selectedView.includes("users") && showList.includes( "employees")) {
+  if (selectedView.includes("users") && showList.includes("employees")) {
     return <AddEmployeeButton toggleShowAddEmployee={toggleShowAddEmployee} />;
   }
   if (selectedView.includes("reports")) {

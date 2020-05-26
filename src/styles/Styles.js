@@ -50,6 +50,15 @@ export const detailsDialog = makeStyles((theme) => ({
       right: isMobile && 0,
       maxHeight: isMobile && "100%",
       zIndex: 9999999,
+      "& div.buttons": {
+        position: "absolute",
+        left: 0,
+        right: 0,
+        bottom: 0,
+        maxWidth: 600,
+        margin: "auto",
+        backgroundColor: theme.palette.background.paper
+      },
     },
     "& .MuiBackdrop-root": {
       backdropFilter: theme.palette.backdrop.blur,

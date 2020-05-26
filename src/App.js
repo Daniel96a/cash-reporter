@@ -1,21 +1,22 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import LoginPage from "./pages/LoginPage";
 import MainHeader from "./components/main/MainHeader";
 import AnimatedRouter from "./AnimatedRouter";
-import UsersView from "./components/main/users/UsersView";
 import BottomNavBar from "./components/main/BottomNavBar";
-import Profile from "./components/main/dashboard/Profile";
-import ReportsView from "./components/main/reports/ReportsView";
+import ReportsPage from "./pages/ReportsPage";
+import DashboardPage from "./pages/DashboardPage";
+import UsersPage from "./pages/UsersPage";
+import ProtectedRoute from "./protected.route";
+import LoginRoute from "./login.route";
+import FloatingAddButton from "./FloatingAddButton";
+
 import {
   changeView,
   toggleShowAddCustomer,
   toggleShowAddEmployee,
   toggleShowAddReport,
 } from "./redux/actions/states";
-import ProtectedRoute from "./protected.route";
-import LoginRoute from "./login.route";
-import FloatingAddButton from "./FloatingAddButton";
 
 const App = ({
   isAuthenticated,
@@ -26,27 +27,24 @@ const App = ({
   toggleShowAddReport,
   states,
 }) => {
-  useEffect(() => {
-    console.log(states.showAddReport);
-  }, [states.showAddReport]);
   return (
     <>
       <MainHeader isAuthenticated={isAuthenticated} />
       <AnimatedRouter basePath={""} user={user} changeView={changeView}>
         <ProtectedRoute
-          component={Profile}
+          component={DashboardPage}
           user={user}
           path={"/dashboard"}
           redirectTo={"/login"}
         />
         <ProtectedRoute
-          component={UsersView}
+          component={UsersPage}
           user={user}
           path={"/users"}
           redirectTo={"/login"}
         />
         <ProtectedRoute
-          component={ReportsView}
+          component={ReportsPage}
           user={user}
           path={"/reports"}
           redirectTo={"/login"}

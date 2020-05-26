@@ -13,7 +13,6 @@ export const EditEmployeeButton = props => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [showEditEmployee, setShowEditEmployee] = useState(false);
   const [showDeleteEmployee, setShowDeleteEmployee] = useState(false);
-  console.log(props.employeeSelected)
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };

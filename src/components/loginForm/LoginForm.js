@@ -15,7 +15,6 @@ const LoginForm = ({ doLogin }) => {
 
   const login = (e) => {
     e.preventDefault();
-    console.log(data);
     doLogin(data);
   };
 

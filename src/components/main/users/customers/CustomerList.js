@@ -25,7 +25,6 @@ const CustomerList = (props) => {
     setShowCustomerDetails(!showEditCustomer);
     setCustomerSelected(e.currentTarget.id);
     setShowCustomerDetails(true);
-    console.log(e.currentTarget.id);
   };
 
   return (

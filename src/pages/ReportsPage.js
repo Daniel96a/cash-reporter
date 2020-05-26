@@ -1,11 +1,10 @@
 import React from "react";
 
-import AddReport from "./add/AddReport";
-import ReportList from "./ReportList";
-import { toggleShowAddReport } from "../../../redux/actions/states";
+import AddReport from "../components/main/reports/add/AddReport";
+import ReportList from "../components/main/reports/ReportList";
+import { toggleShowAddReport } from "../redux/actions/states";
 import { connect } from "react-redux";
-const ReportsView = ({ showAddReport, toggleShowAddReport }) => {
-  console.log(showAddReport);
+const ReportsPage = ({ showAddReport, toggleShowAddReport }) => {
   return (
     <>
       <AddReport
@@ -22,4 +21,4 @@ const mapStateToProps = (state) => ({
 });
 export default connect(mapStateToProps, {
   toggleShowAddReport,
-})(ReportsView);
+})(ReportsPage);

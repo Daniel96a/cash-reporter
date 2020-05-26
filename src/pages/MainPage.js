@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import UsersView from "../components/main/users/UsersView";
-import Profile from "../components/main/dashboard/Profile";
+import UsersView from "./UsersPage";
+import Profile from "../components/main/dashboard/ProfileCard";
 import ReportsView from "../components/main/reports/ReportsView";
 
 import { connect } from "react-redux";

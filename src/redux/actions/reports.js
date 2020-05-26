@@ -35,12 +35,8 @@ export const addReport = (data) => {
         timeout: 1000,
       })
       .then((res) => {
-        console.log(res);
         dispatch(fetchReportList());
       })
-      .catch((error) => {
-        console.log(error);
-      });
   };
 };
 

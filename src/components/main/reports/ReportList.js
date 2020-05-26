@@ -13,13 +13,11 @@ const ReportList = ({ fetchReportList, reports }) => {
   const [reportSelected, setReportSelected] = useState(null);
 
   const openDetails = (e) => {
-    console.log(e.currentTarget.id)
     setReportSelected(e.currentTarget.id);
     setShowReportDetails(true);
   };
   useEffect(() => {
     fetchReportList();
-    console.log(reports)
     // eslint-disable-next-line
   }, []);
 
