@@ -43,13 +43,6 @@ const ReportDetails = props => {
           readOnly
         />
         <TextField
-          label="Report ID"
-          name="reportid"
-          fullWidth
-          defaultValue={props.reports[props.reportSelected].id}
-          readOnly
-        />
-        <TextField
           label="Customer sign"
           name="customersign"
           fullWidth

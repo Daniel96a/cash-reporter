@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { tableStyle } from "../../../../styles/Styles";
 
 import {
   TextField,
@@ -9,6 +8,7 @@ import {
   TableRow,
   TableCell,
 } from "@material-ui/core";
+import { tableStyle } from "../../../styles/Styles";
 const MarkerTable = () => {
   const styles = tableStyle();
   const [inFives, setInFives] = useState(0);

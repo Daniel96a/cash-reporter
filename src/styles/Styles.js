@@ -57,13 +57,14 @@ export const detailsDialog = makeStyles((theme) => ({
         bottom: 0,
         maxWidth: 600,
         margin: "auto",
+        display: 'grid',
         backgroundColor: theme.palette.background.paper,
       },
     },
     "& .MuiDialog-paperScrollPaper": {
       display: "flex",
       maxHeight: "100vh",
-      flexDirection: 'column',
+      flexDirection: "column",
     },
     "& .MuiBackdrop-root": {
       backdropFilter: theme.palette.backdrop.blur,
@@ -95,15 +96,10 @@ export const detailsDialog = makeStyles((theme) => ({
       },
     },
     "& .MuiButtonBase-root": {
-      display: "flex",
-      flex: "1 1 auto",
-      width: "-webkit-fill-available",
-      maxWidth: 600,
       margin: "10px 20px 10px 20px",
-      maxHeight: 50,
       backgroundColor: theme.palette.background.paper,
       color: theme.palette.primary.light,
-      minHeight: "38px",
+      height: 38,
       "&:last-child": {
         marginBottom: 20,
       },
@@ -168,14 +164,14 @@ export const editDialog = makeStyles((theme) => ({
         bottom: 0,
         maxWidth: 600,
         margin: "auto",
-        display: "contents",
+        display: 'grid',
         backgroundColor: theme.palette.background.paper,
       },
     },
     "& .MuiDialog-paperScrollPaper": {
       display: "flex",
       maxHeight: "100vh",
-      flexDirection: 'column',
+      flexDirection: "column",
     },
     "& .MuiButton-containedPrimary": {
       backgroundColor: "theme.palette.background.paper",
@@ -206,7 +202,7 @@ export const editDialog = makeStyles((theme) => ({
       margin: "10px 20px 10px 20px",
       backgroundColor: theme.palette.background.paper,
       color: theme.palette.primary.light,
-      minHeight: "38px",
+      height: 38,
       "&:last-child": {
         marginBottom: 20,
       },

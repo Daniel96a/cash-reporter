@@ -6,10 +6,11 @@ import {
   Dialog,
   Button,
 } from "@material-ui/core";
-import { detailsDialog } from "../../../../styles/Styles";
 import { addReport } from "../../../../redux/actions/reports";
 import { connect } from "react-redux";
-import MarkerTable from "./MarkerTable";
+
+import { detailsDialog } from "../../../../styles/Styles";
+import MarkerTable from "../MarkerTable";
 
 const AddReport = ({ addReport, toggleShowAddReport, showAddReport }) => {
   const styles = detailsDialog();
