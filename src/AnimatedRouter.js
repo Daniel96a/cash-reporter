@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Router, Location, globalHistory } from "@reach/router";
 import { animated, config as reactSpringConfig } from "react-spring/web.cjs";
 import { Transition } from "react-spring/renderprops.cjs";
-import { isMobile } from "react-device-detect";
 
 const routerDivStyles = {
   display: "flex",
@@ -50,7 +49,7 @@ const AnimatedRouter = ({ children, basePath, changeView }) => {
 
   useEffect(() => {
     document.body.style.overflow = isAnimating ? "hidden" : "";
-    document.body.style.overflow = isMobile ? "hidden" : "";
+    // document.body.style.overflow = isMobile ? "hidden" : "";
   }, [isAnimating]);
 
   return (
