@@ -25,17 +25,15 @@ const AnimatedRouter = ({ children, basePath, changeView }) => {
   const PUSH = "PUSH";
 
   const getLevel = (pathname) => {
-    if (pathname === "/login") {
-      return 0;
-    }
-    if (pathname === "/dashboard") {
-      return 1;
-    }
-    if (pathname === "/users") {
-      return 2;
-    }
-    if (pathname === "/reports") {
-      return 3;
+    switch (pathname) {
+      case "/dashboard":
+        return 1;
+      case "/users":
+        return 2;
+      case "/reports":
+        return 3;
+      default:
+        return 0;
     }
   };
 
@@ -46,42 +44,14 @@ const AnimatedRouter = ({ children, basePath, changeView }) => {
     globalHistory.location.pathname.replace("/", "")
   );
   const [isAnimating, setIsAnimating] = useState(false);
-
   useEffect(() => {
     changeView(path);
   }, [path, changeView]);
 
   useEffect(() => {
     document.body.style.overflow = isAnimating ? "hidden" : "";
-    let vh = window.innerHeight;
-    let swipableView = document.getElementsByClassName(
-      "react-swipeable-view-container"
-    )[0];
-
-    if (swipableView) {
-      swipableView.style.height = `calc(${vh}px - 154px)`;
-    }
-
     document.body.style.overflow = isMobile ? "hidden" : "";
   }, [isAnimating]);
-  window.addEventListener("orientationchange", () => {
-    const vh = window.innerHeight;
-    const swipableView = document.getElementsByClassName(
-      "react-swipeable-view-container"
-    )[0];
-    if (swipableView) {
-      swipableView.style.height = `calc(${vh}px - 154px)`;
-    }
-  });
-  window.addEventListener("resize", () => {
-    const vh = window.innerHeight;
-    const swipableView = document.getElementsByClassName(
-      "react-swipeable-view-container"
-    )[0];
-    if (swipableView) {
-      swipableView.style.height = `calc(${vh}px - 154px)`;
-    }
-  });
 
   return (
     <Location>

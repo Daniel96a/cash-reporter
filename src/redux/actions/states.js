@@ -24,7 +24,7 @@ export const setShowList = (showList) => ({
 
 export const changeView = (selectedView) => {
   return async (dispatch) => {
-    dispatch(setSelectedView(selectedView));
+    return dispatch(setSelectedView(selectedView));
   };
 };
 export const toggleShowAddCustomer = (showAddCustomer) => {

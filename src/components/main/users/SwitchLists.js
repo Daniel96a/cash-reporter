@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
 import { useTheme } from "@material-ui/core/styles";
@@ -10,7 +10,7 @@ import Box from "@material-ui/core/Box";
 import CustomerList from "./customers/CustomerList";
 import EmployeeList from "./employees/EmployeeList";
 import { switchListsStyle } from "../../../styles/Styles";
-
+import { useWindowSize } from "../../../hooks/useWindowSize";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
@@ -41,9 +41,19 @@ function a11yProps(index) {
 }
 
 export const SwitchLists = ({ showList }) => {
+  const innerHeight = useWindowSize().height;
   const classes = switchListsStyle();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
+
+  useEffect(() => {
+    let swipableView = document.getElementsByClassName(
+      "react-swipeable-view-container"
+    )[0];
+    if (swipableView) {
+      swipableView.style.height = `calc(${innerHeight}px - 154px)`;
+    }
+  }, [innerHeight]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
