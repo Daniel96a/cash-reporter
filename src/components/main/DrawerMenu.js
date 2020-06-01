@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.default,
     margin: "auto",
     width: 218,
+    marginBottom: 10,
   },
   div: {
     "& div": {
