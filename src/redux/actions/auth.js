@@ -1,40 +1,24 @@
 import * as types from "./types";
 import axios from "axios";
 import { useUrl } from "./URL";
-import { customHeaders } from "./customHeaders";
 import Cookies from "universal-cookie";
 import {
   setGrantTypePassword,
   setGrantTypeRefreshToken,
 } from "../../utils/setGrantType";
 import { setAuthorizationToken } from "../../utils/setAuthorizationToken";
-import { navigate } from "@reach/router";
+// import { navigate } from "@reach/router";
 import { authorizationParams } from "../../utils/authorizationParams";
 import { SET_CUSTOMERS } from "./customers";
 import { SET_EMPLOYEES } from "./employees";
 import { SET_PERSON } from "./person";
 import { setReports } from "./reports";
+import { fetchCurrentUser } from "./user";
 const cookie = new Cookies();
 export const setCurrentUser = (user) => ({
   type: types.SET_CURRENT_USER,
   user,
 });
-
-export const validateToken = () => {
-  return async (dispatch) => {
-    axios
-      .post(`${useUrl}/oauth/check_token${authorizationParams}`, {
-        customHeaders,
-        timeout: 1000,
-      })
-      .then((res) => {
-        dispatch(setCurrentUser(res.data));
-      })
-      .catch(() => {
-        dispatch(setCurrentUser({}));
-      });
-  };
-};
 
 export const refreshToken = () => {
   return async (dispatch) => {
@@ -53,7 +37,7 @@ export const refreshToken = () => {
           maxAge: res.data.expires_in,
         });
         setAuthorizationToken(res);
-        dispatch(setCurrentUser(res.data.access_token));
+        dispatch(fetchCurrentUser());
       })
       .catch(() => {
         dispatch(setCurrentUser({}));
@@ -71,6 +55,7 @@ export const doLogin = (credentials) => {
         timeout: 1000,
       })
       .then((res) => {
+        console.log(res);
         cookie.set("access_token", res.data.access_token, {
           maxAge: res.data.expires_in,
         });
@@ -78,11 +63,10 @@ export const doLogin = (credentials) => {
           maxAge: res.data.expires_in,
         });
         setAuthorizationToken(res);
-        dispatch(setCurrentUser(res.data.access_token));
-        navigate("/dashboard");
+        dispatch(fetchCurrentUser());
+        // navigate("/dashboard");
       })
       .catch((error) => {
-        dispatch(setCurrentUser({}));
         alert(error);
       });
   };
@@ -100,7 +84,6 @@ export const doLogout = () => {
         dispatch(SET_EMPLOYEES({}));
         dispatch(SET_PERSON({}));
         dispatch(setReports({}));
-        sessionStorage.removeItem("appView");
         cookie.remove("access_token");
         cookie.remove("refresh_token");
       });

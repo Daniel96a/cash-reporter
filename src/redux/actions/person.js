@@ -14,6 +14,7 @@ export const UPDATE_PERSON = (person) => ({
   person,
 });
 export const fetchPerson = (id) => {
+  console.log(id)
   return async (dispatch) => {
     axios
       .get(`${useUrl + API_ENDPOINTS.person.all}/${id}`)

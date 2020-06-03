@@ -4,7 +4,7 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import { connect } from "react-redux";
 import { profileStyle } from "../../../styles/Styles";
 
-const ProfileCard = () => {
+const ProfileCard = ({ user: { username, role } }) => {
   const styles = profileStyle();
 
   return (
@@ -23,7 +23,7 @@ const ProfileCard = () => {
             color="textSecondary"
             gutterBottom
           >
-            Welcome {"User"}
+            Welcome {username}
           </Typography>
           <Button
             aria-label="Edit and Delete"
@@ -38,7 +38,7 @@ const ProfileCard = () => {
             color="textSecondary"
             gutterBottom
           >
-            Status {"Admin"}
+            Status {role}
           </Typography>
         </CardContent>
       </Card>
