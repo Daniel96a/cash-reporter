@@ -20,7 +20,8 @@ const DeleteReport = props => {
     props.setShowDeleteReport(false);
   };
   const handleDelete = () => {
-    props.deleteReport(props.reports[props.reportSelected]);
+    props.deleteReport(props.reports[props.reportSelected].reportid);
+    console.log(props.reports[props.reportSelected].reportid)
     setOpen(false);
     props.setShowDeleteReport(false);
     props.setReportSelected(null);

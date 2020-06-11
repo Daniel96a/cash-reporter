@@ -44,8 +44,7 @@ export const deleteReport = (report) => {
   return async (dispatch) => {
     axios
       .delete(`${useUrl + API_ENDPOINTS.report.all}/${report}`, {
-        headers: customHeaders,
-        timeout: 1000,
+
       })
       .then((res) => {
         dispatch(fetchReportList(res.data));

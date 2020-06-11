@@ -40,15 +40,15 @@ const ReportList = ({ fetchReportList, reports }) => {
                 
                 <ListItem
                   id={index}
-                  className={`reportid-${report.id}`}
+                  className={`reportid-${report.reportid}`}
                   key={index}
                   button
                   onClick={openDetails.bind(this)}
                 >
                   <ListItemText
-                    primary={`Report ID: ${report.id}, with Employee Signature: 
+                    primary={`Report ID: ${report.reportid} | EmployeeID signature: 
                   ${report.employeesign}`}
-                    secondary={`Table name: ${report.tablename}
+                    secondary={`Table name: ${report.gametablename}
                   | Location: ${report.location}`}
                   />
                 </ListItem>

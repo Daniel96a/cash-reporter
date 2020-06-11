@@ -441,6 +441,9 @@ export const profileStyle = makeStyles((theme) => ({
     margin: 10,
     position: "relative",
     width: 600,
+    "& .MuiCardContent-root:last-child":{
+      padding: 15
+    }
   },
   hr: {
     margin: "10px 0px 10px 0px",

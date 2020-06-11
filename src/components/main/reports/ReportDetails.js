@@ -40,63 +40,81 @@ const ReportDetails = props => {
           label="Revenue"
           name="revenue"
           defaultValue={props.reports[props.reportSelected].revenue}
-          readOnly
+          InputProps={{
+            readOnly: true
+          }}
         />
         <TextField
           label="Customer sign"
           name="customersign"
           fullWidth
           defaultValue={props.reports[props.reportSelected].customersign}
-          readOnly
+          InputProps={{
+            readOnly: true
+          }}
         />
         <TextField
           label="Digital cash"
           name="digitalcashflow"
           fullWidth
           defaultValue={props.reports[props.reportSelected].digitalcashflow}
-          readOnly
+          InputProps={{
+            readOnly: true
+          }}
         />
         <TextField
           label="Cash"
           name="cashflow"
           fullWidth
           defaultValue={props.reports[props.reportSelected].cashflow}
-          readOnly
+          InputProps={{
+            readOnly: true
+          }}
         />
         <TextField
           label="Location"
           name="location"
           fullWidth
           defaultValue={props.reports[props.reportSelected].location}
-          readOnly
+          InputProps={{
+            readOnly: true
+          }}
         />
         <TextField
           label="Payment"
           name="payment"
           fullWidth
           defaultValue={props.reports[props.reportSelected].payment}
-          readOnly
+          InputProps={{
+            readOnly: true
+          }}
         />
         <TextField
           label="Extra info"
           name="infofield"
           fullWidth
           defaultValue={props.reports[props.reportSelected].infofield}
-          readOnly
+          InputProps={{
+            readOnly: true
+          }}
         />
         <TextField
           label="Table name"
-          name="tablename"
+          name="gametablename"
           fullWidth
-          defaultValue={props.reports[props.reportSelected].tablename}
-          readOnly
+          defaultValue={props.reports[props.reportSelected].gametablename}
+          InputProps={{
+            readOnly: true
+          }}
         />
         <TextField
           label="Status"
           name="status"
           fullWidth
           defaultValue={props.reports[props.reportSelected].status}
-          readOnly
+          InputProps={{
+            readOnly: true
+          }}
         />
       </DialogContent>
       <Button variant="contained" onClick={handleClose}>

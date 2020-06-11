@@ -24,13 +24,14 @@ const AddReport = ({ addReport, toggleShowAddReport, showAddReport }) => {
     location: "",
     payment: "",
     infofield: "",
-    tablename: "",
+    gametablename: "",
     status: "",
   };
 
   const createReport = (e) => {
     addReport(report);
     toggleShowAddReport(false);
+    e.preventDefault();
   };
 
   const handleClose = () => {
@@ -66,8 +67,8 @@ const AddReport = ({ addReport, toggleShowAddReport, showAddReport }) => {
             />
             <TextField
               label="Table name"
-              name="tablename"
-              onChange={(e) => (report.tablename = e.target.value)}
+              name="gametablename"
+              onChange={(e) => (report.gametablename = e.target.value)}
             />
             <TextField
               label="Location"
