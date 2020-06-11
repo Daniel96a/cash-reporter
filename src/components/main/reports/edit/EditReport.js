@@ -6,13 +6,13 @@ import {
   Dialog,
   Button,
 } from "@material-ui/core";
-import { detailsDialog } from "../../../../styles/Styles";
+import { editDialog } from "../../../../styles/Styles";
 import { updateReport } from "../../../../redux/actions/reports";
 import { connect } from "react-redux";
 import MarkerTable from "../MarkerTable";
 
 const EditReport = (props) => {
-  const styles = detailsDialog();
+  const styles = editDialog();
 
   const report = {
     employeesign: props.reports[props.reportSelected].employeesign,
@@ -23,7 +23,7 @@ const EditReport = (props) => {
     location: props.reports[props.reportSelected].location,
     payment: props.reports[props.reportSelected].payment,
     infofield: props.reports[props.reportSelected].infofield,
-    tablename: props.reports[props.reportSelected].tablename,
+    gametablename: props.reports[props.reportSelected].gametablename,
   };
 
   const updateReport = (e) => {
@@ -107,9 +107,9 @@ const EditReport = (props) => {
             />
             <TextField
               label="Table name"
-              name="tablename"
-              defaultValue={report.tablename}
-              onChange={(e) => (report.tablename = e.target.value)}
+              name="gametablename"
+              defaultValue={report.gametablename}
+              onChange={(e) => (report.gametablename = e.target.value)}
             />
             <MarkerTable />
           </div>

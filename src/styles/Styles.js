@@ -44,12 +44,17 @@ export const detailsDialog = makeStyles((theme) => ({
     "& .MuiPaper-root": {
       margin: "auto",
       position: "fixed",
-      top: isMobile && 0,
-      bottom: isMobile && 0,
-      left: isMobile && 0,
-      right: isMobile && 0,
-      height: isMobile ? "100%" : 600,
+      height: 800,
+      width: 400,
       zIndex: 9999999,
+      "@media only screen and (max-width: 600px)": {
+        top: 0,
+        bottom:0,
+        left: 0,
+        right:0,
+        width: '100%',
+        height: '100%'
+      },
       "& div.buttons": {
         position: "absolute",
         left: 0,
@@ -151,12 +156,18 @@ export const editDialog = makeStyles((theme) => ({
     "& .MuiPaper-root": {
       margin: "auto",
       position: "fixed",
-      top: isMobile && 0,
-      bottom: isMobile && 0,
-      left: isMobile && 0,
-      right: isMobile && 0,
-      height: isMobile ? "100%" : 600,
+      height: 800,
+      width: 400,
       zIndex: 9999999,
+      "@media only screen and (max-width: 600px)": {
+        top: 0,
+        bottom:0,
+        left: 0,
+        right:0,
+        width: '100%',
+        height: '100%'
+      },
+
       "& div.buttons": {
         position: "absolute",
         left: 0,
@@ -167,6 +178,9 @@ export const editDialog = makeStyles((theme) => ({
         display: 'grid',
         backgroundColor: theme.palette.background.paper,
       },
+    },
+    "& .MuiBackdrop-root":{
+      backgroundColor: 'transparent',
     },
     "& .MuiDialog-paperScrollPaper": {
       display: "flex",
@@ -211,9 +225,6 @@ export const editDialog = makeStyles((theme) => ({
     "& .MuiDialogTitle-root": {
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.text.primary,
-    },
-    "& .MuiBackdrop-root": {
-      backgroundColor: "transparent",
     },
   },
   label: {

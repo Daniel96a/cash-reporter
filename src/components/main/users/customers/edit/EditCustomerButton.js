@@ -56,8 +56,8 @@ export const EditCustomerButton = props => {
           height: 64,
           width: 64,
           position: "absolute",
-          top: 0,
-          right: -24
+          right: 0,
+          margin: 'auto'
         }}
       >
         <SettingsIcon
